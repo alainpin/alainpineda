@@ -10,7 +10,8 @@ authors:
   - admin
 bio: My research interests include informality and youth employment.
 interests:
-  - ""
+  - Informality
+  - Youth Employment
 social:
   - icon: envelope
     icon_pack: fas
