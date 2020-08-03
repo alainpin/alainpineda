@@ -39,7 +39,7 @@ date_format = "Jan 2006"
 [[item]]
   organization = "EX ITAM"
   organization_url = ""
-  title = "Research Award EX ITAM"
+  title = "ITAM Alumni Research Award"
   url = ""
   date_start = "2018-04-01"
   date_end = ""
