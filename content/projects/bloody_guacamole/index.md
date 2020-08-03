@@ -1,5 +1,6 @@
 ---
-title: ¨Bloody Guacamole: The Impact of Crime Exposure on Firms"
+title: Bloody Guacamole
+subtitle: The Impact of Crime Exposure on Firms
 summary: "I study the impact of crime exposure on firms using the boom of the avocado industry in Mexico and the increase of drug cartel presence."
 ---
 
