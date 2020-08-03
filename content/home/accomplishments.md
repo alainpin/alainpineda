@@ -20,7 +20,7 @@ date_format = "Jan 2006"
 
 [[item]]
   organization = "Stanford University"
-  organization_url = "https://www.coursera.org"
+  organization_url = ""
   title = "Knight-Hennessy Scholar"
   url = "https://knight-hennessy.stanford.edu/program/scholars/2018/alain-pineda"
   date_start = "2018-09-01"
