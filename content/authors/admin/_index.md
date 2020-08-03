@@ -1,7 +1,7 @@
 ---
 title: Alain Pineda
 role: PhD student in Economics
-avatar_filename: knight-hennessy-alain-pineda-headshot.jpg
+avatar_filename: avatar.jpg
 organizations:
   - name: Stanford University
     url: ""
