@@ -4,7 +4,9 @@ role: PhD student in Economics
 avatar_filename: avatar.jpg
 organizations:
   - name: Stanford University
-    url: alainpin@stanford.edu
+    url: ""
+  - name: alainpin@stanford.edu
+    url: mailto:alainpin@stanford.edu
 superuser: true
 authors:
   - admin
