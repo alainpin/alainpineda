@@ -4,7 +4,7 @@ role: PhD student in Economics
 avatar_filename: avatar.jpg
 organizations:
   - name: Stanford University
-    url: ""
+    url: alainpin@stanford.edu
 superuser: true
 authors:
   - admin
@@ -15,7 +15,7 @@ interests:
 social:
   - icon: envelope
     icon_pack: fas
-    link: "#contact"
+    link: mailto:alainpin@stanford.edu
   - icon: twitter
     icon_pack: fab
     link: https://twitter.com/alainpin2
@@ -32,8 +32,7 @@ education:
       year: 2017
 email: ""
 user_groups:
-  - Researchers
-  - Visitors
+  - "1993"
 ---
 I am studying my Ph.D. in Economics at Stanford University as a Knight-Hennessy Scholar. I am interested in studying labor markets in developing countries, particularly the dynamics of informal employment. 
 
