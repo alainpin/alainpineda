@@ -28,8 +28,8 @@ date_format = "Jan 2006"
   Fields:
   
   * Labor Economics
-  * Public Economics
   * Development Economics
+  * Public Economics
   """
 
 [[experience]]
