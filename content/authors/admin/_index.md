@@ -40,4 +40,4 @@ I am studying my Ph.D. in Economics at Stanford University as a Knight-Hennessy 
 
 I am originally from Mexico City and previously worked in the Research Department of Mexico’s central bank (Banxico). I received my MA and BA in Economics from Instituto Tecnológico Autónomo de México (ITAM).
 
-For my undergraduate thesis I studied the determinants of informal job duration in Mexico. This work was recipient of the Citibanamex Economics Award in 2017.
+For my undergraduate thesis I studied the determinants of informal job duration in Mexico. This work was recipient of the 2017 Citibanamex Economics Award.
