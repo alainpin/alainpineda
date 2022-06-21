@@ -20,7 +20,7 @@ date_format = "Jan 2006"
 [[experience]]
   title = "PhD Student"
   company = "Stanford University"
-  company_url = ""
+  company_url = "https://economics.stanford.edu/"
   location = "Stanford, CA"
   date_start = "2018-08-01"
   date_end = ""
@@ -43,7 +43,7 @@ date_format = "Jan 2006"
   
  [[experience]]
   title = "Summer Intern - Consultant"
-  company = "Inter-American Development Group"
+  company = "Inter-American Development Bank"
   company_url = "https://www.iadb.org/"
   location = "Remote"
   date_start = "2022-06-15"
