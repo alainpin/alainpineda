@@ -37,7 +37,7 @@ email: ""
 user_groups:
   - "1993"
 ---
-I am a Ph.D. student in Economics at Stanford University and a [Knight-Hennessy Scholar](https://knight-hennessy.stanford.edu/). I am interested in studying labor markets in developing countries, particularly the dynamics of informal employment. 
+I am a Ph.D. student in Economics at Stanford University and a [Knight-Hennessy Scholar](https://knight-hennessy.stanford.edu/). I am interested in studying labor markets in developing countries, with a focus on the dynamics of informal employment. 
 
 I am originally from Mexico City and previously worked in the Research Department of Mexico’s central bank (Banxico). I received my MA and BA in Economics from Instituto Tecnológico Autónomo de México (ITAM).
 
