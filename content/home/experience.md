@@ -39,7 +39,7 @@ date_format = "Jan 2006"
   location = "Mexico City"
   date_start = "2015-09-01"
   date_end = "2018-07-31"
-  description = """Analysis of the real economy, with a focus on labor markets."""
+  description = """Analysis of the real economy, with a focus on labor markets"""
   
  [[experience]]
   title = "Summer Intern - Consultant"
@@ -48,6 +48,6 @@ date_format = "Jan 2006"
   location = "Remote"
   date_start = "2022-06-15"
   date_end = "2022-08-14"
-  description = """Research assistant for microdata analysis on gender at the Gender and Diversity Divison."""
+  description = """Research assistant for microdata analysis on gender at the Gender and Diversity Divison"""
 
 +++
