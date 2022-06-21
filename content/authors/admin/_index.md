@@ -28,6 +28,9 @@ education:
       institution: Stanford University
       year: 2024 (expected)
     - course: MA in Economics
+      institution: Stanford University
+      year: 2022
+    - course: MA in Economics
       institution: ITAM
       year: 2018
     - course: BA in Economics
