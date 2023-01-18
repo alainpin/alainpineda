@@ -10,10 +10,10 @@ organizations:
 superuser: true
 authors:
   - admin
-bio: My research interests include informality and youth employment.
+bio: My research interests include informality, youth employment.
 interests:
   - Informality
-  - Youth Employment
+  - Labor Market Trajectories
   - Inequality
 social:
   - icon: envelope
