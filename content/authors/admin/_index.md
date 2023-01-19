@@ -12,7 +12,7 @@ authors:
   - admin
 bio: My research interests include informality, labor market trajectories, and inequality.
 interests:
-  - Informality x
+  - Informality
   - Labor Market Trajectories
   - Inequality
 social:
