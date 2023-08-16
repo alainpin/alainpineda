@@ -5,7 +5,7 @@ headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 50  # Order that this section will appear.
 
-title = "Accomplish&shy;ments"
+title = "Awards & Fellowships"
 subtitle = ""
 
 # Date format
@@ -19,8 +19,17 @@ date_format = "Jan 2006"
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 
 [[item]]
+  organization = "Stanford Institute for Economic Policy Research"
+  organization_url = "https://siepr.stanford.edu/"
+  title = "Shaw-Haley Fellow"
+  url = "https://siepr.stanford.edu/people/graduate-fellowship-recipients"
+  date_start = "2023-09-01"
+  date_end = "2023-12-01"
+  description = ""
+  
+[[item]]
   organization = "Stanford University"
-  organization_url = ""
+  organization_url = "https://knight-hennessy.stanford.edu/"
   title = "Knight-Hennessy Scholar"
   url = "https://knight-hennessy.stanford.edu/program/scholars/2018/alain-pineda"
   date_start = "2018-09-01"
