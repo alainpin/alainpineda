@@ -50,4 +50,13 @@ date_format = "Jan 2006"
   date_end = "2022-08-14"
   description = """Research assistant for microdata analysis on gender at the Gender and Diversity Divison"""
 
+[[experience]]
+  title = "Lecturer"
+  company = "ITAM"
+  company_url = "https://www.itam.mx/en/node"
+  location = "Mexico City (remote)"
+  date_start = "2022-01-15"
+  date_end = "2022-05-14"
+  description = """Research seminar for students in the Master in Applied Economics program"""
+
 +++
