@@ -24,7 +24,7 @@ date_format = "2006"
   title = "Shaw-Haley Fellow"
   url = "https://siepr.stanford.edu/people/graduate-fellowship-recipients"
   date_start = "2023-09-01"
-  date_end = "2023-12-01"
+  date_end = ""
   description = ""
   
 [[item]]
