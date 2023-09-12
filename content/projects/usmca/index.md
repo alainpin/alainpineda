@@ -1,6 +1,7 @@
 ---
 title: "NAFTA to USMCA: The Impact on the Labor Market in Mexico"
 subtitle:
+weight: 3
 summary: "The United States-Mexico-Canada Agreement (USMCA) substituted the North America Free
 Trade Agreement (NAFTA) in 2020, updating trade rules for one of the world’s largest free trade
 zones. Some key changes include stricter rules of origin and higher wage requirements in the
