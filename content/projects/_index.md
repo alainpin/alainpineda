@@ -1,5 +1,5 @@
 ---
-title: Projects
+title: Research Projects
 
 # View.
 #   1 = List
