@@ -23,6 +23,9 @@ social:
   - icon: twitter
     icon_pack: fab
     link: https://twitter.com/alainpin2
+  - icon: linkedin
+    icon_pack: fab
+    link: https://www.linkedin.com/in/alain-pineda-429b10a0/
 education:
   courses:
     - course: PhD in Economics
