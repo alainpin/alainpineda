@@ -49,5 +49,3 @@ I am a PhD student in Economics at Stanford University and a [Knight-Hennessy Sc
 **I am on the job market during the 2023-24 academic year.**
 
 I am originally from Mexico City and previously worked in the Research Department of Mexico’s central bank (Banxico). I received my MA and BA in Economics from Instituto Tecnológico Autónomo de México (ITAM).
-
-If you're a Mexican student considering a PhD in Economics you can find resources in [Aplicar desde México](https://aplicardesdemexico.github.io/). 
