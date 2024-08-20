@@ -15,7 +15,4 @@
     url = "files/CV_Alain_Pineda.pdf"
     weight = 20
 
-  [[main]]
-    name = "Job Market Paper"
-    url = "files/JMP_Alain_Pineda.pdf"
-    weight = 30
+
