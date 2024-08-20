@@ -18,19 +18,13 @@ date_format = "Jan 2006"
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 [[experience]]
-  title = "PhD Student"
-  company = "Stanford University"
-  company_url = "https://economics.stanford.edu/"
-  location = "Stanford, CA"
-  date_start = "2018-08-01"
+  title = "Research Economist"
+  company = "Banco de México"
+  company_url = "https://www.banxico.org.mx/"
+  location = "Mexico City"
+  date_start = "2024-08-01"
   date_end = ""
-  description = """
-  Fields:
-  
-  * Labor Economics
-  * Development Economics
-  * Public Economics
-  """
+  description = "Economic research for the Real Sector Research Division"
 
 [[experience]]
   title = "Economist"
