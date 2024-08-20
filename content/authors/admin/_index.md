@@ -1,18 +1,18 @@
 ---
 title: Alain Pineda
-role: PhD student in Economics
+role: Research Economist
 avatar_filename: avatar.jpg
 organizations:
-  - name: Stanford University
+  - name: Banco de México
     url: ""
-  - name: alainpin@stanford.edu
-    url: mailto:alainpin@stanford.edu
+  - name: alain.pineda@banxico.org.mx
+    url: mailto:alain.pineda@banxico.org.mx
 superuser: true
 authors:
   - admin
-bio: My research interests include informality, labor market trajectories, and inequality.
+bio: My research interests include informal employment, labor market trajectories, and inequality.
 interests:
-  - Informality
+  - Informal Employment
   - Social Insurance Expansion
   - Labor Market Trajectories
   - Equality of Opportunity
@@ -30,7 +30,7 @@ education:
   courses:
     - course: PhD in Economics
       institution: Stanford University
-      year: 2024 (expected)
+      year: 2024 
     - course: MA in Economics
       institution: Stanford University
       year: 2022
@@ -44,6 +44,6 @@ email: ""
 user_groups:
   - "1993"
 ---
-I am a PhD student in Economics at Stanford University and a [Knight-Hennessy Scholar](https://knight-hennessy.stanford.edu/). I am interested in studying labor markets in developing countries, focusing on the dynamics of informal employment and expanding access to social insurance. 
+I am a Research Economist at Banco de México's Research Division. I am interested in studying labor markets in developing countries, focusing on the dynamics of informal employment and expanding access to social insurance. 
 
-I am originally from Mexico City and previously worked in the Research Department of Mexico’s central bank (Banxico). I received my MA and BA in Economics from Instituto Tecnológico Autónomo de México (ITAM).
+I completed my PhD in Economics at Stanford University as a [Knight-Hennessy Scholar](https://knight-hennessy.stanford.edu/). I received my MA and BA in Economics from Instituto Tecnológico Autónomo de México (ITAM). 
