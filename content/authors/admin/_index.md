@@ -20,7 +20,7 @@ social:
   - icon: envelope
     icon_pack: fas
     link: mailto:alainpin@stanford.edu
-  - icon: x-twitter
+  - icon: twitter
     icon_pack: fab
     link: https://twitter.com/alainpin2
   - icon: linkedin
