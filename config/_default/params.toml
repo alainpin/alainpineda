@@ -97,7 +97,7 @@ address = {street = "5 de Mayo 18", city = "Mexico City", region = "CDMX", postc
 
 # Geographic coordinates
 # To get your coordinates, right-click on Google Maps and choose "What's here?". The coords will show up at the bottom.
-coordinates = {latitude = "19.4346541", longitude = "-99.1414964"}
+coordinates = {latitude = "19.434586", longitude = "-99.138839"}
 
 # Directions for visitors to locate you.
 directions = ""
