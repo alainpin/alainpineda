@@ -24,7 +24,7 @@ date_format = "Jan 2006"
   location = "Mexico City"
   date_start = "2024-08-01"
   date_end = ""
-  description = "Economic research for the Real Sector Research Division"
+  description = """Economic research for the Real Sector Research Division"""
 
 [[experience]]
   title = "Lecturer"
@@ -33,7 +33,7 @@ date_format = "Jan 2006"
   location = "Mexico City"
   date_start = "2025-01-01"
   date_end = ""
-  description = "Storytelling in Economics, Master in Applied Economics"
+  description = """Storytelling in Economics, Master in Applied Economics"""
 
 [[experience]]
   title = "Economist"
