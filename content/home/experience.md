@@ -27,15 +27,6 @@ date_format = "Jan 2006"
   description = """Economic research for the Real Sector Research Division"""
 
 [[experience]]
-  title = "Lecturer"
-  company = "ITAM"
-  company_url = "https://www.itam.mx"
-  location = "Mexico City"
-  date_start = "2025-01-01"
-  date_end = "2025-05-01"
-  description = """Storytelling in Economics, Master in Applied Economics"""
-
-[[experience]]
   title = "Economist"
   company = "Banco de México"
   company_url = "https://www.banxico.org.mx/"
