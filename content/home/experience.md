@@ -32,7 +32,7 @@ date_format = "Jan 2006"
   company_url = "https://www.itam.mx"
   location = "Mexico City (remote)"
   date_start = "2025-01-01"
-  date_end = "2025-05-01"
+  date_end = ""
   description = """Storytelling in Economics, Master in Applied Economics"""
 
 [[experience]]
