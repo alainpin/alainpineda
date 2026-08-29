@@ -10,7 +10,7 @@
 //
 //  No es una inversion. La misma identidad, calibrada para fondo oscuro:
 //  el teal y el ocre suben en luminosidad para mantener contraste sobre
-//  #12181c, y el texto no llega a blanco puro para no vibrar.
+//  #171513, y el texto no llega a blanco puro para no vibrar.
 // ==========================================================================
 
 // Calibrado a partir de la paleta clara del export de Claude Design
@@ -18,7 +18,7 @@
 // Mismo metodo que antes: se preserva el tono, se sube la luminosidad de
 // los acentos para que aguanten contraste sobre el fondo oscuro, y el texto
 // no llega a blanco puro.
-$ink:        #f6f1e7;   // texto sobre fondo oscuro, el crema claro del export
+$ink:        #e3ddd0;   // texto sobre fondo oscuro, crema atenuado (mas oscuro que --paper del export para no vibrar)
 $ink-soft:   #9a948b;   // metadatos, pies (el --ink-4 mas tenue del export)
 $paper:      #171513;   // fondo, el --ink casi negro del export
 $rule:       #332c26;   // hairlines
