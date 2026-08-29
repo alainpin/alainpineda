@@ -1,13 +1,11 @@
 ---
-title: "Data"
+title: "Labor Market MX"
 date-modified: last-modified
 ---
 
 Interactive figures. Everything runs in your browser; series are prepared in R
 and published as CSV in `data/` in the
 [site's repository](https://github.com/alainpin/alainpineda).
-
-## Labor Market MX
 
 ::: {.eyebrow}
 ENOE, INEGI · Quarterly, 2005–2026 · National

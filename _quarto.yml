@@ -20,6 +20,10 @@ website:
 
 format:
   html:
+    # Reescribe el enlace ES/EN del navbar a la pagina equivalente en el otro
+    # idioma (mismo slug) en vez de redirigir siempre al home. Ver
+    # js/lang-toggle.html.
+    include-after-body: js/lang-toggle.html
     # Dos temas. Quarto pone un toggle en la esquina del navbar.
     # `respect-user-color-scheme: true` hace que la primera visita use el ajuste
     # del sistema del lector en lugar de forzar el tema claro; a partir de ahi

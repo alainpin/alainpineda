@@ -252,6 +252,18 @@ details.abstract > p { margin-top: 0.8rem; font-size: 0.94rem; }
   margin-top: 0.5rem;
 }
 
+// ---- Plot hover tooltip (data.qmd charts) ----
+// Plot.tip defaults to `fill: var(--plot-background)` for its box and
+// `currentColor` for its text, which should already track the active theme.
+// In practice the hover text has come out low-contrast against its box, so
+// force both explicitly off our own tokens rather than trust that chain —
+// this compiles once per theme like everything else here, so it can never
+// drift from the light/dark palette in use.
+g[aria-label="tip"] {
+  path { fill: $paper !important; stroke: $rule !important; }
+  text, tspan { fill: $ink !important; }
+}
+
 // ---- Indicator grid (data.qmd) ----
 // Small multiples for the headline labor indicators. Bordered box like
 // .site-figure but text-based, so color derives from tokens throughout —
