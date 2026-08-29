@@ -13,9 +13,6 @@ about:
     - icon: file-earmark-text
       text: CV
       href: files/CV_Alain_Pineda.pdf
-    - icon: mortarboard-fill
-      text: Scholar
-      href: "https://scholar.google.com/citations?user=wSY8lKgAAAAJ&hl=en&oi=ao"
     - icon: linkedin
       text: LinkedIn
       href: "https://www.linkedin.com/in/alain-pineda-429b10a0/"
