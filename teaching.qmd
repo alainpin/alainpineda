@@ -1,12 +1,11 @@
 ---
 title: "Teaching"
-date-modified: last-modified
 ---
 
 ## ITAM
 
 ::: {.eyebrow}
-Master in Applied Economics · Jan 2025 – present
+Master in Applied Economics · Spring 2025
 :::
 
 ### Storytelling in Economics
@@ -20,15 +19,9 @@ carry the point, and writing for policy audiences. Materials are public.
 :::
 
 ::: {.eyebrow}
-Master in Applied Economics · Jan – May 2022
+Master in Applied Economics · Spring 2022
 :::
 
 ### Research Seminar
 
 Thesis workshop for students in the Master in Applied Economics program.
-
-## Advising
-
-I am happy to talk with ITAM students working on labor markets, informality, or
-applied microeconometrics with Mexican administrative data.
-[Write to me](mailto:alain.pineda@banxico.org.mx).

@@ -1,7 +1,6 @@
 ---
 title: "Alain Pineda"
 subtitle: "Economista investigador · Banco de México"
-date-modified: last-modified
 about:
   template: trestles
   image: ../images/profile.jpg
@@ -29,14 +28,12 @@ microdatos administrativos y de encuesta de México para evaluar políticas que 
 están operando.
 
 Soy economista investigador en la Dirección de Investigación del Sector Real del
-[Banco de México](https://www.banxico.org.mx/) y profesor de asignatura en el
-[ITAM](https://www.itam.mx). Tengo un doctorado en Economía por Stanford, donde
-fui [Knight-Hennessy Scholar](https://knight-hennessy.stanford.edu/), y
-licenciatura y maestría por el ITAM.
+[Banco de México](https://www.banxico.org.mx/). Tengo un doctorado en Economía
+por Stanford, donde fui
+[Knight-Hennessy Scholar](https://knight-hennessy.stanford.edu/), y licenciatura
+y maestría por el ITAM.
 
 **En qué estoy.** [Seguridad social sin empleo](research/working-papers/social-insurance-without-a-job/index.qmd)
 pregunta si darle cobertura médica a estudiantes, desligada de cualquier trabajo,
 empuja a los jóvenes hacia la informalidad. No lo hace. En
-[Investigación](research.qmd) está el resto, incluidos los recuadros y textos
-escritos para audiencias no académicas, y en [Datos](data.qmd) las gráficas
-interactivas.
+[Investigación](research.qmd) está el resto.

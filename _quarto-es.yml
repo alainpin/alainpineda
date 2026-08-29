@@ -15,8 +15,6 @@ website:
         text: Perfil
       - href: es/research.qmd
         text: Investigación
-      - href: es/data.qmd
-        text: Datos
       - href: es/teaching.qmd
         text: Docencia
       - text: CV

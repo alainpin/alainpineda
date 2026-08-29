@@ -1,12 +1,11 @@
 ---
 title: "Docencia"
-date-modified: last-modified
 ---
 
 ## ITAM
 
 ::: {.eyebrow}
-Maestría en Economía Aplicada · enero 2025 – presente
+Maestría en Economía Aplicada · Primavera 2025
 :::
 
 ### Storytelling in Economics
@@ -21,15 +20,9 @@ Los materiales son públicos.
 :::
 
 ::: {.eyebrow}
-Maestría en Economía Aplicada · enero – mayo 2022
+Maestría en Economía Aplicada · Primavera 2022
 :::
 
 ### Seminario de investigación
 
 Taller de tesis para estudiantes de la Maestría en Economía Aplicada.
-
-## Asesoría
-
-Con gusto platico con estudiantes del ITAM que trabajen en mercados laborales,
-informalidad o microeconometría aplicada con datos administrativos mexicanos.
-[Escríbeme](mailto:alain.pineda@banxico.org.mx).

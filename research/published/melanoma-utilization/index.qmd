@@ -1,9 +1,8 @@
 ---
 title: "Health Care Utilization and Costs in Systemic Therapies for Metastatic Melanoma, 2016-2020"
 subtitle: "The Oncologist, 2022 · coauthored"
-description: "Health economics paper on how utilization and costs shifted as immune checkpoint inhibitors were adopted."
+description: "Widespread adoption of immune checkpoint inhibitors lowered melanoma mortality while reshaping how care was delivered. This paper documents how health care utilization and costs shifted across systemic melanoma treatments between 2016 and 2020."
 date: 2022-10-01
-date-modified: last-modified
 ---
 
 ::: {.eyebrow}

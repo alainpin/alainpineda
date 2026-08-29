@@ -1,6 +1,5 @@
 ---
 title: "Investigación"
-date-modified: last-modified
 listing:
   - id: working-papers
     contents: "research/working-papers/*/index.qmd"

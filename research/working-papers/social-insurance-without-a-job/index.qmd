@@ -1,9 +1,8 @@
 ---
 title: "Social Insurance Without a Job"
-subtitle: "Job market paper · Draft, 2026"
-description: "Mexico gave six million students health coverage untied to any job. Formal employment rose fastest where informality started highest."
+subtitle: "Working paper, 2026"
+description: "Mexico gave six million students health coverage untied to any job. Formal employment rose fastest where informality started highest, and the effect ran entirely through wage jobs rather than self-employment."
 date: 2026-08-20
-date-modified: last-modified
 author: "Alain Pineda"
 ---
 

@@ -1,9 +1,8 @@
 ---
 title: "Trabajadoras del hogar y seguridad social"
 subtitle: "En proceso"
-description: "La reforma de 2019 abrió la afiliación al IMSS para personas trabajadoras del hogar mediante un piloto voluntario. ¿Cuánto cerró la brecha?"
+description: "La reforma de 2019 abrió la afiliación al IMSS a dos millones de trabajadoras del hogar, en su enorme mayoría mujeres, mediante un piloto voluntario pensado como puente hacia un régimen obligatorio. Este proyecto mide cuánto de la brecha de cobertura cerró en realidad la afiliación voluntaria."
 date: 2025-09-01
-date-modified: last-modified
 author: "Alain Pineda"
 ---
 

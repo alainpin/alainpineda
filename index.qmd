@@ -1,7 +1,6 @@
 ---
 title: "Alain Pineda"
 subtitle: "Research Economist · Banco de México"
-date-modified: last-modified
 about:
   template: trestles
   image: images/profile.jpg
@@ -28,13 +27,11 @@ sit outside a formal contract. Most of my work uses Mexican administrative and
 survey microdata to evaluate policies that are already on the books.
 
 I am a Research Economist in the Real Sector Research Division at
-[Banco de México](https://www.banxico.org.mx/) and a lecturer at
-[ITAM](https://www.itam.mx). I hold a PhD in Economics from Stanford University,
-where I was a [Knight-Hennessy Scholar](https://knight-hennessy.stanford.edu/),
-and BA and MA degrees from ITAM.
+[Banco de México](https://www.banxico.org.mx/). I hold a PhD in Economics from
+Stanford University, where I was a
+[Knight-Hennessy Scholar](https://knight-hennessy.stanford.edu/), and BA and MA
+degrees from ITAM.
 
 **Current work.** [Social insurance without a job](research/working-papers/social-insurance-without-a-job/index.qmd)
 asks whether giving students health coverage untied to employment pushes young
-workers into informality. It does not. See [Research](research.qmd) for the rest, including
-boxes and commentary written for non-academic audiences, and
-[Data](data.qmd) for interactive figures.
+workers into informality. It does not. See [Research](research.qmd) for the rest.

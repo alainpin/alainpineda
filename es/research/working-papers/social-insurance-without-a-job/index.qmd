@@ -1,9 +1,8 @@
 ---
 title: "Seguridad social sin empleo"
-subtitle: "Job market paper · Borrador, 2026"
-description: "México dio cobertura médica a seis millones de estudiantes, desligada de cualquier empleo. El empleo formal subió más donde la informalidad era más alta."
+subtitle: "Documento de trabajo, 2026"
+description: "México dio cobertura médica a seis millones de estudiantes, desligada de cualquier empleo. El empleo formal subió más donde la informalidad era más alta, y el efecto se concentró por completo en el empleo asalariado."
 date: 2026-08-20
-date-modified: last-modified
 author: "Alain Pineda"
 ---
 

@@ -1,9 +1,8 @@
 ---
 title: "Uso y costos de servicios de salud en terapias sistémicas para melanoma metastásico, 2016-2020"
 subtitle: "The Oncologist, 2022 · en coautoría"
-description: "Artículo de economía de la salud sobre cómo cambiaron el uso y los costos con la adopción de inhibidores de punto de control inmunitario."
+description: "La adopción generalizada de inhibidores de punto de control inmunitario redujo la mortalidad por melanoma al tiempo que transformó la forma de entregar la atención. El artículo documenta cómo cambiaron el uso de servicios de salud y los costos entre terapias sistémicas para melanoma entre 2016 y 2020."
 date: 2022-10-01
-date-modified: last-modified
 ---
 
 ::: {.eyebrow}
