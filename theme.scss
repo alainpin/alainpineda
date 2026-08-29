@@ -121,6 +121,17 @@ h3, .h3 { font-size: 1.12rem; margin-top: 1.8rem; }
   flex-wrap: wrap;
   gap: 0.4rem 0.9rem;
 }
+// Markdown renders the pill list as a real <ul><li>: unwrap the <ul> box so
+// its <li>s become the flex items directly, and drop the bullets/indent.
+.paper-links ul {
+  display: contents;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.paper-links li {
+  list-style: none;
+}
 .paper-links a {
   border: 1px solid $rule;
   padding: 0.22rem 0.7rem;

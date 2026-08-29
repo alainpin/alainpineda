@@ -6,6 +6,7 @@ listing:
       - "research/working-papers/*/index.qmd"
       - "!es/**"
     type: default
+    template: listing-templates/research-listing.ejs.md
     sort: "date desc"
     fields: [title, subtitle, description]
     date-format: "YYYY"
@@ -16,6 +17,7 @@ listing:
       - "research/in-progress/*/index.qmd"
       - "!es/**"
     type: default
+    template: listing-templates/research-listing.ejs.md
     sort: "date desc"
     fields: [title, subtitle, description]
     date-format: "YYYY"
@@ -26,6 +28,7 @@ listing:
       - "research/published/*/index.qmd"
       - "!es/**"
     type: default
+    template: listing-templates/research-listing.ejs.md
     sort: "date desc"
     fields: [title, subtitle, description]
     date-format: "YYYY"
@@ -34,8 +37,7 @@ listing:
 ---
 
 My research asks how labor market institutions in Mexico shape who ends up in a
-formal job, and what happens to workers who never get one. Click any title for
-the abstract, the paper, slides, and replication files.
+formal job, and what happens to workers who never get one.
 
 ## Working papers
 

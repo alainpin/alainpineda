@@ -4,6 +4,7 @@ listing:
   - id: working-papers
     contents: "research/working-papers/*/index.qmd"
     type: default
+    template: ../listing-templates/research-listing.ejs.md
     sort: "date desc"
     fields: [title, subtitle, description]
     date-format: "YYYY"
@@ -12,6 +13,7 @@ listing:
   - id: in-progress
     contents: "research/in-progress/*/index.qmd"
     type: default
+    template: ../listing-templates/research-listing.ejs.md
     sort: "date desc"
     fields: [title, subtitle, description]
     date-format: "YYYY"
@@ -20,6 +22,7 @@ listing:
   - id: published
     contents: "research/published/*/index.qmd"
     type: default
+    template: ../listing-templates/research-listing.ejs.md
     sort: "date desc"
     fields: [title, subtitle, description]
     date-format: "YYYY"
@@ -29,8 +32,7 @@ listing:
 
 Mi investigación pregunta cómo las instituciones del mercado laboral en México
 determinan quién termina en un empleo formal, y qué pasa con quienes nunca llegan
-a uno. Da clic en cualquier título para el resumen, el documento, las
-presentaciones y los archivos de replicación.
+a uno.
 
 ## Documentos de trabajo
 

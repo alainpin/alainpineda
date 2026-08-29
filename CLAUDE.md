@@ -99,14 +99,18 @@ research/
   in-progress/<slug>/index.qmd
   published/<slug>/index.qmd
 
-es/                    Full Spanish mirror: index, research, data, teaching,
-                       and es/research/** with the same slugs.
+es/                    Full Spanish mirror: index, research, teaching, and
+                       es/research/** with the same slugs. No data.qmd for now
+                       (see "Add an interactive chart" in section 9).
 
 scripts/               R scripts that produce everything in data/ and images/.
                        Run by hand: `Rscript scripts/01-....R`
-data/                  CSVs produced by scripts/, consumed by OJS blocks.
+data/                  CSVs produced by scripts/, consumed by OJS blocks
+                       (currently unused — kept as scaffold, see section 9).
 files/                 PDFs: CV, papers, slides, briefs.
 images/                Photo and static figures.
+listing-templates/     Custom ejs template for the research.qmd listings
+                       (the PDF-pill feature). See section 6.
 CNAME                  www.alainpineda.com. Harmless on Netlify, needed if the
                        site ever moves to GitHub Pages.
 .github/workflows/publish.yml   CI.
@@ -316,6 +320,36 @@ Text of the abstract.
 
 Summary text is "Full abstract" in EN, "Resumen completo" in ES. Blank lines
 inside the `<details>` block are required for Markdown to render.
+
+### The research listing's custom template — a real gotcha
+
+`research.qmd` and `es/research.qmd` point their three listings at
+`listing-templates/research-listing.ejs.md` (path is `../listing-templates/...`
+from `es/`) instead of Quarto's built-in `type: default` renderer. It exists so
+a paper can show a "PDF" pill directly on the listing card — set `pdf:
+files/whatever.pdf` in that page's front matter (relative to the *listing*
+page, not the item's own page: root-relative for the EN listing, `../` for the
+ES one) and the pill appears automatically. Omit `pdf:` and no pill renders.
+The pill reuses `.paper-links` — see the CSS note below.
+
+**The trap, if you ever touch this template:** setting `template:` on a
+listing makes Quarto treat `listing.type` as `"custom"` internally, no matter
+what you put in `type:`. Custom-type templates get a *different* ejs parameter
+shape than default/grid/table: there is no `listing` object at all, only
+`items`, a flat `metadataAttrs(item)` function, and `templateParams`. Quarto's
+own shipped templates (`/Applications/quarto/share/projects/website/listing/
+listing-default.ejs.md` and `item-default.ejs.md`) reference `listing.fields`
+and `listing.utilities.metadataAttrs(item)` — copy that pattern into a custom
+template and it throws `ReferenceError: listing is not defined`, because that
+API is only for non-custom types. Reference `items`/`metadataAttrs` directly
+instead, as `research-listing.ejs.md` does.
+
+Also: Quarto evaluates every listing template a second time, in a dependency-
+scanning pass, with `items`/`metadataAttrs` unbound. Guard the whole template
+body behind `typeof items !== 'undefined'` or that pass throws too.
+
+If a fourth listing needs the same PDF-pill treatment, point it at the same
+template file rather than writing a new one.
 
 ---
 
