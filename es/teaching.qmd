@@ -18,7 +18,6 @@ Los materiales son públicos.
 
 ::: {.paper-links}
 - [Temario (PDF)](../files/storytelling-syllabus.pdf)
-- [Presentaciones (PDF)](../files/storytelling-slides.pdf)
 :::
 
 ::: {.eyebrow}
