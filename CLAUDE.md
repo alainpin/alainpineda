@@ -421,13 +421,20 @@ token block derive from them and are compiled once per theme.
 
 A dark palette is not an inversion. Keep the same identity and raise the accents'
 luminance so they hold contrast on the dark ground, and stop the text short of
-pure white. Current dark values: `$paper #12181c`, `$ink #dfe4e3`,
-`$ink-soft #9aa8ad`, `$rule #2b353a`, `$teal #63b7b5`, `$ochre #d2a24b`.
+pure white. Current dark values: `$paper #171513`, `$ink #e3ddd0`,
+`$ink-soft #9a948b`, `$rule #332c26`, `$teal #63b0b0`, `$teal-deep #8dcdcb`,
+`$ochre #be8d74`.
 
-The owner has a visual identity built in Claude Design that he will export as
-standalone HTML. When that arrives, extract the palette and type from its CSS and
-map it onto the token block. Do not restructure the SCSS to match the export's
-own class names.
+The palette and type now come from the owner's Claude Design export
+(`design-system/colors_and_type.css`, gitignored, reference-only): light values
+are the export's hex codes verbatim (`$ink`, `$paper`, `$rule`, `$teal`,
+`$teal-deep` from its `--ink`, `--paper`, `--paper-3`, `--accent`, `--accent-2`;
+`$ochre` from its `--clay`, the export's secondary accent). The export ships no
+dark tokens, so the dark values above were calibrated from it by hand using the
+method in the paragraph above — hue preserved, accent luminance raised, `$ink`
+kept short of the export's own near-white `--paper`. If a newer export arrives,
+extract its palette and type the same way and do not restructure the SCSS to
+match the export's own class names.
 
 ---
 
@@ -460,8 +467,7 @@ publish an English-only site, silently dropping `/es/`.
 - [ ] The charts on `/data/` and `/es/data/` both actually render (an empty chart
       usually means a wrong `FileAttachment` path)
 - [ ] No `../` path is off by one level (check ES pages especially)
-- [ ] No link points to a PDF that does not exist in `files/` (the two teaching
-      PDFs are the current known offenders)
+- [ ] No link points to a PDF that does not exist in `files/`
 - [ ] The footer disclaimer is present in both languages
 - [ ] Both themes render: load a page with the OS in dark mode, then click the
       navbar toggle and confirm the light theme takes over
@@ -474,22 +480,27 @@ publish an English-only site, silently dropping `/es/`.
 
 **Highest priority — teaching materials.** The owner wants the Storytelling in
 Economics course materials public and treats this as important, not
-nice-to-have. `teaching.qmd` and `es/teaching.qmd` already link to
-`files/storytelling-syllabus.pdf` and `files/storytelling-slides.pdf`; **both
-files are missing and those links are currently dead.** Either the files land or
-the links come out. The slides need a public version, meaning any
-Banxico-internal figures or unpublished results stripped before upload. If he
-wants, the slides could instead be a Quarto `revealjs` deck at
-`teaching/storytelling/slides.qmd` served from the site, which fits a course
-about communicating economics, but that is his call and PDF is the safe default.
+nice-to-have. `files/storytelling-syllabus.pdf` has landed and is linked from
+`teaching.qmd` and `es/teaching.qmd`. **The slides are intentionally not
+linked yet** — the owner has the deck but it needs a public version made first,
+stripping any Banxico-internal figures or unpublished results, which he is
+doing with Claude Code's help as a separate task. Do not add a `Slides` row to
+either page's `.paper-links` until that adapted deck exists at
+`files/storytelling-slides.pdf` (or, if he decides to go that route instead, a
+Quarto `revealjs` deck at `teaching/storytelling/slides.qmd`).
 
-- `images/profile.jpg` and `files/CV_Alain_Pineda.pdf` are **placeholders**
-  generated so the site renders. Replace with real files, same paths.
-- Google Scholar and GitHub URLs contain the literal string `REEMPLAZAR` in
-  `_quarto-en.yml`, `_quarto-es.yml`, `index.qmd`, and `es/index.qmd`. Grep for
-  it before publishing.
-- Paper PDFs, slide decks, and the policy brief are linked but not yet in
-  `files/`.
+- `images/profile.jpg` and `files/CV_Alain_Pineda.pdf` are the owner's real
+  files now, not placeholders.
+- The job market paper (`files/social-insurance-without-a-job.pdf`) has landed.
+  **Its slides are deliberately not included** — the owner chose to omit them,
+  not a pending task — so the `Slides` row was removed from the `.paper-links`
+  block in both `research/working-papers/social-insurance-without-a-job/index.qmd`
+  and its `es/` counterpart. Do not re-add it without being asked.
+- Google Scholar and GitHub URLs still contain the literal string `REEMPLAZAR`
+  in `_quarto-en.yml`, `_quarto-es.yml`, `index.qmd`, `es/index.qmd`, and the
+  `Replication` link on the job market paper page (both languages). Grep for it
+  before publishing.
+- The policy brief PDF is linked but not yet in `files/`.
 - The `.finding` lines for `domestic-workers` and `nafta-to-usmca` are drafts
   written from project descriptions, not from results. The owner must confirm or
   rewrite them.
