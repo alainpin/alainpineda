@@ -1,0 +1,48 @@
+# Configuracion COMPARTIDA por los dos idiomas.
+# Lo que cambia entre ingles y espanol vive en _quarto-en.yml y _quarto-es.yml.
+# `quarto render` usa el perfil `en` por default.
+
+project:
+  type: website
+  resources:
+    - CNAME
+    - files/
+    - data/
+
+profile:
+  default: en
+
+website:
+  site-url: "https://www.alainpineda.com"
+  open-graph: true
+  twitter-card:
+    creator: "@alainpin2"
+
+format:
+  html:
+    # Dos temas. Quarto pone un toggle en la esquina del navbar.
+    # `respect-user-color-scheme: true` hace que la primera visita use el ajuste
+    # del sistema del lector en lugar de forzar el tema claro; a partir de ahi
+    # el toggle manda y la eleccion se guarda en el navegador.
+    # La lista oscura repite theme.scss a proposito: las reglas son las mismas y
+    # solo cambian los tokens de theme-dark.scss.
+    theme:
+      light:
+        - cosmo
+        - theme.scss
+      dark:
+        - darkly
+        - theme.scss
+        - theme-dark.scss
+    respect-user-color-scheme: true
+    toc: false
+    anchor-sections: false
+    smooth-scroll: true
+    link-external-newwindow: true
+    grid:
+      body-width: 860px
+      sidebar-width: 200px
+      margin-width: 200px
+
+execute:
+  freeze: auto

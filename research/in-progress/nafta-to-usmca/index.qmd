@@ -1,0 +1,39 @@
+---
+title: "From NAFTA to USMCA: Labor Market Effects in Mexico"
+subtitle: "Work in progress"
+description: "New rules of origin, an automotive wage floor, and mandated union representation, traced through employer-employee data."
+date: 2025-06-01
+date-modified: last-modified
+author: "Alain Pineda"
+---
+
+::: {.eyebrow}
+Work in progress
+:::
+
+::: {.finding}
+USMCA wrote labor standards directly into a trade agreement. This project measures
+whether the wage and bargaining provisions moved employment and pay, or only
+paperwork.
+:::
+
+### What the project does
+
+The United States-Mexico-Canada Agreement replaced NAFTA in 2020, updating trade
+rules for one of the world's largest free trade zones. Key changes include
+stricter rules of origin, a labor value content requirement that sets a wage
+floor in the automotive industry, and a requirement for genuine worker
+representation in collective bargaining in Mexico. I estimate the effect of these
+provisions on employment and wages using administrative employer-employee matched
+data.
+
+### Why it matters for policy
+
+The labor chapter was the most contested part of the renegotiation and is now a
+template other agreements are copying. Evidence on whether wage floors written
+into trade rules bind in practice is thin, and it matters for how Mexico
+approaches the scheduled review of the agreement.
+
+::: {.paper-links}
+- [Draft available on request](mailto:alain.pineda@banxico.org.mx)
+:::
