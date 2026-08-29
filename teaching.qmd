@@ -10,9 +10,13 @@ title: "Teaching"
 Master in Applied Economics · Spring 2025
 :::
 
-How to turn an empirical result into something a non-economist can act on:
-structuring an argument, choosing what to show, designing tables and figures that
-carry the point, and writing for policy audiences. Materials are public.
+Two questions run through the course: how economic narratives spread and move
+real outcomes, and why some arguments take hold within economics itself while
+others don't. The anchor text is Robert Shiller's
+[*Narrative Economics*](https://press.princeton.edu/books/hardcover/9780691182292/narrative-economics).
+From there, the practical craft: structuring an argument, choosing what to show,
+designing tables and figures that carry the point, and writing for policy
+audiences. Materials are public.
 
 ::: {.paper-links}
 - [Syllabus (PDF)](files/storytelling-syllabus.pdf)

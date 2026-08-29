@@ -10,10 +10,14 @@ title: "Docencia"
 Maestría en Economía Aplicada · Primavera 2025
 :::
 
-Cómo convertir un resultado empírico en algo sobre lo que alguien no economista
-pueda actuar: estructurar el argumento, decidir qué mostrar, diseñar cuadros y
-gráficas que carguen el punto, y escribir para audiencias de política pública.
-Los materiales son públicos.
+El curso gira en torno a dos preguntas: cómo se propagan las narrativas
+económicas y mueven resultados reales, y por qué ciertos argumentos se imponen
+dentro de la disciplina económica y otros no. El texto de referencia es
+*[Narrative Economics](https://press.princeton.edu/books/hardcover/9780691182292/narrative-economics)*
+de Robert Shiller. A partir de ahí, el oficio práctico: estructurar el
+argumento, decidir qué mostrar, diseñar cuadros y gráficas que carguen el
+punto, y escribir para audiencias de política pública. Los materiales son
+públicos.
 
 ::: {.paper-links}
 - [Temario (PDF)](../files/storytelling-syllabus.pdf)
