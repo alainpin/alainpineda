@@ -205,6 +205,39 @@ details.abstract > p { margin-top: 0.8rem; font-size: 0.94rem; }
   color: $ink-soft;
 }
 
+// ---- Static figures (SVGs exported from R/Stata) ----
+// These carry their own baked-in colors (white background, dark axis text)
+// because they're rendered once and saved, not derived from theme tokens.
+// Framing them in a light card here is a deliberate exception to "no color
+// literals" — #fbfbf9 is fixed on purpose, not $paper, so the frame doesn't
+// flip in dark mode and clash with a figure that can't flip with it.
+.figure-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin: 1.5rem 0;
+}
+.site-figure {
+  flex: 1 1 260px;
+  margin: 0;
+}
+.site-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fbfbf9;
+  border: 1px solid $rule;
+  border-radius: 4px;
+  padding: 0.75rem;
+}
+.site-figure p:last-child {
+  font-family: $font-family-monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: $ink-soft;
+  margin-top: 0.5rem;
+}
+
 // ---- About page (index) ----
 .quarto-about-trestles .about-entity .about-link {
   border: 1px solid $rule;

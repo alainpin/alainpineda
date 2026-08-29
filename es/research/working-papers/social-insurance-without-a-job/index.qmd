@@ -29,6 +29,20 @@ contraste varíe con la tasa de informalidad estatal previa a la política. El
 diseño recupera cómo escala la respuesta con la informalidad inicial, en lugar de
 un promedio nacional.
 
+::: {.figure-row}
+::: {.site-figure}
+![](../../../../images/jmp-informality-pre-map.svg)
+
+Tasa de informalidad previa a la política, por estado.
+:::
+
+::: {.site-figure}
+![](../../../../images/jmp-exposure-by-cohort.svg)
+
+Años de exposición a la reforma, por cohorte de nacimiento.
+:::
+:::
+
 ### Por qué importa para política pública
 
 Una objeción de siempre a los beneficios no contributivos es que subsidian la

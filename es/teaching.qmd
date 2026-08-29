@@ -4,11 +4,11 @@ title: "Docencia"
 
 ## ITAM
 
+### Storytelling in Economics
+
 ::: {.eyebrow}
 Maestría en Economía Aplicada · Primavera 2025
 :::
-
-### Storytelling in Economics
 
 Cómo convertir un resultado empírico en algo sobre lo que alguien no economista
 pueda actuar: estructurar el argumento, decidir qué mostrar, diseñar cuadros y
@@ -19,10 +19,10 @@ Los materiales son públicos.
 - [Temario (PDF)](../files/storytelling-syllabus.pdf)
 :::
 
+### Seminario de investigación
+
 ::: {.eyebrow}
 Maestría en Economía Aplicada · Primavera 2022
 :::
-
-### Seminario de investigación
 
 Taller de tesis para estudiantes de la Maestría en Economía Aplicada.

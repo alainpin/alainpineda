@@ -27,6 +27,20 @@ cohorts still in school at rollout with slightly older cohorts and letting the
 contrast vary with each state's pre-policy informality rate. The design recovers
 how the response scales with initial informality rather than a national average.
 
+::: {.figure-row}
+::: {.site-figure}
+![](../../../images/jmp-informality-pre-map.svg)
+
+Pre-policy informality rate by state.
+:::
+
+::: {.site-figure}
+![](../../../images/jmp-exposure-by-cohort.svg)
+
+Years of exposure to the reform, by birth cohort.
+:::
+:::
+
 ### Why it matters for policy
 
 A standing objection to non-contributory benefits is that they subsidize

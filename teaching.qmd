@@ -4,11 +4,11 @@ title: "Teaching"
 
 ## ITAM
 
+### Storytelling in Economics
+
 ::: {.eyebrow}
 Master in Applied Economics · Spring 2025
 :::
-
-### Storytelling in Economics
 
 How to turn an empirical result into something a non-economist can act on:
 structuring an argument, choosing what to show, designing tables and figures that
@@ -18,10 +18,10 @@ carry the point, and writing for policy audiences. Materials are public.
 - [Syllabus (PDF)](files/storytelling-syllabus.pdf)
 :::
 
+### Research Seminar
+
 ::: {.eyebrow}
 Master in Applied Economics · Spring 2022
 :::
-
-### Research Seminar
 
 Thesis workshop for students in the Master in Applied Economics program.
