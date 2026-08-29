@@ -29,7 +29,7 @@ Stanford University, where I was a
 [Knight-Hennessy Scholar](https://knight-hennessy.stanford.edu/), and BA and MA
 degrees from ITAM.
 
-**Current work.** [Social insurance without a job](research/working-papers/social-insurance-without-a-job/index.qmd)
+**Current work.** [Social Insurance Without a Job](research/working-papers/social-insurance-without-a-job/index.qmd)
 asks whether giving students health coverage untied to employment pushes young
 workers into informality. It does not. See [Research](research.qmd) for the rest.
 

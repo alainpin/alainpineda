@@ -238,6 +238,16 @@ details.abstract > p { margin-top: 0.8rem; font-size: 0.94rem; }
   margin-top: 0.5rem;
 }
 
+// ---- Research/policy page title block ----
+// Quarto's title-metadata.html partial always renders a "Published" row
+// whenever `date:` is set (no metadata flag turns it off), which duplicates
+// the eyebrow's own date. `date:` still drives listing sort order, so it
+// can't just be removed from front matter. Hide the row structurally via
+// its p.date marker instead — leaves the Author row (p.author) untouched.
+.quarto-title-meta > div:has(> .quarto-title-meta-contents > p.date) {
+  display: none;
+}
+
 // ---- About page (index) ----
 .quarto-about-trestles .about-entity .about-link {
   border: 1px solid $rule;

@@ -321,6 +321,17 @@ Text of the abstract.
 Summary text is "Full abstract" in EN, "Resumen completo" in ES. Blank lines
 inside the `<details>` block are required for Markdown to render.
 
+### The auto-rendered "Published" row is suppressed on purpose
+
+Every research/policy page with `date:` set gets an automatic "Published"
+row from Quarto's own `title-metadata.html` partial — there's no metadata
+flag to turn it off, and it duplicated the `.eyebrow` date. `theme.scss` hides
+it structurally with `.quarto-title-meta > div:has(> .quarto-title-meta-contents
+> p.date) { display: none; }`, keyed off the `p.date` marker so it doesn't
+touch the Author row (`p.author`) on pages that have one. Don't try to fix
+this by removing `date:` from front matter — that field still drives listing
+sort order.
+
 ### The research listing's custom template — a real gotcha
 
 `research.qmd` and `es/research.qmd` point their three listings at
