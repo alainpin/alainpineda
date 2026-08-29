@@ -35,3 +35,13 @@ degrees from ITAM.
 **Current work.** [Social insurance without a job](research/working-papers/social-insurance-without-a-job/index.qmd)
 asks whether giving students health coverage untied to employment pushes young
 workers into informality. It does not. See [Research](research.qmd) for the rest.
+
+::: {.hero-motif}
+```{=html}
+<svg viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+  <path class="motif-line motif-line-1" d="M0,40 C150,10 300,70 450,40 C600,10 750,70 900,40 C1050,10 1150,55 1200,40"/>
+  <path class="motif-line motif-line-2" d="M0,55 C200,25 350,75 500,50 C650,25 800,75 950,50 C1050,35 1150,60 1200,50"/>
+  <path class="motif-line motif-line-3" d="M0,20 C180,45 320,5 480,30 C650,55 800,15 970,35 C1080,45 1150,25 1200,30"/>
+</svg>
+```
+:::

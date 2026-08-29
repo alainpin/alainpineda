@@ -251,6 +251,25 @@ details.abstract > p { margin-top: 0.8rem; font-size: 0.94rem; }
 }
 .quarto-about-trestles img.about-image { border-radius: 2px; }
 
+// ---- Hero motif ----
+// Quiet three-line flourish under the bio on the About page. Deliberately not
+// a real chart (no data to back one yet) and not a stock image — just three
+// hand-drawn-feeling curves in the site's own palette. Colors come from the
+// token block so this recompiles correctly for both themes; no color
+// literals here.
+.hero-motif {
+  margin: 2.5rem 0 0.5rem;
+  svg { width: 100%; height: 56px; display: block; }
+  .motif-line {
+    fill: none;
+    stroke-width: 2;
+    vector-effect: non-scaling-stroke;
+  }
+  .motif-line-1 { stroke: $teal; opacity: 0.55; }
+  .motif-line-2 { stroke: $ochre; opacity: 0.4; }
+  .motif-line-3 { stroke: $ink-soft; opacity: 0.3; }
+}
+
 // ---- Footer ----
 .nav-footer {
   border-top: 1px solid $rule;
