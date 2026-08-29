@@ -1,0 +1,106 @@
+---
+title: "Data"
+date-modified: last-modified
+---
+
+Interactive figures from my work. Everything here runs in your browser; the
+underlying series are prepared in R and live as CSV in `data/` in the
+[site's repository](https://github.com/alainpin/alainpineda).
+
+::: {.callout-warning appearance="simple"}
+The figure below uses **synthetic placeholder data**, not estimates. It is here
+to show the format while real series are prepared.
+:::
+
+## Informality rate by state
+
+::: {.eyebrow}
+Placeholder · Source to be added
+:::
+
+```{ojs}
+//| echo: false
+raw = FileAttachment("data/informality-example.csv").csv({ typed: true })
+```
+
+```{ojs}
+//| echo: false
+viewof picked = Inputs.checkbox(
+  [...new Set(raw.map(d => d.state))].sort(),
+  {
+    label: "States",
+    value: ["Oaxaca", "Nuevo León", "Jalisco", "Ciudad de México"]
+  }
+)
+```
+
+```{ojs}
+//| echo: false
+filtered = raw.filter(d => picked.includes(d.state))
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: 820,
+  height: 420,
+  marginLeft: 52,
+  marginBottom: 40,
+  // currentColor y fondo transparente: la grafica sigue el tema claro/oscuro
+  // del sitio sin duplicar paleta.
+  style: { fontFamily: "IBM Plex Sans, sans-serif", fontSize: "13px",
+           color: "currentColor", background: "transparent" },
+  x: { label: "", tickFormat: "d" },
+  y: { label: "Informality rate (%)", grid: true, nice: true },
+  color: { legend: true, scheme: "Tableau10" },
+  marks: [
+    Plot.ruleY([0], { stroke: "currentColor", strokeOpacity: 0.3 }),
+    Plot.lineY(filtered, {
+      x: "year", y: "informality_rate", stroke: "state",
+      strokeWidth: 2, curve: "monotone-x"
+    }),
+    Plot.dot(filtered, {
+      x: "year", y: "informality_rate", fill: "state", r: 3
+    }),
+    Plot.tip(filtered, Plot.pointer({
+      x: "year", y: "informality_rate",
+      title: d => `${d.state}\n${d.year}: ${d.informality_rate}%`
+    }))
+  ]
+})
+```
+
+<details class="abstract">
+<summary>How this is built</summary>
+
+**1. Prepare a tidy CSV in R.** One row per observation, short lowercase column
+names. The script lives in `scripts/` and is run by hand, so the site itself
+stays free of any computational engine and renders on any machine:
+
+```r
+library(tidyverse)
+library(srvyr)   # ENOE is a complex survey: use the design, not a raw mean
+
+tabla <- enoe |>
+  as_survey_design(ids = upm, strata = est_d_tri, weights = fac_tri, nest = TRUE) |>
+  group_by(ent, year) |>
+  summarise(informality_rate = survey_mean(informal == 1, na.rm = TRUE) * 100)
+
+write_csv(tabla, here::here("data", "informality-example.csv"))
+```
+
+Run it with `Rscript scripts/01-informality-by-state.R`.
+
+**2. Point the chart at the file.** Change the filename in the first `{ojs}`
+block and the column names in the `Plot.lineY` call.
+
+**3. Preview.** Run `quarto preview`; the chart updates as you save. Observable
+and Observable Plot ship inside Quarto and run in the reader's browser, so no
+runtime is needed to publish.
+
+For figures that belong in a paper, write them with `ggplot2` in the same script
+and `ggsave()` an SVG into `images/`, then use standard markdown. Interactive
+versions earn their place only when the reader gains something from choosing a
+state, a cohort, or a year.
+
+</details>

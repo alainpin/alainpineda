@@ -1,0 +1,62 @@
+/*-- scss:defaults --*/
+
+// ==========================================================================
+//  MODO OSCURO. Solo tokens.
+//
+//  Este archivo NO repite ninguna regla: en `_quarto.yml` la lista oscura es
+//  [darkly, theme.scss, theme-dark.scss], asi que las reglas salen de
+//  theme.scss y se recompilan con estos valores. Por eso los tokens de
+//  theme.scss llevan `!default` y estos no.
+//
+//  No es una inversion. La misma identidad, calibrada para fondo oscuro:
+//  el teal y el ocre suben en luminosidad para mantener contraste sobre
+//  #171513, y el texto no llega a blanco puro para no vibrar.
+// ==========================================================================
+
+// Calibrado a partir de la paleta clara del export de Claude Design
+// (design-system/colors_and_type.css), que no trae tokens oscuros propios.
+// Mismo metodo que antes: se preserva el tono, se sube la luminosidad de
+// los acentos para que aguanten contraste sobre el fondo oscuro, y el texto
+// no llega a blanco puro.
+$ink:        #e3ddd0;   // texto sobre fondo oscuro, crema atenuado (mas oscuro que --paper del export para no vibrar)
+$ink-soft:   #9a948b;   // metadatos, pies (el --ink-4 mas tenue del export)
+$paper:      #171513;   // fondo, el --ink casi negro del export
+$rule:       #332c26;   // hairlines
+$teal:       #63b0b0;   // enlaces, el --accent del export subido de luminosidad
+$teal-deep:  #8dcdcb;   // hover, un paso mas claro
+$ochre:      #be8d74;   // la barra del finding, el --clay del export aclarado
+
+$body-color:  $ink;
+$body-bg:     $paper;
+$link-color:  $teal;
+$link-hover-color: $teal-deep;
+
+$navbar-bg: $paper;
+$navbar-fg: $ink;
+$navbar-hl: $teal;
+
+// Bootstrap/darkly usa estas para tablas, bordes y codigo.
+$border-color:   $rule;
+$table-border-color: $rule;
+$code-color:     $teal-deep;
+$code-bg:        rgba(255, 255, 255, 0.04);
+$pre-bg:         rgba(255, 255, 255, 0.03);
+
+/*-- scss:rules --*/
+
+// Lo unico que el modo oscuro necesita ademas de los tokens: superficies que
+// en claro eran blancas y aqui tienen que separarse del fondo por luz, no
+// por sombra.
+
+pre, code, .sourceCode {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.callout {
+  border-color: $rule;
+}
+
+// El toggle de Quarto vive en el navbar; que herede el gris del texto suave.
+.quarto-color-scheme-toggle {
+  color: $ink-soft;
+}

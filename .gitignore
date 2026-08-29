@@ -1,6 +1,14 @@
-# IDEs
-.idea/
+/_site/
+/_site-es/
+/.quarto/
+# _freeze/ SI se comite si algun dia se usan chunks de R en las paginas.
+/raw/
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
+*.log
+/design-system/
 
-# Hugo
-resources/
-public/
+**/*.quarto_ipynb

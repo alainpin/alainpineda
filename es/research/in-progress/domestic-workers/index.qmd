@@ -1,0 +1,44 @@
+---
+title: "Trabajadoras del hogar y seguridad social"
+subtitle: "En proceso"
+description: "La reforma de 2019 abrió la afiliación al IMSS para personas trabajadoras del hogar mediante un piloto voluntario. ¿Cuánto cerró la brecha?"
+date: 2025-09-01
+date-modified: last-modified
+author: "Alain Pineda"
+---
+
+::: {.eyebrow}
+En proceso
+:::
+
+::: {.finding}
+La afiliación voluntaria es el primer paso estándar hacia un régimen obligatorio
+para trabajadores difíciles de alcanzar. Este proyecto pregunta cuánto de la
+brecha cierra en realidad.
+:::
+
+### Qué hace el proyecto
+
+Las personas trabajadoras del hogar prestan servicios esenciales para los hogares
+privados, y sin embargo rara vez tienen acceso a derechos y protecciones
+laborales, con una de las tasas de informalidad más altas de la economía. En
+México hay alrededor de dos millones, con una segregación ocupacional marcada por
+género: más del 90% son mujeres.
+
+Estudio el cambio de 2019 en la Ley Federal del Trabajo que amplió el acceso a
+prestaciones de seguridad social para este grupo. La reforma vino acompañada de un
+programa piloto de incorporación voluntaria pensado como transición hacia un
+régimen obligatorio. Uso la ENOE para rastrear su efecto sobre los resultados
+laborales observados.
+
+### Por qué importa para política pública
+
+Obligar la cobertura cuando el patrón es un hogar plantea problemas de aplicación
+que no aparecen dentro de las empresas. Si un piloto voluntario genera suficiente
+adopción para hacer viable la obligatoriedad es la pregunta práctica que enfrenta
+el IMSS, y la respuesta se traslada a otras ocupaciones con empleadores atomizados.
+
+::: {.paper-links}
+- [Borrador a solicitud](mailto:alain.pineda@banxico.org.mx)
+- [English version](/research/in-progress/domestic-workers/)
+:::

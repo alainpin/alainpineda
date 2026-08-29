@@ -1,0 +1,40 @@
+---
+title: "Del TLCAN al T-MEC: efectos en el mercado laboral mexicano"
+subtitle: "En proceso"
+description: "Nuevas reglas de origen, un piso salarial automotriz y representación sindical obligatoria, rastreados con datos patrón-trabajador."
+date: 2025-06-01
+date-modified: last-modified
+author: "Alain Pineda"
+---
+
+::: {.eyebrow}
+En proceso
+:::
+
+::: {.finding}
+El T-MEC metió estándares laborales directamente en un acuerdo comercial. Este
+proyecto mide si las disposiciones salariales y de negociación movieron el empleo
+y los salarios, o solo el papeleo.
+:::
+
+### Qué hace el proyecto
+
+El Tratado entre México, Estados Unidos y Canadá sustituyó al TLCAN en 2020 y
+actualizó las reglas comerciales de una de las zonas de libre comercio más grandes
+del mundo. Entre los cambios principales están reglas de origen más estrictas, un
+requisito de valor de contenido laboral que fija un piso salarial en la industria
+automotriz y la exigencia de representación genuina de los trabajadores en la
+negociación colectiva en México. Estimo el efecto de estas disposiciones sobre el
+empleo y los salarios con datos administrativos patrón-trabajador.
+
+### Por qué importa para política pública
+
+El capítulo laboral fue la parte más disputada de la renegociación y hoy es una
+plantilla que otros acuerdos están copiando. La evidencia sobre si los pisos
+salariales escritos en reglas comerciales realmente atan es escasa, y es relevante
+para cómo México llega a la revisión del acuerdo.
+
+::: {.paper-links}
+- [Borrador a solicitud](mailto:alain.pineda@banxico.org.mx)
+- [English version](/research/in-progress/nafta-to-usmca/)
+:::

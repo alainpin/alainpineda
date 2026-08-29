@@ -1,0 +1,45 @@
+project:
+  output-dir: _site
+  render:
+    - "*.qmd"
+    - "research/"
+
+lang: en
+
+website:
+  title: "Alain Pineda"
+  description: "Research Economist at Banco de México. Labor markets, informality, and social insurance in developing countries."
+  navbar:
+    pinned: true
+    left:
+      - href: index.qmd
+        text: About
+      - href: research.qmd
+        text: Research
+      - href: data.qmd
+        text: Data
+      - href: teaching.qmd
+        text: Teaching
+      - text: CV
+        href: files/CV_Alain_Pineda.pdf
+        target: _blank
+    right:
+      - text: "ES"
+        href: "/es/"
+        aria-label: "Ver en español"
+      - icon: envelope
+        href: "mailto:alain.pineda@banxico.org.mx"
+        aria-label: Email
+      - icon: mortarboard-fill
+        href: "https://scholar.google.com/citations?user=wSY8lKgAAAAJ&hl=en&oi=ao"
+        aria-label: Google Scholar
+      - icon: linkedin
+        href: "https://www.linkedin.com/in/alain-pineda-429b10a0/"
+        aria-label: LinkedIn
+  page-footer:
+    border: true
+    left: |
+      Views expressed on this site are my own and do not necessarily reflect
+      those of Banco de México.
+    right: |
+      Built with [Quarto](https://quarto.org)

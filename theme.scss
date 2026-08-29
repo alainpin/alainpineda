@@ -1,0 +1,228 @@
+/*-- scss:defaults --*/
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+// ==========================================================================
+//  TOKENS. Esto es lo unico que se toca para cambiar la identidad visual.
+//  Seis colores y tres tipografias. Todo lo de abajo se deriva de aqui.
+//
+//  Llevan `!default` para que theme-dark.scss pueda redefinirlos. Quarto
+//  coloca los defaults del archivo listado despues ANTES en la compilacion,
+//  asi que sin `!default` el modo oscuro no tendria efecto. No los quites.
+// ==========================================================================
+
+// Palette — from the Claude Design export (design-system/colors_and_type.css)
+$ink:        #171513 !default;   // body text, warm near-black
+$ink-soft:   #6b6660 !default;   // metadata, captions (export's --ink-3)
+$paper:      #f6f1e7 !default;   // page background, warm cream
+$rule:       #e0d8c5 !default;   // hairlines (export's --paper-3)
+$teal:       #0f5757 !default;   // links, primary accent
+$teal-deep:  #0c4646 !default;   // hover (export's --accent-2)
+$ochre:      #b25a26 !default;   // finding line marker (export's --clay, its secondary accent)
+
+$body-color:  $ink;
+$body-bg:     $paper;
+$link-color:  $teal;
+$link-hover-color: $teal-deep;
+
+$font-family-sans-serif: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif !default;
+$font-family-monospace:  "IBM Plex Mono", ui-monospace, Menlo, monospace !default;
+$headings-font-family:   "Source Serif 4", "Source Serif Pro", Georgia, serif !default;
+
+$font-size-root: 17px;
+$line-height-base: 1.62;
+$headings-font-weight: 500;
+
+$navbar-bg: $paper;
+$navbar-fg: $ink;
+$navbar-hl: $teal;
+
+$border-radius: 2px;
+$link-decoration: none;
+
+/*-- scss:rules --*/
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+// ---- Navbar: quiet, lowercase-feeling, rule underneath ----
+.navbar {
+  border-bottom: 1px solid $rule;
+  padding-block: 0.35rem;
+}
+.navbar-brand {
+  font-family: $headings-font-family;
+  font-size: 1.28rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.navbar-nav .nav-link {
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+}
+
+// ---- Headings ----
+h1, .h1 {
+  font-size: 2.05rem;
+  letter-spacing: -0.012em;
+  margin-bottom: 0.4rem;
+}
+h2, .h2 {
+  font-size: 1.32rem;
+  font-weight: 500;
+  margin-top: 2.6rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid $rule;
+}
+h3, .h3 { font-size: 1.12rem; margin-top: 1.8rem; }
+
+// ---- Eyebrow labels: status, venue, year ----
+// Mono, spaced, uppercase. Used for anything that is metadata rather than prose.
+.eyebrow {
+  font-family: $font-family-monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $ink-soft;
+  display: block;
+  margin-bottom: 0.45rem;
+}
+
+// ---- SIGNATURE: the finding line ----
+// One sentence stating what the paper found and what it implies, set above
+// the abstract. This is the thing that makes the page readable by someone
+// who will never open the PDF.
+.finding {
+  font-family: $headings-font-family;
+  font-size: 1.22rem;
+  line-height: 1.45;
+  font-weight: 400;
+  color: $ink;
+  margin: 1.1rem 0 1.5rem;
+  padding-left: 1.1rem;
+  border-left: 2px solid $ochre;
+}
+
+// ---- Paper links row ----
+.paper-links {
+  font-family: $font-family-sans-serif;
+  font-size: 0.85rem;
+  margin: 1.2rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+}
+.paper-links a {
+  border: 1px solid $rule;
+  padding: 0.22rem 0.7rem;
+  border-radius: 2px;
+  color: $teal;
+  white-space: nowrap;
+}
+.paper-links a:hover {
+  border-color: $teal;
+  background: rgba($teal, 0.06);
+  text-decoration: none;
+}
+
+// ---- Collapsible abstract ----
+details.abstract {
+  margin-top: 1rem;
+  border-top: 1px solid $rule;
+  padding-top: 0.7rem;
+}
+details.abstract > summary {
+  cursor: pointer;
+  font-family: $font-family-monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $ink-soft;
+  list-style: none;
+}
+details.abstract > summary::marker,
+details.abstract > summary::-webkit-details-marker { display: none; }
+details.abstract > summary::before { content: "+ "; }
+details.abstract[open] > summary::before { content: "– "; }
+details.abstract > p { margin-top: 0.8rem; font-size: 0.94rem; }
+
+// ---- Listings (research + policy) ----
+// Quarto marca cada entrada como .quarto-post (no .listing-item) y le arma una
+// rejilla de dos columnas reservando el lugar de una miniatura. Aqui no hay
+// miniaturas: se colapsa a una sola columna y se recupera la hairline.
+.quarto-listing { margin-top: 0.5rem; }
+
+.quarto-listing-default .quarto-post {
+  display: block;
+  border-bottom: 1px solid $rule;
+  padding: 1.35rem 0;
+  margin-bottom: 0;
+}
+.quarto-listing-default .quarto-post:last-child { border-bottom: none; }
+.quarto-listing-default .quarto-post > .thumbnail,
+.quarto-listing-default .quarto-post > .metadata { display: none; }
+.quarto-listing-default .quarto-post > .body { padding: 0; }
+
+.listing-title {
+  font-family: $headings-font-family;
+  font-size: 1.16rem !important;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.listing-title a { color: $ink; }
+.listing-title a:hover { color: $teal; }
+
+.listing-description {
+  font-size: 0.93rem;
+  color: $ink-soft;
+  margin-top: 0.3rem;
+}
+.listing-subtitle, .listing-author, .listing-date {
+  font-family: $font-family-monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $ink-soft;
+}
+
+// ---- About page (index) ----
+.quarto-about-trestles .about-entity .about-link {
+  border: 1px solid $rule;
+  border-radius: 2px;
+  color: $teal;
+  font-size: 0.85rem;
+}
+.quarto-about-trestles .about-entity .about-link:hover {
+  border-color: $teal;
+  background: rgba($teal, 0.06);
+}
+.quarto-about-trestles img.about-image { border-radius: 2px; }
+
+// ---- Footer ----
+.nav-footer {
+  border-top: 1px solid $rule;
+  font-size: 0.78rem;
+  color: $ink-soft;
+  padding-block: 1.4rem;
+}
+.nav-footer a { color: $ink-soft; text-decoration: underline; }
+
+// ---- Mobile ----
+@media (max-width: 700px) {
+  h1, .h1 { font-size: 1.72rem; }
+  .finding { font-size: 1.08rem; }
+  .paper-links { gap: 0.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; transition: none !important; }
+}
