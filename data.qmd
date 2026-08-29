@@ -3,20 +3,22 @@ title: "Data"
 date-modified: last-modified
 ---
 
-Interactive figures from my work. Everything runs in your browser; series are
-prepared in R and published as CSV in `data/` in the
+Interactive figures. Everything runs in your browser; series are prepared in R
+and published as CSV in `data/` in the
 [site's repository](https://github.com/alainpin/alainpineda).
 
-## Labor market indicators
+## Mexican Labor Market
 
 ::: {.eyebrow}
 ENOE, INEGI · Quarterly, 2005–2026 · National
 :::
 
-Three headline rates from Mexico's labor force survey (ENOE), recomputed from
-microdata using the survey's complex design (strata and expansion factors, not
-a simple mean) and checked against INEGI's official bulletin for 2024-T1
-(largest gap: 0.05 percentage points).
+Official statistics from Mexico's National Survey of Occupation and
+Employment (ENOE), public data from INEGI. Recomputed here from microdata
+using the institute's own methodology — survey design, strata, and expansion
+factors, not a simple average — and checked against INEGI's published
+bulletin for 2024-T1 (largest gap: 0.05 percentage points). Not an original
+finding: these are public figures, presented here for quick reference.
 
 ```{ojs}
 //| echo: false
@@ -162,7 +164,7 @@ html`<div class="indicator-grid">${indicadoresPrincipales.map(codigo => {
 })}</div>`
 ```
 
-## Other indicators
+### Other indicators
 
 Six more series, including the informality and informal-sector rates excluding
 agriculture.
