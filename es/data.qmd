@@ -7,7 +7,7 @@ Gráficas interactivas. Todo corre en tu navegador; las series se preparan en R
 y se publican como CSV en `data/` en el
 [repositorio del sitio](https://github.com/alainpin/alainpineda).
 
-## Mercado Laboral Mexicano
+## Mercado Laboral MX
 
 ::: {.eyebrow}
 ENOE, INEGI · Trimestral, 2005–2026 · Nacional
