@@ -42,6 +42,20 @@ $link-decoration: none;
 
 /*-- scss:rules --*/
 
+// Expose the accent as a CSS custom property so {ojs} chart code (which runs
+// in JS, not SCSS) can reference var(--teal) instead of a literal hex. This
+// recompiles correctly for both themes for the same reason every rule below
+// does: theme-dark.scss redefines $teal before this file's rules re-run.
+:root {
+  --teal: #{$teal};
+  // Observable Plot's tip mark (chart hover tooltip) reads this for its box
+  // background instead of a hardcoded white, specifically to support dark
+  // mode. Unset, it falls back to white -- unreadable once the tip's text
+  // inherits currentColor from our dark theme. Tie it to $paper so the tip
+  // always matches the page surface in both themes.
+  --plot-background: #{$paper};
+}
+
 body {
   -webkit-font-smoothing: antialiased;
 }
@@ -236,6 +250,68 @@ details.abstract > p { margin-top: 0.8rem; font-size: 0.94rem; }
   letter-spacing: 0.06em;
   color: $ink-soft;
   margin-top: 0.5rem;
+}
+
+// ---- Indicator grid (data.qmd) ----
+// Small multiples for the headline labor indicators. Bordered box like
+// .site-figure but text-based, so color derives from tokens throughout —
+// no baked-in-image exception needed here.
+.indicator-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1.2rem 0;
+}
+@media (max-width: 700px) {
+  .indicator-grid { grid-template-columns: 1fr; }
+}
+.indicator-card {
+  border: 1px solid $rule;
+  border-radius: 4px;
+  padding: 0.9rem 1rem 0.5rem;
+  min-width: 0;      // let the grid track shrink below the chart's own width
+  overflow-x: auto;  // safety net, never force page-level horizontal scroll
+}
+.indicator-name {
+  font-family: $font-family-sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $ink-soft;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.indicator-value {
+  font-family: $headings-font-family;
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: $ink;
+}
+.indicator-headline {
+  font-family: $headings-font-family;
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: $ink;
+  margin-top: 0.3rem;
+}
+.indicator-meta {
+  font-family: $font-family-monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  color: $ink-soft;
+  margin-top: 0.15rem;
+}
+.indicator-delta {
+  font-size: 0.82rem;
+  color: $ink-soft;
+  margin-top: 0.35rem;
+}
+.indicator-desc {
+  font-size: 0.85rem;
+  line-height: 1.42;
+  color: $ink-soft;
+  margin: 0.5rem 0 0.2rem;
 }
 
 // ---- Research/policy page title block ----

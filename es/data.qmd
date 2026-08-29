@@ -1,0 +1,225 @@
+---
+title: "Datos"
+date-modified: last-modified
+---
+
+Gráficas interactivas. Todo corre en tu navegador; las series se preparan en R
+y se publican como CSV en `data/` en el
+[repositorio del sitio](https://github.com/alainpin/alainpineda).
+
+## Mercado Laboral Mexicano
+
+::: {.eyebrow}
+ENOE, INEGI · Trimestral, 2005–2026 · Nacional
+:::
+
+Estadísticas oficiales de la Encuesta Nacional de Ocupación y Empleo (ENOE),
+información pública de INEGI. Se recalculan aquí desde microdatos con la
+metodología oficial del instituto — diseño muestral, estratos y factores de
+expansión, no un promedio simple — y se contrastan contra el boletín publicado
+por INEGI para 2024-T1 (diferencia máxima: 0.05 puntos porcentuales). No son
+un hallazgo propio: son cifras públicas, presentadas aquí para consulta
+rápida.
+
+```{ojs}
+//| echo: false
+raw = FileAttachment("../data/labor-indicators.csv").csv({ typed: true })
+
+datos = raw.map(d => ({ ...d, fecha: new Date(d.anio, (d.trimestre - 1) * 3, 1) }))
+
+definiciones = ({
+  TPEA: {
+    nombre: "Participación laboral",
+    texto: "De cada 100 personas de 15 años o más, cuántas trabajan o están buscando activamente un trabajo."
+  },
+  TD: {
+    nombre: "Desocupación",
+    texto: "De cada 100 personas que trabajan o buscan trabajo, cuántas no tienen empleo pero lo están buscando activamente."
+  },
+  TIL1: {
+    nombre: "Informalidad laboral",
+    texto: "De cada 100 personas ocupadas, cuántas trabajan sin la protección legal y social de un empleo formal (seguridad social, prestaciones), sin importar si el negocio para el que trabajan está registrado o no."
+  },
+  TIL2: {
+    nombre: "Informalidad laboral, sin agropecuario",
+    texto: "Lo mismo que la informalidad laboral general, excluyendo el campo — un sector con informalidad estructuralmente alta que puede oscurecer la tendencia del resto de la economía."
+  },
+  TOSI1: {
+    nombre: "Ocupación en el sector informal",
+    texto: "De cada 100 personas ocupadas, cuántas trabajan en un negocio que opera sin registrarse ante las autoridades. Mide el tipo de negocio, no si la persona tiene seguridad social."
+  },
+  TOSI2: {
+    nombre: "Sector informal, sin agropecuario",
+    texto: "Lo mismo que la ocupación en el sector informal, excluyendo el campo."
+  },
+  TSUB: {
+    nombre: "Subocupación",
+    texto: "De cada 100 personas ocupadas, cuántas quieren y pueden trabajar más horas de las que su empleo actual les da."
+  },
+  TCCO: {
+    nombre: "Condiciones críticas de ocupación",
+    texto: "De cada 100 personas ocupadas, cuántas están en condiciones precarias: muy pocas horas de forma involuntaria, o muchas horas ganando menos del salario mínimo legal. Sensible a cambios en el salario mínimo — la tendencia es más confiable que el nivel."
+  }
+})
+
+indicadoresPrincipales = ["TPEA", "TIL1", "TD"]
+indicadoresSecundarios = Object.keys(definiciones)
+  .filter(k => !indicadoresPrincipales.includes(k))
+  .sort()
+
+serieDe = codigo => datos
+  .filter(d => d.indicador === codigo)
+  .sort((a, b) => a.fecha - b.fecha)
+
+valorEnPeriodo = (serie, anio, trimestre) => {
+  const fila = serie.find(d => d.anio === anio && d.trimestre === trimestre);
+  return fila ? fila.valor : null;
+}
+
+calcularDeltas = serie => {
+  const ultimo = serie[serie.length - 1];
+  const trimAnt = ultimo.trimestre === 1
+    ? { anio: ultimo.anio - 1, trimestre: 4 }
+    : { anio: ultimo.anio, trimestre: ultimo.trimestre - 1 };
+  const valorTrimAnt = valorEnPeriodo(serie, trimAnt.anio, trimAnt.trimestre);
+  const valorAnioAnt = valorEnPeriodo(serie, ultimo.anio - 1, ultimo.trimestre);
+  return {
+    deltaTrim: valorTrimAnt != null ? ultimo.valor - valorTrimAnt : null,
+    deltaAnual: valorAnioAnt != null ? ultimo.valor - valorAnioAnt : null
+  };
+}
+
+// Deliberadamente neutro: flechas y números, sin verde/rojo de "bueno/malo".
+formatoDelta = delta => {
+  if (delta == null) return "n/d";
+  if (Math.abs(delta) < 0.005) return "sin cambio";
+  const signo = delta > 0 ? "▲" : "▼";
+  return `${signo} ${Math.abs(delta).toFixed(2)} pp`;
+}
+
+// nice:true redondea el dominio a numeros "bonitos", lo que a veces alarga
+// el eje mucho mas alla del rango real de la serie y aplana series con poco
+// margen de variacion (ej. TOSI1/TOSI2, que se mueven en ~3 puntos). En vez
+// de eso: dominio ajustado al min/max real de cada serie con un margen fijo,
+// para que cada mini-grafica use su propia escala sin exagerar ni aplanar.
+dominioAjustado = (serie, margenMinimo = 0.4) => {
+  const valores = serie.map(d => d.valor);
+  const min = Math.min(...valores), max = Math.max(...valores);
+  const margen = Math.max((max - min) * 0.15, margenMinimo);
+  return [min - margen, max + margen];
+}
+
+graficaSerie = (serie, { width = 780, height = 340, marginLeft = 42 } = {}) => {
+  const ultimo = serie[serie.length - 1];
+  return Plot.plot({
+    width, height, marginLeft,
+    marginBottom: 30,
+    style: { fontFamily: "IBM Plex Sans, sans-serif",
+             fontSize: width < 400 ? "11px" : "13px",
+             color: "currentColor", background: "transparent" },
+    y: { label: "%", grid: true, domain: dominioAjustado(serie), ticks: 4 },
+    x: { label: null },
+    marks: [
+      Plot.areaY(serie, {
+        x: "fecha",
+        y1: d => d.valor - 1.96 * d.ee,
+        y2: d => d.valor + 1.96 * d.ee,
+        fill: "var(--teal)", fillOpacity: 0.12
+      }),
+      Plot.lineY(serie, {
+        x: "fecha", y: "valor",
+        stroke: "var(--teal)", strokeWidth: 2,
+        strokeLinejoin: "round", strokeLinecap: "round"
+      }),
+      Plot.dot(serie, {
+        x: "fecha", y: "valor", r: 3.5,
+        fill: "var(--teal)", filter: d => d === ultimo
+      }),
+      Plot.ruleY([0], { stroke: "currentColor", strokeOpacity: 0.15 }),
+      Plot.tip(serie, Plot.pointerX({
+        x: "fecha", y: "valor",
+        title: d => `${d.anio}-T${d.trimestre} (${d.regimen})\n${d.valor}% ± ${(1.96 * d.ee).toFixed(2)} pp\nn = ${d.n_obs.toLocaleString("es-MX")}`
+      }))
+    ]
+  });
+}
+```
+
+```{ojs}
+//| echo: false
+html`<div class="indicator-grid">${indicadoresPrincipales.map(codigo => {
+  const serie = serieDe(codigo);
+  const ultimo = serie[serie.length - 1];
+  const def = definiciones[codigo];
+  const { deltaTrim, deltaAnual } = calcularDeltas(serie);
+  const div = document.createElement("div");
+  div.className = "indicator-card";
+  const head = html`<div class="indicator-name">${def.nombre}
+    <span class="indicator-value">${ultimo.valor}%</span>
+  </div>
+  <div class="indicator-meta">± ${(1.96 * ultimo.ee).toFixed(2)} pp · ${ultimo.anio}-T${ultimo.trimestre}</div>
+  <div class="indicator-delta">${formatoDelta(deltaTrim)} trim. · ${formatoDelta(deltaAnual)} anual</div>
+  <div class="indicator-desc">${def.texto}</div>`;
+  div.append(head, graficaSerie(serie, { width: 250, height: 190, marginLeft: 32 }));
+  return div;
+})}</div>`
+```
+
+### Otros indicadores
+
+Seis series más, incluyendo las versiones de informalidad y sector informal
+sin sector agropecuario.
+
+```{ojs}
+//| echo: false
+viewof indicador_sel = Inputs.select(indicadoresSecundarios, {
+  value: "TIL2",
+  label: "Indicador",
+  format: d => `${d} — ${definiciones[d].nombre}`
+})
+```
+
+```{ojs}
+//| echo: false
+serieSec = serieDe(indicador_sel)
+ultimoSec = serieSec[serieSec.length - 1]
+defSec = definiciones[indicador_sel]
+deltasSec = calcularDeltas(serieSec)
+```
+
+```{ojs}
+//| echo: false
+html`<div class="indicator-headline">${defSec.nombre}: ${ultimoSec.valor}%</div>
+<div class="indicator-meta">± ${(1.96 * ultimoSec.ee).toFixed(2)} pp · ${ultimoSec.anio}-T${ultimoSec.trimestre} · n = ${ultimoSec.n_obs.toLocaleString("es-MX")}</div>
+<div class="indicator-delta">${formatoDelta(deltasSec.deltaTrim)} vs. trimestre anterior · ${formatoDelta(deltasSec.deltaAnual)} vs. mismo trimestre del año anterior</div>
+<p class="indicator-desc">${defSec.texto}</p>`
+```
+
+```{ojs}
+//| echo: false
+graficaSerie(serieSec)
+```
+
+<details class="abstract">
+<summary>Cómo está hecho</summary>
+
+**1. Un pipeline validado, no un script suelto.** El cómputo completo —
+descarga directa de INEGI trimestre a trimestre, armonización de nombres de
+campo y ponderadores entre los regímenes ENOE/ENOE-N/ENOE desde 2005, y el
+diseño muestral complejo de la encuesta (`survey::svydesign`, `ids = upm,
+strata = est_d_tri, weights = fac_tri`) — vive en un proyecto de R privado
+aparte, no en este repositorio. Cada tasa de arriba está contrastada contra
+las cifras oficiales de INEGI para 2024-T1; la diferencia más grande es 0.05
+puntos porcentuales.
+
+**2. Este sitio solo lee un CSV público.** `scripts/02-labor-indicators.R`
+exporta las tasas nacionales de ese pipeline a `data/labor-indicators.csv` —
+nada más. Se vuelve a correr con `Rscript scripts/02-labor-indicators.R`
+cuando el pipeline fuente se actualiza, una vez por trimestre según INEGI
+publica microdatos nuevos.
+
+**3. La gráfica lee el CSV del lado del navegador.** `FileAttachment(...).csv()`
+simple y Observable Plot — sin motor de base de datos, así que no depende de
+ningún CDN más allá de lo que Quarto ya carga para Observable.
+
+</details>

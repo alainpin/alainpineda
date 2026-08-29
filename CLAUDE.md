@@ -99,14 +99,14 @@ research/
   in-progress/<slug>/index.qmd
   published/<slug>/index.qmd
 
-es/                    Full Spanish mirror: index, research, teaching, and
-                       es/research/** with the same slugs. No data.qmd for now
-                       (see "Add an interactive chart" in section 9).
+data.qmd               EN interactive figures (Observable). In the navbar.
+es/                    Full Spanish mirror: index, research, data, teaching,
+                       and es/research/** with the same slugs.
 
 scripts/               R scripts that produce everything in data/ and images/.
-                       Run by hand: `Rscript scripts/01-....R`
-data/                  CSVs produced by scripts/, consumed by OJS blocks
-                       (currently unused — kept as scaffold, see section 9).
+                       Run by hand: `Rscript scripts/01-....R`,
+                       `Rscript scripts/02-labor-indicators.R`
+data/                  CSVs produced by scripts/, consumed by OJS blocks.
 files/                 PDFs: CV, papers, slides, briefs.
 images/                Photo and static figures.
 listing-templates/     Custom ejs template for the research.qmd listings
@@ -429,14 +429,14 @@ always link to the publisher's canonical URL rather than hosting a copy.
 
 ### Add an interactive chart
 
-There is currently no Data page or navbar item — the owner had it removed on
-2026-08-29 because it only ever showed synthetic placeholder data, and a
-half-built page felt worse than no page. `data.qmd`, `es/data.qmd`, and the
-`Data`/`Datos` navbar entries were deleted; `scripts/01-informality-by-state.R`
-and `data/informality-example.csv` were deliberately kept as a scaffold. When
-real ENOE series are ready, recreate `data.qmd` and `es/data.qmd`, add the
-navbar entries back to `_quarto-en.yml`/`_quarto-es.yml`, and follow this
-pattern:
+`data.qmd` / `es/data.qmd` came back on 2026-08-29 with real ENOE series (three
+headline indicators as small multiples, six more behind a select) once a
+validated pipeline existed to back them — see `scripts/02-labor-indicators.R`
+for the model of a script that publishes from an already-validated external
+pipeline rather than recomputing from raw microdata. `informality-example.csv`
+and `01-informality-by-state.R` are the earlier synthetic-data scaffold; they
+stay unused until a real by-state cut is built the same way. Follow this
+pattern for the next chart:
 
 ```r
 library(tidyverse); library(srvyr)
@@ -581,11 +581,18 @@ without being asked.
 - The `.finding` lines for `domestic-workers` and `nafta-to-usmca` are drafts
   written from project descriptions, not from results. The owner must confirm or
   rewrite them.
-- The interactive chart pulled Observable Plot and d3 from **cdn.jsdelivr.net at
-  page load**. A reader on a network that blocks that CDN sees an OJS runtime
-  error instead of the figure. Since policy staff are the first audience, prefer
-  a static `ggplot2` SVG for any figure that must be seen, and keep Observable
-  for figures where choosing a state or a year actually helps.
+- `data.qmd`/`es/data.qmd` are live again (2026-08-29) with real ENOE national
+  indicators, sourced via `scripts/02-labor-indicators.R` from a validated
+  external R pipeline (not recomputed here). Still no by-state cut — that
+  needs its own script and its own real series before the informality-by-state
+  placeholder can be replaced.
+- The interactive chart pulls Observable Plot and d3 from **cdn.jsdelivr.net at
+  page load** (this was already true of the placeholder chart; the new one
+  doesn't add a second CDN dependency — no database engine, plain CSV). A
+  reader on a network that blocks that CDN sees an OJS runtime error instead
+  of the figure. Since policy staff are the first audience, prefer a static
+  `ggplot2` SVG for any figure that must be seen, and keep Observable for
+  figures where choosing an indicator or a year actually helps.
 - R is not yet installed on the owner's personal machine as of this writing. The
   suggested setup is R plus Positron or RStudio, and
   `install.packages(c("tidyverse","haven","srvyr","fixest","modelsummary","here"))`.
