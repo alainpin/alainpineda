@@ -17,7 +17,7 @@ website:
       - href: research.qmd
         text: Research
       - href: data.qmd
-        text: Data
+        text: Mexican Labor Market
       - href: teaching.qmd
         text: Teaching
       - text: CV
