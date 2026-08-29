@@ -1,0 +1,44 @@
+project:
+  output-dir: _site-es
+  render:
+    - "es/"
+
+lang: es-MX
+
+website:
+  title: "Alain Pineda"
+  description: "Economista investigador en Banco de México. Mercados laborales, informalidad y seguridad social."
+  navbar:
+    pinned: true
+    left:
+      - href: es/index.qmd
+        text: Perfil
+      - href: es/research.qmd
+        text: Investigación
+      - href: es/data.qmd
+        text: Datos
+      - href: es/teaching.qmd
+        text: Docencia
+      - text: CV
+        href: files/CV_Alain_Pineda.pdf
+        target: _blank
+    right:
+      - text: "EN"
+        href: "/"
+        aria-label: "View in English"
+      - icon: envelope
+        href: "mailto:alain.pineda@banxico.org.mx"
+        aria-label: Correo
+      - icon: mortarboard-fill
+        href: "https://scholar.google.com/citations?user=REEMPLAZAR"
+        aria-label: Google Scholar
+      - icon: linkedin
+        href: "https://www.linkedin.com/in/alain-pineda-429b10a0/"
+        aria-label: LinkedIn
+  page-footer:
+    border: true
+    left: |
+      Las opiniones expresadas en este sitio son personales y no necesariamente
+      reflejan las del Banco de México.
+    right: |
+      Hecho con [Quarto](https://quarto.org)

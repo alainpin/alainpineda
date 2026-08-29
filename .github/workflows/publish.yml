@@ -1,0 +1,39 @@
+name: Build and publish website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      # build.sh renderiza los dos perfiles (en, es) y junta el espanol
+      # dentro de _site/es. NO usar `quarto publish`: solo renderiza un
+      # perfil y publicaria el sitio sin la version en espanol.
+      - name: Build both languages
+        run: ./build.sh
+
+      - name: Verify both languages were built
+        run: |
+          test -f _site/index.html    || { echo "Falta el sitio en ingles"; exit 1; }
+          test -f _site/es/index.html || { echo "Falta el sitio en espanol"; exit 1; }
+          echo "OK: ingles y espanol presentes"
+
+      - name: Publish to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          publish_branch: gh-pages
+          cname: www.alainpineda.com

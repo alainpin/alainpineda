@@ -1,0 +1,71 @@
+---
+title: "Research"
+date-modified: last-modified
+listing:
+  - id: working-papers
+    contents:
+      - "research/working-papers/*/index.qmd"
+      - "!es/**"
+    type: default
+    sort: "date desc"
+    fields: [title, subtitle, description]
+    date-format: "YYYY"
+    categories: false
+    feed: false
+  - id: in-progress
+    contents:
+      - "research/in-progress/*/index.qmd"
+      - "!es/**"
+    type: default
+    sort: "date desc"
+    fields: [title, subtitle, description]
+    date-format: "YYYY"
+    categories: false
+    feed: false
+  - id: published
+    contents:
+      - "research/published/*/index.qmd"
+      - "!es/**"
+    type: default
+    sort: "date desc"
+    fields: [title, subtitle, description]
+    date-format: "YYYY"
+    categories: false
+    feed: false
+---
+
+My research asks how labor market institutions in Mexico shape who ends up in a
+formal job, and what happens to workers who never get one. Click any title for
+the abstract, the paper, slides, and replication files.
+
+## Working papers
+
+::: {#working-papers}
+:::
+
+## Work in progress
+
+::: {#in-progress}
+:::
+
+## Other publications
+
+::: {#published}
+:::
+
+## Policy and other writing
+
+Short pieces written for non-academic audiences. Each links out to the
+publisher.
+
+- **The gender gap in labor earnings: occupation, hours, and hourly pay.**
+  Banco de México, *Quarterly Report April–June 2026*, Box 2.
+  [PDF](https://www.banxico.org.mx/publicaciones-y-prensa/informes-trimestrales/recuadros/%7BF1730819-16B5-AAD5-B61D-420CD88F674C%7D.pdf)
+
+- **La lactancia es desarrollo: ¿por qué apoyar la lactancia en el trabajo?**
+  Inter-American Development Bank, Gender and Diversity blog, January 2023.
+  [Read](https://blogs.iadb.org/igualdad/es/lactancia-es-desarrollo/)
+
+<!-- Formato: **Titulo.** Publicacion, fecha, y un solo link de salida.
+     Una linea por pieza, sin resumen. Si alguna vez una nota merece pagina
+     propia, crea policy/<slug>/index.qmd y enlazala aqui como cualquier otra. -->

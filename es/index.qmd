@@ -1,0 +1,42 @@
+---
+title: "Alain Pineda"
+subtitle: "Economista investigador · Banco de México"
+date-modified: last-modified
+about:
+  template: trestles
+  image: ../images/profile.jpg
+  image-shape: rounded
+  image-width: 15em
+  links:
+    - icon: envelope
+      text: Correo
+      href: "mailto:alain.pineda@banxico.org.mx"
+    - icon: file-earmark-text
+      text: CV
+      href: ../files/CV_Alain_Pineda.pdf
+    - icon: mortarboard-fill
+      text: Scholar
+      href: "https://scholar.google.com/citations?user=REEMPLAZAR"
+    - icon: linkedin
+      text: LinkedIn
+      href: "https://www.linkedin.com/in/alain-pineda-429b10a0/"
+---
+
+Estudio cómo funcionan los mercados laborales en países en desarrollo, con
+énfasis en el empleo informal y en qué pasa cuando la seguridad social se extiende
+a trabajadores que están fuera de un contrato formal. Casi todo mi trabajo usa
+microdatos administrativos y de encuesta de México para evaluar políticas que ya
+están operando.
+
+Soy economista investigador en la Dirección de Investigación del Sector Real del
+[Banco de México](https://www.banxico.org.mx/) y profesor de asignatura en el
+[ITAM](https://www.itam.mx). Tengo un doctorado en Economía por Stanford, donde
+fui [Knight-Hennessy Scholar](https://knight-hennessy.stanford.edu/), y
+licenciatura y maestría por el ITAM.
+
+**En qué estoy.** [Seguridad social sin empleo](research/working-papers/social-insurance-without-a-job/index.qmd)
+pregunta si darle cobertura médica a estudiantes, desligada de cualquier trabajo,
+empuja a los jóvenes hacia la informalidad. No lo hace. En
+[Investigación](research.qmd) está el resto, incluidos los recuadros y textos
+escritos para audiencias no académicas, y en [Datos](data.qmd) las gráficas
+interactivas.

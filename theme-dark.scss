@@ -1,0 +1,57 @@
+/*-- scss:defaults --*/
+
+// ==========================================================================
+//  MODO OSCURO. Solo tokens.
+//
+//  Este archivo NO repite ninguna regla: en `_quarto.yml` la lista oscura es
+//  [darkly, theme.scss, theme-dark.scss], asi que las reglas salen de
+//  theme.scss y se recompilan con estos valores. Por eso los tokens de
+//  theme.scss llevan `!default` y estos no.
+//
+//  No es una inversion. La misma identidad, calibrada para fondo oscuro:
+//  el teal y el ocre suben en luminosidad para mantener contraste sobre
+//  #12181c, y el texto no llega a blanco puro para no vibrar.
+// ==========================================================================
+
+$ink:        #dfe4e3;   // texto sobre fondo oscuro, no blanco puro
+$ink-soft:   #9aa8ad;   // metadatos, pies
+$paper:      #12181c;   // fondo, casi negro con sesgo frio
+$rule:       #2b353a;   // hairlines
+$teal:       #63b7b5;   // enlaces
+$teal-deep:  #8fd2ce;   // hover
+$ochre:      #d2a24b;   // la barra del finding
+
+$body-color:  $ink;
+$body-bg:     $paper;
+$link-color:  $teal;
+$link-hover-color: $teal-deep;
+
+$navbar-bg: $paper;
+$navbar-fg: $ink;
+$navbar-hl: $teal;
+
+// Bootstrap/darkly usa estas para tablas, bordes y codigo.
+$border-color:   $rule;
+$table-border-color: $rule;
+$code-color:     $teal-deep;
+$code-bg:        rgba(255, 255, 255, 0.04);
+$pre-bg:         rgba(255, 255, 255, 0.03);
+
+/*-- scss:rules --*/
+
+// Lo unico que el modo oscuro necesita ademas de los tokens: superficies que
+// en claro eran blancas y aqui tienen que separarse del fondo por luz, no
+// por sombra.
+
+pre, code, .sourceCode {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.callout {
+  border-color: $rule;
+}
+
+// El toggle de Quarto vive en el navbar; que herede el gris del texto suave.
+.quarto-color-scheme-toggle {
+  color: $ink-soft;
+}

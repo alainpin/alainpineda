@@ -1,0 +1,63 @@
+---
+title: "Investigación"
+date-modified: last-modified
+listing:
+  - id: working-papers
+    contents: "research/working-papers/*/index.qmd"
+    type: default
+    sort: "date desc"
+    fields: [title, subtitle, description]
+    date-format: "YYYY"
+    categories: false
+    feed: false
+  - id: in-progress
+    contents: "research/in-progress/*/index.qmd"
+    type: default
+    sort: "date desc"
+    fields: [title, subtitle, description]
+    date-format: "YYYY"
+    categories: false
+    feed: false
+  - id: published
+    contents: "research/published/*/index.qmd"
+    type: default
+    sort: "date desc"
+    fields: [title, subtitle, description]
+    date-format: "YYYY"
+    categories: false
+    feed: false
+---
+
+Mi investigación pregunta cómo las instituciones del mercado laboral en México
+determinan quién termina en un empleo formal, y qué pasa con quienes nunca llegan
+a uno. Da clic en cualquier título para el resumen, el documento, las
+presentaciones y los archivos de replicación.
+
+## Documentos de trabajo
+
+::: {#working-papers}
+:::
+
+## En proceso
+
+::: {#in-progress}
+:::
+
+## Otras publicaciones
+
+::: {#published}
+:::
+
+## Política pública y otros textos
+
+Textos breves dirigidos a audiencias no académicas. Cada uno enlaza a la
+publicación original.
+
+- **Brecha de género en ingresos laborales: el papel de la ocupación, las horas
+  trabajadas y la remuneración por hora.** Banco de México, *Informe Trimestral
+  abril–junio 2026*, Recuadro 2.
+  [PDF](https://www.banxico.org.mx/publicaciones-y-prensa/informes-trimestrales/recuadros/%7BF1730819-16B5-AAD5-B61D-420CD88F674C%7D.pdf)
+
+- **La lactancia es desarrollo: ¿por qué apoyar la lactancia en el trabajo?**
+  Banco Interamericano de Desarrollo, blog de Género y Diversidad, enero de 2023.
+  [Leer](https://blogs.iadb.org/igualdad/es/lactancia-es-desarrollo/)

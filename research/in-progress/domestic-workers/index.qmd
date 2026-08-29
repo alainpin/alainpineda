@@ -1,0 +1,41 @@
+---
+title: "Domestic Workers and Social Insurance"
+subtitle: "Work in progress"
+description: "Mexico's 2019 reform opened IMSS enrollment to domestic workers through a voluntary pilot. How much of the coverage gap did it close?"
+date: 2025-09-01
+date-modified: last-modified
+author: "Alain Pineda"
+---
+
+::: {.eyebrow}
+Work in progress
+:::
+
+::: {.finding}
+Voluntary enrollment is the standard first step toward a mandatory regime for
+workers who are hard to reach. This project asks how much of the gap it actually
+closes.
+:::
+
+### What the project does
+
+Domestic workers provide essential services for private households, yet they
+rarely have access to labor rights and protections and show one of the highest
+informality rates in the economy. Mexico has roughly two million domestic
+workers, with sharp occupational segregation by gender: more than 90% are women.
+
+I study the 2019 change in Mexican federal labor law that extended access to
+social insurance benefits to domestic workers. The reform came with a voluntary
+enrollment pilot intended as a transition toward a mandatory regime. I use the
+quarterly labor force survey to trace its effect on observed labor outcomes.
+
+### Why it matters for policy
+
+Mandating coverage for workers whose employer is a household raises enforcement
+problems that do not arise inside firms. Whether a voluntary pilot builds enough
+take-up to make a mandate feasible is the practical question facing IMSS, and the
+answer carries over to other occupations with atomized employers.
+
+::: {.paper-links}
+- [Draft available on request](mailto:alain.pineda@banxico.org.mx)
+:::
