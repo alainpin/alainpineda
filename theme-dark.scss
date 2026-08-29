@@ -13,13 +13,18 @@
 //  #12181c, y el texto no llega a blanco puro para no vibrar.
 // ==========================================================================
 
-$ink:        #dfe4e3;   // texto sobre fondo oscuro, no blanco puro
-$ink-soft:   #9aa8ad;   // metadatos, pies
-$paper:      #12181c;   // fondo, casi negro con sesgo frio
-$rule:       #2b353a;   // hairlines
-$teal:       #63b7b5;   // enlaces
-$teal-deep:  #8fd2ce;   // hover
-$ochre:      #d2a24b;   // la barra del finding
+// Calibrado a partir de la paleta clara del export de Claude Design
+// (design-system/colors_and_type.css), que no trae tokens oscuros propios.
+// Mismo metodo que antes: se preserva el tono, se sube la luminosidad de
+// los acentos para que aguanten contraste sobre el fondo oscuro, y el texto
+// no llega a blanco puro.
+$ink:        #f6f1e7;   // texto sobre fondo oscuro, el crema claro del export
+$ink-soft:   #9a948b;   // metadatos, pies (el --ink-4 mas tenue del export)
+$paper:      #171513;   // fondo, el --ink casi negro del export
+$rule:       #332c26;   // hairlines
+$teal:       #63b0b0;   // enlaces, el --accent del export subido de luminosidad
+$teal-deep:  #8dcdcb;   // hover, un paso mas claro
+$ochre:      #be8d74;   // la barra del finding, el --clay del export aclarado
 
 $body-color:  $ink;
 $body-bg:     $paper;
