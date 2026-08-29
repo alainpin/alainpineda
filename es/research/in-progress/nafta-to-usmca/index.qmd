@@ -1,7 +1,7 @@
 ---
 title: "Del TLCAN al T-MEC: efectos en el mercado laboral mexicano"
 subtitle: "En proceso"
-description: "El T-MEC incorporó en 2020 un piso salarial para la industria automotriz y la exigencia de representación sindical genuina directamente en un tratado comercial. Este proyecto rastrea sus efectos sobre el empleo y los salarios en México con datos patrón-trabajador."
+description: "En 2020, el tratado que sustituyó al TLCAN incorporó un salario mínimo para trabajadores automotrices y la exigencia de representación sindical genuina directamente en su texto, algo inusual en un acuerdo comercial. Este proyecto rastrea si esas disposiciones cambiaron en realidad el empleo y los salarios en México, usando registros detallados que vinculan a cada trabajador con su empresa."
 date: 2025-06-01
 author: "Alain Pineda"
 ---

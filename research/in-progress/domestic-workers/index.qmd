@@ -1,7 +1,7 @@
 ---
 title: "Domestic Workers and Social Insurance"
 subtitle: "Work in progress"
-description: "Mexico's 2019 reform opened IMSS enrollment to two million domestic workers, overwhelmingly women, through a voluntary pilot meant as a bridge to a mandate. This project measures how much of the coverage gap voluntary enrollment actually closed."
+description: "Mexico's 2019 reform opened enrollment in the national social security system (IMSS) to two million domestic workers, overwhelmingly women, through a voluntary pilot meant as a bridge to a mandate. This project measures how much of the coverage gap voluntary enrollment actually closed."
 date: 2025-09-01
 author: "Alain Pineda"
 ---

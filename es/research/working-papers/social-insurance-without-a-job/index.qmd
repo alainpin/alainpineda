@@ -1,7 +1,7 @@
 ---
 title: "Seguridad social sin empleo"
 subtitle: "Documento de trabajo, 2026"
-description: "México dio cobertura médica a seis millones de estudiantes, desligada de cualquier empleo. El empleo formal subió más donde la informalidad era más alta, y el efecto se concentró por completo en el empleo asalariado."
+description: "En 2016, México dio cobertura médica a seis millones de estudiantes sin relación con tener un empleo. Una preocupación común es que los beneficios no ligados a un empleo formal desincentiven buscarlo, pero aquí el empleo formal subió más justo donde la informalidad ya era más alta, y el efecto se concentró por completo en el empleo asalariado, no en el trabajo por cuenta propia."
 date: 2026-08-20
 author: "Alain Pineda"
 pdf: ../files/social-insurance-without-a-job.pdf

@@ -1,7 +1,7 @@
 ---
 title: "From NAFTA to USMCA: Labor Market Effects in Mexico"
 subtitle: "Work in progress"
-description: "USMCA wrote a wage floor for the auto industry and mandated genuine union representation directly into a trade agreement in 2020. This project traces their effects on Mexican employment and wages through matched employer-employee data."
+description: "In 2020, the trade agreement that replaced NAFTA wrote a minimum wage for autoworkers and a requirement for genuine union representation directly into its text, an unusual move for a trade deal. This project traces whether those provisions actually changed employment and pay in Mexico, using detailed records that link workers to their employers."
 date: 2025-06-01
 author: "Alain Pineda"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Uso y costos de servicios de salud en terapias sistémicas para melanoma metastásico, 2016-2020"
 subtitle: "The Oncologist, 2022"
-description: "La adopción generalizada de inhibidores de punto de control inmunitario redujo la mortalidad por melanoma al tiempo que transformó la forma de entregar la atención. El artículo documenta cómo cambiaron el uso de servicios de salud y los costos entre terapias sistémicas para melanoma entre 2016 y 2020."
+description: "Una nueva generación de medicamentos contra el cáncer, los inhibidores de punto de control inmunitario, ha reducido la mortalidad por melanoma avanzado, pero cambió cómo y dónde se atiende a los pacientes. El artículo documenta cómo cambiaron el uso de servicios de salud y los costos entre terapias para melanoma entre 2016 y 2020."
 date: 2022-10-01
 pdf: ../files/melanoma-cost-utilization.pdf
 ---
