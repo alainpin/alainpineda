@@ -5,7 +5,7 @@ date-modified: last-modified
 
 Gráficas interactivas de mi trabajo. Todo corre en tu navegador; las series se
 preparan en R y viven como CSV en `data/` en el
-[repositorio del sitio](https://github.com/REEMPLAZAR).
+[repositorio del sitio](https://github.com/alainpin/alainpineda).
 
 ::: {.callout-warning appearance="simple"}
 La gráfica de abajo usa **datos sintéticos de relleno**, no estimaciones. Está

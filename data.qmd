@@ -5,7 +5,7 @@ date-modified: last-modified
 
 Interactive figures from my work. Everything here runs in your browser; the
 underlying series are prepared in R and live as CSV in `data/` in the
-[site's repository](https://github.com/REEMPLAZAR).
+[site's repository](https://github.com/alainpin/alainpineda).
 
 ::: {.callout-warning appearance="simple"}
 The figure below uses **synthetic placeholder data**, not estimates. It is here

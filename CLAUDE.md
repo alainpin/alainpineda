@@ -496,10 +496,17 @@ Quarto `revealjs` deck at `teaching/storytelling/slides.qmd`).
   not a pending task — so the `Slides` row was removed from the `.paper-links`
   block in both `research/working-papers/social-insurance-without-a-job/index.qmd`
   and its `es/` counterpart. Do not re-add it without being asked.
-- Google Scholar and GitHub URLs still contain the literal string `REEMPLAZAR`
-  in `_quarto-en.yml`, `_quarto-es.yml`, `index.qmd`, `es/index.qmd`, and the
-  `Replication` link on the job market paper page (both languages). Grep for it
-  before publishing.
+- All `REEMPLAZAR` placeholders are filled in: the Google Scholar URL is set in
+  `_quarto-en.yml`, `_quarto-es.yml`, `index.qmd`, and `es/index.qmd`. The
+  `Replication` row on the job market paper page was removed (both languages)
+  rather than filled in — there is no replication package. `data.qmd` and
+  `es/data.qmd` link to `github.com/alainpin/alainpineda` as the source of the
+  CSVs behind the charts.
+- **That repo is currently private.** The owner has said he'll make it public
+  at launch. Until then, the "site's repository" link on `/data/` and
+  `/es/data/` 404s for a visitor. Confirm the repo is public as part of the
+  pre-launch checklist; don't do it unprompted since it's a one-way visibility
+  change on a shared GitHub resource.
 - The policy brief PDF is linked but not yet in `files/`.
 - The `.finding` lines for `domestic-workers` and `nafta-to-usmca` are drafts
   written from project descriptions, not from results. The owner must confirm or
