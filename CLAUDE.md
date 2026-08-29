@@ -518,16 +518,33 @@ publish an English-only site, silently dropping `/es/`.
 
 ## 12. Known gaps and open TODOs
 
-**Highest priority — teaching materials.** The owner wants the Storytelling in
-Economics course materials public and treats this as important, not
-nice-to-have. `files/storytelling-syllabus.pdf` has landed and is linked from
-`teaching.qmd` and `es/teaching.qmd`. **The slides are intentionally not
-linked yet** — the owner has the deck but it needs a public version made first,
-stripping any Banxico-internal figures or unpublished results, which he is
-doing with Claude Code's help as a separate task. Do not add a `Slides` row to
-either page's `.paper-links` until that adapted deck exists at
-`files/storytelling-slides.pdf` (or, if he decides to go that route instead, a
-Quarto `revealjs` deck at `teaching/storytelling/slides.qmd`).
+**Teaching materials — done.** The Storytelling in Economics course materials
+are public: `files/storytelling-syllabus.pdf` and `files/storytelling-slides.zip`
+are both linked from `teaching.qmd` and `es/teaching.qmd`.
+
+The zip holds 12 per-class PDFs (`Clase 01.pdf`–`Clase 14.pdf`, skipping 07 and
+12 — those sessions never had slides), compiled from the owner's Overleaf
+source with MacTeX/`pdflatex` (two passes each, for correct bookmarks). Before
+compiling, three things were deliberately cut from the LaTeX source across all
+13 original decks, and should stay cut if this ever gets recompiled from a
+newer Overleaf export: every `\date{}` was blanked, every "next class"
+logistics frame was removed (assignment previews, presentation logistics,
+sometimes a specific due date), and two things were cut for reasons beyond
+just being logistics — Clase 1's grading-percentage frame, and Clase 2's
+personal thank-you frame that linked the owner's own Spotify playlist and a
+private Google Sheet. Clase 14 also had its MAGA/4T political-narrative
+comparison (three slides, `resources/maga.png` / `4t.png` / `pollev_4t.png`)
+removed at the owner's request, given his Banxico role — an institutional-
+neutrality call, not a factual correction, so don't second-guess it if asked
+to "fix" that deck later. Clase 15 (grad-school-abroad advice, off-topic for a
+storytelling course) is excluded from the set entirely — never compiled, never
+zipped. Clase 13's business-storytelling images (Super Bowl ads, Nike, Apple,
+23andMe, Theranos/SBF-style cautionary tales) were kept as-is; the owner was
+asked about the copyright angle and chose to keep them.
+
+A Quarto `revealjs` conversion was prototyped on Clase 13 and rejected by the
+owner ("needs a lot more work") in favor of PDFs — don't revisit that path
+without being asked.
 
 - `images/profile.jpg` and `files/CV_Alain_Pineda.pdf` are the owner's real
   files now, not placeholders.

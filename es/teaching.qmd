@@ -17,6 +17,7 @@ Los materiales son públicos.
 
 ::: {.paper-links}
 - [Temario (PDF)](../files/storytelling-syllabus.pdf)
+- [Presentaciones (ZIP)](../files/storytelling-slides.zip)
 :::
 
 ### Seminario de investigación

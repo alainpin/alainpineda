@@ -16,6 +16,7 @@ carry the point, and writing for policy audiences. Materials are public.
 
 ::: {.paper-links}
 - [Syllabus (PDF)](files/storytelling-syllabus.pdf)
+- [Slides (ZIP)](files/storytelling-slides.zip)
 :::
 
 ### Research Seminar
