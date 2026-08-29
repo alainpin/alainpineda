@@ -547,11 +547,14 @@ private Google Sheet. Clase 14 also had its MAGA/4T political-narrative
 comparison (three slides, `resources/maga.png` / `4t.png` / `pollev_4t.png`)
 removed at the owner's request, given his Banxico role — an institutional-
 neutrality call, not a factual correction, so don't second-guess it if asked
-to "fix" that deck later. Clase 15 (grad-school-abroad advice, off-topic for a
-storytelling course) is excluded from the set entirely — never compiled, never
-zipped. Clase 13's business-storytelling images (Super Bowl ads, Nike, Apple,
-23andMe, Theranos/SBF-style cautionary tales) were kept as-is; the owner was
-asked about the copyright angle and chose to keep them.
+to "fix" that deck later. Clase 4's last slide (`resources/ccps4.png`, a
+screenshot of a real Twitter/X exchange between named private individuals) was
+removed for the same reason — a privacy call, not a content error. Clase 15
+(grad-school-abroad advice, off-topic for a storytelling course) is excluded
+from the set entirely — never compiled, never zipped. Clase 13's business-
+storytelling images (Super Bowl ads, Nike, Apple, 23andMe, Theranos/SBF-style
+cautionary tales) were kept as-is; the owner was asked about the copyright
+angle and chose to keep them.
 
 A Quarto `revealjs` conversion was prototyped on Clase 13 and rejected by the
 owner ("needs a lot more work") in favor of PDFs — don't revisit that path

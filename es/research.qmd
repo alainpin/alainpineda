@@ -31,9 +31,9 @@ listing:
 ---
 
 Estudio los mercados laborales en países en desarrollo: el empleo informal, las
-diferencias de género en salarios y horas trabajadas, el alcance de la seguridad
-social, y la igualdad de oportunidades. Mi trabajo pregunta algo práctico detrás
-de todo esto: quién termina cubierto, quién no, y por qué.
+diferencias de género, el alcance de la seguridad social, y la igualdad de
+oportunidades. Mi trabajo pregunta algo práctico detrás de todo esto: quién
+termina cubierto, quién no, y por qué.
 
 ## Documentos de trabajo
 

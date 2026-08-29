@@ -1,5 +1,5 @@
 ---
-title: "Social Insurance Without a Job"
+title: "Social Insurance Without a Job: School-Linked Benefits and Early Formalization in Mexico"
 subtitle: "Working paper, 2026"
 description: "In 2016, Mexico gave six million students health coverage that had nothing to do with having a job. A common worry is that benefits not tied to formal work discourage people from seeking it, but here formal employment rose fastest in states where informal work was already most common, and the effect ran entirely through wage jobs rather than self-employment."
 date: 2026-08-20

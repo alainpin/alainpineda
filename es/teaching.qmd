@@ -16,8 +16,7 @@ dentro de la disciplina económica y otros no. El texto de referencia es
 *[Narrative Economics](https://press.princeton.edu/books/hardcover/9780691182292/narrative-economics)*
 de Robert Shiller. A partir de ahí, el oficio práctico: estructurar el
 argumento, decidir qué mostrar, diseñar cuadros y gráficas que carguen el
-punto, y escribir para audiencias de política pública. Los materiales son
-públicos.
+punto, y escribir para audiencias diversas. Los materiales son públicos.
 
 ::: {.paper-links}
 - [Temario (PDF)](../files/storytelling-syllabus.pdf)
