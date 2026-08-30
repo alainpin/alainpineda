@@ -1,0 +1,167 @@
+---
+title: "Mercado Laboral MX — Hallazgos"
+date-modified: last-modified
+---
+
+::: {.eyebrow}
+ENOE, INEGI · Trimestral, 2005–2026 · Nacional
+:::
+
+Se actualiza cada vez que INEGI publica un trimestre nuevo: qué cambió
+respecto al trimestre y al año anterior, y qué tan cerca está el pipeline
+del boletín oficial de INEGI ese mismo periodo. Mismo control de calidad
+descrito en la [página de panorama](data.qmd), aquí en detalle completo en
+vez de una sola línea resumen.
+
+```{ojs}
+//| echo: false
+//| output: false
+raw = FileAttachment("../data/labor-indicators.csv").csv({ typed: true })
+validaciones = FileAttachment("../data/validations.csv").csv({ typed: true })
+
+datos = raw.map(d => ({ ...d, fecha: new Date(d.anio, (d.trimestre - 1) * 3, 1) }))
+
+nombres = ({
+  TPEA: "Participación laboral",
+  TD: "Desocupación",
+  TIL1: "Informalidad laboral",
+  TIL2: "Informalidad laboral (sin agropecuario)",
+  TOSI1: "Ocupación en el sector informal",
+  TOSI2: "Ocupación en el sector informal (sin agropecuario)",
+  TSUB: "Subocupación",
+  TCCO: "Condiciones críticas de ocupación",
+  TDAMPL: "Desocupación ampliada",
+  SUBUTIL: "Subutilización laboral"
+})
+
+notas = ({
+  TCCO: "Probablemente un rebase del umbral de salario mínimo de INEGI (el boletín cita una “base enero de 2026”); se verificó correcto reconstruyendo TCCO de forma independiente desde el microdato crudo."
+})
+
+serieDe = codigo => datos
+  .filter(d => d.indicador === codigo)
+  .sort((a, b) => a.fecha - b.fecha)
+
+valorEnPeriodo = (serie, anio, trimestre) => {
+  const fila = serie.find(d => d.anio === anio && d.trimestre === trimestre);
+  return fila ? fila.valor : null;
+}
+
+calcularDeltas = serie => {
+  const ultimo = serie[serie.length - 1];
+  const trimAnt = ultimo.trimestre === 1
+    ? { anio: ultimo.anio - 1, trimestre: 4 }
+    : { anio: ultimo.anio, trimestre: ultimo.trimestre - 1 };
+  const valorTrimAnt = valorEnPeriodo(serie, trimAnt.anio, trimAnt.trimestre);
+  const valorAnioAnt = valorEnPeriodo(serie, ultimo.anio - 1, ultimo.trimestre);
+  return {
+    deltaTrim: valorTrimAnt != null ? ultimo.valor - valorTrimAnt : null,
+    deltaAnual: valorAnioAnt != null ? ultimo.valor - valorAnioAnt : null
+  };
+}
+
+// A diferencia del resto de esta serie (que deja el color neutro a
+// propósito, sin implicar bueno/malo), esta página sí colorea la dirección
+// del cambio -- porque es un resumen de lectura rápida pensado para
+// escanear muchas filas de un vistazo. Solo la flecha lleva color, y
+// pálido a propósito: colorear todo el valor se leía como demasiado
+// llamativo y como un juicio normativo, que esta página no debería
+// implicar.
+formatoDelta = delta => {
+  if (delta == null) return html`<span>n/d</span>`;
+  if (Math.abs(delta) < 0.005) return html`<span class="delta-flat">sin cambio</span>`;
+  const subida = delta > 0;
+  const clase = subida ? "delta-arrow-up" : "delta-arrow-down";
+  const signo = subida ? "▲" : "▼";
+  return html`<span><span class="${clase}">${signo}</span> ${Math.abs(delta).toFixed(2)} pp</span>`;
+}
+
+cambiosTrimestre = Object.keys(nombres).map(codigo => {
+  const serie = serieDe(codigo);
+  if (serie.length === 0) return null;
+  const ultimo = serie[serie.length - 1];
+  const { deltaTrim, deltaAnual } = calcularDeltas(serie);
+  return {
+    codigo, nombre: nombres[codigo], valor: ultimo.valor,
+    periodo: `${ultimo.anio}-T${ultimo.trimestre}`,
+    deltaTrim, deltaAnual
+  };
+}).filter(d => d !== null)
+
+ultimoPeriodoValidacion = validaciones.length
+  ? `${validaciones[validaciones.length - 1].anio}-T${validaciones[validaciones.length - 1].trimestre}`
+  : ""
+
+ultimasValidaciones = {
+  const ultimoAnio = validaciones[validaciones.length - 1]?.anio;
+  const ultimoTrim = validaciones[validaciones.length - 1]?.trimestre;
+  return validaciones.filter(v => v.anio === ultimoAnio && v.trimestre === ultimoTrim);
+}
+```
+
+### Cambios del trimestre
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+html`<table class="data-table">
+<thead><tr>
+  <th>Indicador</th><th>Último dato</th><th>Trimestre anterior</th><th>Mismo trimestre, año anterior</th>
+</tr></thead>
+<tbody>
+${cambiosTrimestre.map(d => html`<tr>
+  <td>${d.nombre}</td>
+  <td class="data-table-num">${d.valor}%<span class="data-table-period">(${d.periodo})</span></td>
+  <td class="data-table-num">${formatoDelta(d.deltaTrim)}</td>
+  <td class="data-table-num">${formatoDelta(d.deltaAnual)}</td>
+</tr>`)}
+</tbody>
+</table>`
+```
+
+:::
+
+### Comparación con el boletín oficial
+
+Última validación: **${ultimoPeriodoValidacion}**. Se llena a mano cada
+trimestre, comparando este pipeline contra el comunicado de prensa
+**trimestral** de INEGI — no el mensual, que usa otra metodología y no es
+comparable (dos boletines distintos, con números de comunicado distintos,
+salen casi el mismo día).
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+html`<table class="data-table">
+<thead><tr>
+  <th>Indicador</th><th>Oficial (INEGI)</th><th>Pipeline</th><th>Diferencia</th><th>Nota</th>
+</tr></thead>
+<tbody>
+${ultimasValidaciones.map(v => html`<tr>
+  <td>${nombres[v.indicador] ?? v.indicador}</td>
+  <td class="data-table-num">${v.oficial}%</td>
+  <td class="data-table-num">${v.pipeline}%</td>
+  <td class="data-table-num">${v.diferencia_pp.toFixed(2)} pp</td>
+  <td class="data-table-note">${notas[v.indicador] || "—"}</td>
+</tr>`)}
+</tbody>
+</table>`
+```
+
+:::
+
+<details class="abstract">
+<summary>Cómo está hecho</summary>
+
+Mismo pipeline y mismo [repositorio del sitio](https://github.com/alainpin/alainpineda)
+que la [página de panorama](data.qmd). "Diferencia" es la brecha absoluta
+entre este pipeline y la cifra que INEGI redondea a un decimal en su
+boletín — una brecha de hasta ~0.05 pp es redondeo, no una señal de error.
+Los cambios de trimestre y de año se calculan sobre el periodo exacto, no
+por posición de fila, así que el hueco de 2020-T2 (ETOE, no comparable)
+nunca produce un cambio calculado sobre dos trimestres de distancia.
+Fuente: microdatos de la ENOE, INEGI, 2005–2026.
+
+</details>

@@ -16,8 +16,16 @@ website:
         text: About
       - href: research.qmd
         text: Research
-      - href: data.qmd
-        text: Labor Market MX
+      - text: Labor Market MX
+        menu:
+          - href: data.qmd
+            text: Overview
+          - href: data-participation.qmd
+            text: Participation
+          - href: data-informality.qmd
+            text: Informality
+          - href: data-findings.qmd
+            text: Findings
       - href: teaching.qmd
         text: Teaching
       - text: CV

@@ -1,0 +1,166 @@
+---
+title: "Labor Market MX — Findings"
+date-modified: last-modified
+---
+
+::: {.eyebrow}
+ENOE, INEGI · Quarterly, 2005–2026 · National
+:::
+
+Updated every time INEGI publishes a new quarter: what changed from the
+prior quarter and from a year earlier, and how closely this pipeline
+matches INEGI's own official bulletin for that same period. Same quality
+check described on the [overview page](data.qmd), laid out here in full
+instead of a single summary line.
+
+```{ojs}
+//| echo: false
+//| output: false
+raw = FileAttachment("data/labor-indicators.csv").csv({ typed: true })
+validaciones = FileAttachment("data/validations.csv").csv({ typed: true })
+
+datos = raw.map(d => ({ ...d, fecha: new Date(d.anio, (d.trimestre - 1) * 3, 1) }))
+
+nombres = ({
+  TPEA: "Labor force participation",
+  TD: "Unemployment",
+  TIL1: "Labor informality",
+  TIL2: "Labor informality (excl. agriculture)",
+  TOSI1: "Employment in the informal sector",
+  TOSI2: "Informal-sector employment (excl. agriculture)",
+  TSUB: "Underemployment",
+  TCCO: "Critical employment conditions",
+  TDAMPL: "Broader unemployment",
+  SUBUTIL: "Labor underutilization"
+})
+
+notas = ({
+  TCCO: "Likely a rebase of INEGI’s minimum-wage threshold (the bulletin cites a “January 2026 base”); verified correct by independently reconstructing TCCO from raw microdata."
+})
+
+serieDe = codigo => datos
+  .filter(d => d.indicador === codigo)
+  .sort((a, b) => a.fecha - b.fecha)
+
+valorEnPeriodo = (serie, anio, trimestre) => {
+  const fila = serie.find(d => d.anio === anio && d.trimestre === trimestre);
+  return fila ? fila.valor : null;
+}
+
+calcularDeltas = serie => {
+  const ultimo = serie[serie.length - 1];
+  const trimAnt = ultimo.trimestre === 1
+    ? { anio: ultimo.anio - 1, trimestre: 4 }
+    : { anio: ultimo.anio, trimestre: ultimo.trimestre - 1 };
+  const valorTrimAnt = valorEnPeriodo(serie, trimAnt.anio, trimAnt.trimestre);
+  const valorAnioAnt = valorEnPeriodo(serie, ultimo.anio - 1, ultimo.trimestre);
+  return {
+    deltaTrim: valorTrimAnt != null ? ultimo.valor - valorTrimAnt : null,
+    deltaAnual: valorAnioAnt != null ? ultimo.valor - valorAnioAnt : null
+  };
+}
+
+// Unlike the rest of this series (which leaves color neutral on purpose,
+// without implying good/bad), this page does color the direction of
+// change -- because it's a scan-many-rows-at-once summary, not a
+// case-by-case reading of one indicator. Only the arrow carries color,
+// and it's kept pale: coloring the whole value read as too loud and too
+// normative (good/bad), which this page shouldn't imply.
+formatoDelta = delta => {
+  if (delta == null) return html`<span>n/a</span>`;
+  if (Math.abs(delta) < 0.005) return html`<span class="delta-flat">no change</span>`;
+  const subida = delta > 0;
+  const clase = subida ? "delta-arrow-up" : "delta-arrow-down";
+  const signo = subida ? "▲" : "▼";
+  return html`<span><span class="${clase}">${signo}</span> ${Math.abs(delta).toFixed(2)} pp</span>`;
+}
+
+cambiosTrimestre = Object.keys(nombres).map(codigo => {
+  const serie = serieDe(codigo);
+  if (serie.length === 0) return null;
+  const ultimo = serie[serie.length - 1];
+  const { deltaTrim, deltaAnual } = calcularDeltas(serie);
+  return {
+    codigo, nombre: nombres[codigo], valor: ultimo.valor,
+    periodo: `${ultimo.anio}-Q${ultimo.trimestre}`,
+    deltaTrim, deltaAnual
+  };
+}).filter(d => d !== null)
+
+ultimoPeriodoValidacion = validaciones.length
+  ? `${validaciones[validaciones.length - 1].anio}-Q${validaciones[validaciones.length - 1].trimestre}`
+  : ""
+
+ultimasValidaciones = {
+  const ultimoAnio = validaciones[validaciones.length - 1]?.anio;
+  const ultimoTrim = validaciones[validaciones.length - 1]?.trimestre;
+  return validaciones.filter(v => v.anio === ultimoAnio && v.trimestre === ultimoTrim);
+}
+```
+
+### Quarter-over-quarter changes
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+html`<table class="data-table">
+<thead><tr>
+  <th>Indicator</th><th>Latest</th><th>Prior quarter</th><th>Same quarter, year earlier</th>
+</tr></thead>
+<tbody>
+${cambiosTrimestre.map(d => html`<tr>
+  <td>${d.nombre}</td>
+  <td class="data-table-num">${d.valor}%<span class="data-table-period">(${d.periodo})</span></td>
+  <td class="data-table-num">${formatoDelta(d.deltaTrim)}</td>
+  <td class="data-table-num">${formatoDelta(d.deltaAnual)}</td>
+</tr>`)}
+</tbody>
+</table>`
+```
+
+:::
+
+### Comparison against the official bulletin
+
+Latest validation: **${ultimoPeriodoValidacion}**. Filled in by hand each
+quarter, comparing this pipeline against INEGI's **quarterly** press
+release — not the monthly one, which uses a different methodology and isn't
+comparable (two separate bulletins, with separate release numbers, come out
+almost the same day).
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+html`<table class="data-table">
+<thead><tr>
+  <th>Indicator</th><th>Official (INEGI)</th><th>Pipeline</th><th>Difference</th><th>Note</th>
+</tr></thead>
+<tbody>
+${ultimasValidaciones.map(v => html`<tr>
+  <td>${nombres[v.indicador] ?? v.indicador}</td>
+  <td class="data-table-num">${v.oficial}%</td>
+  <td class="data-table-num">${v.pipeline}%</td>
+  <td class="data-table-num">${v.diferencia_pp.toFixed(2)} pp</td>
+  <td class="data-table-note">${notas[v.indicador] || "—"}</td>
+</tr>`)}
+</tbody>
+</table>`
+```
+
+:::
+
+<details class="abstract">
+<summary>How this is built</summary>
+
+Same pipeline and same public [repository](https://github.com/alainpin/alainpineda)
+as the [overview page](data.qmd). "Difference" is the absolute gap between
+this pipeline and the figure INEGI rounds to one decimal in its bulletin —
+a gap of up to roughly 0.05 pp is rounding, not a sign of error.
+Quarter-over-quarter and year-over-year changes are computed against the
+exact matching period, not by row position, so the 2020-Q2 gap (ETOE, not
+comparable) never produces a change calculated across two quarters of
+distance. Source: ENOE microdata, INEGI, 2005–2026.
+
+</details>

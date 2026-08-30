@@ -15,8 +15,16 @@ website:
         text: Perfil
       - href: es/research.qmd
         text: Investigación
-      - href: es/data.qmd
-        text: Mercado Laboral MX
+      - text: Mercado Laboral MX
+        menu:
+          - href: es/data.qmd
+            text: Panorama
+          - href: es/data-participacion.qmd
+            text: Participación
+          - href: es/data-informalidad.qmd
+            text: Informalidad
+          - href: es/data-hallazgos.qmd
+            text: Hallazgos
       - href: es/teaching.qmd
         text: Docencia
       - text: CV
