@@ -134,6 +134,10 @@ esSignificativo = (delta, se) => delta != null && se != null && Math.abs(delta) 
 // alongside the percentage-point change, e.g. "▲ 0.41 pp (0.7%)". Omitted
 // where a relative change wouldn't mean much (a gender-gap difference can
 // cross zero, so "percent of the gap" is not a meaningful number there).
+// The pp figure stays unsigned (direction carried by the arrow alone, the
+// site's usual convention), but the percent figure keeps its sign -- it's
+// also the sort key for these columns, and an unsigned percent next to a
+// down arrow read as if sorting ignored direction, which it doesn't.
 formatoDelta = (delta, base) => {
   if (delta == null) return html`<span>n/a</span>`;
   if (Math.abs(delta) < 0.005) return html`<span class="delta-flat">no change</span>`;
@@ -141,7 +145,7 @@ formatoDelta = (delta, base) => {
   const clase = subida ? "delta-arrow-up" : "delta-arrow-down";
   const signo = subida ? "▲" : "▼";
   const relativo = (base != null && base !== 0)
-    ? html` <span class="data-table-period">(${Math.abs(delta / base * 100).toFixed(1)}%)</span>`
+    ? html` <span class="data-table-period">(${(delta / base * 100).toFixed(1)}%)</span>`
     : "";
   return html`<span><span class="${clase}">${signo}</span> ${Math.abs(delta).toFixed(2)} pp${relativo}</span>`;
 }

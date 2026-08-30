@@ -126,6 +126,11 @@ esSignificativo = (delta, se) => delta != null && se != null && Math.abs(delta) 
 // Se omite donde un cambio relativo no tendría sentido (una brecha de
 // género puede cruzar cero, así que "porcentaje de la brecha" no es un
 // número interpretable ahí).
+// El pp se queda sin signo (la dirección la lleva solo la flecha, la
+// convención habitual del sitio), pero el porcentaje sí conserva su signo
+// -- también es la clave de orden de estas columnas, y un porcentaje sin
+// signo junto a una flecha hacia abajo se leía como si el orden ignorara
+// la dirección, cuando no es así.
 formatoDelta = (delta, base) => {
   if (delta == null) return html`<span>n/d</span>`;
   if (Math.abs(delta) < 0.005) return html`<span class="delta-flat">sin cambio</span>`;
@@ -133,7 +138,7 @@ formatoDelta = (delta, base) => {
   const clase = subida ? "delta-arrow-up" : "delta-arrow-down";
   const signo = subida ? "▲" : "▼";
   const relativo = (base != null && base !== 0)
-    ? html` <span class="data-table-period">(${Math.abs(delta / base * 100).toFixed(1)}%)</span>`
+    ? html` <span class="data-table-period">(${(delta / base * 100).toFixed(1)}%)</span>`
     : "";
   return html`<span><span class="${clase}">${signo}</span> ${Math.abs(delta).toFixed(2)} pp${relativo}</span>`;
 }
