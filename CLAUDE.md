@@ -296,7 +296,20 @@ the numbers above: exact published data, no Banxico branding.** Added
 recreating the box's Gráfica 3 and Gráfica 1) built the same way as the
 thesis chart (R/ggplot2 → `svglite`, `.site-figure` markup, hand-copied token
 hex values), but sourced from the box's own **linked data tables** rather
-than eyeballing the PDF's rendered chart. Banxico Quarterly Report PDFs embed
+than eyeballing the PDF's rendered chart. The stacked-bar decomposition chart
+originally colored its three components `$teal`/`$teal-deep`/`$ochre` — the
+two teals read as near-identical at a glance, so it's now
+`$teal`/`$ink`/`$ochre` (occupation/hours/pay); reach for `$ink` as that
+third, clearly-distinct tone whenever a chart needs 3+ categorical colors
+and the teal/ochre pair alone isn't enough. Also: `ggsave(..., bg =
+"transparent")` plus `plot.background`/`panel.background = element_blank()`
+in the theme, on all three chart scripts here (both Banxico charts and the
+breastfeeding one) — an explicit white `plot.background` was doubling up
+with `.site-figure img`'s own `#fbfbf9` card fill, so the chart looked like a
+separate pasted-in white rectangle instead of sitting in the card
+seamlessly. Every future static chart built for a `.site-figure` should
+render with a transparent background for the same reason — the card
+supplies the fill, the chart shouldn't. Banxico Quarterly Report PDFs embed
 a clickable-graphic convention (the box's own note says so: "dando clic sobre
 [las gráficas]... se puede obtener la información") — each graphic/table has
 a `/Annots` link annotation pointing to a `banxico.org.mx/TablasWeb/...html`
