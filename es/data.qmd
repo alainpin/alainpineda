@@ -19,10 +19,10 @@ html`<div class="indicator-meta">Dato más reciente: ENOE ${ultimoPeriodoGlobal}
 Estadísticas oficiales de la Encuesta Nacional de Ocupación y Empleo (ENOE),
 información pública de INEGI. Se recalculan aquí desde microdatos con la
 metodología oficial del instituto — diseño muestral, estratos y factores de
-expansión, no un promedio simple — y se contrastan contra el boletín publicado
-por INEGI para 2024-T1 (diferencia máxima: 0.05 puntos porcentuales). No son
-un hallazgo propio: son cifras públicas, presentadas aquí para consulta
-rápida.
+expansión, no un promedio simple — y se validan cada trimestre contra el
+boletín oficial de INEGI de ese mismo periodo (la validación de 2024-T1
+encontró una diferencia máxima de 0.05 puntos porcentuales). No son un
+hallazgo propio: son cifras públicas, presentadas aquí para consulta rápida.
 
 ```{ojs}
 //| echo: false

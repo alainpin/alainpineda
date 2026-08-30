@@ -19,9 +19,10 @@ html`<div class="indicator-meta">Latest available data: ENOE ${ultimoPeriodoGlob
 Official statistics from Mexico's National Survey of Occupation and
 Employment (ENOE), public data from INEGI. Recomputed here from microdata
 using the institute's own methodology — survey design, strata, and expansion
-factors, not a simple average — and checked against INEGI's published
-bulletin for 2024-T1 (largest gap: 0.05 percentage points). Not an original
-finding: these are public figures, presented here for quick reference.
+factors, not a simple average — and validated every quarter against INEGI's
+own published bulletin for that period (the 2024-T1 check found a largest gap
+of 0.05 percentage points). Not an original finding: these are public
+figures, presented here for quick reference.
 
 ```{ojs}
 //| echo: false
