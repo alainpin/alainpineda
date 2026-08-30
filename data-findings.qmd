@@ -79,7 +79,8 @@ calcularDeltas = serie => {
   const valorAnioAnt = valorEnPeriodo(serie, ultimo.anio - 1, ultimo.trimestre);
   return {
     deltaTrim: valorTrimAnt != null ? ultimo.valor - valorTrimAnt : null,
-    deltaAnual: valorAnioAnt != null ? ultimo.valor - valorAnioAnt : null
+    deltaAnual: valorAnioAnt != null ? ultimo.valor - valorAnioAnt : null,
+    baseTrim: valorTrimAnt, baseAnual: valorAnioAnt
   };
 }
 
@@ -108,7 +109,9 @@ calcularDeltasConSE = serie => {
     deltaTrim: trimAntDato ? ultimo.valor - trimAntDato.valor : null,
     deltaAnual: anioAntDato ? ultimo.valor - anioAntDato.valor : null,
     seTrim: trimAntDato ? Math.sqrt(ultimo.ee ** 2 + trimAntDato.ee ** 2) : null,
-    seAnual: anioAntDato ? Math.sqrt(ultimo.ee ** 2 + anioAntDato.ee ** 2) : null
+    seAnual: anioAntDato ? Math.sqrt(ultimo.ee ** 2 + anioAntDato.ee ** 2) : null,
+    baseTrim: trimAntDato ? trimAntDato.valor : null,
+    baseAnual: anioAntDato ? anioAntDato.valor : null
   };
 }
 
@@ -126,24 +129,32 @@ esSignificativo = (delta, se) => delta != null && se != null && Math.abs(delta) 
 // case-by-case reading of one indicator. Only the arrow carries color,
 // and it's kept pale: coloring the whole value read as too loud and too
 // normative (good/bad), which this page shouldn't imply.
-formatoDelta = delta => {
+// base is the prior period's own value (the denominator this change is
+// measured against) -- pass it to also show the relative percent change
+// alongside the percentage-point change, e.g. "▲ 0.41 pp (0.7%)". Omitted
+// where a relative change wouldn't mean much (a gender-gap difference can
+// cross zero, so "percent of the gap" is not a meaningful number there).
+formatoDelta = (delta, base) => {
   if (delta == null) return html`<span>n/a</span>`;
   if (Math.abs(delta) < 0.005) return html`<span class="delta-flat">no change</span>`;
   const subida = delta > 0;
   const clase = subida ? "delta-arrow-up" : "delta-arrow-down";
   const signo = subida ? "▲" : "▼";
-  return html`<span><span class="${clase}">${signo}</span> ${Math.abs(delta).toFixed(2)} pp</span>`;
+  const relativo = (base != null && base !== 0)
+    ? html` <span class="data-table-period">(${Math.abs(delta / base * 100).toFixed(1)}%)</span>`
+    : "";
+  return html`<span><span class="${clase}">${signo}</span> ${Math.abs(delta).toFixed(2)} pp${relativo}</span>`;
 }
 
 cambiosTrimestre = Object.keys(nombres).map(codigo => {
   const serie = serieDe(codigo);
   if (serie.length === 0) return null;
   const ultimo = serie[serie.length - 1];
-  const { deltaTrim, deltaAnual } = calcularDeltas(serie);
+  const { deltaTrim, deltaAnual, baseTrim, baseAnual } = calcularDeltas(serie);
   return {
     codigo, nombre: nombres[codigo], valor: ultimo.valor,
     periodo: `${ultimo.anio}-Q${ultimo.trimestre}`,
-    deltaTrim, deltaAnual
+    deltaTrim, deltaAnual, baseTrim, baseAnual
   };
 }).filter(d => d !== null)
 
@@ -151,27 +162,47 @@ categoriasDeCorte = corte => [...new Set(datosCortes.filter(d => d.corte === cor
 
 // One row per category within a cut, latest value plus QoQ/YoY change --
 // same calculation as cambiosTrimestre above, just applied per category
-// instead of at the national level. Sorted biggest-mover-first so a reader
-// scanning the table sees the largest quarterly swings up top.
+// instead of at the national level. Unsorted here -- ordenarFilas below
+// applies whichever order the reader picks at render time.
 cambiosPorCorte = (indicador, corte) => categoriasDeCorte(corte).map(cat => {
   const serie = datosCortes
     .filter(d => d.indicador === indicador && d.corte === corte && d.categoria_origen === cat)
     .sort((a, b) => a.fecha - b.fecha);
   if (serie.length === 0) return null;
   const ultimo = serie[serie.length - 1];
-  const { deltaTrim, deltaAnual } = calcularDeltasConSE(serie);
+  const { deltaTrim, deltaAnual, baseTrim, baseAnual } = calcularDeltasConSE(serie);
   return {
     categoria: etiquetaEn[cat] ?? cat, valor: ultimo.valor,
     periodo: `${ultimo.anio}-Q${ultimo.trimestre}`,
-    deltaTrim, deltaAnual
+    deltaTrim, deltaAnual, baseTrim, baseAnual
   };
 }).filter(d => d !== null)
-  .sort((a, b) => Math.abs(b.deltaTrim ?? 0) - Math.abs(a.deltaTrim ?? 0))
+
+// Options for the "Sort by" selector on the Changes by group table. Default
+// mirrors the old fixed order (largest quarterly move, either direction,
+// first); the rest are the sorts a reader asked for -- latest value or
+// quarterly change, either direction.
+opcionesOrden = ({
+  movimiento: "Biggest quarterly move first",
+  valor_desc: "Latest value, high to low",
+  valor_asc: "Latest value, low to high",
+  deltaTrim_desc: "Quarterly change, high to low",
+  deltaTrim_asc: "Quarterly change, low to high"
+})
+
+ordenarFilas = (filas, orden) => {
+  const copia = [...filas];
+  if (orden === "valor_desc") return copia.sort((a, b) => b.valor - a.valor);
+  if (orden === "valor_asc") return copia.sort((a, b) => a.valor - b.valor);
+  if (orden === "deltaTrim_desc") return copia.sort((a, b) => (b.deltaTrim ?? -Infinity) - (a.deltaTrim ?? -Infinity));
+  if (orden === "deltaTrim_asc") return copia.sort((a, b) => (a.deltaTrim ?? Infinity) - (b.deltaTrim ?? Infinity));
+  return copia.sort((a, b) => Math.abs(b.deltaTrim ?? 0) - Math.abs(a.deltaTrim ?? 0));
+}
 
 // Every (indicator, cut, category) combination's change, filtered to only
 // the ones that clear the significance bar -- the pool "biggest mover"
 // picks from below.
-todosLosCambios = (campoDelta, campoSE) => {
+todosLosCambios = (campoDelta, campoSE, campoBase) => {
   const filas = [];
   for (const indicador of indicadoresConCortes) {
     for (const corte of Object.keys(cortes)) {
@@ -182,11 +213,11 @@ todosLosCambios = (campoDelta, campoSE) => {
         if (serie.length === 0) continue;
         const ultimo = serie[serie.length - 1];
         const deltas = calcularDeltasConSE(serie);
-        const delta = deltas[campoDelta], se = deltas[campoSE];
+        const delta = deltas[campoDelta], se = deltas[campoSE], base = deltas[campoBase];
         if (esSignificativo(delta, se)) {
           filas.push({
             indicador, corte, categoria: etiquetaEn[cat] ?? cat,
-            valor: ultimo.valor, delta, periodo: `${ultimo.anio}-Q${ultimo.trimestre}`
+            valor: ultimo.valor, delta, base, periodo: `${ultimo.anio}-Q${ultimo.trimestre}`
           });
         }
       }
@@ -195,8 +226,8 @@ todosLosCambios = (campoDelta, campoSE) => {
   return filas.sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
 }
 
-mayorMovimientoTrim = todosLosCambios("deltaTrim", "seTrim")[0] ?? null
-mayorMovimientoAnual = todosLosCambios("deltaAnual", "seAnual")[0] ?? null
+mayorMovimientoTrim = todosLosCambios("deltaTrim", "seTrim", "baseTrim")[0] ?? null
+mayorMovimientoAnual = todosLosCambios("deltaAnual", "seAnual", "baseAnual")[0] ?? null
 
 // Gender gap (men minus women) as its own derived series: match each
 // quarter's male and female estimates by date, subtract, and combine their
@@ -223,7 +254,7 @@ brechaTPEA = brechaGenero("TPEA")
 brechaTIL1 = brechaGenero("TIL1")
 
 textoMovimiento = (fila, sinCambio) => fila
-  ? html`${nombres[fila.indicador]} among <strong>${fila.categoria}</strong> (${cortes[fila.corte]}): ${formatoDelta(fila.delta)}, now ${fila.valor}% (${fila.periodo}).`
+  ? html`${nombres[fila.indicador]} among <strong>${fila.categoria}</strong> (${cortes[fila.corte]}): ${formatoDelta(fila.delta, fila.base)}, now ${fila.valor}% (${fila.periodo}).`
   : html`<span>${sinCambio}</span>`
 
 textoBrecha = (nombre, brecha) => {
@@ -272,14 +303,14 @@ html`<ul class="highlights-list">
 //| echo: false
 html`<table class="data-table">
 <thead><tr>
-  <th>Indicator</th><th>Latest</th><th>Prior quarter</th><th>Same quarter, year earlier</th>
+  <th>Indicator</th><th>Latest</th><th>Change vs. prior quarter</th><th>Change vs. year earlier</th>
 </tr></thead>
 <tbody>
 ${cambiosTrimestre.map(d => html`<tr>
   <td>${d.nombre}</td>
   <td class="data-table-num">${d.valor}%<span class="data-table-period">(${d.periodo})</span></td>
-  <td class="data-table-num">${formatoDelta(d.deltaTrim)}</td>
-  <td class="data-table-num">${formatoDelta(d.deltaAnual)}</td>
+  <td class="data-table-num">${formatoDelta(d.deltaTrim, d.baseTrim)}</td>
+  <td class="data-table-num">${formatoDelta(d.deltaAnual, d.baseAnual)}</td>
 </tr>`)}
 </tbody>
 </table>`
@@ -291,7 +322,9 @@ ${cambiosTrimestre.map(d => html`<tr>
 
 Same quarter-over-quarter and year-over-year changes as above, broken down
 by the cuts INEGI doesn't publish on its own site — sex, age, education, and
-state. Rows are sorted with the largest quarterly move first.
+state. Each change shows the move in percentage points, and, in
+parentheses, the equivalent percent change relative to the prior period.
+Sort the rows below by latest value or by the size of the move.
 
 ```{ojs}
 //| echo: false
@@ -311,20 +344,29 @@ viewof corte_sel = Inputs.select(Object.keys(cortes), {
 })
 ```
 
+```{ojs}
+//| echo: false
+viewof orden_sel = Inputs.select(Object.keys(opcionesOrden), {
+  value: "movimiento",
+  label: "Sort by",
+  format: d => opcionesOrden[d]
+})
+```
+
 ::: {.data-panel}
 
 ```{ojs}
 //| echo: false
 html`<table class="data-table">
 <thead><tr>
-  <th>${cortes[corte_sel]}</th><th>Latest</th><th>Prior quarter</th><th>Same quarter, year earlier</th>
+  <th>${cortes[corte_sel]}</th><th>Latest</th><th>Change vs. prior quarter</th><th>Change vs. year earlier</th>
 </tr></thead>
 <tbody>
-${cambiosPorCorte(definicion_sel, corte_sel).map(d => html`<tr>
+${ordenarFilas(cambiosPorCorte(definicion_sel, corte_sel), orden_sel).map(d => html`<tr>
   <td>${d.categoria}</td>
   <td class="data-table-num">${d.valor}%<span class="data-table-period">(${d.periodo})</span></td>
-  <td class="data-table-num">${formatoDelta(d.deltaTrim)}</td>
-  <td class="data-table-num">${formatoDelta(d.deltaAnual)}</td>
+  <td class="data-table-num">${formatoDelta(d.deltaTrim, d.baseTrim)}</td>
+  <td class="data-table-num">${formatoDelta(d.deltaAnual, d.baseAnual)}</td>
 </tr>`)}
 </tbody>
 </table>`
@@ -377,7 +419,11 @@ standard errors) computed by treating the two periods' estimates as
 independent; ENOE's rotating panel means adjacent quarters actually share
 some of the same respondents, so this is a conservative approximation — a
 real quarter-over-quarter move is a little more likely to be flagged as
-significant than this threshold gives it credit for, not less. TSUB and
+significant than this threshold gives it credit for, not less. The percent
+figure in parentheses next to each change is that change divided by the
+prior period's own value, not a second percentage-point figure — a 0.1 pp
+move on a 2% base is a much bigger relative swing than the same 0.1 pp on a
+60% base, which the parenthetical is there to make visible. TSUB and
 TCCO don't appear in the by-group section: no state/demographic breakdown
 has been computed for those two yet. Source: ENOE microdata, INEGI,
 2005–2026.
