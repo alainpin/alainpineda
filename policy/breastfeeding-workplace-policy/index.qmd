@@ -1,7 +1,7 @@
 ---
 title: "Why Support Breastfeeding at Work?"
 subtitle: "IDB Gender and Diversity blog, August 2022"
-description: "Only 37% of babies in Latin America and the Caribbean are exclusively breastfed at six months, and the workplace policies that could help, paid breaks and lactation rooms, don't reach most working mothers."
+description: "Paid breastfeeding breaks and lactation rooms exist on paper across Latin America and the Caribbean, but weak enforcement and high informality keep them from reaching most working mothers."
 author: "Alain Pineda"
 ---
 
