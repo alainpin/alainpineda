@@ -847,6 +847,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL1,enoe_2023,entidad,Aguascalientes,41.88,0.949,4770
 2025,3,TIL1,enoe_2023,entidad,Aguascalientes,42.03,0.921,4734
 2025,4,TIL1,enoe_2023,entidad,Aguascalientes,42.63,0.974,4727
+2026,1,TIL1,enoe_2023,entidad,Aguascalientes,44.37,1.014,4797
 2026,2,TIL1,enoe_2023,entidad,Aguascalientes,42.54,1.083,5013
 2005,1,TIL1,tradicional,entidad,Baja California,41.68,0.933,5230
 2005,2,TIL1,tradicional,entidad,Baja California,42.03,1.031,5245
@@ -931,6 +932,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL1,enoe_2023,entidad,Baja California,38.39,0.883,7311
 2025,3,TIL1,enoe_2023,entidad,Baja California,38.66,0.882,7206
 2025,4,TIL1,enoe_2023,entidad,Baja California,37.61,0.86,7315
+2026,1,TIL1,enoe_2023,entidad,Baja California,37.61,1.01,7230
 2026,2,TIL1,enoe_2023,entidad,Baja California,36.19,0.89,7299
 2005,1,TIL1,tradicional,entidad,Baja California Sur,43.17,1.813,3801
 2005,2,TIL1,tradicional,entidad,Baja California Sur,41.48,1.397,3853
@@ -1015,6 +1017,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL1,enoe_2023,entidad,Baja California Sur,37.37,1.285,4348
 2025,3,TIL1,enoe_2023,entidad,Baja California Sur,39.1,1.195,4356
 2025,4,TIL1,enoe_2023,entidad,Baja California Sur,38.58,1.038,4225
+2026,1,TIL1,enoe_2023,entidad,Baja California Sur,38.86,0.995,4171
 2026,2,TIL1,enoe_2023,entidad,Baja California Sur,39.61,0.986,4118
 2005,1,TIL1,tradicional,entidad,Campeche,61.08,1.071,4835
 2005,2,TIL1,tradicional,entidad,Campeche,61.56,0.942,4914
@@ -1099,6 +1102,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL1,enoe_2023,entidad,Campeche,59.81,0.901,7322
 2025,3,TIL1,enoe_2023,entidad,Campeche,59.57,0.932,7242
 2025,4,TIL1,enoe_2023,entidad,Campeche,61.1,1.092,7396
+2026,1,TIL1,enoe_2023,entidad,Campeche,60.26,1.063,7220
 2026,2,TIL1,enoe_2023,entidad,Campeche,61.36,1.066,7204
 2005,1,TIL1,tradicional,entidad,Chiapas,79.12,0.906,5746
 2005,2,TIL1,tradicional,entidad,Chiapas,80.52,0.845,5989
@@ -1183,6 +1187,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL1,enoe_2023,entidad,Chiapas,77.96,0.937,8367
 2025,3,TIL1,enoe_2023,entidad,Chiapas,77,0.961,8587
 2025,4,TIL1,enoe_2023,entidad,Chiapas,74.9,0.934,8540
+2026,1,TIL1,enoe_2023,entidad,Chiapas,75.32,0.939,8503
 2026,2,TIL1,enoe_2023,entidad,Chiapas,76.88,0.996,8467
 2005,1,TIL1,tradicional,entidad,Chihuahua,37.42,1.464,4042
 2005,2,TIL1,tradicional,entidad,Chihuahua,38.86,1.519,4300
@@ -1267,6 +1272,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL1,enoe_2023,entidad,Chihuahua,34.32,0.942,7362
 2025,3,TIL1,enoe_2023,entidad,Chihuahua,36.5,1.061,7065
 2025,4,TIL1,enoe_2023,entidad,Chihuahua,36.19,0.866,6907
+2026,1,TIL1,enoe_2023,entidad,Chihuahua,34.85,0.908,6786
 2026,2,TIL1,enoe_2023,entidad,Chihuahua,35.09,0.862,6876
 2005,1,TIL1,tradicional,entidad,Ciudad de México,49.43,0.867,4511
 2005,2,TIL1,tradicional,entidad,Ciudad de México,49.67,0.835,4538
@@ -1351,6 +1357,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL1,enoe_2023,entidad,Ciudad de México,44.11,0.949,4926
 2025,3,TIL1,enoe_2023,entidad,Ciudad de México,46.8,0.916,4903
 2025,4,TIL1,enoe_2023,entidad,Ciudad de México,45.71,0.926,4799
+2026,1,TIL1,enoe_2023,entidad,Ciudad de México,44.19,0.897,4782
 2026,2,TIL1,enoe_2023,entidad,Ciudad de México,45.3,0.94,4760
 2005,1,TIL1,tradicional,entidad,Coahuila de Zaragoza,40.16,1.152,4747
 2005,2,TIL1,tradicional,entidad,Coahuila de Zaragoza,39.59,1.175,4894
@@ -1435,6 +1442,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL1,enoe_2023,entidad,Coahuila de Zaragoza,34.21,1.018,7347
 2025,3,TIL1,enoe_2023,entidad,Coahuila de Zaragoza,33.33,1.093,7132
 2025,4,TIL1,enoe_2023,entidad,Coahuila de Zaragoza,33.33,0.924,7115
+2026,1,TIL1,enoe_2023,entidad,Coahuila de Zaragoza,34.24,0.887,7219
 2026,2,TIL1,enoe_2023,entidad,Coahuila de Zaragoza,35.54,0.866,7225
 2005,1,TIL1,tradicional,entidad,Colima,51.78,1.302,4739
 2005,2,TIL1,tradicional,entidad,Colima,52.3,1.31,4874
@@ -1519,6 +1527,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL1,enoe_2023,entidad,Colima,48.2,0.936,5249
 2025,3,TIL1,enoe_2023,entidad,Colima,48.23,0.893,5301
 2025,4,TIL1,enoe_2023,entidad,Colima,48.61,0.941,5365
+2026,1,TIL1,enoe_2023,entidad,Colima,47.4,1.164,5149
 2026,2,TIL1,enoe_2023,entidad,Colima,46.24,1.124,5203
 2005,1,TIL1,tradicional,entidad,Durango,55.98,1.597,4340
 2005,2,TIL1,tradicional,entidad,Durango,55.4,1.325,4373
@@ -4663,6 +4672,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL2,enoe_2023,entidad,Aguascalientes,40.37,0.949,4485
 2025,3,TIL2,enoe_2023,entidad,Aguascalientes,40.4,0.928,4451
 2025,4,TIL2,enoe_2023,entidad,Aguascalientes,41.05,0.964,4433
+2026,1,TIL2,enoe_2023,entidad,Aguascalientes,42.95,0.979,4518
 2026,2,TIL2,enoe_2023,entidad,Aguascalientes,41.06,1.055,4707
 2005,1,TIL2,tradicional,entidad,Baja California,40.31,0.987,4811
 2005,2,TIL2,tradicional,entidad,Baja California,39.93,0.927,4830
@@ -4747,6 +4757,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL2,enoe_2023,entidad,Baja California,37.5,0.882,6953
 2025,3,TIL2,enoe_2023,entidad,Baja California,37.73,0.881,6883
 2025,4,TIL2,enoe_2023,entidad,Baja California,37.17,0.869,7043
+2026,1,TIL2,enoe_2023,entidad,Baja California,37.01,0.855,6976
 2026,2,TIL2,enoe_2023,entidad,Baja California,35.75,0.781,7050
 2005,1,TIL2,tradicional,entidad,Baja California Sur,40.18,1.48,3360
 2005,2,TIL2,tradicional,entidad,Baja California Sur,38.12,1.207,3413
@@ -4831,6 +4842,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL2,enoe_2023,entidad,Baja California Sur,36.75,1.409,4080
 2025,3,TIL2,enoe_2023,entidad,Baja California Sur,38.8,1.273,4105
 2025,4,TIL2,enoe_2023,entidad,Baja California Sur,38.54,1.081,4009
+2026,1,TIL2,enoe_2023,entidad,Baja California Sur,38.41,1.073,3960
 2026,2,TIL2,enoe_2023,entidad,Baja California Sur,38.77,1.033,3933
 2005,1,TIL2,tradicional,entidad,Campeche,52.83,1.284,4089
 2005,2,TIL2,tradicional,entidad,Campeche,52.77,1.143,4118
@@ -4915,6 +4927,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL2,enoe_2023,entidad,Campeche,54.7,0.951,6762
 2025,3,TIL2,enoe_2023,entidad,Campeche,54.51,1.064,6644
 2025,4,TIL2,enoe_2023,entidad,Campeche,55.51,1.042,6768
+2026,1,TIL2,enoe_2023,entidad,Campeche,54.59,1.107,6586
 2026,2,TIL2,enoe_2023,entidad,Campeche,55.48,1.114,6556
 2005,1,TIL2,tradicional,entidad,Chiapas,68.79,1.333,4642
 2005,2,TIL2,tradicional,entidad,Chiapas,69.62,1.273,4830
@@ -4999,6 +5012,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL2,enoe_2023,entidad,Chiapas,69.97,1.386,7235
 2025,3,TIL2,enoe_2023,entidad,Chiapas,69.13,1.355,7456
 2025,4,TIL2,enoe_2023,entidad,Chiapas,67.35,1.191,7498
+2026,1,TIL2,enoe_2023,entidad,Chiapas,67.55,1.233,7401
 2026,2,TIL2,enoe_2023,entidad,Chiapas,70.36,1.202,7394
 2005,1,TIL2,tradicional,entidad,Chihuahua,32.26,1.506,3592
 2005,2,TIL2,tradicional,entidad,Chihuahua,33.64,1.635,3807
@@ -5083,6 +5097,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL2,enoe_2023,entidad,Chihuahua,30.47,0.885,7068
 2025,3,TIL2,enoe_2023,entidad,Chihuahua,32.79,1.021,6782
 2025,4,TIL2,enoe_2023,entidad,Chihuahua,32.88,0.879,6656
+2026,1,TIL2,enoe_2023,entidad,Chihuahua,31.6,0.919,6517
 2026,2,TIL2,enoe_2023,entidad,Chihuahua,31.9,0.902,6604
 2005,1,TIL2,tradicional,entidad,Ciudad de México,49.36,0.871,4477
 2005,2,TIL2,tradicional,entidad,Ciudad de México,49.48,0.834,4489
@@ -5167,6 +5182,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL2,enoe_2023,entidad,Ciudad de México,43.93,0.949,4876
 2025,3,TIL2,enoe_2023,entidad,Ciudad de México,46.64,0.918,4859
 2025,4,TIL2,enoe_2023,entidad,Ciudad de México,45.52,0.924,4763
+2026,1,TIL2,enoe_2023,entidad,Ciudad de México,43.98,0.896,4736
 2026,2,TIL2,enoe_2023,entidad,Ciudad de México,45.13,0.946,4718
 2005,1,TIL2,tradicional,entidad,Coahuila de Zaragoza,38.17,1.102,4441
 2005,2,TIL2,tradicional,entidad,Coahuila de Zaragoza,37.86,1.16,4635
@@ -5251,6 +5267,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL2,enoe_2023,entidad,Coahuila de Zaragoza,33.32,1.068,7150
 2025,3,TIL2,enoe_2023,entidad,Coahuila de Zaragoza,32.98,1.126,6976
 2025,4,TIL2,enoe_2023,entidad,Coahuila de Zaragoza,32.86,0.961,6977
+2026,1,TIL2,enoe_2023,entidad,Coahuila de Zaragoza,34.01,0.907,7096
 2026,2,TIL2,enoe_2023,entidad,Coahuila de Zaragoza,35.09,0.851,7096
 2005,1,TIL2,tradicional,entidad,Colima,47.86,1.218,4194
 2005,2,TIL2,tradicional,entidad,Colima,47.63,1.125,4280
@@ -5335,6 +5352,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TIL2,enoe_2023,entidad,Colima,44.78,0.905,4664
 2025,3,TIL2,enoe_2023,entidad,Colima,44.71,0.868,4703
 2025,4,TIL2,enoe_2023,entidad,Colima,45.15,0.978,4813
+2026,1,TIL2,enoe_2023,entidad,Colima,44.26,1.083,4707
 2026,2,TIL2,enoe_2023,entidad,Colima,43.11,1.114,4765
 2005,1,TIL2,tradicional,entidad,Durango,49.63,1.378,3854
 2005,2,TIL2,tradicional,entidad,Durango,48.23,1.189,3880
@@ -8479,6 +8497,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI1,enoe_2023,entidad,Aguascalientes,22.84,0.853,4770
 2025,3,TOSI1,enoe_2023,entidad,Aguascalientes,22.71,0.774,4734
 2025,4,TOSI1,enoe_2023,entidad,Aguascalientes,23.96,0.879,4727
+2026,1,TOSI1,enoe_2023,entidad,Aguascalientes,23.56,0.844,4797
 2026,2,TOSI1,enoe_2023,entidad,Aguascalientes,22.42,0.811,5013
 2005,1,TOSI1,tradicional,entidad,Baja California,19.49,0.946,5230
 2005,2,TOSI1,tradicional,entidad,Baja California,18.89,0.718,5245
@@ -8563,6 +8582,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI1,enoe_2023,entidad,Baja California,18.99,0.622,7311
 2025,3,TOSI1,enoe_2023,entidad,Baja California,20.47,0.692,7206
 2025,4,TOSI1,enoe_2023,entidad,Baja California,19.95,0.646,7315
+2026,1,TOSI1,enoe_2023,entidad,Baja California,19.19,0.637,7230
 2026,2,TOSI1,enoe_2023,entidad,Baja California,18.82,0.636,7299
 2005,1,TOSI1,tradicional,entidad,Baja California Sur,17.93,1.19,3801
 2005,2,TOSI1,tradicional,entidad,Baja California Sur,16.87,1.017,3853
@@ -8647,6 +8667,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI1,enoe_2023,entidad,Baja California Sur,19.16,0.851,4348
 2025,3,TOSI1,enoe_2023,entidad,Baja California Sur,20.25,0.958,4356
 2025,4,TOSI1,enoe_2023,entidad,Baja California Sur,19.95,0.92,4225
+2026,1,TOSI1,enoe_2023,entidad,Baja California Sur,20.93,0.909,4171
 2026,2,TOSI1,enoe_2023,entidad,Baja California Sur,19.83,0.944,4118
 2005,1,TOSI1,tradicional,entidad,Campeche,24.62,1.261,4835
 2005,2,TOSI1,tradicional,entidad,Campeche,23.35,1.027,4914
@@ -8731,6 +8752,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI1,enoe_2023,entidad,Campeche,27.25,0.92,7322
 2025,3,TOSI1,enoe_2023,entidad,Campeche,27.56,1.075,7242
 2025,4,TOSI1,enoe_2023,entidad,Campeche,28.84,0.973,7396
+2026,1,TOSI1,enoe_2023,entidad,Campeche,27.1,1.217,7220
 2026,2,TOSI1,enoe_2023,entidad,Campeche,29.41,1.23,7204
 2005,1,TOSI1,tradicional,entidad,Chiapas,26.25,1.117,5746
 2005,2,TOSI1,tradicional,entidad,Chiapas,25.73,1.392,5989
@@ -8815,6 +8837,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI1,enoe_2023,entidad,Chiapas,29.3,1.526,8367
 2025,3,TOSI1,enoe_2023,entidad,Chiapas,30.36,1.796,8587
 2025,4,TOSI1,enoe_2023,entidad,Chiapas,30.1,1.562,8540
+2026,1,TOSI1,enoe_2023,entidad,Chiapas,29.32,1.418,8503
 2026,2,TOSI1,enoe_2023,entidad,Chiapas,32.03,1.446,8467
 2005,1,TOSI1,tradicional,entidad,Chihuahua,15.99,1.116,4042
 2005,2,TOSI1,tradicional,entidad,Chihuahua,14.84,0.97,4300
@@ -8899,6 +8922,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI1,enoe_2023,entidad,Chihuahua,15.18,0.667,7362
 2025,3,TOSI1,enoe_2023,entidad,Chihuahua,16.55,0.674,7065
 2025,4,TOSI1,enoe_2023,entidad,Chihuahua,16.74,0.631,6907
+2026,1,TOSI1,enoe_2023,entidad,Chihuahua,16.27,0.665,6786
 2026,2,TOSI1,enoe_2023,entidad,Chihuahua,15.52,0.659,6876
 2005,1,TOSI1,tradicional,entidad,Ciudad de México,28.74,0.81,4511
 2005,2,TOSI1,tradicional,entidad,Ciudad de México,27.88,0.828,4538
@@ -8983,6 +9007,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI1,enoe_2023,entidad,Ciudad de México,26.45,0.836,4926
 2025,3,TOSI1,enoe_2023,entidad,Ciudad de México,29.21,0.855,4903
 2025,4,TOSI1,enoe_2023,entidad,Ciudad de México,28.41,0.812,4799
+2026,1,TOSI1,enoe_2023,entidad,Ciudad de México,26.86,0.808,4782
 2026,2,TOSI1,enoe_2023,entidad,Ciudad de México,27.93,0.836,4760
 2005,1,TOSI1,tradicional,entidad,Coahuila de Zaragoza,23.4,1.084,4747
 2005,2,TOSI1,tradicional,entidad,Coahuila de Zaragoza,23.13,1.082,4894
@@ -9067,6 +9092,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI1,enoe_2023,entidad,Coahuila de Zaragoza,20.98,0.896,7347
 2025,3,TOSI1,enoe_2023,entidad,Coahuila de Zaragoza,21.17,0.994,7132
 2025,4,TOSI1,enoe_2023,entidad,Coahuila de Zaragoza,20.39,0.796,7115
+2026,1,TOSI1,enoe_2023,entidad,Coahuila de Zaragoza,21.46,0.749,7219
 2026,2,TOSI1,enoe_2023,entidad,Coahuila de Zaragoza,22.3,0.754,7225
 2005,1,TOSI1,tradicional,entidad,Colima,17.57,0.717,4739
 2005,2,TOSI1,tradicional,entidad,Colima,16.14,0.729,4874
@@ -9151,6 +9177,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI1,enoe_2023,entidad,Colima,17.8,0.712,5249
 2025,3,TOSI1,enoe_2023,entidad,Colima,18.8,0.664,5301
 2025,4,TOSI1,enoe_2023,entidad,Colima,20.48,1.003,5365
+2026,1,TOSI1,enoe_2023,entidad,Colima,19.15,0.843,5149
 2026,2,TOSI1,enoe_2023,entidad,Colima,18.31,0.772,5203
 2005,1,TOSI1,tradicional,entidad,Durango,25.34,1.267,4340
 2005,2,TOSI1,tradicional,entidad,Durango,23.84,1.023,4373
@@ -12295,6 +12322,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI2,enoe_2023,entidad,Aguascalientes,23.79,0.882,4485
 2025,3,TOSI2,enoe_2023,entidad,Aguascalientes,23.71,0.799,4451
 2025,4,TOSI2,enoe_2023,entidad,Aguascalientes,25.1,0.902,4433
+2026,1,TOSI2,enoe_2023,entidad,Aguascalientes,24.66,0.885,4518
 2026,2,TOSI2,enoe_2023,entidad,Aguascalientes,23.43,0.849,4707
 2005,1,TOSI2,tradicional,entidad,Baja California,20.84,0.952,4811
 2005,2,TOSI2,tradicional,entidad,Baja California,20.19,0.766,4830
@@ -12379,6 +12407,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI2,enoe_2023,entidad,Baja California,20.08,0.652,6953
 2025,3,TOSI2,enoe_2023,entidad,Baja California,21.62,0.714,6883
 2025,4,TOSI2,enoe_2023,entidad,Baja California,20.94,0.668,7043
+2026,1,TOSI2,enoe_2023,entidad,Baja California,20.21,0.674,6976
 2026,2,TOSI2,enoe_2023,entidad,Baja California,19.85,0.647,7050
 2005,1,TOSI2,tradicional,entidad,Baja California Sur,20.54,1.298,3360
 2005,2,TOSI2,tradicional,entidad,Baja California Sur,19.24,1.064,3413
@@ -12463,6 +12492,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI2,enoe_2023,entidad,Baja California Sur,20.58,1.024,4080
 2025,3,TOSI2,enoe_2023,entidad,Baja California Sur,21.83,1.001,4105
 2025,4,TOSI2,enoe_2023,entidad,Baja California Sur,21.2,0.969,4009
+2026,1,TOSI2,enoe_2023,entidad,Baja California Sur,22.28,0.913,3960
 2026,2,TOSI2,enoe_2023,entidad,Baja California Sur,21.06,0.927,3933
 2005,1,TOSI2,tradicional,entidad,Campeche,30.94,1.404,4089
 2005,2,TOSI2,tradicional,entidad,Campeche,29.8,1.204,4118
@@ -12547,6 +12577,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI2,enoe_2023,entidad,Campeche,32.01,0.953,6762
 2025,3,TOSI2,enoe_2023,entidad,Campeche,32.87,1.108,6644
 2025,4,TOSI2,enoe_2023,entidad,Campeche,34.77,1.269,6768
+2026,1,TOSI2,enoe_2023,entidad,Campeche,33.16,1.113,6586
 2026,2,TOSI2,enoe_2023,entidad,Campeche,35.68,1.353,6556
 2005,1,TOSI2,tradicional,entidad,Chiapas,43.66,1.48,4642
 2005,2,TOSI2,tradicional,entidad,Chiapas,43.28,1.841,4830
@@ -12631,6 +12662,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI2,enoe_2023,entidad,Chiapas,43.33,1.513,7235
 2025,3,TOSI2,enoe_2023,entidad,Chiapas,44.33,1.748,7456
 2025,4,TOSI2,enoe_2023,entidad,Chiapas,43.2,1.51,7498
+2026,1,TOSI2,enoe_2023,entidad,Chiapas,42.79,1.35,7401
 2026,2,TOSI2,enoe_2023,entidad,Chiapas,46.38,1.593,7394
 2005,1,TOSI2,tradicional,entidad,Chihuahua,17.65,1.217,3592
 2005,2,TOSI2,tradicional,entidad,Chihuahua,16.48,1.05,3807
@@ -12715,6 +12747,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI2,enoe_2023,entidad,Chihuahua,16.33,0.699,7068
 2025,3,TOSI2,enoe_2023,entidad,Chihuahua,17.83,0.708,6782
 2025,4,TOSI2,enoe_2023,entidad,Chihuahua,17.85,0.649,6656
+2026,1,TOSI2,enoe_2023,entidad,Chihuahua,17.42,0.676,6517
 2026,2,TOSI2,enoe_2023,entidad,Chihuahua,16.58,0.683,6604
 2005,1,TOSI2,tradicional,entidad,Ciudad de México,28.83,0.812,4477
 2005,2,TOSI2,tradicional,entidad,Ciudad de México,28.03,0.839,4489
@@ -12799,6 +12832,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI2,enoe_2023,entidad,Ciudad de México,26.58,0.842,4876
 2025,3,TOSI2,enoe_2023,entidad,Ciudad de México,29.34,0.858,4859
 2025,4,TOSI2,enoe_2023,entidad,Ciudad de México,28.54,0.816,4763
+2026,1,TOSI2,enoe_2023,entidad,Ciudad de México,27.02,0.811,4736
 2026,2,TOSI2,enoe_2023,entidad,Ciudad de México,28.09,0.837,4718
 2005,1,TOSI2,tradicional,entidad,Coahuila de Zaragoza,24.81,1.17,4441
 2005,2,TOSI2,tradicional,entidad,Coahuila de Zaragoza,24.37,1.144,4635
@@ -12883,6 +12917,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI2,enoe_2023,entidad,Coahuila de Zaragoza,21.7,0.906,7150
 2025,3,TOSI2,enoe_2023,entidad,Coahuila de Zaragoza,21.81,1.01,6976
 2025,4,TOSI2,enoe_2023,entidad,Coahuila de Zaragoza,20.9,0.805,6977
+2026,1,TOSI2,enoe_2023,entidad,Coahuila de Zaragoza,21.89,0.763,7096
 2026,2,TOSI2,enoe_2023,entidad,Coahuila de Zaragoza,22.8,0.767,7096
 2005,1,TOSI2,tradicional,entidad,Colima,20.18,0.817,4194
 2005,2,TOSI2,tradicional,entidad,Colima,18.76,0.903,4280
@@ -12967,6 +13002,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TOSI2,enoe_2023,entidad,Colima,20,0.761,4664
 2025,3,TOSI2,enoe_2023,entidad,Colima,21.3,0.742,4703
 2025,4,TOSI2,enoe_2023,entidad,Colima,23.14,1.059,4813
+2026,1,TOSI2,enoe_2023,entidad,Colima,21.37,0.963,4707
 2026,2,TOSI2,enoe_2023,entidad,Colima,20.49,0.863,4765
 2005,1,TOSI2,tradicional,entidad,Durango,31.18,1.453,3854
 2005,2,TOSI2,tradicional,entidad,Durango,29.64,1.195,3880
@@ -16111,7 +16147,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TPEA,enoe_2023,entidad,Aguascalientes,57.49,0.677,8669
 2025,3,TPEA,enoe_2023,entidad,Aguascalientes,57.92,0.628,8530
 2025,4,TPEA,enoe_2023,entidad,Aguascalientes,58.34,0.672,8416
-2026,1,TPEA,enoe_2023,entidad,Aguascalientes,0,0,0
+2026,1,TPEA,enoe_2023,entidad,Aguascalientes,59.24,0.659,8366
 2026,2,TPEA,enoe_2023,entidad,Aguascalientes,59.73,0.684,8752
 2005,1,TPEA,tradicional,entidad,Baja California,58.83,0.616,9026
 2005,2,TPEA,tradicional,entidad,Baja California,58.17,0.588,9086
@@ -16196,7 +16232,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TPEA,enoe_2023,entidad,Baja California,59.41,0.593,12458
 2025,3,TPEA,enoe_2023,entidad,Baja California,59.43,0.593,12336
 2025,4,TPEA,enoe_2023,entidad,Baja California,59.61,0.545,12437
-2026,1,TPEA,enoe_2023,entidad,Baja California,0,0,0
+2026,1,TPEA,enoe_2023,entidad,Baja California,58.98,0.547,12536
 2026,2,TPEA,enoe_2023,entidad,Baja California,59.37,0.56,12691
 2005,1,TPEA,tradicional,entidad,Baja California Sur,61.34,1.064,6538
 2005,2,TPEA,tradicional,entidad,Baja California Sur,61.84,1.163,6678
@@ -16281,7 +16317,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TPEA,enoe_2023,entidad,Baja California Sur,66.73,0.759,6760
 2025,3,TPEA,enoe_2023,entidad,Baja California Sur,67.48,0.889,6818
 2025,4,TPEA,enoe_2023,entidad,Baja California Sur,67.19,0.847,6556
-2026,1,TPEA,enoe_2023,entidad,Baja California Sur,0,0,0
+2026,1,TPEA,enoe_2023,entidad,Baja California Sur,66.96,0.785,6491
 2026,2,TPEA,enoe_2023,entidad,Baja California Sur,66.72,0.875,6521
 2005,1,TPEA,tradicional,entidad,Campeche,62.42,0.766,8008
 2005,2,TPEA,tradicional,entidad,Campeche,63.77,0.583,8002
@@ -16366,7 +16402,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TPEA,enoe_2023,entidad,Campeche,60.26,0.567,12465
 2025,3,TPEA,enoe_2023,entidad,Campeche,60.38,0.587,12347
 2025,4,TPEA,enoe_2023,entidad,Campeche,61.17,0.837,12486
-2026,1,TPEA,enoe_2023,entidad,Campeche,0,0,0
+2026,1,TPEA,enoe_2023,entidad,Campeche,60.36,0.672,12485
 2026,2,TPEA,enoe_2023,entidad,Campeche,59.74,0.521,12408
 2005,1,TPEA,tradicional,entidad,Chiapas,56.84,0.684,10130
 2005,2,TPEA,tradicional,entidad,Chiapas,59.04,0.753,10213
@@ -16451,7 +16487,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TPEA,enoe_2023,entidad,Chiapas,53.58,0.727,15323
 2025,3,TPEA,enoe_2023,entidad,Chiapas,54.88,0.819,15488
 2025,4,TPEA,enoe_2023,entidad,Chiapas,53.52,0.737,15583
-2026,1,TPEA,enoe_2023,entidad,Chiapas,0,0,0
+2026,1,TPEA,enoe_2023,entidad,Chiapas,53.52,0.806,15672
 2026,2,TPEA,enoe_2023,entidad,Chiapas,54.11,0.772,15666
 2005,1,TPEA,tradicional,entidad,Chihuahua,55.1,0.902,7802
 2005,2,TPEA,tradicional,entidad,Chihuahua,56.49,0.938,7973
@@ -16536,7 +16572,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TPEA,enoe_2023,entidad,Chihuahua,62.02,0.595,12070
 2025,3,TPEA,enoe_2023,entidad,Chihuahua,59.99,0.6,11846
 2025,4,TPEA,enoe_2023,entidad,Chihuahua,60.25,0.583,11604
-2026,1,TPEA,enoe_2023,entidad,Chihuahua,0,0,0
+2026,1,TPEA,enoe_2023,entidad,Chihuahua,58.42,0.613,11694
 2026,2,TPEA,enoe_2023,entidad,Chihuahua,60.32,0.678,11593
 2005,1,TPEA,tradicional,entidad,Ciudad de México,59.43,0.578,8034
 2005,2,TPEA,tradicional,entidad,Ciudad de México,59.83,0.561,8033
@@ -16621,7 +16657,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TPEA,enoe_2023,entidad,Ciudad de México,63.85,0.668,8021
 2025,3,TPEA,enoe_2023,entidad,Ciudad de México,62.9,0.67,8057
 2025,4,TPEA,enoe_2023,entidad,Ciudad de México,62.81,0.684,7889
-2026,1,TPEA,enoe_2023,entidad,Ciudad de México,0,0,0
+2026,1,TPEA,enoe_2023,entidad,Ciudad de México,62.91,0.66,7919
 2026,2,TPEA,enoe_2023,entidad,Ciudad de México,62.86,0.69,7896
 2005,1,TPEA,tradicional,entidad,Coahuila de Zaragoza,57.19,0.609,8864
 2005,2,TPEA,tradicional,entidad,Coahuila de Zaragoza,57.67,0.703,8955
@@ -16706,7 +16742,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TPEA,enoe_2023,entidad,Coahuila de Zaragoza,60.85,0.641,12422
 2025,3,TPEA,enoe_2023,entidad,Coahuila de Zaragoza,59.14,0.612,12356
 2025,4,TPEA,enoe_2023,entidad,Coahuila de Zaragoza,59.66,0.762,12243
-2026,1,TPEA,enoe_2023,entidad,Coahuila de Zaragoza,0,0,0
+2026,1,TPEA,enoe_2023,entidad,Coahuila de Zaragoza,59.58,0.604,12421
 2026,2,TPEA,enoe_2023,entidad,Coahuila de Zaragoza,60.19,0.598,12436
 2005,1,TPEA,tradicional,entidad,Colima,62.66,0.734,7897
 2005,2,TPEA,tradicional,entidad,Colima,63.56,0.695,8020
@@ -16791,7 +16827,7 @@ anio,trimestre,indicador,regimen,corte,categoria_origen,valor,ee,n_obs
 2025,2,TPEA,enoe_2023,entidad,Colima,65.64,0.676,8160
 2025,3,TPEA,enoe_2023,entidad,Colima,67.01,0.63,8179
 2025,4,TPEA,enoe_2023,entidad,Colima,66.87,0.615,8264
-2026,1,TPEA,enoe_2023,entidad,Colima,0,0,0
+2026,1,TPEA,enoe_2023,entidad,Colima,65.49,0.662,8093
 2026,2,TPEA,enoe_2023,entidad,Colima,65.48,0.609,8136
 2005,1,TPEA,tradicional,entidad,Durango,55.73,0.743,8241
 2005,2,TPEA,tradicional,entidad,Durango,55,0.781,8133
