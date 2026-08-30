@@ -240,6 +240,48 @@ category labels are prose (`thesis-informality-duration-en.svg` /
 numbers are hand-transcribed from a table in the (non-machine-readable) thesis
 PDF, not from a survey-microdata pipeline.
 
+A second personally-authored piece got the same treatment the same day:
+`policy/breastfeeding-workplace-policy/` (the IDB Gender and Diversity blog
+post, "Lactancia es desarrollo"). No chart there — the source numbers are
+country counts (`19 of 24 countries...`) simple enough to state inline, so
+don't force a chart onto every policy mini-page; only build one when a
+comparison genuinely needs it, as the thesis's duration gap did. This entry
+also fixed a stale date in the one-line list version (it said "January
+2023"; the post's own byline says "Ago 3, 2022") — worth double-checking
+against the source whenever you touch an old one-line policy entry, since
+these were hand-typed and can drift.
+
+**The Banxico-box exception, confirmed 2026-08-30.** The owner explicitly
+approved a *sober* version of this same treatment for an institutional,
+unsigned Banxico Quarterly Report box
+(`policy/gender-earnings-gap-box/` — the slug this file already used above
+as the bilingual-invariants example, before the page existed). This does
+NOT reopen the door to treating Banxico boxes like personally-authored
+pieces in general — it is a one-time confirmed exception for this specific
+box, done a specific way. If asked to do this for a *different* Banxico box,
+re-confirm with the owner first; don't assume blanket permission. The sober
+recipe, distinct from the personally-authored template above:
+- **No `author:` field** — no attribution row renders.
+- **No `.eyebrow` personal framing** — the eyebrow is pure institutional
+  metadata (publication, box number, date), not a status line about the
+  owner's own work.
+- **No `.finding` block.** That device is an editorial claim ("here's what
+  I found and why it matters") and isn't appropriate for unsigned
+  institutional content even when factually accurate.
+- **No "why it matters" / policy-implication section in the owner's own
+  voice.** Restate only what the box itself already concludes, attributed
+  to the box ("El Recuadro señala que..."), never as a first-person claim.
+- **No collapsed "Full summary" `<details>` block** — the personally-authored
+  template's abstract is a personal-voice device; skip it here to keep the
+  page as compact and neutral as the one-line entry it replaced.
+- **Never host the PDF locally** — the existing site-wide rule (section 8)
+  still applies; `.paper-links` points only at the canonical banxico.org.mx
+  URL, same as the one-line entry did.
+- Numbers reported on the page must be numbers the box states explicitly
+  (or a direct arithmetic restatement, like "47 cents for every peso" from a
+  stated 53% gap) — never interpolated, estimated, or extended beyond what's
+  printed in the box.
+
 **To promote a paper, move the folder.** Working paper accepted at a journal:
 `git mv research/working-papers/x research/published/x`, update `subtitle` to the
 journal and year, do the same under `es/`. The listings re-sort automatically.

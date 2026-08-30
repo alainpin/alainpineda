@@ -61,13 +61,13 @@ ends up covered, who doesn't, and why.
 Short pieces written for non-academic audiences. Each links out to the
 publisher.
 
-- **The gender gap in labor earnings: occupation, hours, and hourly pay.**
+- **The Gender Gap in Labor Earnings: Occupation, Hours, and Hourly Pay.**
   Banco de México, *Quarterly Report April–June 2026*, Box 2.
-  [PDF](https://www.banxico.org.mx/publicaciones-y-prensa/informes-trimestrales/recuadros/%7BF1730819-16B5-AAD5-B61D-420CD88F674C%7D.pdf)
+  [Read the summary](/policy/gender-earnings-gap-box/)
 
-- **La lactancia es desarrollo: ¿por qué apoyar la lactancia en el trabajo?**
-  Inter-American Development Bank, Gender and Diversity blog, January 2023.
-  [Read](https://blogs.iadb.org/igualdad/es/lactancia-es-desarrollo/)
+- **Why Support Breastfeeding at Work?** Inter-American Development Bank,
+  Gender and Diversity blog, August 2022.
+  [Read the summary](/policy/breastfeeding-workplace-policy/)
 
 - **How Long Does an Informal Job Last in Mexico?** Undergraduate thesis,
   ITAM, 2017.
