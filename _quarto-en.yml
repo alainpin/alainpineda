@@ -8,7 +8,7 @@ lang: en
 
 website:
   title: "Alain Pineda"
-  description: "Research Economist at Banco de México. Labor markets, informality, and social insurance in developing countries."
+  description: "Research Economist at Banco de México. Labor markets, informality, and social insurance."
   navbar:
     pinned: true
     left:

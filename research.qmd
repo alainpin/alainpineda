@@ -36,7 +36,7 @@ listing:
     feed: false
 ---
 
-I study labor markets in developing countries: informal employment, gender
+I study labor markets shaped by high informality: informal employment, gender
 differences, the reach of social protection, and equality of opportunity. My
 work asks a practical question underneath all of these — who
 ends up covered, who doesn't, and why.
