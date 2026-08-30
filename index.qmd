@@ -18,10 +18,10 @@ about:
       href: "https://www.linkedin.com/in/alain-pineda-429b10a0/"
 ---
 
-I study how labor markets work in developing countries, with a focus on informal
-employment and on what happens when social insurance is extended to workers who
-sit outside a formal contract. Most of my work uses Mexican administrative and
-survey microdata to evaluate policies that are already on the books.
+I study labor markets shaped by high informality, and what happens when social
+insurance is extended to workers who sit outside a formal contract. Most of my
+work uses Mexican administrative and survey microdata to evaluate policies that
+are already on the books.
 
 I am a Research Economist in the Real Sector Research Division at
 [Banco de México](https://www.banxico.org.mx/). I hold a PhD in Economics from
