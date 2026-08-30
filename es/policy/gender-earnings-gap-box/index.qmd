@@ -23,8 +23,9 @@ calcula sobre toda la población en edad de trabajar, estén o no ocupadas.
 Con base en esa descomposición, el Recuadro también analiza qué factores
 estatales se asocian con la brecha de ocupación.
 
-::: {.site-figure}
-![](../../../images/gender-gap-decomposition-es.svg)
+::: {.chart-figure}
+![](../../../images/gender-gap-decomposition-es-light.svg){.chart-img-light}
+![](../../../images/gender-gap-decomposition-es-dark.svg){.chart-img-dark}
 
 Descomposición de la brecha de género en ingresos laborales por componente,
 2005-2025. Puntos porcentuales del ingreso laboral masculino. Fuente: Banco
@@ -52,8 +53,9 @@ de México con datos de INEGI.
   población con educación media superior completa se asocian con una
   brecha de ocupación menor.
 
-::: {.site-figure}
-![](../../../images/gender-gap-trends-es.svg)
+::: {.chart-figure}
+![](../../../images/gender-gap-trends-es-light.svg){.chart-img-light}
+![](../../../images/gender-gap-trends-es-dark.svg){.chart-img-dark}
 
 Tasa de ocupación, horas trabajadas a la semana y remuneración por hora, por
 género, 2005-2025. Fuente: Banco de México con datos de INEGI.

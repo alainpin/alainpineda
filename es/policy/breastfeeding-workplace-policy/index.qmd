@@ -29,8 +29,9 @@ en 18 de los 24 países, pero en 14 de ellos solo se exigen a partir de un
 número mínimo de empleados, lo que excluye del derecho a una parte
 importante de las trabajadoras.
 
-::: {.site-figure}
-![](../../../images/breastfeeding-policy-coverage-es.svg)
+::: {.chart-figure}
+![](../../../images/breastfeeding-policy-coverage-es-light.svg){.chart-img-light}
+![](../../../images/breastfeeding-policy-coverage-es-dark.svg){.chart-img-dark}
 
 Políticas laborales de apoyo a la lactancia en 24 países de América Latina y
 el Caribe revisados por UNICEF (2020). Fuente: blog del BID, con datos de

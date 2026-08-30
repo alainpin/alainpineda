@@ -32,6 +32,10 @@ $ink-soft-deep:  #6b6660;   // ladder oscuro -- el $ink-soft del tema claro
 $up:   #8fbfa0;
 $down: #cf9a8c;
 
+// Swap which color variant of a from-scratch .chart-figure image shows.
+$chart-light-display: none;
+$chart-dark-display: block;
+
 $body-color:  $ink;
 $body-bg:     $paper;
 $link-color:  $teal;
