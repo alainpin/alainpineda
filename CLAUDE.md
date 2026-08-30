@@ -208,14 +208,37 @@ under "Policy and other writing" / "Política pública y otros textos". Format:
 - **Title.** Publisher, *Series*, date. [PDF](url)
 ```
 
-One line per piece. **No summary, no `.finding`, no internal page.** This is a
+One line per piece. **No summary, no `.finding`, no internal page**, unless the
+owner asks for one for that specific piece. The one-line default is a
 deliberate choice by the owner, made because Banco de México Quarterly Report
 boxes are institutional and unsigned, and a prominent standalone page would
-overstate personal authorship. Do not "improve" these entries by expanding them,
-and do not recreate a top-level Policy nav item. If a future piece genuinely
-needs its own page, create `policy/<slug>/index.qmd`, add `"policy/"` back to the
-render list in `_quarto-en.yml`, and link to it from this same list — but keep
-the section where it is.
+overstate personal authorship. Do not "improve" a Banxico box entry by
+expanding it, and do not recreate a top-level Policy nav item. Pieces the owner
+personally authored (not an institutional box) can get their own page if he
+asks: create `policy/<slug>/index.qmd` **and its `es/policy/<slug>/index.qmd`
+mirror**, add `"policy/"` back to the render list in `_quarto-en.yml` (`es/`
+already covers `es/policy/` since its render entry is just `"es/"`), reuse the
+normal research-page structure (`.eyebrow`, `.finding`, body sections,
+`.paper-links`, collapsed abstract — see the front matter schema and section 6
+below), and link to it from this same list with a single line, same one-link-
+out convention, just pointing at the new page instead of a PDF. This happened
+first on 2026-08-30 for the owner's ITAM undergraduate thesis
+(`policy/thesis-informality-duration/`): it started as a one-line entry, then
+the owner asked for a bilingual mini-page "so it looks nicer," including a
+chart. **Mind the relative-path depth**: `policy/<slug>/index.qmd` is 2
+directories deep (`../../` reaches project root), `es/policy/<slug>/index.qmd`
+is 3 (`../../../`) — getting this wrong silently drops the page's own figure
+image (Quarto only copies images it can actually resolve, so a wrong depth
+just produces a broken `<img>` with no build error) exactly the way a wrong
+depth breaks images on any other page under `es/`, see the bilingual
+invariants above. The thesis page's chart was generated with the R script
+approach in "Add an interactive chart" below (ggplot2 + `svglite`, teal for
+formal employment and ochre for informal, hand-copied token hex values since
+these are static SVGs, not SCSS-derived), exported once per language since the
+category labels are prose (`thesis-informality-duration-en.svg` /
+`-es.svg`), not from a script committed under `scripts/` since the underlying
+numbers are hand-transcribed from a table in the (non-machine-readable) thesis
+PDF, not from a survey-microdata pipeline.
 
 **To promote a paper, move the folder.** Working paper accepted at a journal:
 `git mv research/working-papers/x research/published/x`, update `subtitle` to the
