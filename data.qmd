@@ -3,10 +3,6 @@ title: "Labor Market MX"
 date-modified: last-modified
 ---
 
-Interactive figures. Everything runs in your browser; series are prepared in R
-and published as CSV in `data/` in the
-[site's repository](https://github.com/alainpin/alainpineda).
-
 ::: {.eyebrow}
 ENOE, INEGI · Quarterly, 2005–2026 · National
 :::
@@ -82,8 +78,9 @@ definiciones = ({
 })
 
 indicadoresPrincipales = ["TPEA", "TIL1", "TD"]
+indicadoresEscalera = ["TDAMPL", "SUBUTIL"]
 indicadoresSecundarios = Object.keys(definiciones)
-  .filter(k => !indicadoresPrincipales.includes(k))
+  .filter(k => !indicadoresPrincipales.includes(k) && !indicadoresEscalera.includes(k))
   .sort()
 
 serieDe = codigo => datos
@@ -190,11 +187,37 @@ html`<div class="indicator-grid">${indicadoresPrincipales.map(codigo => {
 })}</div>`
 ```
 
+### The subutilization ladder
+
+Unemployment above is the first step. These two widen the definition, one
+step at a time: first adding people available to work who aren't actively
+searching, then people who already have a job but with fewer hours than
+they'd like.
+
+```{ojs}
+//| echo: false
+html`<div class="indicator-grid indicator-grid-2">${indicadoresEscalera.map(codigo => {
+  const serie = serieDe(codigo);
+  const ultimo = serie[serie.length - 1];
+  const def = definiciones[codigo];
+  const { deltaTrim, deltaAnual } = calcularDeltas(serie);
+  const div = document.createElement("div");
+  div.className = "indicator-card";
+  const head = html`<div class="indicator-name">${def.nombre}
+    <span class="indicator-value">${ultimo.valor}%</span>
+  </div>
+  <div class="indicator-meta">± ${(1.96 * ultimo.ee).toFixed(2)} pp · ${ultimo.anio}-Q${ultimo.trimestre}</div>
+  <div class="indicator-delta">${formatoDelta(deltaTrim)} q/q · ${formatoDelta(deltaAnual)} y/y</div>
+  <div class="indicator-desc">${def.texto}</div>`;
+  div.append(head, graficaSerie(serie, { width: 380, height: 190, marginLeft: 32, color: "var(--teal)" }));
+  return div;
+})}</div>`
+```
+
 ### Other indicators
 
-Eight more series, including the informality and informal-sector rates
-excluding agriculture, and a two-step ladder that widens unemployment to
-include discouraged and underemployed workers.
+Five more series, including the informality and informal-sector rates
+excluding agriculture.
 
 ```{ojs}
 //| echo: false
@@ -241,7 +264,9 @@ published figures for 2024-T1; the largest gap is 0.05 percentage points.
 exports the national-level rates from that pipeline into
 `data/labor-indicators.csv` — nothing else. Re-run it with
 `Rscript scripts/02-labor-indicators.R` after the source pipeline updates,
-which happens once per quarter as INEGI publishes new microdata.
+which happens once per quarter as INEGI publishes new microdata. All the code
+on this page — that script and the `{ojs}` that builds the charts — lives in
+the [site's repository](https://github.com/alainpin/alainpineda).
 
 **3. The chart reads the CSV client-side.** Plain `FileAttachment(...).csv()`
 and Observable Plot — no database engine, so nothing depends on a CDN beyond

@@ -281,6 +281,11 @@ g[aria-label="tip"] {
   gap: 1rem;
   margin: 1.2rem 0;
 }
+// Two-up variant (the subutilization ladder): wider cards, same card/chart
+// styling otherwise.
+.indicator-grid.indicator-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
 @media (max-width: 700px) {
   .indicator-grid { grid-template-columns: 1fr; }
 }

@@ -3,10 +3,6 @@ title: "Mercado Laboral MX"
 date-modified: last-modified
 ---
 
-Gráficas interactivas. Todo corre en tu navegador; las series se preparan en R
-y se publican como CSV en `data/` en el
-[repositorio del sitio](https://github.com/alainpin/alainpineda).
-
 ::: {.eyebrow}
 ENOE, INEGI · Trimestral, 2005–2026 · Nacional
 :::
@@ -82,8 +78,9 @@ definiciones = ({
 })
 
 indicadoresPrincipales = ["TPEA", "TIL1", "TD"]
+indicadoresEscalera = ["TDAMPL", "SUBUTIL"]
 indicadoresSecundarios = Object.keys(definiciones)
-  .filter(k => !indicadoresPrincipales.includes(k))
+  .filter(k => !indicadoresPrincipales.includes(k) && !indicadoresEscalera.includes(k))
   .sort()
 
 serieDe = codigo => datos
@@ -190,11 +187,37 @@ html`<div class="indicator-grid">${indicadoresPrincipales.map(codigo => {
 })}</div>`
 ```
 
+### La escalera de subutilización
+
+La Desocupación de arriba es el primer escalón. Estos dos amplían la
+definición, un escalón a la vez: primero suman a quienes están disponibles
+para trabajar sin buscar activamente, luego a quienes ya tienen empleo pero
+con menos horas de las que quisieran.
+
+```{ojs}
+//| echo: false
+html`<div class="indicator-grid indicator-grid-2">${indicadoresEscalera.map(codigo => {
+  const serie = serieDe(codigo);
+  const ultimo = serie[serie.length - 1];
+  const def = definiciones[codigo];
+  const { deltaTrim, deltaAnual } = calcularDeltas(serie);
+  const div = document.createElement("div");
+  div.className = "indicator-card";
+  const head = html`<div class="indicator-name">${def.nombre}
+    <span class="indicator-value">${ultimo.valor}%</span>
+  </div>
+  <div class="indicator-meta">± ${(1.96 * ultimo.ee).toFixed(2)} pp · ${ultimo.anio}-T${ultimo.trimestre}</div>
+  <div class="indicator-delta">${formatoDelta(deltaTrim)} trim. · ${formatoDelta(deltaAnual)} anual</div>
+  <div class="indicator-desc">${def.texto}</div>`;
+  div.append(head, graficaSerie(serie, { width: 380, height: 190, marginLeft: 32, color: "var(--teal)" }));
+  return div;
+})}</div>`
+```
+
 ### Otros indicadores
 
-Ocho series más, incluyendo las versiones de informalidad y sector informal
-sin sector agropecuario, y una escalera de dos escalones que amplía la
-desocupación para incluir a desalentados y subocupados.
+Cinco series más, incluyendo las versiones de informalidad y sector informal
+sin sector agropecuario.
 
 ```{ojs}
 //| echo: false
@@ -242,7 +265,9 @@ puntos porcentuales.
 exporta las tasas nacionales de ese pipeline a `data/labor-indicators.csv` —
 nada más. Se vuelve a correr con `Rscript scripts/02-labor-indicators.R`
 cuando el pipeline fuente se actualiza, una vez por trimestre según INEGI
-publica microdatos nuevos.
+publica microdatos nuevos. Todo el código de esta página — ese script y el
+`{ojs}` que arma las gráficas — vive en el
+[repositorio del sitio](https://github.com/alainpin/alainpineda).
 
 **3. La gráfica lee el CSV del lado del navegador.** `FileAttachment(...).csv()`
 simple y Observable Plot — sin motor de base de datos, así que no depende de
