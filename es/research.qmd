@@ -63,3 +63,8 @@ publicación original.
 - **La lactancia es desarrollo: ¿por qué apoyar la lactancia en el trabajo?**
   Banco Interamericano de Desarrollo, blog de Género y Diversidad, enero de 2023.
   [Leer](https://blogs.iadb.org/igualdad/es/lactancia-es-desarrollo/)
+
+- **Duración de la informalidad laboral en México.** Tesis de licenciatura,
+  ITAM, 2017. Ganadora del Premio Citibanamex de Economía 2017 y del Premio
+  Ex-ITAM 2018.
+  [PDF](../files/tesis-duracion-informalidad-laboral.pdf)
