@@ -20,6 +20,13 @@ website:
 
 format:
   html:
+    # Favicon: monograma AP (interlocked A/P, la A comparte sus dos diagonales
+    # con el asta de cada P) en los colores del sitio. Recoloreado a partir de
+    # la imagen de referencia del owner (no redibujado desde cero, para no
+    # arriesgar las proporciones). PNG en 512px como icono principal, .ico
+    # como alternate para navegadores/contextos viejos, apple-touch-icon para
+    # iOS. Ver favicon-links.html.
+    include-in-header: favicon-links.html
     # Reescribe el enlace ES/EN del navbar a la pagina equivalente en el otro
     # idioma (mismo slug) en vez de redirigir siempre al home. Ver
     # js/lang-toggle.html.
