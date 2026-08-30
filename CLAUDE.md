@@ -906,3 +906,77 @@ without being asked.
   `_site/es/`. That run is what surfaced the `lang`, duplicate-listing, and
   listing-gutter bugs, all fixed. It has still never been rendered on the owner's
   own machine.
+
+## 13. Labor Market MX pages — a ported mirror, not authored here
+
+The "Labor Market MX" / "Mercado Laboral MX" navbar section
+(`data.qmd`/`es/data.qmd` and everything under it: `data-participation.qmd`,
+`data-informality.qmd`, `data-unemployment.qmd`, `data-findings.qmd`, and
+their `es/` counterparts) is a public mirror of a separate, private Quarto +
+Observable dashboard project the owner maintains elsewhere. That project has
+its own codebase, its own `CLAUDE.md`, and its own much longer history of
+design review — this repo only receives the finished, "safe for a general
+audience" version of each page, ported over once a page is done on the
+private side. **Do not assume this repo's git history tells the whole story
+for these pages** — commits touching them may originate from sessions
+working in that other project, pushing to this repo's `main` as their
+publish step. That's expected, not a conflict; see the standing
+fetch-before-push discipline elsewhere in this file.
+
+Design conventions already settled (through several rounds of the owner's
+own review) and shipped in this repo's code — follow them for any further
+work on these pages rather than re-deriving a different answer:
+
+- **Maps/choropleths follow the theme, they don't get a fixed canvas.** Use
+  `style: {background: "transparent", color: "var(--ink)"}` on the Plot
+  config and `stroke: "var(--ink)"` on the geo mark, the same
+  `--ink`/`--rule` custom properties `theme.scss` already exposes on `:root`
+  for exactly this purpose (see section 6's OJS-tooltip note for the
+  pattern). A fixed light canvas behind a dark-mode page reads as a bug even
+  when every individual color is technically correct — don't reach for that
+  as a fallback.
+- **Bar charts keep each cut's natural category order** (chronological for
+  age, increasing schooling for education level), never sorted by value —
+  the x-axis is a real ordered scale, and sorting by value would
+  misrepresent it as a ranking. A cut with no natural order (state/entidad)
+  gets a map instead of a bar chart, not a value-sorted bar chart.
+- **Multi-category time series plot every category together on one chart**
+  (one line per category), except for a cut with too many categories to read
+  that way (state/entidad), which stays one-at-a-time behind a selector.
+- **Every per-cut view names its own latest quarter explicitly**
+  (a "Latest quarter: YYYY-TQ" caption computed from the data actually shown,
+  not assumed to match other cuts/indicators on the same page).
+- **Findings/change tables color only the up/down arrow glyph, never the
+  whole value**, and use pale tones, not saturated red/green — a strong
+  color across the whole number reads as a normative "good/bad" judgment,
+  which this site avoids everywhere (see `$up`/`$down` in `theme.scss`).
+
+Known bugs already hit once on this class of page — worth knowing before you
+reintroduce one of them:
+
+1. **An Observable JS module can hang forever, with no console error, if a
+   single object literal contains two `color-mix(...)` string values.**
+   Define fixed color tokens instead of computing more than one
+   `color-mix()` inline in the same `{ojs}` cell.
+2. **Observable Plot's continuous-scale legend ships its own hardcoded
+   white background** in a scoped `<style>` inside its own SVG, unreachable
+   via `Plot.plot()`'s `style:{background:"transparent"}` option (the legend
+   is a separate figure the main plot config never touches). This repo's own
+   fix is already in `theme.scss`: `svg[class*="-ramp"] { background:
+   transparent !important; }` — matched by attribute rather than the exact
+   class, since Plot assigns it a content hash that changes across
+   versions.
+3. **A geo/topoJSON `id` used as a join key can silently drop marks with no
+   error and no visibly-wrong shape** if the two sides' key format doesn't
+   match exactly (e.g. zero-padded state codes on one side, unpadded on the
+   other) — a JS object key access re-stringifies a numeric key without
+   padding. This looks like "some regions are missing a border," not "some
+   regions are missing," because the mark is dropped entirely rather than
+   rendered wrong. If a future map join ever looks subtly incomplete, verify
+   the actual rendered feature count (`svg.querySelectorAll('path').length`)
+   against the expected count rather than eyeballing the map.
+
+When porting a new page or section from the private dashboard, hold it to
+this repo's own general-audience framing (section 1's audience list, section
+7's editorial voice) rather than assuming the private version's framing
+carries over unchanged.

@@ -12,3 +12,8 @@
 /design-system/
 
 **/*.quarto_ipynb
+
+# Private context for Claude Code — never committed. CLAUDE.md is public
+# (the repo is/will be public); anything Alain doesn't want visible there
+# goes here instead. See CLAUDE.md's own note on this split.
+CLAUDE.local.md
