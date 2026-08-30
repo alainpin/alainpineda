@@ -28,6 +28,13 @@ in 18 of the 24 countries, but in 14 of those, only employers above a minimum
 size are required to provide them, excluding a large share of working women
 from the right entirely.
 
+::: {.site-figure}
+![](../../images/breastfeeding-policy-coverage-en.svg)
+
+Workplace breastfeeding policies across 24 Latin American and Caribbean
+countries reviewed by UNICEF (2020). Source: IDB blog, based on UNICEF data.
+:::
+
 ### Why it matters
 
 Two gaps limit how much these policies actually help. First, monitoring is

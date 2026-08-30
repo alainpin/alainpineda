@@ -51,11 +51,6 @@ ends up covered, who doesn't, and why.
 ::: {#in-progress}
 :::
 
-## Other publications
-
-::: {#published}
-:::
-
 ## Policy and other writing
 
 Short pieces written for non-academic audiences. Each links out to the
@@ -76,3 +71,8 @@ publisher.
 <!-- Formato: **Titulo.** Publicacion, fecha, y un solo link de salida.
      Una linea por pieza, sin resumen. Si alguna vez una nota merece pagina
      propia, crea policy/<slug>/index.qmd y enlazala aqui como cualquier otra. -->
+
+## Other publications
+
+::: {#published}
+:::

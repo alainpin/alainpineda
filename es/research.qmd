@@ -45,11 +45,6 @@ esto: quién termina cubierto, quién no, y por qué.
 ::: {#in-progress}
 :::
 
-## Otras publicaciones
-
-::: {#published}
-:::
-
 ## Política pública y otros textos
 
 Textos breves dirigidos a audiencias no académicas. Cada uno enlaza a la
@@ -66,3 +61,8 @@ publicación original.
 
 - **¿Cuánto dura un empleo informal en México?** Tesis de licenciatura, ITAM, 2017.
   [Leer el resumen](/es/policy/thesis-informality-duration/)
+
+## Otras publicaciones
+
+::: {#published}
+:::
