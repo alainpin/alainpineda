@@ -11,6 +11,11 @@ y se publican como CSV en `data/` en el
 ENOE, INEGI · Trimestral, 2005–2026 · Nacional
 :::
 
+```{ojs}
+//| echo: false
+html`<div class="indicator-meta">Dato más reciente: ENOE ${ultimoPeriodoGlobal}</div>`
+```
+
 Estadísticas oficiales de la Encuesta Nacional de Ocupación y Empleo (ENOE),
 información pública de INEGI. Se recalculan aquí desde microdatos con la
 metodología oficial del instituto — diseño muestral, estratos y factores de
@@ -24,6 +29,14 @@ rápida.
 raw = FileAttachment("../data/labor-indicators.csv").csv({ typed: true })
 
 datos = raw.map(d => ({ ...d, fecha: new Date(d.anio, (d.trimestre - 1) * 3, 1) }))
+
+// Trimestre mas reciente en el CSV, cualquiera que sea el indicador -- todos
+// comparten el mismo ultimo periodo porque vienen del mismo export.
+ultimoPeriodoGlobal = {
+  const ordenado = [...datos].sort((a, b) => a.fecha - b.fecha);
+  const u = ordenado[ordenado.length - 1];
+  return `${u.anio}-T${u.trimestre}`;
+}
 
 definiciones = ({
   TPEA: {

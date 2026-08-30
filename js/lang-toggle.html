@@ -4,6 +4,12 @@
 // (href: "/es/" or "/"). Since every EN page has an ES counterpart at the
 // same slug (see CLAUDE.md section 4), rewrite that link at load time to the
 // equivalent page instead: strip or add the leading "/es" path segment.
+//
+// Matched by visible text ("ES"/"EN"), not aria-label: the navbar YAML sets
+// `aria-label:` on that item, but Quarto's navbar renderer doesn't emit it
+// on right-side text nav-links -- the attribute never reaches the HTML, so a
+// querySelector keyed on it silently matches nothing and the link falls
+// back to its configured default (always the other language's homepage).
 (function () {
   var path = window.location.pathname;
   var target;
@@ -12,9 +18,14 @@
   } else {
     target = path === "/" ? "/es/" : "/es" + path;
   }
-  var link = document.querySelector(
-    'a[aria-label="Ver en español"], a[aria-label="View in English"]'
-  );
-  if (link) link.setAttribute("href", target);
+  var spans = document.querySelectorAll(".menu-text");
+  for (var i = 0; i < spans.length; i++) {
+    var t = spans[i].textContent.trim();
+    if (t === "ES" || t === "EN") {
+      var a = spans[i].closest("a");
+      if (a) a.setAttribute("href", target);
+      break;
+    }
+  }
 })();
 </script>

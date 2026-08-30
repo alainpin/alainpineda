@@ -11,6 +11,11 @@ and published as CSV in `data/` in the
 ENOE, INEGI · Quarterly, 2005–2026 · National
 :::
 
+```{ojs}
+//| echo: false
+html`<div class="indicator-meta">Latest available data: ENOE ${ultimoPeriodoGlobal}</div>`
+```
+
 Official statistics from Mexico's National Survey of Occupation and
 Employment (ENOE), public data from INEGI. Recomputed here from microdata
 using the institute's own methodology — survey design, strata, and expansion
@@ -23,6 +28,14 @@ finding: these are public figures, presented here for quick reference.
 raw = FileAttachment("data/labor-indicators.csv").csv({ typed: true })
 
 datos = raw.map(d => ({ ...d, fecha: new Date(d.anio, (d.trimestre - 1) * 3, 1) }))
+
+// Latest quarter present in the CSV, regardless of indicator -- they all
+// share the same latest period since they come from the same export.
+ultimoPeriodoGlobal = {
+  const ordenado = [...datos].sort((a, b) => a.fecha - b.fecha);
+  const u = ordenado[ordenado.length - 1];
+  return `${u.anio}-Q${u.trimestre}`;
+}
 
 definiciones = ({
   TPEA: {
