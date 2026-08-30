@@ -23,6 +23,8 @@ website:
             text: Participación
           - href: es/data-informalidad.qmd
             text: Informalidad
+          - href: es/data-desocupacion.qmd
+            text: Desocupación
           - href: es/data-hallazgos.qmd
             text: Hallazgos
       - href: es/teaching.qmd

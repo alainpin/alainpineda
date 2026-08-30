@@ -171,12 +171,26 @@ graficaSerieMultiple = (indicador, corte, categorias, etiquetaY, { width = 680, 
   });
 }
 
+// nice:true escala automáticamente al alcance de cada marca, incluida la
+// banda de confianza -- y 2020-T3 (primer trimestre de vuelta tras el hueco
+// de la ETOE) tiene una banda mucho más ancha de lo normal en algunos
+// estados por una muestra reducida pospandemia, lo que por sí solo puede
+// estirar todo el eje Y y aplanar el resto de una serie de 20 años. Ajustar
+// el dominio solo a las estimaciones puntuales, para que la incertidumbre
+// de un trimestre ruidoso no distorsione la escala de todos los demás.
+dominioAjustadoSerie = (serie, margenMinimo = 0.4) => {
+  const valores = serie.map(d => d.valor);
+  const min = Math.min(...valores), max = Math.max(...valores);
+  const margen = Math.max((max - min) * 0.15, margenMinimo);
+  return [min - margen, max + margen];
+}
+
 graficaSerieCorte = (serie, etiquetaY, { width = 680, height = 260, color = "var(--clay)" } = {}) => {
   const ultimo = serie[serie.length - 1];
   return Plot.plot({
     width, height, marginLeft: 46, marginBottom: 32,
     style: { background: "transparent", fontFamily: "IBM Plex Sans, sans-serif", fontSize: "13px" },
-    y: { label: etiquetaY, grid: true, nice: true },
+    y: { label: etiquetaY, grid: true, domain: dominioAjustadoSerie(serie) },
     x: { label: null },
     marks: [
       Plot.gridY({ stroke: "var(--rule)" }),
@@ -316,6 +330,10 @@ validadas contra el Banco de Indicadores de INEGI antes de llegar a esta
 página. La banda sombreada y las líneas de error son un intervalo de 95% de
 confianza (±1.96 errores estándar) del diseño muestral complejo de la ENOE.
 El corte por entidad usa las 32 estimaciones estatales que la ENOE trimestral
-sí soporta (a diferencia de la mensual).
+sí soporta (a diferencia de la mensual). 2020-T2 (la ETOE, encuesta
+telefónica sustituta durante el confinamiento más estricto) se excluye por
+completo de la serie en vez de mostrarse como cero o interpolarse — su
+metodología no es comparable con la ENOE regular, así que es un hueco real,
+no un dato faltante.
 
 </details>

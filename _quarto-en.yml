@@ -24,6 +24,8 @@ website:
             text: Participation
           - href: data-informality.qmd
             text: Informality
+          - href: data-unemployment.qmd
+            text: Unemployment
           - href: data-findings.qmd
             text: Findings
       - href: teaching.qmd

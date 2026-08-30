@@ -191,12 +191,26 @@ graficaSerieMultiple = (indicador, corte, categorias, etiquetaY, { width = 680, 
   });
 }
 
+// nice:true auto-scales to the extent of every mark, including the
+// confidence band -- and 2020-Q3 (first quarter back after the ETOE gap)
+// has a much wider band than usual in some states from a reduced
+// post-pandemic sample, which alone can stretch the whole y-axis and flatten
+// the rest of a 20-year series. Fit the domain to the point estimates only,
+// so one noisy quarter's uncertainty doesn't distort every other quarter's
+// scale.
+dominioAjustadoSerie = (serie, margenMinimo = 0.4) => {
+  const valores = serie.map(d => d.valor);
+  const min = Math.min(...valores), max = Math.max(...valores);
+  const margen = Math.max((max - min) * 0.15, margenMinimo);
+  return [min - margen, max + margen];
+}
+
 graficaSerieCorte = (serie, etiquetaY, { width = 680, height = 260, color = "var(--clay)" } = {}) => {
   const ultimo = serie[serie.length - 1];
   return Plot.plot({
     width, height, marginLeft: 46, marginBottom: 32,
     style: { background: "transparent", fontFamily: "IBM Plex Sans, sans-serif", fontSize: "13px" },
-    y: { label: etiquetaY, grid: true, nice: true },
+    y: { label: etiquetaY, grid: true, domain: dominioAjustadoSerie(serie) },
     x: { label: null },
     marks: [
       Plot.gridY({ stroke: "var(--rule)" }),
@@ -335,6 +349,10 @@ the full description. All four informality definitions are validated against
 INEGI's own Banco de Indicadores before they reach this page. The shaded band
 and error bars are a 95% confidence interval (±1.96 standard errors) from the
 ENOE's complex survey design. The state breakdown uses the 32 state-level
-estimates the quarterly ENOE supports (unlike the monthly release).
+estimates the quarterly ENOE supports (unlike the monthly release). 2020-Q2
+(the ETOE, a phone-based substitute survey run during the strictest
+pandemic lockdown) is excluded entirely from the series rather than shown
+as zero or interpolated — its methodology isn't comparable to the regular
+ENOE, so it's a genuine gap, not missing data.
 
 </details>
