@@ -168,9 +168,12 @@ coloresPrincipales = ({
   TD: "var(--ink-soft)"
 })
 
+// A light/deep pair of the same neutral (not --teal or --clay, already used
+// by TPEA/TIL1) so both cards read as the same theme -- broader unemployment
+// -- without duplicating TD's color or each other's.
 coloresEscalera = ({
-  TDAMPL: "var(--clay)",
-  SUBUTIL: "var(--ink-soft)"
+  TDAMPL: "var(--ink-soft-light)",
+  SUBUTIL: "var(--ink-soft-deep)"
 })
 ```
 

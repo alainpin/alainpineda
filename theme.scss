@@ -19,6 +19,11 @@ $rule:       #e0d8c5 !default;   // hairlines (export's --paper-3)
 $teal:       #0f5757 !default;   // links, primary accent
 $teal-deep:  #0c4646 !default;   // hover (export's --accent-2)
 $ochre:      #b25a26 !default;   // finding line marker (export's --clay, its secondary accent)
+// A light/deep pair of the same neutral, for a group of series that should
+// read as one theme (e.g. the subutilization ladder) without borrowing
+// $teal or $ochre, which already carry their own meaning elsewhere.
+$ink-soft-light: #9a948b !default;
+$ink-soft-deep:  #4a4540 !default;
 
 $body-color:  $ink;
 $body-bg:     $paper;
@@ -55,6 +60,8 @@ $link-decoration: none;
   // inventing a color outside the token set.
   --clay: #{$ochre};
   --ink-soft: #{$ink-soft};
+  --ink-soft-light: #{$ink-soft-light};
+  --ink-soft-deep: #{$ink-soft-deep};
   // Observable Plot's tip mark (chart hover tooltip) reads this for its box
   // background instead of a hardcoded white, specifically to support dark
   // mode. Unset, it falls back to white -- unreadable once the tip's text

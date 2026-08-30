@@ -169,9 +169,12 @@ coloresPrincipales = ({
   TD: "var(--ink-soft)"
 })
 
+// Un par claro/oscuro del mismo neutro (no --teal ni --clay, que ya
+// pertenecen a TPEA/TIL1) para que las dos tarjetas se lean como el mismo
+// tema -- desocupación ampliada -- sin duplicar el color de TD ni entre sí.
 coloresEscalera = ({
-  TDAMPL: "var(--clay)",
-  SUBUTIL: "var(--ink-soft)"
+  TDAMPL: "var(--ink-soft-light)",
+  SUBUTIL: "var(--ink-soft-deep)"
 })
 ```
 
