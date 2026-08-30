@@ -17,9 +17,11 @@ vez de una sola línea resumen.
 //| echo: false
 //| output: false
 raw = FileAttachment("../data/labor-indicators.csv").csv({ typed: true })
+rawCortes = FileAttachment("../data/labor-indicators-cuts.csv").csv({ typed: true })
 validaciones = FileAttachment("../data/validations.csv").csv({ typed: true })
 
 datos = raw.map(d => ({ ...d, fecha: new Date(d.anio, (d.trimestre - 1) * 3, 1) }))
+datosCortes = rawCortes.map(d => ({ ...d, fecha: new Date(d.anio, (d.trimestre - 1) * 3, 1) }))
 
 nombres = ({
   TPEA: "Participación laboral",
@@ -36,6 +38,15 @@ nombres = ({
 
 notas = ({
   TCCO: "Probablemente un rebase del umbral de salario mínimo de INEGI (el boletín cita una “base enero de 2026”); se verificó correcto reconstruyendo TCCO de forma independiente desde el microdato crudo."
+})
+
+// Solo estos ya tienen cortes por sexo/edad/escolaridad/entidad calculados
+// (ver Participación/Informalidad/Desocupación) -- TSUB y TCCO se quedan
+// solo a nivel nacional por ahora.
+indicadoresConCortes = ["TPEA", "TIL1", "TIL2", "TOSI1", "TOSI2", "TD", "TDAMPL", "SUBUTIL"]
+
+cortes = ({
+  sexo: "Sexo", edad: "Edad", nivel_educativo: "Nivel educativo", entidad: "Entidad"
 })
 
 serieDe = codigo => datos
@@ -59,6 +70,45 @@ calcularDeltas = serie => {
     deltaAnual: valorAnioAnt != null ? ultimo.valor - valorAnioAnt : null
   };
 }
+
+// Igual que valorEnPeriodo/calcularDeltas arriba, pero además carga el
+// error estándar de cada periodo, para que la sección por corte de abajo
+// pueda distinguir un movimiento real de ruido muestral.
+valorEnPeriodoConSE = (serie, anio, trimestre) => {
+  const fila = serie.find(d => d.anio === anio && d.trimestre === trimestre);
+  return fila ? { valor: fila.valor, ee: fila.ee } : null;
+}
+
+// Error estándar de una diferencia entre dos estimaciones muestrales: se
+// combinan en cuadratura, asumiendo independencia. El panel rotativo de la
+// ENOE hace que trimestres vecinos compartan parte de los mismos
+// entrevistados, así que esto sobreestima un poco el verdadero error
+// estándar de la diferencia trimestral (la correlación positiva entre
+// observaciones traslapadas la reduciría) -- el filtro de abajo tiende a
+// subestimar la significancia, no a sobreestimarla.
+calcularDeltasConSE = serie => {
+  const ultimo = serie[serie.length - 1];
+  const trimAnt = ultimo.trimestre === 1
+    ? { anio: ultimo.anio - 1, trimestre: 4 }
+    : { anio: ultimo.anio, trimestre: ultimo.trimestre - 1 };
+  const trimAntDato = valorEnPeriodoConSE(serie, trimAnt.anio, trimAnt.trimestre);
+  const anioAntDato = valorEnPeriodoConSE(serie, ultimo.anio - 1, ultimo.trimestre);
+  return {
+    deltaTrim: trimAntDato ? ultimo.valor - trimAntDato.valor : null,
+    deltaAnual: anioAntDato ? ultimo.valor - anioAntDato.valor : null,
+    seTrim: trimAntDato ? Math.sqrt(ultimo.ee ** 2 + trimAntDato.ee ** 2) : null,
+    seAnual: anioAntDato ? Math.sqrt(ultimo.ee ** 2 + anioAntDato.ee ** 2) : null
+  };
+}
+
+// Un cambio cuenta como distinguible del ruido solo si supera 1.96 errores
+// estándar combinados -- el mismo umbral de 95% que las bandas de confianza
+// en cualquier otra gráfica del sitio. Sin este filtro, "el mayor
+// movimiento" casi siempre significaría solo "la muestra más chica": los
+// estados/categorías con menos observaciones tienen el error estándar más
+// grande, así que sus estimaciones puntuales se mueven más de trimestre a
+// trimestre sin que sea un cambio real.
+esSignificativo = (delta, se) => delta != null && se != null && Math.abs(delta) > 1.96 * se
 
 // A diferencia del resto de esta serie (que deja el color neutro a
 // propósito, sin implicar bueno/malo), esta página sí colorea la dirección
@@ -88,6 +138,92 @@ cambiosTrimestre = Object.keys(nombres).map(codigo => {
   };
 }).filter(d => d !== null)
 
+categoriasDeCorte = corte => [...new Set(datosCortes.filter(d => d.corte === corte).map(d => d.categoria_origen))]
+
+// Una fila por categoría dentro de un corte, con el último dato y el
+// cambio trimestral/anual -- el mismo cálculo que cambiosTrimestre arriba,
+// solo que aplicado por categoría en vez de a nivel nacional. Ordenado con
+// el mayor movimiento trimestral primero.
+cambiosPorCorte = (indicador, corte) => categoriasDeCorte(corte).map(cat => {
+  const serie = datosCortes
+    .filter(d => d.indicador === indicador && d.corte === corte && d.categoria_origen === cat)
+    .sort((a, b) => a.fecha - b.fecha);
+  if (serie.length === 0) return null;
+  const ultimo = serie[serie.length - 1];
+  const { deltaTrim, deltaAnual } = calcularDeltasConSE(serie);
+  return {
+    categoria: cat, valor: ultimo.valor,
+    periodo: `${ultimo.anio}-T${ultimo.trimestre}`,
+    deltaTrim, deltaAnual
+  };
+}).filter(d => d !== null)
+  .sort((a, b) => Math.abs(b.deltaTrim ?? 0) - Math.abs(a.deltaTrim ?? 0))
+
+// El cambio de cada combinación (indicador, corte, categoría), filtrado a
+// las que superan el umbral de significancia -- el conjunto del que sale
+// "el mayor movimiento" abajo.
+todosLosCambios = (campoDelta, campoSE) => {
+  const filas = [];
+  for (const indicador of indicadoresConCortes) {
+    for (const corte of Object.keys(cortes)) {
+      for (const cat of categoriasDeCorte(corte)) {
+        const serie = datosCortes
+          .filter(d => d.indicador === indicador && d.corte === corte && d.categoria_origen === cat)
+          .sort((a, b) => a.fecha - b.fecha);
+        if (serie.length === 0) continue;
+        const ultimo = serie[serie.length - 1];
+        const deltas = calcularDeltasConSE(serie);
+        const delta = deltas[campoDelta], se = deltas[campoSE];
+        if (esSignificativo(delta, se)) {
+          filas.push({
+            indicador, corte, categoria: cat,
+            valor: ultimo.valor, delta, periodo: `${ultimo.anio}-T${ultimo.trimestre}`
+          });
+        }
+      }
+    }
+  }
+  return filas.sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
+}
+
+mayorMovimientoTrim = todosLosCambios("deltaTrim", "seTrim")[0] ?? null
+mayorMovimientoAnual = todosLosCambios("deltaAnual", "seAnual")[0] ?? null
+
+// Brecha de género (hombres menos mujeres) como su propia serie derivada:
+// se empata cada trimestre de hombres y mujeres por fecha, se resta, y se
+// combinan sus errores estándar en cuadratura -- así queda como cualquier
+// otra serie a la que calcularDeltasConSE puede calcularle cambio
+// trimestral/anual.
+brechaGenero = indicador => {
+  const hombres = datosCortes
+    .filter(d => d.indicador === indicador && d.corte === "sexo" && d.categoria_origen === "Hombre")
+    .sort((a, b) => a.fecha - b.fecha);
+  const mujeres = datosCortes
+    .filter(d => d.indicador === indicador && d.corte === "sexo" && d.categoria_origen === "Mujer")
+    .sort((a, b) => a.fecha - b.fecha);
+  const brechas = hombres.map(h => {
+    const m = mujeres.find(x => +x.fecha === +h.fecha);
+    return m ? { anio: h.anio, trimestre: h.trimestre, fecha: h.fecha, valor: h.valor - m.valor, ee: Math.sqrt(h.ee ** 2 + m.ee ** 2) } : null;
+  }).filter(Boolean);
+  if (brechas.length === 0) return null;
+  const ultimo = brechas[brechas.length - 1];
+  const { deltaTrim, seTrim } = calcularDeltasConSE(brechas);
+  return { valor: ultimo.valor, periodo: `${ultimo.anio}-T${ultimo.trimestre}`, deltaTrim, seTrim };
+}
+
+brechaTPEA = brechaGenero("TPEA")
+brechaTIL1 = brechaGenero("TIL1")
+
+textoMovimiento = (fila, sinCambio) => fila
+  ? html`${nombres[fila.indicador]} en <strong>${fila.categoria}</strong> (${cortes[fila.corte]}): ${formatoDelta(fila.delta)}, ahora ${fila.valor}% (${fila.periodo}).`
+  : html`<span>${sinCambio}</span>`
+
+textoBrecha = (nombre, brecha) => {
+  if (!brecha) return html`<span>${nombre}: datos insuficientes por ahora.</span>`;
+  const sig = esSignificativo(brecha.deltaTrim, brecha.seTrim);
+  return html`Brecha de género en ${nombre.toLowerCase()} (hombres − mujeres): <strong>${brecha.valor.toFixed(1)} pp</strong> a ${brecha.periodo}${brecha.deltaTrim != null ? html` · trimestral: ${formatoDelta(brecha.deltaTrim)}${sig ? "" : " (no distinguible de sin cambio)"}` : ""}.`
+}
+
 ultimoPeriodoValidacion = validaciones.length
   ? `${validaciones[validaciones.length - 1].anio}-T${validaciones[validaciones.length - 1].trimestre}`
   : ""
@@ -98,6 +234,28 @@ ultimasValidaciones = {
   return validaciones.filter(v => v.anio === ultimoAnio && v.trimestre === ultimoTrim);
 }
 ```
+
+### Lo más destacado este trimestre
+
+Generado automáticamente a partir de los mismos datos por corte detrás de
+Participación, Informalidad y Desocupación. Las dos líneas de "mayor
+movimiento" solo cuentan un cambio si supera un umbral de 95% de confianza
+— si no, el mayor movimiento del trimestre suele ser solo la muestra más
+chica, no un cambio real.
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+html`<ul class="highlights-list">
+<li>Mayor movimiento trimestral: ${textoMovimiento(mayorMovimientoTrim, "Ningún cambio trimestral de este periodo supera el umbral de 95% de confianza.")}</li>
+<li>Mayor movimiento anual: ${textoMovimiento(mayorMovimientoAnual, "Ningún cambio anual de este periodo supera el umbral de 95% de confianza.")}</li>
+<li>${textoBrecha("Participación laboral", brechaTPEA)}</li>
+<li>${textoBrecha("Informalidad laboral", brechaTIL1)}</li>
+</ul>`
+```
+
+:::
 
 ### Cambios del trimestre
 
@@ -122,13 +280,57 @@ ${cambiosTrimestre.map(d => html`<tr>
 
 :::
 
+### Cambios por corte
+
+Los mismos cambios trimestrales y anuales de arriba, desglosados por los
+cortes que INEGI no publica en su propio sitio — sexo, edad, escolaridad y
+entidad. Las filas se ordenan con el mayor movimiento trimestral primero.
+
+```{ojs}
+//| echo: false
+viewof definicion_sel = Inputs.select(indicadoresConCortes, {
+  value: "TPEA",
+  label: "Indicador",
+  format: d => `${d} — ${nombres[d]}`
+})
+```
+
+```{ojs}
+//| echo: false
+viewof corte_sel = Inputs.select(Object.keys(cortes), {
+  value: "sexo",
+  label: "Corte",
+  format: d => cortes[d]
+})
+```
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+html`<table class="data-table">
+<thead><tr>
+  <th>${cortes[corte_sel]}</th><th>Último dato</th><th>Trimestre anterior</th><th>Mismo trimestre, año anterior</th>
+</tr></thead>
+<tbody>
+${cambiosPorCorte(definicion_sel, corte_sel).map(d => html`<tr>
+  <td>${d.categoria}</td>
+  <td class="data-table-num">${d.valor}%<span class="data-table-period">(${d.periodo})</span></td>
+  <td class="data-table-num">${formatoDelta(d.deltaTrim)}</td>
+  <td class="data-table-num">${formatoDelta(d.deltaAnual)}</td>
+</tr>`)}
+</tbody>
+</table>`
+```
+
+:::
+
 ### Comparación con el boletín oficial
 
-Última validación: **${ultimoPeriodoValidacion}**. Se llena a mano cada
-trimestre, comparando este pipeline contra el comunicado de prensa
-**trimestral** de INEGI — no el mensual, que usa otra metodología y no es
-comparable (dos boletines distintos, con números de comunicado distintos,
-salen casi el mismo día).
+```{ojs}
+//| echo: false
+html`<p>Última validación: <strong>${ultimoPeriodoValidacion}</strong>. Se llena a mano cada trimestre, comparando este pipeline contra el comunicado de prensa <strong>trimestral</strong> de INEGI — no el mensual, que usa otra metodología y no es comparable (dos boletines distintos, con números de comunicado distintos, salen casi el mismo día).</p>`
+```
 
 ::: {.data-panel}
 
@@ -161,7 +363,16 @@ entre este pipeline y la cifra que INEGI redondea a un decimal en su
 boletín — una brecha de hasta ~0.05 pp es redondeo, no una señal de error.
 Los cambios de trimestre y de año se calculan sobre el periodo exacto, no
 por posición de fila, así que el hueco de 2020-T2 (ETOE, no comparable)
-nunca produce un cambio calculado sobre dos trimestres de distancia.
-Fuente: microdatos de la ENOE, INEGI, 2005–2026.
+nunca produce un cambio calculado sobre dos trimestres de distancia. Los
+destacados de "mayor movimiento" usan un filtro de significancia al 95%
+(cambio trimestral o anual mayor a 1.96 errores estándar combinados),
+calculado tratando las dos estimaciones como independientes; el panel
+rotativo de la ENOE hace que trimestres vecinos compartan parte de los
+mismos entrevistados, así que esto es una aproximación conservadora — un
+movimiento trimestral real tiene un poco más de probabilidad de marcarse
+como significativo de lo que este umbral reconoce, no menos. TSUB y TCCO
+no aparecen en la sección por corte: todavía no se ha calculado ningún
+desglose estatal o demográfico para esos dos. Fuente: microdatos de la
+ENOE, INEGI, 2005–2026.
 
 </details>

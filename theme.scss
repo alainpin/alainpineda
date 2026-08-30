@@ -485,6 +485,19 @@ form[class^="oi-"] select {
   color: $ink-soft;
 }
 
+// ---- Highlights list (data-findings.qmd) ----
+.highlights-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+.highlights-list li {
+  margin-bottom: 0.6rem;
+  line-height: 1.5;
+}
+.highlights-list li:last-child {
+  margin-bottom: 0;
+}
+
 // ---- Research/policy page title block ----
 // Quarto's title-metadata.html partial always renders a "Published" row
 // whenever `date:` is set (no metadata flag turns it off), which duplicates
