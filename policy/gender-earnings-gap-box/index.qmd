@@ -21,8 +21,9 @@ they receive. The gap is calculated over the entire working-age population,
 whether employed or not. Building on that decomposition, the box also
 examines which state-level factors are associated with the occupation gap.
 
-::: {.site-figure}
-![](../../images/gender-gap-decomposition-en.svg)
+::: {.chart-figure}
+![](../../images/gender-gap-decomposition-en-light.svg){.chart-img-light}
+![](../../images/gender-gap-decomposition-en-dark.svg){.chart-img-dark}
 
 Decomposition of the gender gap in labor earnings by component, 2005-2025.
 Percentage points of men's labor earnings. Source: Banco de México with
@@ -49,8 +50,9 @@ INEGI data.
   completed upper-secondary education are associated with a smaller
   occupation gap.
 
-::: {.site-figure}
-![](../../images/gender-gap-trends-en.svg)
+::: {.chart-figure}
+![](../../images/gender-gap-trends-en-light.svg){.chart-img-light}
+![](../../images/gender-gap-trends-en-dark.svg){.chart-img-dark}
 
 Occupation rate, weekly hours worked, and hourly pay, by gender, 2005-2025.
 Source: Banco de México with INEGI data.

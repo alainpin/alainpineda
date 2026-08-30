@@ -291,29 +291,15 @@ recipe, distinct from the personally-authored template above:
 
 **Charts on a sober Banxico-box page are fine, if they clear the same bar as
 the numbers above: exact published data, no Banxico branding.** Added
-2026-08-30 to `gender-earnings-gap-box/`: two static SVGs
-(`gender-gap-decomposition-{en,es}.svg`, `gender-gap-trends-{en,es}.svg`,
-recreating the box's Gráfica 3 and Gráfica 1) built the same way as the
-thesis chart (R/ggplot2 → `svglite`, `.site-figure` markup, hand-copied token
-hex values), but sourced from the box's own **linked data tables** rather
-than eyeballing the PDF's rendered chart. The stacked-bar decomposition chart
-originally colored its three components `$teal`/`$teal-deep`/`$ochre` — the
-two teals read as near-identical at a glance, so it's now
-`$teal`/`$ink`/`$ochre` (occupation/hours/pay); reach for `$ink` as that
-third, clearly-distinct tone whenever a chart needs 3+ categorical colors
-and the teal/ochre pair alone isn't enough. Also: `ggsave(..., bg =
-"transparent")` plus `plot.background`/`panel.background = element_blank()`
-in the theme, on all three chart scripts here (both Banxico charts and the
-breastfeeding one) — an explicit white `plot.background` was doubling up
-with `.site-figure img`'s own `#fbfbf9` card fill, so the chart looked like a
-separate pasted-in white rectangle instead of sitting in the card
-seamlessly. Every future static chart built for a `.site-figure` should
-render with a transparent background for the same reason — the card
-supplies the fill, the chart shouldn't. Banxico Quarterly Report PDFs embed
-a clickable-graphic convention (the box's own note says so: "dando clic sobre
-[las gráficas]... se puede obtener la información") — each graphic/table has
-a `/Annots` link annotation pointing to a `banxico.org.mx/TablasWeb/...html`
-page with the exact underlying series. Extract those with `pypdf`:
+2026-08-30 to `gender-earnings-gap-box/`: two charts
+(`gender-gap-decomposition-*`, `gender-gap-trends-*`, recreating the box's
+Gráfica 3 and Gráfica 1), sourced from the box's own **linked data tables**
+rather than eyeballing the PDF's rendered chart. Banxico Quarterly Report
+PDFs embed a clickable-graphic convention (the box's own note says so:
+"dando clic sobre [las gráficas]... se puede obtener la información") — each
+graphic/table has a `/Annots` link annotation pointing to a
+`banxico.org.mx/TablasWeb/...html` page with the exact underlying series.
+Extract those with `pypdf`:
 ```python
 import pypdf
 r = pypdf.PdfReader("recuadro.pdf")
@@ -338,10 +324,80 @@ from a from-scratch recreation using the site's own chart style.
 
 A personally-authored page can get a chart too when the source data is a
 genuine comparison (see the thesis and, added the same day, the breastfeeding
-post's `breastfeeding-policy-coverage-{en,es}.svg` — a stacked-bar count of
+post's `breastfeeding-policy-coverage-*` — a stacked-bar count of
 UNICEF-reviewed countries by policy coverage, built from country counts
 already stated in the post's own text, not from any external data-table
 link).
+
+### `.chart-figure` — theme-aware charts, not `.site-figure`
+
+The three charts above went through two more rounds of owner feedback the
+same day, worth internalizing before building the next one:
+
+1. **Distinguishable categorical colors.** The decomposition chart first
+   colored its three components `$teal`/`$teal-deep`/`$ochre` — the two
+   teals read as near-identical at a glance. Reach for `$ink` as a third,
+   clearly-distinct categorical color whenever teal/ochre alone isn't
+   enough (`$teal`/`$ink`/`$ochre` now).
+2. **Actually theme-aware, not just a transparent PNG in a fixed card.**
+   `.site-figure` (section 6 above) is for Stata/PDF-derived images that
+   bake in their own colors and can never adapt — hence its fixed `#fbfbf9`
+   light card, deliberately not `$paper`. The first fix here made the
+   R-generated SVGs transparent (`plot.background`/`panel.background =
+   element_blank()`, `ggsave(..., bg = "transparent")`) but still wrapped
+   them in that same fixed-`#fbfbf9` `.site-figure` card — which the owner
+   correctly called out as still showing a white box, because `#fbfbf9` is
+   visually indistinguishable from white and doesn't match `$paper`
+   (`#f6f1e7` light / `#171513` dark), so the "card" never disappeared and
+   never adapted to dark mode.
+
+   The real fix, since these charts genuinely *can* adapt (we author them,
+   unlike a Stata export): a new class, `.chart-figure` (`theme.scss`), used
+   instead of `.site-figure` for any from-scratch chart. It has no fixed
+   color — `background: $paper; border: 1px solid $rule;` — so it
+   disappears into the page in both themes. Each chart ships **two color
+   variants**, light and dark, using this site's actual light/dark token
+   values (`$teal`/`$ink`/`$ochre`/`$rule` for light;
+   `#63b0b0`/`#e3ddd0`/`#be8d74`/`#332c26` for dark — the same values
+   documented in section 9's "Change the visual identity"), and both
+   `<img>`s are emitted on the page with `{.chart-img-light}` /
+   `{.chart-img-dark}` pandoc attributes:
+   ```markdown
+   ::: {.chart-figure}
+   ![](../../images/my-chart-en-light.svg){.chart-img-light}
+   ![](../../images/my-chart-en-dark.svg){.chart-img-dark}
+
+   Caption text.
+   :::
+   ```
+   Which one is visible is pure CSS, not JS, and recompiles per theme bundle
+   exactly like every other token in this file: `theme.scss` declares
+   `$chart-light-display: block !default; $chart-dark-display: none
+   !default;` and rules `.chart-img-light { display: $chart-light-display;
+   }` / `.chart-img-dark { display: $chart-dark-display; }`;
+   `theme-dark.scss` simply flips both values (no `!default`, same pattern
+   as every other token there). This works because Quarto's dark-mode toggle
+   swaps between two *entirely separate* compiled stylesheets (inspect a
+   built page's `<head>`: `id="quarto-bootstrap"` appears twice, once
+   `data-mode="light"` once `data-mode="dark"`, and the inactive one is
+   disabled) rather than flipping a single runtime attribute — so a plain
+   SCSS variable recompiled per bundle is sufficient; there's no need for a
+   `[data-bs-theme="dark"]` selector trick.
+
+   File naming convention: `<name>-<lang>-<light|dark>.svg`, one R function
+   taking both `lang` and `mode` args and picking from a `palette <-
+   list(light = list(...), dark = list(...))` table (see any of the three
+   chart scripts' history for the pattern) — do this from the start rather
+   than retrofitting it, since it doubles every chart's file count (2 langs
+   × 2 modes = 4 files per chart).
+
+**When to use which:** `.site-figure` for Stata/PDF-derived static images
+that can't be regenerated (JMP maps, anything sourced from a screenshot or a
+non-reproducible export) — fixed light card, intentional. `.chart-figure`
+for anything built from scratch with R/ggplot2 in this repo — theme-aware,
+two variants, no fixed card. Don't use `.site-figure` for a new from-scratch
+chart going forward; it will visibly fail in dark mode the same way this one
+did.
 
 **To promote a paper, move the folder.** Working paper accepted at a journal:
 `git mv research/working-papers/x research/published/x`, update `subtitle` to the

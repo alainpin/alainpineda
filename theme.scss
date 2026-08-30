@@ -297,6 +297,38 @@ details.abstract > p { margin-top: 0.8rem; font-size: 0.94rem; }
   margin-top: 0.5rem;
 }
 
+// ---- Theme-aware chart figures (built from scratch for this site) ----
+// Unlike .site-figure above (Stata/PDF-derived images that bake in their own
+// white background and can't flip themes), a chart built here from R/ggplot2
+// ships two color variants and swaps between them, recompiled per theme
+// bundle exactly like every other token in this file. No fixed light card:
+// the frame uses $paper/$rule so it disappears into the page in both themes.
+$chart-light-display: block !default;
+$chart-dark-display: none !default;
+
+.chart-figure {
+  flex: 1 1 260px;
+  margin: 0;
+  background: $paper;
+  border: 1px solid $rule;
+  border-radius: 4px;
+  padding: 0.75rem;
+}
+.chart-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.chart-figure img.chart-img-light { display: $chart-light-display; }
+.chart-figure img.chart-img-dark { display: $chart-dark-display; }
+.chart-figure p:last-child {
+  font-family: $font-family-monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: $ink-soft;
+  margin-top: 0.5rem;
+}
+
 // ---- Plot hover tooltip (data.qmd charts) ----
 // Plot.tip defaults to `fill: var(--plot-background)` for its box and
 // `currentColor` for its text, which should already track the active theme.
