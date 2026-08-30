@@ -563,14 +563,35 @@ without being asked.
 - `images/profile.jpg` and `files/CV_Alain_Pineda.pdf` are the owner's real
   files now, not placeholders.
 - The job market paper (`files/social-insurance-without-a-job.pdf`) has landed.
-  **Its slides are deliberately not included** — the owner chose to omit them,
-  not a pending task — so the `Slides` row was removed from the `.paper-links`
-  block in both `research/working-papers/social-insurance-without-a-job/index.qmd`
-  and its `es/` counterpart. Do not re-add it without being asked.
+  **Slides were added 2026-08-30**, reversing the earlier "deliberately not
+  included" decision at the owner's explicit request. They are two
+  self-contained static HTML files (no build step, no JS toolchain — a single
+  file with inline CSS/JS and base64-embedded images, under `files/`):
+  `files/social-insurance-without-a-job-slides.html` (EN) and
+  `files/social-insurance-without-a-job-slides-es.html` (ES, full translation,
+  not just a language-switcher wrapper). Both reuse this site's actual
+  `theme.scss` tokens ($ink/$paper/$rule/$teal/$teal-deep/$ochre, Source
+  Serif 4 / IBM Plex) hand-copied as CSS custom properties inside the HTML
+  file, since a static file outside the Quarto render can't `@use` the SCSS
+  directly — if the site's token values in `theme.scss` ever change, these two
+  files need the same values pasted in by hand, they will not pick it up
+  automatically. Linked from `.paper-links` on both language versions of
+  `research/working-papers/social-insurance-without-a-job/index.qmd`, in the
+  paper → slides → replication order, plus one linking sentence above the
+  pills (not a new heading — kept inside the existing page structure). The
+  deck is a general-audience narrative walkthrough of the paper (13
+  full-viewport scroll-snap sections) that includes a didactic explainer of
+  the Rambachan & Roth (2023) breakdown-value sensitivity check, aimed at
+  readers learning the method, not just this paper's result. If asked to
+  update it, edit the source template in the owner's Claude scratchpad history
+  is gone by the next session — treat the two `files/*.html` as the only
+  source of truth and hand-edit them directly (they're plain HTML/CSS/JS, no
+  build step).
 - All `REEMPLAZAR` placeholders are filled in: the Google Scholar URL is set in
   `_quarto-en.yml`, `_quarto-es.yml`, `index.qmd`, and `es/index.qmd`. The
-  `Replication` row on the job market paper page was removed (both languages)
-  rather than filled in — there is no replication package.
+  `Replication` row on the job market paper page now points to a real Zenodo
+  record (`https://zenodo.org/records/22168219`) in both languages — the
+  earlier "no replication package" gap is closed.
 - **The repo (`alainpin/alainpineda`) is currently private.** When the Data
   page comes back (see "Add an interactive chart" above), it will link to this
   repo as the source of its CSVs, and that link 404s for a visitor until the

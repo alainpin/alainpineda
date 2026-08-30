@@ -51,8 +51,14 @@ the entitlement already existed and schools had long listed their students. What
 the social security number that formal hiring requires. How a benefit is
 delivered can matter more than whether it is contributory.
 
+A [slide version](../../../files/social-insurance-without-a-job-slides.html)
+of this paper walks through the same result for a general audience, including
+a plain-language explainer of the Rambachan and Roth (2023) sensitivity check
+used to test the identifying assumption.
+
 ::: {.paper-links}
 - [Paper (PDF)](../../../files/social-insurance-without-a-job.pdf)
+- [Slides](../../../files/social-insurance-without-a-job-slides.html){target="_blank"}
 - [Replication](https://zenodo.org/records/22168219)
 :::
 
