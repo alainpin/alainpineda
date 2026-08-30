@@ -92,6 +92,13 @@
     scroll-snap-type:y mandatory;
     overscroll-behavior:none;
   }
+  /* On phones, several slides run taller than one viewport (long copy +
+     chart + details). Mandatory snap fights that: proximity still snaps
+     cleanly between short slides but lets a tall one scroll freely instead
+     of re-snapping mid-read. */
+  @media (max-width:640px){
+    #deck{ scroll-snap-type:y proximity; }
+  }
   .slide{
     min-height:100svh;
     width:100%;
@@ -180,7 +187,15 @@
 
   .grid2{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:clamp(2rem,4vw,4rem); align-items:center; }
   .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; }
-  @media (max-width:880px){ .grid2{ grid-template-columns:1fr; } .grid3{ grid-template-columns:1fr; } }
+  @media (max-width:880px){
+    .grid2{ grid-template-columns:1fr; }
+    .grid3{ grid-template-columns:1fr; }
+    /* Grid items default to min-width:auto, so a wide child (e.g. a chart
+       floored at min-width for legibility) stretches the whole slide
+       instead of scrolling within its own box. Let items shrink so only
+       .chart-wrap scrolls. */
+    .grid2 > *, .grid3 > *{ min-width:0; }
+  }
 
   .card{
     background:var(--card); border:1px solid var(--line); border-radius:14px;
@@ -229,8 +244,12 @@
   .unit{ font-size:0.42em; color:var(--ink-soft); font-family:'Libre Franklin',sans-serif; font-weight:600; letter-spacing:0.01em; }
 
   ul.clean{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:0.55rem; }
-  ul.clean li{ display:flex; gap:0.7em; align-items:flex-start; }
-  ul.clean li::before{ content:"—"; color:var(--ochre); flex:none; }
+  /* Not display:flex on the <li>: a flex item wrapping bare text defaults
+     to a max-content minimum width, so long bullets refuse to wrap and
+     overflow the column on narrow screens. A plain block with an
+     absolutely-positioned marker wraps normally at any width. */
+  ul.clean li{ position:relative; padding-left:1.7em; }
+  ul.clean li::before{ content:"—"; color:var(--ochre); position:absolute; left:0; top:0; }
   .on-teal ul.clean li::before{ color:var(--panel-accent); }
 
   footer.credit{
@@ -248,8 +267,15 @@
   table.dtab .ns{ color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; }
 
   svg text{ font-family:'IBM Plex Mono', monospace; }
-  .chart-wrap{ width:100%; }
+  .chart-wrap{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
   .chart-wrap svg{ width:100%; height:auto; overflow:visible; }
+  /* Charts scale down with their column on narrow phones; below ~460px of
+     text a viewBox scale-down makes the 11px labels unreadable. Floor the
+     rendered width so labels stay legible and let the wrapper scroll
+     sideways instead of shrinking further. */
+  @media (max-width:640px){
+    .chart-wrap svg{ width:auto; min-width:460px; }
+  }
   .axis-lbl{ font-size:11px; fill:var(--ink-soft); }
   .on-teal .axis-lbl{ fill:var(--panel-fg-soft); }
 
