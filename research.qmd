@@ -69,11 +69,9 @@ publisher.
   Inter-American Development Bank, Gender and Diversity blog, January 2023.
   [Read](https://blogs.iadb.org/igualdad/es/lactancia-es-desarrollo/)
 
-- **Duración de la informalidad laboral en México.** Undergraduate thesis,
-  ITAM, 2017. Winner of the Premio Citibanamex de Economía 2017 and the
-  Premio Ex-ITAM 2018.
-  [Thesis (PDF)](files/tesis-duracion-informalidad-laboral.pdf) ·
-  [One-page summary, in Spanish (PDF)](files/tesis-duracion-informalidad-laboral-resumen.pdf)
+- **How Long Does an Informal Job Last in Mexico?** Undergraduate thesis,
+  ITAM, 2017.
+  [Read the summary](/policy/thesis-informality-duration/)
 
 <!-- Formato: **Titulo.** Publicacion, fecha, y un solo link de salida.
      Una linea por pieza, sin resumen. Si alguna vez una nota merece pagina
