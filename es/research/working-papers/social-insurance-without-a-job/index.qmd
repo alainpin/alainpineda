@@ -55,6 +55,7 @@ entrega un beneficio puede importar más que si es contributivo o no.
 
 ::: {.paper-links}
 - [Documento (PDF)](../../../../files/social-insurance-without-a-job.pdf)
+- [Replicación](https://zenodo.org/records/22168219)
 - [English version](/research/working-papers/social-insurance-without-a-job/)
 :::
 

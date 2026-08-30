@@ -53,6 +53,7 @@ delivered can matter more than whether it is contributory.
 
 ::: {.paper-links}
 - [Paper (PDF)](../../../files/social-insurance-without-a-job.pdf)
+- [Replication](https://zenodo.org/records/22168219)
 :::
 
 <details class="abstract">
