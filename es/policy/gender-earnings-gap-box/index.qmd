@@ -23,6 +23,14 @@ calcula sobre toda la población en edad de trabajar, estén o no ocupadas.
 Con base en esa descomposición, el Recuadro también analiza qué factores
 estatales se asocian con la brecha de ocupación.
 
+::: {.site-figure}
+![](../../../images/gender-gap-decomposition-es.svg)
+
+Descomposición de la brecha de género en ingresos laborales por componente,
+2005-2025. Puntos porcentuales del ingreso laboral masculino. Fuente: Banco
+de México con datos de INEGI.
+:::
+
 ### Cifras principales
 
 - La brecha de ingresos laborales totales fue de 53% en 2025: por cada peso
@@ -35,14 +43,21 @@ estatales se asocian con la brecha de ocupación.
 - El componente de remuneración por hora es el menor de los tres, aunque
   registró la mayor reducción relativa: de 15 puntos porcentuales en 2005 a
   9 en 2025.
-- La brecha total se redujo de 66% del ingreso masculino en 2005 a 53% en
-  2025. De esa reducción de 13 puntos porcentuales, el componente de
-  remuneración explicó 45% y el de ocupación 43%.
+- La brecha total se redujo de 66% del ingreso masculino en 2005 a 53% en 2025.
+  De esa reducción de 13 puntos porcentuales, el componente de remuneración
+  explicó 45% y el de ocupación 43%.
 - A nivel estatal, una mayor proporción de la población en pareja o en
   hogares con menores de 13 años se asocia con una brecha de ocupación
   mayor. Un mayor PIB per cápita estatal y una mayor proporción de la
   población con educación media superior completa se asocian con una
   brecha de ocupación menor.
+
+::: {.site-figure}
+![](../../../images/gender-gap-trends-es.svg)
+
+Tasa de ocupación, horas trabajadas a la semana y remuneración por hora, por
+género, 2005-2025. Fuente: Banco de México con datos de INEGI.
+:::
 
 ### Nota metodológica
 
@@ -53,5 +68,7 @@ posibles determinantes, no relaciones causales.
 
 ::: {.paper-links}
 - [Leer el recuadro completo (Banco de México)](https://www.banxico.org.mx/publicaciones-y-prensa/informes-trimestrales/recuadros/%7BF1730819-16B5-AAD5-B61D-420CD88F674C%7D.pdf)
+- [Datos: descomposición de la brecha (Banco de México)](https://www.banxico.org.mx/TablasWeb/informes-trimestrales/abril-junio-2026/1643F582-8D9F-4CED-907A-9B59FEE1DCFC.html)
+- [Datos: ocupación, horas y remuneración (Banco de México)](https://www.banxico.org.mx/TablasWeb/informes-trimestrales/abril-junio-2026/DFD653C4-B8C1-4519-9733-BE1BE97C8749.html)
 - [English version](/policy/gender-earnings-gap-box/)
 :::

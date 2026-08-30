@@ -200,9 +200,16 @@ Spanish tree.
 
 ### Policy: a subsection, not a section — deliberate
 
-There is **no `policy.qmd` and no `policy/` directory**. Policy pieces live as a
-hand-written markdown list at the bottom of `research.qmd` and `es/research.qmd`,
-under "Policy and other writing" / "Política pública y otros textos". Format:
+There is **no `policy.qmd`** — the section still lives inside `research.qmd`
+and `es/research.qmd`, not as its own top-level nav item. (A `policy/`
+*directory* does exist now, for the mini-pages described below; what's
+deliberately absent is a standalone Policy page/nav entry.) Policy pieces are
+a hand-written markdown list under "Policy and other writing" / "Política
+pública y otros textos". Since 2026-08-30 this section sits **above** "Other
+publications" / "Otras publicaciones" (it used to sit below it) — the owner
+asked to move it up "to give them more prominence," so keep it as the
+second-to-last section on the page, right after "Work in progress" and
+before "Other publications," in both languages. Format:
 
 ```markdown
 - **Title.** Publisher, *Series*, date. [PDF](url)
@@ -281,6 +288,47 @@ recipe, distinct from the personally-authored template above:
   (or a direct arithmetic restatement, like "47 cents for every peso" from a
   stated 53% gap) — never interpolated, estimated, or extended beyond what's
   printed in the box.
+
+**Charts on a sober Banxico-box page are fine, if they clear the same bar as
+the numbers above: exact published data, no Banxico branding.** Added
+2026-08-30 to `gender-earnings-gap-box/`: two static SVGs
+(`gender-gap-decomposition-{en,es}.svg`, `gender-gap-trends-{en,es}.svg`,
+recreating the box's Gráfica 3 and Gráfica 1) built the same way as the
+thesis chart (R/ggplot2 → `svglite`, `.site-figure` markup, hand-copied token
+hex values), but sourced from the box's own **linked data tables** rather
+than eyeballing the PDF's rendered chart. Banxico Quarterly Report PDFs embed
+a clickable-graphic convention (the box's own note says so: "dando clic sobre
+[las gráficas]... se puede obtener la información") — each graphic/table has
+a `/Annots` link annotation pointing to a `banxico.org.mx/TablasWeb/...html`
+page with the exact underlying series. Extract those with `pypdf`:
+```python
+import pypdf
+r = pypdf.PdfReader("recuadro.pdf")
+for i, page in enumerate(r.pages):
+    for a in (page.get("/Annots") or []):
+        obj = a.get_object()
+        if obj.get("/Subtype") == "/Link" and obj.get("/A", {}).get("/URI"):
+            print(i + 1, obj["/A"]["/URI"])
+```
+Then `WebFetch` the resulting URL to get the table itself. This is strictly
+better than reading numbers off the rendered chart (which is often lossy —
+Gráfica 1's line chart only labels its 2005/2025 endpoints, not the 20 years
+between): it gave the exact full 2005–2025 series for both charts, sourced
+straight from Banxico, with zero risk of misreading a pixel position as a
+data point. These `TablasWeb` URLs are also now linked directly from the
+page's `.paper-links` ("Datos: ..." / "Data: ...") per the owner's request —
+a natural complement to the "Read the full box" link, and something to do
+for any future sober-box page that has one of these embedded links. Do not
+extract or host the box's own rendered PNG/chart image — that would be
+Banxico's actual branded graphic, a different (and not yet confirmed) thing
+from a from-scratch recreation using the site's own chart style.
+
+A personally-authored page can get a chart too when the source data is a
+genuine comparison (see the thesis and, added the same day, the breastfeeding
+post's `breastfeeding-policy-coverage-{en,es}.svg` — a stacked-bar count of
+UNICEF-reviewed countries by policy coverage, built from country counts
+already stated in the post's own text, not from any external data-table
+link).
 
 **To promote a paper, move the folder.** Working paper accepted at a journal:
 `git mv research/working-papers/x research/published/x`, update `subtitle` to the
