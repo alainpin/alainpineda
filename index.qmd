@@ -33,6 +33,10 @@ degrees from ITAM.
 asks whether giving students health coverage untied to employment pushes young
 workers into informality. It does not. See [Research](research.qmd) for the rest.
 
+**Labor Market MX** recomputes the ENOE's headline labor indicators from
+microdata every quarter, validated against INEGI's own published bulletin.
+[See the data](data.qmd).
+
 ::: {.hero-motif}
 ```{=html}
 <svg viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true" focusable="false">

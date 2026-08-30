@@ -34,6 +34,10 @@ pregunta si darle cobertura médica a estudiantes, desligada de cualquier trabaj
 empuja a los jóvenes hacia la informalidad. No lo hace. En
 [Investigación](research.qmd) está el resto.
 
+**Mercado Laboral MX** recalcula los indicadores laborales de la ENOE desde
+microdatos cada trimestre, validados contra el boletín oficial de INEGI.
+[Ver los datos](data.qmd).
+
 ::: {.hero-motif}
 ```{=html}
 <svg viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true" focusable="false">
