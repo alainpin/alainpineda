@@ -178,25 +178,50 @@ cambiosPorCorte = (indicador, corte) => categoriasDeCorte(corte).map(cat => {
   };
 }).filter(d => d !== null)
 
-// Options for the "Sort by" selector on the Changes by group table. Default
-// mirrors the old fixed order (largest quarterly move, either direction,
-// first); the rest are the sorts a reader asked for -- latest value or
-// quarterly change, either direction.
-opcionesOrden = ({
-  movimiento: "Biggest quarterly move first",
-  valor_desc: "Latest value, high to low",
-  valor_asc: "Latest value, low to high",
-  deltaTrim_desc: "Quarterly change, high to low",
-  deltaTrim_asc: "Quarterly change, low to high"
-})
+// Sort state for the Changes by group table's clickable column headers --
+// clicking a header sorts by that column, sets a fresh column to
+// descending, and toggles a re-click between descending and ascending.
+// Defaults to the old fixed order's spirit (biggest quarterly increase
+// first) but as a real signed sort, since that's what a clickable header's
+// arrow can actually represent.
+mutable columnaOrden = "deltaTrim"
+mutable direccionOrden = "desc"
 
-ordenarFilas = (filas, orden) => {
+alternarOrden = columna => {
+  if (columnaOrden === columna) {
+    mutable direccionOrden = direccionOrden === "desc" ? "asc" : "desc";
+  } else {
+    mutable columnaOrden = columna;
+    mutable direccionOrden = "desc";
+  }
+}
+
+// Every header shows a faint double arrow when sortable but inactive, and
+// a bold single arrow matching the current direction when it's the active
+// sort column -- so the affordance is visible before a reader clicks
+// anything, not just after.
+flechaOrden = columna => columnaOrden === columna
+  ? html` <span class="data-table-sort-arrow">${direccionOrden === "desc" ? "▼" : "▲"}</span>`
+  : html` <span class="data-table-sort-arrow data-table-sort-arrow-inactive">⇅</span>`
+
+// Setting onclick as an attribute inside the html`` template (rather than
+// as a DOM property on the returned node) doesn't wire up as an event
+// listener in Quarto's ojs runtime -- it just stringifies the function into
+// the cell's text. Building the <th> node and assigning .onclick directly
+// is what actually works.
+celdaEncabezado = (etiqueta, columna) => {
+  const celda = html`<th class="data-table-sortable">${etiqueta}${flechaOrden(columna)}</th>`;
+  celda.onclick = () => alternarOrden(columna);
+  return celda;
+}
+
+ordenarFilas = filas => {
   const copia = [...filas];
-  if (orden === "valor_desc") return copia.sort((a, b) => b.valor - a.valor);
-  if (orden === "valor_asc") return copia.sort((a, b) => a.valor - b.valor);
-  if (orden === "deltaTrim_desc") return copia.sort((a, b) => (b.deltaTrim ?? -Infinity) - (a.deltaTrim ?? -Infinity));
-  if (orden === "deltaTrim_asc") return copia.sort((a, b) => (a.deltaTrim ?? Infinity) - (b.deltaTrim ?? Infinity));
-  return copia.sort((a, b) => Math.abs(b.deltaTrim ?? 0) - Math.abs(a.deltaTrim ?? 0));
+  const signo = direccionOrden === "desc" ? -1 : 1;
+  const centinela = direccionOrden === "desc" ? -Infinity : Infinity;
+  if (columnaOrden === "valor") return copia.sort((a, b) => signo * (a.valor - b.valor));
+  if (columnaOrden === "deltaAnual") return copia.sort((a, b) => signo * ((a.deltaAnual ?? centinela) - (b.deltaAnual ?? centinela)));
+  return copia.sort((a, b) => signo * ((a.deltaTrim ?? centinela) - (b.deltaTrim ?? centinela)));
 }
 
 // Every (indicator, cut, category) combination's change, filtered to only
@@ -303,7 +328,7 @@ html`<ul class="highlights-list">
 //| echo: false
 html`<table class="data-table">
 <thead><tr>
-  <th>Indicator</th><th>Latest</th><th>Change vs. prior quarter</th><th>Change vs. year earlier</th>
+  <th>Indicator</th><th>Latest</th><th>Quarterly change (t vs t-1)</th><th>Annual change (t vs t-4)</th>
 </tr></thead>
 <tbody>
 ${cambiosTrimestre.map(d => html`<tr>
@@ -324,7 +349,7 @@ Same quarter-over-quarter and year-over-year changes as above, broken down
 by the cuts INEGI doesn't publish on its own site — sex, age, education, and
 state. Each change shows the move in percentage points, and, in
 parentheses, the equivalent percent change relative to the prior period.
-Sort the rows below by latest value or by the size of the move.
+Click a column header below to sort by it; click again to reverse.
 
 ```{ojs}
 //| echo: false
@@ -344,25 +369,19 @@ viewof corte_sel = Inputs.select(Object.keys(cortes), {
 })
 ```
 
-```{ojs}
-//| echo: false
-viewof orden_sel = Inputs.select(Object.keys(opcionesOrden), {
-  value: "movimiento",
-  label: "Sort by",
-  format: d => opcionesOrden[d]
-})
-```
-
 ::: {.data-panel}
 
 ```{ojs}
 //| echo: false
 html`<table class="data-table">
 <thead><tr>
-  <th>${cortes[corte_sel]}</th><th>Latest</th><th>Change vs. prior quarter</th><th>Change vs. year earlier</th>
+  <th>${cortes[corte_sel]}</th>
+  ${celdaEncabezado("Latest", "valor")}
+  ${celdaEncabezado("Quarterly change (t vs t-1)", "deltaTrim")}
+  ${celdaEncabezado("Annual change (t vs t-4)", "deltaAnual")}
 </tr></thead>
 <tbody>
-${ordenarFilas(cambiosPorCorte(definicion_sel, corte_sel), orden_sel).map(d => html`<tr>
+${ordenarFilas(cambiosPorCorte(definicion_sel, corte_sel)).map(d => html`<tr>
   <td>${d.categoria}</td>
   <td class="data-table-num">${d.valor}%<span class="data-table-period">(${d.periodo})</span></td>
   <td class="data-table-num">${formatoDelta(d.deltaTrim, d.baseTrim)}</td>

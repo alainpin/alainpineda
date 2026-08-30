@@ -471,6 +471,22 @@ form[class^="oi-"] select {
   font-size: 0.85em;
   margin-left: 4px;
 }
+.data-table th.data-table-sortable {
+  cursor: pointer;
+  user-select: none;
+}
+.data-table th.data-table-sortable:hover {
+  color: $ink;
+}
+.data-table-sort-arrow {
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+}
+.data-table-sort-arrow-inactive {
+  color: $ink-soft;
+  opacity: 0.5;
+}
 // Only this page's change table breaks the site's usual no-good/no-bad
 // color rule, and only the arrow glyph carries it -- the number stays in
 // ordinary ink. Coloring the whole value (and bolding it) read as too loud

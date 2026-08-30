@@ -171,25 +171,51 @@ cambiosPorCorte = (indicador, corte) => categoriasDeCorte(corte).map(cat => {
   };
 }).filter(d => d !== null)
 
-// Opciones del selector "Ordenar por" en la tabla de Cambios por corte. El
-// valor por defecto reproduce el orden fijo anterior (mayor movimiento
-// trimestral, en cualquier dirección, primero); el resto son los órdenes
-// pedidos -- último dato o cambio trimestral, en cualquier dirección.
-opcionesOrden = ({
-  movimiento: "Mayor movimiento trimestral primero",
-  valor_desc: "Último dato, de mayor a menor",
-  valor_asc: "Último dato, de menor a mayor",
-  deltaTrim_desc: "Cambio trimestral, de mayor a menor",
-  deltaTrim_asc: "Cambio trimestral, de menor a mayor"
-})
+// Estado de orden para los encabezados de columna clicables de la tabla de
+// Cambios por corte -- hacer clic en un encabezado ordena por esa columna,
+// una columna nueva empieza en descendente, y un segundo clic sobre la
+// misma alterna entre descendente y ascendente. El valor por defecto sigue
+// el espíritu del orden fijo anterior (mayor aumento trimestral primero)
+// pero como un orden con signo real, que es lo que la flecha de un
+// encabezado clicable puede representar.
+mutable columnaOrden = "deltaTrim"
+mutable direccionOrden = "desc"
 
-ordenarFilas = (filas, orden) => {
+alternarOrden = columna => {
+  if (columnaOrden === columna) {
+    mutable direccionOrden = direccionOrden === "desc" ? "asc" : "desc";
+  } else {
+    mutable columnaOrden = columna;
+    mutable direccionOrden = "desc";
+  }
+}
+
+// Cada encabezado muestra una doble flecha tenue cuando es ordenable pero
+// no está activo, y una flecha sencilla marcada cuando es la columna de
+// orden activa -- así la posibilidad de ordenar se ve antes de hacer clic,
+// no solo después.
+flechaOrden = columna => columnaOrden === columna
+  ? html` <span class="data-table-sort-arrow">${direccionOrden === "desc" ? "▼" : "▲"}</span>`
+  : html` <span class="data-table-sort-arrow data-table-sort-arrow-inactive">⇅</span>`
+
+// Poner onclick como atributo dentro del template html`` (en vez de como
+// propiedad del nodo DOM devuelto) no se conecta como event listener en el
+// runtime ojs de Quarto -- solo convierte la función en texto dentro de la
+// celda. Construir el nodo <th> y asignar .onclick directamente es lo que
+// sí funciona.
+celdaEncabezado = (etiqueta, columna) => {
+  const celda = html`<th class="data-table-sortable">${etiqueta}${flechaOrden(columna)}</th>`;
+  celda.onclick = () => alternarOrden(columna);
+  return celda;
+}
+
+ordenarFilas = filas => {
   const copia = [...filas];
-  if (orden === "valor_desc") return copia.sort((a, b) => b.valor - a.valor);
-  if (orden === "valor_asc") return copia.sort((a, b) => a.valor - b.valor);
-  if (orden === "deltaTrim_desc") return copia.sort((a, b) => (b.deltaTrim ?? -Infinity) - (a.deltaTrim ?? -Infinity));
-  if (orden === "deltaTrim_asc") return copia.sort((a, b) => (a.deltaTrim ?? Infinity) - (b.deltaTrim ?? Infinity));
-  return copia.sort((a, b) => Math.abs(b.deltaTrim ?? 0) - Math.abs(a.deltaTrim ?? 0));
+  const signo = direccionOrden === "desc" ? -1 : 1;
+  const centinela = direccionOrden === "desc" ? -Infinity : Infinity;
+  if (columnaOrden === "valor") return copia.sort((a, b) => signo * (a.valor - b.valor));
+  if (columnaOrden === "deltaAnual") return copia.sort((a, b) => signo * ((a.deltaAnual ?? centinela) - (b.deltaAnual ?? centinela)));
+  return copia.sort((a, b) => signo * ((a.deltaTrim ?? centinela) - (b.deltaTrim ?? centinela)));
 }
 
 // El cambio de cada combinación (indicador, corte, categoría), filtrado a
@@ -298,7 +324,7 @@ html`<ul class="highlights-list">
 //| echo: false
 html`<table class="data-table">
 <thead><tr>
-  <th>Indicador</th><th>Último dato</th><th>Cambio vs. trimestre anterior</th><th>Cambio vs. mismo trimestre del año anterior</th>
+  <th>Indicador</th><th>Último dato</th><th>Cambio trimestral (t vs t-1)</th><th>Cambio anual (t vs t-4)</th>
 </tr></thead>
 <tbody>
 ${cambiosTrimestre.map(d => html`<tr>
@@ -319,7 +345,8 @@ Los mismos cambios trimestrales y anuales de arriba, desglosados por los
 cortes que INEGI no publica en su propio sitio — sexo, edad, escolaridad y
 entidad. Cada cambio muestra el movimiento en puntos porcentuales y, entre
 paréntesis, el cambio porcentual equivalente respecto al periodo anterior.
-Ordena las filas de abajo por último dato o por el tamaño del movimiento.
+Haz clic en un encabezado de columna para ordenar por él; haz clic de
+nuevo para invertir el orden.
 
 ```{ojs}
 //| echo: false
@@ -339,25 +366,19 @@ viewof corte_sel = Inputs.select(Object.keys(cortes), {
 })
 ```
 
-```{ojs}
-//| echo: false
-viewof orden_sel = Inputs.select(Object.keys(opcionesOrden), {
-  value: "movimiento",
-  label: "Ordenar por",
-  format: d => opcionesOrden[d]
-})
-```
-
 ::: {.data-panel}
 
 ```{ojs}
 //| echo: false
 html`<table class="data-table">
 <thead><tr>
-  <th>${cortes[corte_sel]}</th><th>Último dato</th><th>Cambio vs. trimestre anterior</th><th>Cambio vs. mismo trimestre del año anterior</th>
+  <th>${cortes[corte_sel]}</th>
+  ${celdaEncabezado("Último dato", "valor")}
+  ${celdaEncabezado("Cambio trimestral (t vs t-1)", "deltaTrim")}
+  ${celdaEncabezado("Cambio anual (t vs t-4)", "deltaAnual")}
 </tr></thead>
 <tbody>
-${ordenarFilas(cambiosPorCorte(definicion_sel, corte_sel), orden_sel).map(d => html`<tr>
+${ordenarFilas(cambiosPorCorte(definicion_sel, corte_sel)).map(d => html`<tr>
   <td>${d.categoria}</td>
   <td class="data-table-num">${d.valor}%<span class="data-table-period">(${d.periodo})</span></td>
   <td class="data-table-num">${formatoDelta(d.deltaTrim, d.baseTrim)}</td>
