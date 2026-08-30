@@ -168,6 +168,11 @@ coloresPrincipales = ({
   TIL1: "var(--clay)",
   TD: "var(--ink-soft)"
 })
+
+coloresEscalera = ({
+  TDAMPL: "var(--clay)",
+  SUBUTIL: "var(--ink-soft)"
+})
 ```
 
 ```{ojs}
@@ -212,7 +217,7 @@ html`<div class="indicator-grid indicator-grid-2">${indicadoresEscalera.map(codi
   <div class="indicator-meta">± ${(1.96 * ultimo.ee).toFixed(2)} pp · ${ultimo.anio}-T${ultimo.trimestre}</div>
   <div class="indicator-delta">${formatoDelta(deltaTrim)} trim. · ${formatoDelta(deltaAnual)} anual</div>
   <div class="indicator-desc">${def.texto}</div>`;
-  div.append(head, graficaSerie(serie, { width: 380, height: 190, marginLeft: 32, color: "var(--teal)" }));
+  div.append(head, graficaSerie(serie, { width: 380, height: 190, marginLeft: 32, color: coloresEscalera[codigo] }));
   return div;
 })}</div>`
 ```
