@@ -203,6 +203,12 @@ h3, .h3 { font-size: 1.12rem; margin-top: 1.8rem; }
   background: rgba($teal, 0.06);
   text-decoration: none;
 }
+// .paper-links only carries a top margin (it's normally the last thing in a
+// section); give prose that follows it some breathing room instead of
+// crowding the pills.
+.paper-links + p {
+  margin-top: 1.2rem;
+}
 
 // ---- Collapsible abstract ----
 details.abstract {

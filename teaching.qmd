@@ -23,6 +23,13 @@ audiences. Materials are public.
 - [Slides (ZIP)](files/storytelling-slides.zip)
 :::
 
+One assignment asked students for their favorite stories told in songs. This
+playlist is built from what they shared.
+
+```{=html}
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7aOPLpFKZtEEstCjodY4uk?utm_source=generator&theme=0&si=97af1c8c6b6e4f01" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+```
+
 ### Research Seminar
 
 ::: {.eyebrow}

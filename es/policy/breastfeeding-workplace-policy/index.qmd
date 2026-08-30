@@ -1,7 +1,7 @@
 ---
 title: "¿Por qué apoyar la lactancia en el trabajo?"
 subtitle: "Blog de Género y Diversidad del BID, agosto de 2022"
-description: "Solo el 37% de los bebés en América Latina y el Caribe reciben lactancia exclusiva a los seis meses, y las políticas laborales que podrían ayudar, permisos remunerados y salas de lactancia, no llegan a la mayoría de las madres trabajadoras."
+description: "Los descansos remunerados y las salas de lactancia existen en el papel en toda América Latina y el Caribe, pero el cumplimiento débil y la informalidad impiden que lleguen a la mayoría de las madres trabajadoras."
 author: "Alain Pineda"
 ---
 

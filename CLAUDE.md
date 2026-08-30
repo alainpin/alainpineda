@@ -789,7 +789,17 @@ logistics frame was removed (assignment previews, presentation logistics,
 sometimes a specific due date), and two things were cut for reasons beyond
 just being logistics — Clase 1's grading-percentage frame, and Clase 2's
 personal thank-you frame that linked the owner's own Spotify playlist and a
-private Google Sheet. Clase 14 also had its MAGA/4T political-narrative
+private Google Sheet. That cut still stands for the slide deck itself — don't
+reintroduce it there. Separately, on 2026-08-30 the owner asked to embed that
+same Spotify playlist (a different link surfaced from a different context: a
+class assignment asking students for their favorite stories told in songs,
+not the personal thank-you frame) directly on the public `teaching.qmd` /
+`es/teaching.qmd` page, under the Storytelling in Economics section, as a raw
+```{=html}<iframe>...``` block (Spotify's own embed code, `width="100%"`,
+`height="352"`). This is a deliberate, current decision, not a reversal of
+the slide-deck cut above — the two are different surfaces (the LaTeX deck vs.
+the site page) and different framings (a personal aside vs. a described class
+exercise). Clase 14 also had its MAGA/4T political-narrative
 comparison (three slides, `resources/maga.png` / `4t.png` / `pollev_4t.png`)
 removed at the owner's request, given his Banxico role — an institutional-
 neutrality call, not a factual correction, so don't second-guess it if asked
