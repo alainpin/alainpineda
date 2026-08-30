@@ -138,8 +138,41 @@ graficaMapa = (filas, etiquetaY, { width = 640, height = 440 } = {}) => {
   });
 }
 
+// Un trimestre genuinamente ausente de los datos (2020-T2, el hueco de la
+// ETOE -- ver periodos_validos() en el pipeline privado) no es lo mismo que
+// un trimestre que Plot sepa omitir: lineY/areaY solo conectan las filas
+// que existen, así que los trimestres vecinos quedan unidos por una
+// diagonal recta que se lee como una transición real, no como un dato
+// faltante. Insertar un punto explícito con valor indefinido en cualquier
+// hueco así, para que las marcas de Plot se corten ahí en vez de conectar
+// -- Plot trata un canal de posición indefinido/NaN como "inválido" e
+// interrumpe la línea/área en ese punto, el mismo mecanismo que
+// line().defined() en d3. Se hace spread de ...actual primero para que
+// categoria_origen (necesario para agrupar por categoría en la gráfica
+// multilínea) se propague; solo fecha/valor/ee se sobrescriben.
+conHuecos = serie => {
+  const resultado = [];
+  for (let i = 0; i < serie.length; i++) {
+    resultado.push(serie[i]);
+    if (i < serie.length - 1) {
+      const actual = serie[i], siguiente = serie[i + 1];
+      const meses = (siguiente.fecha.getFullYear() - actual.fecha.getFullYear()) * 12
+        + (siguiente.fecha.getMonth() - actual.fecha.getMonth());
+      if (meses > 3) {
+        resultado.push({
+          ...actual,
+          fecha: new Date(actual.fecha.getFullYear(), actual.fecha.getMonth() + 3, 1),
+          valor: undefined, ee: undefined
+        });
+      }
+    }
+  }
+  return resultado;
+}
+
 graficaSerieMultiple = (indicador, corte, categorias, etiquetaY, { width = 680, height = 320 } = {}) => {
   const serie = categorias.flatMap(cat => serieCategoria(indicador, corte, cat));
+  const serieConHuecos = categorias.flatMap(cat => conHuecos(serieCategoria(indicador, corte, cat)));
   const ultimoPorCategoria = categorias.map(cat => {
     const s = serieCategoria(indicador, corte, cat);
     return s[s.length - 1];
@@ -152,7 +185,7 @@ graficaSerieMultiple = (indicador, corte, categorias, etiquetaY, { width = 680, 
     color: { legend: true, domain: categorias, scheme: "tableau10" },
     marks: [
       Plot.gridY({ stroke: "var(--rule)" }),
-      Plot.lineY(serie, {
+      Plot.lineY(serieConHuecos, {
         x: "fecha", y: "valor", z: "categoria_origen",
         stroke: "categoria_origen", strokeWidth: 2,
         strokeLinejoin: "round", strokeLinecap: "round"
@@ -187,6 +220,7 @@ dominioAjustadoSerie = (serie, margenMinimo = 0.4) => {
 
 graficaSerieCorte = (serie, etiquetaY, { width = 680, height = 260, color = "var(--clay)" } = {}) => {
   const ultimo = serie[serie.length - 1];
+  const serieConHuecos = conHuecos(serie);
   return Plot.plot({
     width, height, marginLeft: 46, marginBottom: 32,
     style: { background: "transparent", fontFamily: "IBM Plex Sans, sans-serif", fontSize: "13px" },
@@ -194,11 +228,11 @@ graficaSerieCorte = (serie, etiquetaY, { width = 680, height = 260, color = "var
     x: { label: null },
     marks: [
       Plot.gridY({ stroke: "var(--rule)" }),
-      Plot.areaY(serie, {
+      Plot.areaY(serieConHuecos, {
         x: "fecha", y1: d => d.valor - 1.96 * d.ee, y2: d => d.valor + 1.96 * d.ee,
         fill: color, fillOpacity: 0.1
       }),
-      Plot.lineY(serie, {
+      Plot.lineY(serieConHuecos, {
         x: "fecha", y: "valor", stroke: color, strokeWidth: 2,
         strokeLinejoin: "round", strokeLinecap: "round"
       }),

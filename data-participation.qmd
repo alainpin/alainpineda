@@ -141,8 +141,40 @@ graficaMapa = (filas, { width = 640, height = 440 } = {}) => {
   });
 }
 
+// A quarter that's genuinely absent from the data (2020-Q2, the ETOE gap --
+// see periodos_validos() in the private pipeline) isn't the same as a
+// quarter Plot knows to skip: lineY/areaY just connect whatever rows exist,
+// so the neighboring quarters get bridged by a straight diagonal that reads
+// as a real transition rather than a missing one. Insert an explicit
+// undefined-value point at any such gap so Plot's marks break there instead
+// -- Plot treats an undefined/NaN position channel as "invalid" and
+// interrupts the line/area at that index, the same mechanism as d3's
+// line().defined(). Spread ...actual first so categoria_origen (needed for
+// per-category grouping in the multi-line chart) carries through; only
+// fecha/valor/ee are overwritten.
+conHuecos = serie => {
+  const resultado = [];
+  for (let i = 0; i < serie.length; i++) {
+    resultado.push(serie[i]);
+    if (i < serie.length - 1) {
+      const actual = serie[i], siguiente = serie[i + 1];
+      const meses = (siguiente.fecha.getFullYear() - actual.fecha.getFullYear()) * 12
+        + (siguiente.fecha.getMonth() - actual.fecha.getMonth());
+      if (meses > 3) {
+        resultado.push({
+          ...actual,
+          fecha: new Date(actual.fecha.getFullYear(), actual.fecha.getMonth() + 3, 1),
+          valor: undefined, ee: undefined
+        });
+      }
+    }
+  }
+  return resultado;
+}
+
 graficaSerieMultiple = (corte, categorias, { width = 680, height = 320 } = {}) => {
   const serie = categorias.flatMap(cat => serieCategoria(corte, cat));
+  const serieConHuecos = categorias.flatMap(cat => conHuecos(serieCategoria(corte, cat)));
   const ultimoPorCategoria = categorias.map(cat => {
     const s = serieCategoria(corte, cat);
     return s[s.length - 1];
@@ -155,7 +187,7 @@ graficaSerieMultiple = (corte, categorias, { width = 680, height = 320 } = {}) =
     color: { legend: true, domain: categorias, scheme: "tableau10" },
     marks: [
       Plot.gridY({ stroke: "var(--rule)" }),
-      Plot.lineY(serie, {
+      Plot.lineY(serieConHuecos, {
         x: "fecha", y: "valor", z: "categoria_origen",
         stroke: "categoria_origen", strokeWidth: 2,
         strokeLinejoin: "round", strokeLinecap: "round"
@@ -190,6 +222,7 @@ dominioAjustadoSerie = (serie, margenMinimo = 0.4) => {
 
 graficaSerieCorte = (serie, { width = 680, height = 260, color = "var(--teal)" } = {}) => {
   const ultimo = serie[serie.length - 1];
+  const serieConHuecos = conHuecos(serie);
   return Plot.plot({
     width, height, marginLeft: 46, marginBottom: 32,
     style: { background: "transparent", fontFamily: "IBM Plex Sans, sans-serif", fontSize: "13px" },
@@ -197,11 +230,11 @@ graficaSerieCorte = (serie, { width = 680, height = 260, color = "var(--teal)" }
     x: { label: null },
     marks: [
       Plot.gridY({ stroke: "var(--rule)" }),
-      Plot.areaY(serie, {
+      Plot.areaY(serieConHuecos, {
         x: "fecha", y1: d => d.valor - 1.96 * d.ee, y2: d => d.valor + 1.96 * d.ee,
         fill: color, fillOpacity: 0.1
       }),
-      Plot.lineY(serie, {
+      Plot.lineY(serieConHuecos, {
         x: "fecha", y: "valor", stroke: color, strokeWidth: 2,
         strokeLinejoin: "round", strokeLinecap: "round"
       }),
