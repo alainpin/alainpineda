@@ -259,7 +259,10 @@ downloading each quarter directly from INEGI, harmonizing field names and
 weights across the ENOE/ENOE-N/ENOE regime changes since 2005, and applying
 the survey's complex design (`survey::svydesign`, `ids = upm, strata =
 est_d_tri, weights = fac_tri`) — lives in a separate private R project, not
-in this site's repository. Every rate above is checked against INEGI's own
+in this site's repository. The shaded band on each chart, and the ± figure
+next to each headline number, is a 95% confidence interval (±1.96 standard
+errors) from that same design, not a simple margin of error. Every rate
+above is checked against INEGI's own
 published bulletin each quarter; the 2026-T2 check found a largest gap of
 0.30 percentage points, in critical employment conditions (TCCO), likely
 from a minimum-wage rebasing on INEGI's side rather than a computation

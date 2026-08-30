@@ -260,7 +260,10 @@ descarga directa de INEGI trimestre a trimestre, armonización de nombres de
 campo y ponderadores entre los regímenes ENOE/ENOE-N/ENOE desde 2005, y el
 diseño muestral complejo de la encuesta (`survey::svydesign`, `ids = upm,
 strata = est_d_tri, weights = fac_tri`) — vive en un proyecto de R privado
-aparte, no en este repositorio. Cada tasa de arriba está contrastada contra
+aparte, no en este repositorio. La banda sombreada de cada gráfica, y la
+cifra ± junto a cada dato principal, es un intervalo de 95% de confianza
+(±1.96 errores estándar) calculado con ese mismo diseño, no un margen de
+error simple. Cada tasa de arriba está contrastada contra
 el boletín oficial de INEGI cada trimestre; la validación de 2026-T2
 encontró una diferencia máxima de 0.30 puntos porcentuales en condiciones
 críticas de ocupación (TCCO), probablemente por un rebase del salario
