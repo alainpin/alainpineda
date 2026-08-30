@@ -70,6 +70,14 @@ definiciones = ({
   TCCO: {
     nombre: "Critical employment conditions",
     texto: "Share of employed people in precarious conditions: too few hours involuntarily, or long hours at below the legal minimum wage. Sensitive to minimum-wage changes — treat level shifts with caution, trend direction is more reliable."
+  },
+  TDAMPL: {
+    nombre: "Broader unemployment",
+    texto: "The unemployment rate, widened in both numerator and denominator to include people available to work who aren't actively searching (discouraged workers). Not a custom definition: it only combines categories ENOE already reports separately."
+  },
+  SUBUTIL: {
+    nombre: "Labor underutilization",
+    texto: "Same as broader unemployment, adding people who already have a job but work fewer hours than they'd like (underemployed). The broadest measure here of how much available labor is going unused."
   }
 })
 
@@ -120,7 +128,7 @@ dominioAjustado = (serie, margenMinimo = 0.4) => {
   return [min - margen, max + margen];
 }
 
-graficaSerie = (serie, { width = 780, height = 340, marginLeft = 42 } = {}) => {
+graficaSerie = (serie, { width = 780, height = 340, marginLeft = 42, color = "var(--teal)" } = {}) => {
   const ultimo = serie[serie.length - 1];
   return Plot.plot({
     width, height, marginLeft,
@@ -135,16 +143,16 @@ graficaSerie = (serie, { width = 780, height = 340, marginLeft = 42 } = {}) => {
         x: "fecha",
         y1: d => d.valor - 1.96 * d.ee,
         y2: d => d.valor + 1.96 * d.ee,
-        fill: "var(--teal)", fillOpacity: 0.12
+        fill: color, fillOpacity: 0.12
       }),
       Plot.lineY(serie, {
         x: "fecha", y: "valor",
-        stroke: "var(--teal)", strokeWidth: 2,
+        stroke: color, strokeWidth: 2,
         strokeLinejoin: "round", strokeLinecap: "round"
       }),
       Plot.dot(serie, {
         x: "fecha", y: "valor", r: 3.5,
-        fill: "var(--teal)", filter: d => d === ultimo
+        fill: color, filter: d => d === ultimo
       }),
       Plot.ruleY([0], { stroke: "currentColor", strokeOpacity: 0.15 }),
       Plot.tip(serie, Plot.pointerX({
@@ -154,6 +162,12 @@ graficaSerie = (serie, { width = 780, height = 340, marginLeft = 42 } = {}) => {
     ]
   });
 }
+
+coloresPrincipales = ({
+  TPEA: "var(--teal)",
+  TIL1: "var(--clay)",
+  TD: "var(--ink-soft)"
+})
 ```
 
 ```{ojs}
@@ -171,15 +185,16 @@ html`<div class="indicator-grid">${indicadoresPrincipales.map(codigo => {
   <div class="indicator-meta">± ${(1.96 * ultimo.ee).toFixed(2)} pp · ${ultimo.anio}-Q${ultimo.trimestre}</div>
   <div class="indicator-delta">${formatoDelta(deltaTrim)} q/q · ${formatoDelta(deltaAnual)} y/y</div>
   <div class="indicator-desc">${def.texto}</div>`;
-  div.append(head, graficaSerie(serie, { width: 250, height: 190, marginLeft: 32 }));
+  div.append(head, graficaSerie(serie, { width: 250, height: 190, marginLeft: 32, color: coloresPrincipales[codigo] }));
   return div;
 })}</div>`
 ```
 
 ### Other indicators
 
-Six more series, including the informality and informal-sector rates excluding
-agriculture.
+Eight more series, including the informality and informal-sector rates
+excluding agriculture, and a two-step ladder that widens unemployment to
+include discouraged and underemployed workers.
 
 ```{ojs}
 //| echo: false

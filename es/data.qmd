@@ -70,6 +70,14 @@ definiciones = ({
   TCCO: {
     nombre: "Condiciones críticas de ocupación",
     texto: "De cada 100 personas ocupadas, cuántas están en condiciones precarias: muy pocas horas de forma involuntaria, o muchas horas ganando menos del salario mínimo legal. Sensible a cambios en el salario mínimo — la tendencia es más confiable que el nivel."
+  },
+  TDAMPL: {
+    nombre: "Desocupación ampliada",
+    texto: "La tasa de desocupación, pero ampliando tanto el numerador como el denominador para incluir a quienes están disponibles para trabajar sin buscar activamente (desalentados). No es una definición propia: solo une categorías que la ENOE ya distingue por separado."
+  },
+  SUBUTIL: {
+    nombre: "Subutilización laboral",
+    texto: "Lo mismo que la desocupación ampliada, sumando además a quienes ya tienen empleo pero trabajan menos horas de las que quisieran (subocupados). La medida más amplia aquí de cuánta fuerza laboral disponible no se está aprovechando."
   }
 })
 
@@ -120,7 +128,7 @@ dominioAjustado = (serie, margenMinimo = 0.4) => {
   return [min - margen, max + margen];
 }
 
-graficaSerie = (serie, { width = 780, height = 340, marginLeft = 42 } = {}) => {
+graficaSerie = (serie, { width = 780, height = 340, marginLeft = 42, color = "var(--teal)" } = {}) => {
   const ultimo = serie[serie.length - 1];
   return Plot.plot({
     width, height, marginLeft,
@@ -135,16 +143,16 @@ graficaSerie = (serie, { width = 780, height = 340, marginLeft = 42 } = {}) => {
         x: "fecha",
         y1: d => d.valor - 1.96 * d.ee,
         y2: d => d.valor + 1.96 * d.ee,
-        fill: "var(--teal)", fillOpacity: 0.12
+        fill: color, fillOpacity: 0.12
       }),
       Plot.lineY(serie, {
         x: "fecha", y: "valor",
-        stroke: "var(--teal)", strokeWidth: 2,
+        stroke: color, strokeWidth: 2,
         strokeLinejoin: "round", strokeLinecap: "round"
       }),
       Plot.dot(serie, {
         x: "fecha", y: "valor", r: 3.5,
-        fill: "var(--teal)", filter: d => d === ultimo
+        fill: color, filter: d => d === ultimo
       }),
       Plot.ruleY([0], { stroke: "currentColor", strokeOpacity: 0.15 }),
       Plot.tip(serie, Plot.pointerX({
@@ -154,6 +162,12 @@ graficaSerie = (serie, { width = 780, height = 340, marginLeft = 42 } = {}) => {
     ]
   });
 }
+
+coloresPrincipales = ({
+  TPEA: "var(--teal)",
+  TIL1: "var(--clay)",
+  TD: "var(--ink-soft)"
+})
 ```
 
 ```{ojs}
@@ -171,15 +185,16 @@ html`<div class="indicator-grid">${indicadoresPrincipales.map(codigo => {
   <div class="indicator-meta">± ${(1.96 * ultimo.ee).toFixed(2)} pp · ${ultimo.anio}-T${ultimo.trimestre}</div>
   <div class="indicator-delta">${formatoDelta(deltaTrim)} trim. · ${formatoDelta(deltaAnual)} anual</div>
   <div class="indicator-desc">${def.texto}</div>`;
-  div.append(head, graficaSerie(serie, { width: 250, height: 190, marginLeft: 32 }));
+  div.append(head, graficaSerie(serie, { width: 250, height: 190, marginLeft: 32, color: coloresPrincipales[codigo] }));
   return div;
 })}</div>`
 ```
 
 ### Otros indicadores
 
-Seis series más, incluyendo las versiones de informalidad y sector informal
-sin sector agropecuario.
+Ocho series más, incluyendo las versiones de informalidad y sector informal
+sin sector agropecuario, y una escalera de dos escalones que amplía la
+desocupación para incluir a desalentados y subocupados.
 
 ```{ojs}
 //| echo: false

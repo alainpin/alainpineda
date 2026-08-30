@@ -48,6 +48,13 @@ $link-decoration: none;
 // does: theme-dark.scss redefines $teal before this file's rules re-run.
 :root {
   --teal: #{$teal};
+  // Second and third chart accents for small multiples that need each
+  // series visually distinct (e.g. the three headline cards on the Data
+  // page). $ochre is the only other non-semantic accent in the palette;
+  // ink-soft (a warm neutral, not a hue) rounds out a third without
+  // inventing a color outside the token set.
+  --clay: #{$ochre};
+  --ink-soft: #{$ink-soft};
   // Observable Plot's tip mark (chart hover tooltip) reads this for its box
   // background instead of a hardcoded white, specifically to support dark
   // mode. Unset, it falls back to white -- unreadable once the tip's text
