@@ -519,6 +519,18 @@ form[class^="oi-"] select {
   color: $ink-soft;
   opacity: 0.5;
 }
+// The "(t vs t-1)" / "(t vs t-4)" subtitle under a change-column header --
+// lowercase on purpose (the parent th's uppercase transform would otherwise
+// turn "t" into "T", reading as a variable name gone shouty), so it must
+// override text-transform explicitly rather than just inherit none.
+.data-table-header-sub {
+  display: block;
+  text-transform: none;
+  font-weight: 400;
+  font-size: 0.92em;
+  color: $ink-soft;
+  margin-top: 2px;
+}
 // Only this page's change table breaks the site's usual no-good/no-bad
 // color rule, and only the arrow glyph carries it -- the number stays in
 // ordinary ink. Coloring the whole value (and bolding it) read as too loud

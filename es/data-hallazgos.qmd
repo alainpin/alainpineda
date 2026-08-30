@@ -171,22 +171,37 @@ cambiosPorCorte = (indicador, corte) => categoriasDeCorte(corte).map(cat => {
   };
 }).filter(d => d !== null)
 
-// Estado de orden para los encabezados de columna clicables de la tabla de
-// Cambios por corte -- hacer clic en un encabezado ordena por esa columna,
-// una columna nueva empieza en descendente, y un segundo clic sobre la
-// misma alterna entre descendente y ascendente. El valor por defecto sigue
-// el espíritu del orden fijo anterior (mayor aumento trimestral primero)
-// pero como un orden con signo real, que es lo que la flecha de un
-// encabezado clicable puede representar.
-mutable columnaOrden = "deltaTrim"
-mutable direccionOrden = "desc"
+// Estado de orden para los encabezados de columna clicables de las dos
+// tablas -- cada tabla tiene su propio par columna/dirección independiente,
+// así que ordenar una no reordena la otra. Un clic en un encabezado ordena
+// por esa columna, una columna nueva empieza en descendente, y un segundo
+// clic sobre la misma alterna entre descendente y ascendente. Las columnas
+// de cambio ordenan por el cambio PORCENTUAL relativo (el delta dividido
+// entre el valor del periodo anterior), no por el delta crudo en puntos
+// porcentuales -- pp no es comparable entre filas con bases muy distintas
+// (un movimiento de 0.1 pp significa algo distinto sobre una tasa de 60%
+// que sobre una de 2%), así que ordenar por pp daría un orden que no
+// coincide con lo que dice el porcentaje entre paréntesis.
+mutable columnaOrdenTrim = "deltaTrim"
+mutable direccionOrdenTrim = "desc"
+mutable columnaOrdenCorte = "deltaTrim"
+mutable direccionOrdenCorte = "desc"
 
-alternarOrden = columna => {
-  if (columnaOrden === columna) {
-    mutable direccionOrden = direccionOrden === "desc" ? "asc" : "desc";
+alternarOrdenTrim = columna => {
+  if (columnaOrdenTrim === columna) {
+    mutable direccionOrdenTrim = direccionOrdenTrim === "desc" ? "asc" : "desc";
   } else {
-    mutable columnaOrden = columna;
-    mutable direccionOrden = "desc";
+    mutable columnaOrdenTrim = columna;
+    mutable direccionOrdenTrim = "desc";
+  }
+}
+
+alternarOrdenCorte = columna => {
+  if (columnaOrdenCorte === columna) {
+    mutable direccionOrdenCorte = direccionOrdenCorte === "desc" ? "asc" : "desc";
+  } else {
+    mutable columnaOrdenCorte = columna;
+    mutable direccionOrdenCorte = "desc";
   }
 }
 
@@ -194,28 +209,39 @@ alternarOrden = columna => {
 // no está activo, y una flecha sencilla marcada cuando es la columna de
 // orden activa -- así la posibilidad de ordenar se ve antes de hacer clic,
 // no solo después.
-flechaOrden = columna => columnaOrden === columna
-  ? html` <span class="data-table-sort-arrow">${direccionOrden === "desc" ? "▼" : "▲"}</span>`
+flechaOrden = (columnaActiva, columna, direccion) => columnaActiva === columna
+  ? html` <span class="data-table-sort-arrow">${direccion === "desc" ? "▼" : "▲"}</span>`
   : html` <span class="data-table-sort-arrow data-table-sort-arrow-inactive">⇅</span>`
 
 // Poner onclick como atributo dentro del template html`` (en vez de como
 // propiedad del nodo DOM devuelto) no se conecta como event listener en el
 // runtime ojs de Quarto -- solo convierte la función en texto dentro de la
 // celda. Construir el nodo <th> y asignar .onclick directamente es lo que
-// sí funciona.
-celdaEncabezado = (etiqueta, columna) => {
-  const celda = html`<th class="data-table-sortable">${etiqueta}${flechaOrden(columna)}</th>`;
-  celda.onclick = () => alternarOrden(columna);
+// sí funciona. subtitulo (ej. "(t vs t-1)") se muestra en su propia línea
+// debajo de la etiqueta cuando se da.
+celdaEncabezado = (etiqueta, subtitulo, columna, columnaActiva, direccion, alClick) => {
+  const flecha = flechaOrden(columnaActiva, columna, direccion);
+  const celda = subtitulo
+    ? html`<th class="data-table-sortable">${etiqueta}${flecha}<br><span class="data-table-header-sub">${subtitulo}</span></th>`
+    : html`<th class="data-table-sortable">${etiqueta}${flecha}</th>`;
+  celda.onclick = () => alClick(columna);
   return celda;
 }
 
-ordenarFilas = filas => {
+// El cambio porcentual relativo por el que se ordena: null cuando no hay
+// valor anterior con qué comparar (categoría nueva, o un valor de
+// exactamente cero, donde "cambio porcentual" no está definido) -- se
+// manda al final sin importar la dirección del orden, vía el centinela de
+// abajo, igual que un delta en pp faltante.
+cambioPct = (delta, base) => (delta != null && base != null && base !== 0) ? delta / base * 100 : null
+
+ordenarFilas = (filas, columnaActiva, direccion) => {
   const copia = [...filas];
-  const signo = direccionOrden === "desc" ? -1 : 1;
-  const centinela = direccionOrden === "desc" ? -Infinity : Infinity;
-  if (columnaOrden === "valor") return copia.sort((a, b) => signo * (a.valor - b.valor));
-  if (columnaOrden === "deltaAnual") return copia.sort((a, b) => signo * ((a.deltaAnual ?? centinela) - (b.deltaAnual ?? centinela)));
-  return copia.sort((a, b) => signo * ((a.deltaTrim ?? centinela) - (b.deltaTrim ?? centinela)));
+  const signo = direccion === "desc" ? -1 : 1;
+  const centinela = direccion === "desc" ? -Infinity : Infinity;
+  if (columnaActiva === "valor") return copia.sort((a, b) => signo * (a.valor - b.valor));
+  if (columnaActiva === "deltaAnual") return copia.sort((a, b) => signo * ((cambioPct(a.deltaAnual, a.baseAnual) ?? centinela) - (cambioPct(b.deltaAnual, b.baseAnual) ?? centinela)));
+  return copia.sort((a, b) => signo * ((cambioPct(a.deltaTrim, a.baseTrim) ?? centinela) - (cambioPct(b.deltaTrim, b.baseTrim) ?? centinela)));
 }
 
 // El cambio de cada combinación (indicador, corte, categoría), filtrado a
@@ -318,16 +344,25 @@ html`<ul class="highlights-list">
 
 ### Cambios del trimestre
 
+Haz clic en un encabezado de columna para ordenar por él — las columnas de
+cambio ordenan por el cambio porcentual (el número entre paréntesis), no
+por el movimiento crudo en puntos porcentuales, porque pp no es comparable
+entre indicadores que están sobre bases muy distintas. Haz clic de nuevo
+para invertir el orden.
+
 ::: {.data-panel}
 
 ```{ojs}
 //| echo: false
 html`<table class="data-table">
 <thead><tr>
-  <th>Indicador</th><th>Último dato</th><th>Cambio trimestral (t vs t-1)</th><th>Cambio anual (t vs t-4)</th>
+  <th>Indicador</th>
+  ${celdaEncabezado("Último dato", null, "valor", columnaOrdenTrim, direccionOrdenTrim, alternarOrdenTrim)}
+  ${celdaEncabezado("Cambio trimestral", "(t vs t-1)", "deltaTrim", columnaOrdenTrim, direccionOrdenTrim, alternarOrdenTrim)}
+  ${celdaEncabezado("Cambio anual", "(t vs t-4)", "deltaAnual", columnaOrdenTrim, direccionOrdenTrim, alternarOrdenTrim)}
 </tr></thead>
 <tbody>
-${cambiosTrimestre.map(d => html`<tr>
+${ordenarFilas(cambiosTrimestre, columnaOrdenTrim, direccionOrdenTrim).map(d => html`<tr>
   <td>${d.nombre}</td>
   <td class="data-table-num">${d.valor}%<span class="data-table-period">(${d.periodo})</span></td>
   <td class="data-table-num">${formatoDelta(d.deltaTrim, d.baseTrim)}</td>
@@ -345,8 +380,9 @@ Los mismos cambios trimestrales y anuales de arriba, desglosados por los
 cortes que INEGI no publica en su propio sitio — sexo, edad, escolaridad y
 entidad. Cada cambio muestra el movimiento en puntos porcentuales y, entre
 paréntesis, el cambio porcentual equivalente respecto al periodo anterior.
-Haz clic en un encabezado de columna para ordenar por él; haz clic de
-nuevo para invertir el orden.
+Haz clic en un encabezado de columna para ordenar por él — igual que en la
+tabla de arriba, las columnas de cambio ordenan por ese porcentaje, no por
+el movimiento en pp. Haz clic de nuevo para invertir el orden.
 
 ```{ojs}
 //| echo: false
@@ -373,12 +409,12 @@ viewof corte_sel = Inputs.select(Object.keys(cortes), {
 html`<table class="data-table">
 <thead><tr>
   <th>${cortes[corte_sel]}</th>
-  ${celdaEncabezado("Último dato", "valor")}
-  ${celdaEncabezado("Cambio trimestral (t vs t-1)", "deltaTrim")}
-  ${celdaEncabezado("Cambio anual (t vs t-4)", "deltaAnual")}
+  ${celdaEncabezado("Último dato", null, "valor", columnaOrdenCorte, direccionOrdenCorte, alternarOrdenCorte)}
+  ${celdaEncabezado("Cambio trimestral", "(t vs t-1)", "deltaTrim", columnaOrdenCorte, direccionOrdenCorte, alternarOrdenCorte)}
+  ${celdaEncabezado("Cambio anual", "(t vs t-4)", "deltaAnual", columnaOrdenCorte, direccionOrdenCorte, alternarOrdenCorte)}
 </tr></thead>
 <tbody>
-${ordenarFilas(cambiosPorCorte(definicion_sel, corte_sel)).map(d => html`<tr>
+${ordenarFilas(cambiosPorCorte(definicion_sel, corte_sel), columnaOrdenCorte, direccionOrdenCorte).map(d => html`<tr>
   <td>${d.categoria}</td>
   <td class="data-table-num">${d.valor}%<span class="data-table-period">(${d.periodo})</span></td>
   <td class="data-table-num">${formatoDelta(d.deltaTrim, d.baseTrim)}</td>

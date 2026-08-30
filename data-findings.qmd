@@ -178,21 +178,36 @@ cambiosPorCorte = (indicador, corte) => categoriasDeCorte(corte).map(cat => {
   };
 }).filter(d => d !== null)
 
-// Sort state for the Changes by group table's clickable column headers --
-// clicking a header sorts by that column, sets a fresh column to
-// descending, and toggles a re-click between descending and ascending.
-// Defaults to the old fixed order's spirit (biggest quarterly increase
-// first) but as a real signed sort, since that's what a clickable header's
-// arrow can actually represent.
-mutable columnaOrden = "deltaTrim"
-mutable direccionOrden = "desc"
+// Sort state for both tables' clickable column headers -- each table gets
+// its own independent column/direction pair, so sorting one doesn't
+// resort the other. Clicking a header sorts by that column, a fresh
+// column starts descending, and a second click on the active column
+// toggles descending/ascending. The change columns sort by the relative
+// PERCENT change (delta divided by the prior period's own value), not the
+// raw percentage-point delta -- pp isn't comparable across rows with very
+// different bases (a 0.1 pp move means something different for a 60% rate
+// than a 2% one), so sorting on it would rank rows in an order that
+// doesn't match what the parenthetical percent figure actually says.
+mutable columnaOrdenTrim = "deltaTrim"
+mutable direccionOrdenTrim = "desc"
+mutable columnaOrdenCorte = "deltaTrim"
+mutable direccionOrdenCorte = "desc"
 
-alternarOrden = columna => {
-  if (columnaOrden === columna) {
-    mutable direccionOrden = direccionOrden === "desc" ? "asc" : "desc";
+alternarOrdenTrim = columna => {
+  if (columnaOrdenTrim === columna) {
+    mutable direccionOrdenTrim = direccionOrdenTrim === "desc" ? "asc" : "desc";
   } else {
-    mutable columnaOrden = columna;
-    mutable direccionOrden = "desc";
+    mutable columnaOrdenTrim = columna;
+    mutable direccionOrdenTrim = "desc";
+  }
+}
+
+alternarOrdenCorte = columna => {
+  if (columnaOrdenCorte === columna) {
+    mutable direccionOrdenCorte = direccionOrdenCorte === "desc" ? "asc" : "desc";
+  } else {
+    mutable columnaOrdenCorte = columna;
+    mutable direccionOrdenCorte = "desc";
   }
 }
 
@@ -200,28 +215,39 @@ alternarOrden = columna => {
 // a bold single arrow matching the current direction when it's the active
 // sort column -- so the affordance is visible before a reader clicks
 // anything, not just after.
-flechaOrden = columna => columnaOrden === columna
-  ? html` <span class="data-table-sort-arrow">${direccionOrden === "desc" ? "▼" : "▲"}</span>`
+flechaOrden = (columnaActiva, columna, direccion) => columnaActiva === columna
+  ? html` <span class="data-table-sort-arrow">${direccion === "desc" ? "▼" : "▲"}</span>`
   : html` <span class="data-table-sort-arrow data-table-sort-arrow-inactive">⇅</span>`
 
 // Setting onclick as an attribute inside the html`` template (rather than
 // as a DOM property on the returned node) doesn't wire up as an event
 // listener in Quarto's ojs runtime -- it just stringifies the function into
 // the cell's text. Building the <th> node and assigning .onclick directly
-// is what actually works.
-celdaEncabezado = (etiqueta, columna) => {
-  const celda = html`<th class="data-table-sortable">${etiqueta}${flechaOrden(columna)}</th>`;
-  celda.onclick = () => alternarOrden(columna);
+// is what actually works. subtitulo (e.g. "(t vs t-1)") renders on its own
+// line below the label when given.
+celdaEncabezado = (etiqueta, subtitulo, columna, columnaActiva, direccion, alClick) => {
+  const flecha = flechaOrden(columnaActiva, columna, direccion);
+  const celda = subtitulo
+    ? html`<th class="data-table-sortable">${etiqueta}${flecha}<br><span class="data-table-header-sub">${subtitulo}</span></th>`
+    : html`<th class="data-table-sortable">${etiqueta}${flecha}</th>`;
+  celda.onclick = () => alClick(columna);
   return celda;
 }
 
-ordenarFilas = filas => {
+// The relative percent change this sorts by: null when there's no prior
+// value to compare against (new category, or a value of exactly zero,
+// where "percent change" is undefined) -- pushed to the bottom regardless
+// of sort direction via the sentinel below, same as a missing pp delta
+// would be.
+cambioPct = (delta, base) => (delta != null && base != null && base !== 0) ? delta / base * 100 : null
+
+ordenarFilas = (filas, columnaActiva, direccion) => {
   const copia = [...filas];
-  const signo = direccionOrden === "desc" ? -1 : 1;
-  const centinela = direccionOrden === "desc" ? -Infinity : Infinity;
-  if (columnaOrden === "valor") return copia.sort((a, b) => signo * (a.valor - b.valor));
-  if (columnaOrden === "deltaAnual") return copia.sort((a, b) => signo * ((a.deltaAnual ?? centinela) - (b.deltaAnual ?? centinela)));
-  return copia.sort((a, b) => signo * ((a.deltaTrim ?? centinela) - (b.deltaTrim ?? centinela)));
+  const signo = direccion === "desc" ? -1 : 1;
+  const centinela = direccion === "desc" ? -Infinity : Infinity;
+  if (columnaActiva === "valor") return copia.sort((a, b) => signo * (a.valor - b.valor));
+  if (columnaActiva === "deltaAnual") return copia.sort((a, b) => signo * ((cambioPct(a.deltaAnual, a.baseAnual) ?? centinela) - (cambioPct(b.deltaAnual, b.baseAnual) ?? centinela)));
+  return copia.sort((a, b) => signo * ((cambioPct(a.deltaTrim, a.baseTrim) ?? centinela) - (cambioPct(b.deltaTrim, b.baseTrim) ?? centinela)));
 }
 
 // Every (indicator, cut, category) combination's change, filtered to only
@@ -322,16 +348,24 @@ html`<ul class="highlights-list">
 
 ### Quarter-over-quarter changes
 
+Click a column header to sort by it — the change columns sort by the
+percent change (the figure in parentheses), not the raw percentage-point
+move, since pp isn't comparable across indicators sitting on very
+different bases. Click again to reverse.
+
 ::: {.data-panel}
 
 ```{ojs}
 //| echo: false
 html`<table class="data-table">
 <thead><tr>
-  <th>Indicator</th><th>Latest</th><th>Quarterly change (t vs t-1)</th><th>Annual change (t vs t-4)</th>
+  <th>Indicator</th>
+  ${celdaEncabezado("Latest", null, "valor", columnaOrdenTrim, direccionOrdenTrim, alternarOrdenTrim)}
+  ${celdaEncabezado("Quarterly change", "(t vs t-1)", "deltaTrim", columnaOrdenTrim, direccionOrdenTrim, alternarOrdenTrim)}
+  ${celdaEncabezado("Annual change", "(t vs t-4)", "deltaAnual", columnaOrdenTrim, direccionOrdenTrim, alternarOrdenTrim)}
 </tr></thead>
 <tbody>
-${cambiosTrimestre.map(d => html`<tr>
+${ordenarFilas(cambiosTrimestre, columnaOrdenTrim, direccionOrdenTrim).map(d => html`<tr>
   <td>${d.nombre}</td>
   <td class="data-table-num">${d.valor}%<span class="data-table-period">(${d.periodo})</span></td>
   <td class="data-table-num">${formatoDelta(d.deltaTrim, d.baseTrim)}</td>
@@ -349,7 +383,9 @@ Same quarter-over-quarter and year-over-year changes as above, broken down
 by the cuts INEGI doesn't publish on its own site — sex, age, education, and
 state. Each change shows the move in percentage points, and, in
 parentheses, the equivalent percent change relative to the prior period.
-Click a column header below to sort by it; click again to reverse.
+Click a column header below to sort by it — like the table above, the
+change columns sort by that percent figure, not the pp move. Click again
+to reverse.
 
 ```{ojs}
 //| echo: false
@@ -376,12 +412,12 @@ viewof corte_sel = Inputs.select(Object.keys(cortes), {
 html`<table class="data-table">
 <thead><tr>
   <th>${cortes[corte_sel]}</th>
-  ${celdaEncabezado("Latest", "valor")}
-  ${celdaEncabezado("Quarterly change (t vs t-1)", "deltaTrim")}
-  ${celdaEncabezado("Annual change (t vs t-4)", "deltaAnual")}
+  ${celdaEncabezado("Latest", null, "valor", columnaOrdenCorte, direccionOrdenCorte, alternarOrdenCorte)}
+  ${celdaEncabezado("Quarterly change", "(t vs t-1)", "deltaTrim", columnaOrdenCorte, direccionOrdenCorte, alternarOrdenCorte)}
+  ${celdaEncabezado("Annual change", "(t vs t-4)", "deltaAnual", columnaOrdenCorte, direccionOrdenCorte, alternarOrdenCorte)}
 </tr></thead>
 <tbody>
-${ordenarFilas(cambiosPorCorte(definicion_sel, corte_sel)).map(d => html`<tr>
+${ordenarFilas(cambiosPorCorte(definicion_sel, corte_sel), columnaOrdenCorte, direccionOrdenCorte).map(d => html`<tr>
   <td>${d.categoria}</td>
   <td class="data-table-num">${d.valor}%<span class="data-table-period">(${d.periodo})</span></td>
   <td class="data-table-num">${formatoDelta(d.deltaTrim, d.baseTrim)}</td>

@@ -1,10 +1,30 @@
 <script>
 // The navbar's ES/EN switcher is defined once per profile in _quarto-en.yml
 // and _quarto-es.yml, always pointing at the other language's homepage
-// (href: "/es/" or "/"). Since every EN page has an ES counterpart at the
-// same slug (see CLAUDE.md section 4), rewrite that link at load time to the
+// (href: "/es/" or "/"). Since most pages share an identical slug across
+// languages (see CLAUDE.md section 4), rewrite that link at load time to the
 // equivalent page instead: strip or add the leading "/es" path segment.
 //
+// The Labor Market MX data pages are a deliberate exception: their Spanish
+// slugs are real Spanish words (data-participacion, not data-participation),
+// which reads far better for the Spanish audience than an English word under
+// /es/ -- but that breaks the same-slug assumption above. MAPA_SLUGS_ESPECIALES
+// is the fix: any page whose EN and ES slugs differ needs one entry here (in
+// either direction, matched automatically both ways), or a reader on that
+// page hits a 404 when they switch languages -- exactly what happened on
+// data-findings.qmd <-> es/data-hallazgos.qmd (and, it turned out, on
+// data-participation/informality/unemployment too) before this map existed.
+var MAPA_SLUGS_ESPECIALES = {
+  "/data-participation": "/es/data-participacion",
+  "/data-informality": "/es/data-informalidad",
+  "/data-unemployment": "/es/data-desocupacion",
+  "/data-findings": "/es/data-hallazgos"
+};
+var MAPA_INVERSO = {};
+for (var clave in MAPA_SLUGS_ESPECIALES) {
+  MAPA_INVERSO[MAPA_SLUGS_ESPECIALES[clave]] = clave;
+}
+
 // Matched by visible text ("ES"/"EN"), not aria-label: the navbar YAML sets
 // `aria-label:` on that item, but Quarto's navbar renderer doesn't emit it
 // on right-side text nav-links -- the attribute never reaches the HTML, so a
@@ -12,12 +32,19 @@
 // back to its configured default (always the other language's homepage).
 (function () {
   var path = window.location.pathname;
-  var target;
-  if (path === "/es" || path.indexOf("/es/") === 0) {
-    target = path.replace(/^\/es/, "") || "/";
-  } else {
-    target = path === "/" ? "/es/" : "/es" + path;
+  var tieneHtml = /\.html$/.test(path);
+  var pathBase = path.replace(/\.html$/, "");
+
+  var targetBase = MAPA_SLUGS_ESPECIALES[pathBase] || MAPA_INVERSO[pathBase];
+  if (!targetBase) {
+    if (pathBase === "/es" || pathBase.indexOf("/es/") === 0) {
+      targetBase = pathBase.replace(/^\/es/, "") || "/";
+    } else {
+      targetBase = pathBase === "/" ? "/es/" : "/es" + pathBase;
+    }
   }
+  var target = (tieneHtml && targetBase.slice(-1) !== "/") ? targetBase + ".html" : targetBase;
+
   var spans = document.querySelectorAll(".menu-text");
   for (var i = 0; i < spans.length; i++) {
     var t = spans[i].textContent.trim();

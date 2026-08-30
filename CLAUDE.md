@@ -145,6 +145,19 @@ _site/es/         Spanish site at https://www.alainpineda.com/es/
 2. **Every EN page has an ES counterpart at the same slug**, and vice versa. The
    slugs are identical across languages (`gender-earnings-gap-box` in both). Only
    the prose is translated. This is what makes the language switch predictable.
+   **The four Labor Market MX data pages are the one deliberate exception** —
+   their Spanish slugs are real Spanish words (`data-participacion`, not
+   `data-participation`; also `data-informalidad`, `data-desocupacion`,
+   `data-hallazgos`), which reads far better for the Spanish audience than an
+   English word sitting under `/es/`. `js/lang-toggle.html`'s
+   `MAPA_SLUGS_ESPECIALES` is what makes the ES/EN navbar switcher still work
+   for these four — its default logic just prepends/strips `/es`, which 404s
+   the moment a slug diverges. This broke silently on all four pages until
+   2026-08-30 (caught only when the owner tried the switcher on the new
+   Findings page). **Any future page whose EN and ES slugs differ needs a new
+   entry in that map**, in either direction — don't introduce a diverging slug
+   pair without adding one, and don't "fix" this by renaming the Spanish slug
+   to match English; the translated slug is the point.
 3. **The language switcher uses absolute paths** (`/` and `/es/`), not relative
    ones, because Quarto navbar hrefs would otherwise point at files outside the
    active profile's render list and error.
@@ -704,10 +717,49 @@ publish an English-only site, silently dropping `/es/`.
 
 ## 11. Verification checklist before saying a change is done
 
+**HIGH PRIORITY, standing rule, effective 2026-08-30: every push to `main`
+gets a minucious (thorough, not spot-check) verification pass, in a real
+browser, before it's reported done — not just `./build.sh` succeeding.**
+The owner asked for this explicitly after the ES/EN switcher 404ed on the
+new Findings page (and, it turned out, silently on three other pages too —
+see section 4's Labor Market MX slug exception). Three things are
+mandatory on every push that touches a page, not just the page(s) changed:
+
+1. **Language switcher, from the actual page(s) touched, not just from
+   home.** Home always round-trips because its slug happens to match — that
+   proved nothing about the pages that broke. Click ES/EN from each changed
+   page and confirm it lands on the real counterpart (not a 404, not the
+   homepage as a silent fallback). Any page whose EN/ES slugs diverge needs
+   an entry in `js/lang-toggle.html`'s `MAPA_SLUGS_ESPECIALES` (see section
+   4) — check that map is current whenever a page's slug changes or a new
+   page is added.
+2. **Translation completeness, both directions.** Open both language
+   versions of every touched page and read them — not just render without
+   erroring. Confirm no leftover English string on the ES page (or vice
+   versa), no stale/copy-pasted figure that should have been translated,
+   and that OJS-computed text (dynamic strings built in `{ojs}` cells, not
+   just static Markdown) is actually localized, not just the surrounding
+   prose.
+3. **Mobile viewport**, on every touched page, in both languages. Resize
+   the browser (or use the mobile emulation) to a phone width and confirm
+   no horizontal overflow, no clipped table/chart, no navbar breakage. This
+   was already standing guidance for layout changes (see
+   `feedback_website_mobile_check` in memory) — this directive makes it
+   apply to *any* pushed change, not only ones that look layout-related.
+
+This is not optional polish — treat a push that skips these three checks as
+incomplete, the same way an unrun `./build.sh` would be.
+
 - [ ] `./build.sh` completes without errors
 - [ ] `_site/index.html` and `_site/es/index.html` both exist
 - [ ] The ES navbar shows Spanish labels, the EN navbar English ones
-- [ ] The language switcher round-trips: EN home → ES home → EN home
+- [ ] The language switcher round-trips from **every page touched this
+      change**, not only from home — EN page → ES page → EN page, landing on
+      the true counterpart each time
+- [ ] Every changed page's translation is read end-to-end in both languages,
+      including any OJS-generated text, not just skimmed for render errors
+- [ ] Every changed page is checked at a phone viewport width, in both
+      languages
 - [ ] Every new page appears in the right listing, in the right position
 - [ ] The charts on `/data/` and `/es/data/` both actually render (an empty chart
       usually means a wrong `FileAttachment` path)
