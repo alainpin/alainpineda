@@ -67,4 +67,5 @@ publicación original.
 - **Duración de la informalidad laboral en México.** Tesis de licenciatura,
   ITAM, 2017. Ganadora del Premio Citibanamex de Economía 2017 y del Premio
   Ex-ITAM 2018.
-  [PDF](../files/tesis-duracion-informalidad-laboral.pdf)
+  [Tesis (PDF)](../files/tesis-duracion-informalidad-laboral.pdf) ·
+  [Resumen de una página (PDF)](../files/tesis-duracion-informalidad-laboral-resumen.pdf)
