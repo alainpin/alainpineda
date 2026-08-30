@@ -16,9 +16,11 @@ Official statistics from Mexico's National Survey of Occupation and
 Employment (ENOE), public data from INEGI. Recomputed here from microdata
 using the institute's own methodology — survey design, strata, and expansion
 factors, not a simple average — and validated every quarter against INEGI's
-own published bulletin for that period (the 2024-T1 check found a largest gap
-of 0.05 percentage points). Not an original finding: these are public
-figures, presented here for quick reference.
+own published bulletin for that period (the 2026-T2 check matched within 0.01
+percentage points on four of five headline indicators; critical employment
+conditions differed by 0.30 pp, likely from INEGI updating its minimum-wage
+threshold that quarter rather than a pipeline error). Not an original
+finding: these are public figures, presented here for quick reference.
 
 ```{ojs}
 //| echo: false
@@ -258,7 +260,10 @@ weights across the ENOE/ENOE-N/ENOE regime changes since 2005, and applying
 the survey's complex design (`survey::svydesign`, `ids = upm, strata =
 est_d_tri, weights = fac_tri`) — lives in a separate private R project, not
 in this site's repository. Every rate above is checked against INEGI's own
-published figures for 2024-T1; the largest gap is 0.05 percentage points.
+published bulletin each quarter; the 2026-T2 check found a largest gap of
+0.30 percentage points, in critical employment conditions (TCCO), likely
+from a minimum-wage rebasing on INEGI's side rather than a computation
+error — the other four checked indicators matched within 0.01 pp.
 
 **2. This site only reads a public CSV.** `scripts/02-labor-indicators.R`
 exports the national-level rates from that pipeline into

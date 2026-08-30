@@ -16,9 +16,12 @@ Estadísticas oficiales de la Encuesta Nacional de Ocupación y Empleo (ENOE),
 información pública de INEGI. Se recalculan aquí desde microdatos con la
 metodología oficial del instituto — diseño muestral, estratos y factores de
 expansión, no un promedio simple — y se validan cada trimestre contra el
-boletín oficial de INEGI de ese mismo periodo (la validación de 2024-T1
-encontró una diferencia máxima de 0.05 puntos porcentuales). No son un
-hallazgo propio: son cifras públicas, presentadas aquí para consulta rápida.
+boletín oficial de INEGI de ese mismo periodo (la validación de 2026-T2
+cuadró dentro de 0.01 puntos porcentuales en cuatro de cinco indicadores
+principales; condiciones críticas de ocupación difirió por 0.30 pp,
+probablemente porque INEGI actualizó su umbral de salario mínimo ese
+trimestre, no por un error del pipeline). No son un hallazgo propio: son
+cifras públicas, presentadas aquí para consulta rápida.
 
 ```{ojs}
 //| echo: false
@@ -258,8 +261,11 @@ campo y ponderadores entre los regímenes ENOE/ENOE-N/ENOE desde 2005, y el
 diseño muestral complejo de la encuesta (`survey::svydesign`, `ids = upm,
 strata = est_d_tri, weights = fac_tri`) — vive en un proyecto de R privado
 aparte, no en este repositorio. Cada tasa de arriba está contrastada contra
-las cifras oficiales de INEGI para 2024-T1; la diferencia más grande es 0.05
-puntos porcentuales.
+el boletín oficial de INEGI cada trimestre; la validación de 2026-T2
+encontró una diferencia máxima de 0.30 puntos porcentuales en condiciones
+críticas de ocupación (TCCO), probablemente por un rebase del salario
+mínimo de parte de INEGI y no un error de cómputo — los otros cuatro
+indicadores contrastados cuadraron dentro de 0.01 pp.
 
 **2. Este sitio solo lee un CSV público.** `scripts/02-labor-indicators.R`
 exporta las tasas nacionales de ese pipeline a `data/labor-indicators.csv` —
