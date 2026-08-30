@@ -31,7 +31,9 @@ degrees from ITAM.
 
 **Current work.** [Social Insurance Without a Job](research/working-papers/social-insurance-without-a-job/index.qmd)
 asks whether giving students health coverage untied to employment pushes young
-workers into informality. It does not. See [Research](research.qmd) for the rest.
+workers into informality. It does not. Read the
+[explainer](files/social-insurance-without-a-job-slides.html){target="_blank"}
+or see [Research](research.qmd) for the rest.
 
 **Labor Market MX** recomputes the ENOE's headline labor indicators from
 microdata every quarter, validated against INEGI's own published bulletin.

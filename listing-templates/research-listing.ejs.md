@@ -47,10 +47,24 @@ const attrsFor = (hasContext && typeof metadataAttrs === 'function')
 
 <% } %>
 
-<% if (item.pdf) { %>
+<% if (item.pdf || item.explainer) { %>
+<%
+  // Same language-derivation trick as everywhere else in this custom
+  // template context: no locale/lang param is passed in, but item.path
+  // (already used above for the title link) is an absolute site path and
+  // starts with /es/ for Spanish items, since the ES listing only ever
+  // renders items from the es/ tree. Cheaper than adding a per-page
+  // frontmatter field just to say "Explainer" vs "Explicador".
+  const isES = item.path && item.path.indexOf('/es/') === 0;
+%>
 
 ::: {.paper-links .listing-pdf-link}
+<% if (item.pdf) { %>
 - [PDF](<%- item.pdf %>)
+<% } %>
+<% if (item.explainer) { %>
+- [<%= isES ? 'Explicador' : 'Explainer' %>](<%- item.explainer %>){target="_blank"}
+<% } %>
 :::
 
 <% } %>

@@ -343,6 +343,18 @@ page, not the item's own page: root-relative for the EN listing, `../` for the
 ES one) and the pill appears automatically. Omit `pdf:` and no pill renders.
 The pill reuses `.paper-links` — see the CSS note below.
 
+Since 2026-08-30 the same template also supports an `explainer:` field, same
+convention (path relative to the *listing* page), rendering a second pill next
+to "PDF" — see `research/working-papers/social-insurance-without-a-job/index.qmd`
+for the live example. The template has no `lang`/locale param in this custom
+context, so the EN/ES label ("Explainer" vs "Explicador") is derived cheaply
+from whether `item.path` starts with `/es/` — that variable is already present
+on every item (it's what the title link uses), so this needed no new
+frontmatter field. If a listing item ever needs a differently-worded pill
+label per language for some *other* field, this path-sniffing trick is the
+established pattern here; don't add a `lang:` param to `templateParams` for it
+unless the path trick genuinely stops working.
+
 **The trap, if you ever touch this template:** setting `template:` on a
 listing makes Quarto treat `listing.type` as `"custom"` internally, no matter
 what you put in `type:`. Custom-type templates get a *different* ejs parameter
@@ -563,30 +575,57 @@ without being asked.
 - `images/profile.jpg` and `files/CV_Alain_Pineda.pdf` are the owner's real
   files now, not placeholders.
 - The job market paper (`files/social-insurance-without-a-job.pdf`) has landed.
-  **Slides were added 2026-08-30**, reversing the earlier "deliberately not
-  included" decision at the owner's explicit request. They are two
-  self-contained static HTML files (no build step, no JS toolchain — a single
-  file with inline CSS/JS and base64-embedded images, under `files/`):
+  **An "Explainer" was added 2026-08-30**, reversing the earlier "deliberately
+  not included" decision at the owner's explicit request; it was called
+  "Slides" for about a day and renamed to "Explainer"/"Explicador" the same
+  day at the owner's request, since "Slides" reads as a standard academic
+  deck. Do not rename it back without being asked. It is two self-contained
+  static HTML files (no build step, no JS toolchain — a single file with
+  inline CSS/JS and base64-embedded images, under `files/`):
   `files/social-insurance-without-a-job-slides.html` (EN) and
   `files/social-insurance-without-a-job-slides-es.html` (ES, full translation,
-  not just a language-switcher wrapper). Both reuse this site's actual
-  `theme.scss` tokens ($ink/$paper/$rule/$teal/$teal-deep/$ochre, Source
-  Serif 4 / IBM Plex) hand-copied as CSS custom properties inside the HTML
-  file, since a static file outside the Quarto render can't `@use` the SCSS
-  directly — if the site's token values in `theme.scss` ever change, these two
-  files need the same values pasted in by hand, they will not pick it up
-  automatically. Linked from `.paper-links` on both language versions of
-  `research/working-papers/social-insurance-without-a-job/index.qmd`, in the
-  paper → slides → replication order, plus one linking sentence above the
-  pills (not a new heading — kept inside the existing page structure). The
-  deck is a general-audience narrative walkthrough of the paper (13
-  full-viewport scroll-snap sections) that includes a didactic explainer of
-  the Rambachan & Roth (2023) breakdown-value sensitivity check, aimed at
-  readers learning the method, not just this paper's result. If asked to
-  update it, edit the source template in the owner's Claude scratchpad history
-  is gone by the next session — treat the two `files/*.html` as the only
-  source of truth and hand-edit them directly (they're plain HTML/CSS/JS, no
-  build step).
+  not just a language-switcher wrapper — the filenames keep the historical
+  "-slides" name even though the visible label is now "Explainer"; don't
+  rename the files themselves, every link below points at these exact paths).
+  Both reuse this site's actual `theme.scss` tokens
+  ($ink/$paper/$rule/$teal/$teal-deep/$ochre, Source Serif 4 / IBM Plex)
+  hand-copied as CSS custom properties inside the HTML file, since a static
+  file outside the Quarto render can't `@use` the SCSS directly — if the
+  site's token values in `theme.scss` ever change, these two files need the
+  same values pasted in by hand, they will not pick it up automatically. Both
+  files start with `<!DOCTYPE html><meta charset="utf-8">` — added after the
+  first version shipped without it and a bare `python3 -m http.server` (no
+  charset in its Content-Type header) mis-rendered every curly quote, em dash,
+  arrow, and accented character as mojibake. The production host does send
+  `charset=UTF-8`, so this never affected real visitors, but keep the meta tag
+  regardless; it's what makes the file correct on its own, not dependent on
+  whatever serves it. The deck is a general-audience narrative walkthrough of
+  the paper (13 full-viewport scroll-snap sections) that includes a didactic
+  explainer of the Rambachan & Roth (2023) breakdown-value sensitivity check
+  (the "How sure?" section, `#s-honestdid`), aimed at readers learning the
+  method, not just this paper's result. That section had a real bug worth
+  knowing about if you ever touch its hand-rolled SVG: the shaded confidence
+  band is built from an `upperY(f)`/`lowerY(f)` pair that must stay monotonic
+  and non-crossing for all `f` in [0,1], or the polygon self-intersects into a
+  visible overlapping mess — the first version's two curves shared the same
+  end-of-range value and crossed. `breakAt` (where the vertical marker line
+  sits) is now solved algebraically from `lowerY(breakAt)=yZero` rather than
+  hardcoded, so the two can never drift out of sync again. Keep any text label
+  positioned near the chart's top-left title label
+  ("robust confidence set for the effect" / "conjunto de confianza robusto
+  para el efecto") well clear of it vertically — they collided once too.
+  Linked from three places, each independently: (1) `.paper-links` on both
+  language versions of `research/working-papers/social-insurance-without-a-job/index.qmd`,
+  paper → explainer → replication order, plus one linking sentence above the
+  pills (not a new heading — kept inside the existing page structure); (2) a
+  sentence in the "Current work" / "En qué estoy" paragraph on `index.qmd` and
+  `es/index.qmd`; (3) an "Explainer"/"Explicador" pill on the `research.qmd` /
+  `es/research.qmd` listing card itself, next to the "PDF" pill — see the
+  `explainer:` frontmatter field note in section 6 below. If asked to update
+  the deck's content, the owner's Claude scratchpad history from the session
+  that built it is gone by the next session — treat the two `files/*.html` as
+  the only source of truth and hand-edit them directly (plain HTML/CSS/JS, no
+  build step, no source template elsewhere).
 - All `REEMPLAZAR` placeholders are filled in: the Google Scholar URL is set in
   `_quarto-en.yml`, `_quarto-es.yml`, `index.qmd`, and `es/index.qmd`. The
   `Replication` row on the job market paper page now points to a real Zenodo

@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Social Insurance Without a Job</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
@@ -387,7 +390,7 @@
   <details class="explainer reveal r4">
     <summary>How the comparison is built, formally</summary>
     <div class="body">
-      <p>Long difference, by state <em>s</em>: &nbsp; <span class="mono">Y<sub>s,post</sub> − Y<sub>s,pre</sub> = β·I<sub>s,pre</sub> + X<sub>s,pre</sub>Γ + α + ε<sub>s</sub></span>, where <span class="mono">I<sub>s,pre</sub></span> is the state's 2013&ndash;15 informality rate and <span class="mono">Y</span> is a labor-market outcome for the exposed-minus-unexposed cohort gap. A pooled panel version adds cohort, state, and quarter fixed effects and interacts the same informality term with a cohort-level exposure function, 2016&ndash;2019. Weights use the square root of the surveyed population in each cell; standard errors are wild-cluster-bootstrapped by state (32 clusters).</p>
+      <p>Long difference, by state <em>s</em>: &nbsp; <span class="mono">Y<sub>s,post</sub> − Y<sub>s,pre</sub> = β·I<sub>s,pre</sub> + X<sub>s,pre</sub>Γ + α + ε<sub>s</sub></span>, where <span class="mono">I<sub>s,pre</sub></span> is the state's 2013&ndash;15 informality rate and <span class="mono">Y</span> is a labor-market outcome for the exposed-minus-unexposed cohort gap. This clean two-group comparison is why the long difference excludes the two partially exposed cohorts (1999&ndash;2000, one and two years of high-school exposure respectively). A pooled panel version keeps them: it adds cohort, state, and quarter fixed effects and interacts pre-policy informality with a <em>continuous</em> cohort-level exposure function, 2016&ndash;2019, so partial exposure enters with partial weight rather than being dropped. Weights use the square root of the surveyed population in each cell; standard errors are wild-cluster-bootstrapped by state (32 clusters).</p>
     </div>
   </details>
 </section>
@@ -720,12 +723,12 @@
     const w = (x1-x0)/n;
     function colorFor(y){
       if(y>=2001 && y<=2004) return ochre;
-      if(y>=1999 && y<=2000) return line;
+      if(y>=1999 && y<=2000) return ochre;
       if(y>=1995 && y<=1998) return teal;
       return inkSoft;
     }
     function opFor(y){
-      if(y>=1999 && y<=2000) return 0.35;
+      if(y>=1999 && y<=2000) return 0.5;
       if(y>=1995 && y<=1998) return 0.85;
       if(y>=2001 && y<=2004) return 1;
       return 0.45;
@@ -744,8 +747,8 @@
     const legend = [
       {c:inkSoft, t:'Too old for the sample', op:0.45},
       {c:teal, t:'Unexposed (controls)', op:0.85},
-      {c:line, t:'Partial exposure (dropped)', op:0.35},
-      {c:ochre, t:'Exposed cohorts', op:1}
+      {c:ochre, t:'Partially exposed (panel only)', op:0.5},
+      {c:ochre, t:'Fully exposed', op:1}
     ];
     let ly = top+barH+46;
     legend.forEach((L,i)=>{
@@ -874,45 +877,30 @@
   (function(){
     const svg = document.getElementById('chart-honest');
     const ochre = cssVar('--panel-accent'), teal=cssVar('--panel-fg'), line='rgba(255,255,255,0.28)', soft=cssVar('--panel-fg-soft');
-    const x0=50, x1=440, y0=40, yZero=180, yMax=270;
+    const x0=50, x1=440, y0=40, yZero=190, yMax=270;
     svg.appendChild(el('line',{x1:x0,x2:x1,y1:yZero,y2:yZero, stroke:line, 'stroke-width':1, 'stroke-dasharray':'4,4'}));
     const zt = el('text',{x:x1+6, y:yZero+4, fill:soft, 'font-size':'11'}); zt.textContent='0'; svg.appendChild(zt);
     const n = 22;
-    const breakAt = 0.62; // fraction along M axis where CI first touches zero
-    let upperPath = `M ${x0} ${yZero-70}`;
-    let lowerPath = `M ${x0} ${yZero-30}`;
-    for(let i=1;i<=n;i++){
-      const f = i/n;
-      const x = x0 + f*(x1-x0);
-      const widen = Math.pow(f,1.15);
-      const centerDrift = 6*f;
-      const upper = yZero-70 - centerDrift + widen*6;
-      const lower = yZero-30 - centerDrift - widen*46;
-      upperPath += ` L ${x} ${upper}`;
-      lowerPath += ` L ${x} ${lower}`;
-    }
-    const fillPath = upperPath + ' L ' + x1 + ' ' + (yZero-30) + ' ' + lowerPath.replace('M','L').split('L').reverse().join('L').replace(/^L/, 'L');
-    // simpler: build band by combining points
+    // The point estimate (upperY) stays flat: only the confidence set's lower
+    // edge (lowerY) sinks as the allowed pre-trend violation M̄ grows. Both
+    // are monotonic in f, so the band never crosses itself, and breakAt is
+    // solved from lowerY(f)=yZero rather than hardcoded, so the marker line
+    // always lands exactly where the band reaches zero.
+    const upperY = () => 106;
+    const lowerY = f => 130 + 125*Math.pow(f,1.3);
+    const breakAt = Math.pow((yZero-130)/125, 1/1.3);
     const pts=[];
-    for(let i=0;i<=n;i++){
-      const f=i/n; const x=x0+f*(x1-x0);
-      const widen=Math.pow(f,1.15); const centerDrift=6*f;
-      pts.push([x, yZero-70-centerDrift+widen*6]);
-    }
-    for(let i=n;i>=0;i--){
-      const f=i/n; const x=x0+f*(x1-x0);
-      const widen=Math.pow(f,1.15); const centerDrift=6*f;
-      pts.push([x, yZero-30-centerDrift-widen*46]);
-    }
+    for(let i=0;i<=n;i++){ const f=i/n; pts.push([x0+f*(x1-x0), upperY(f)]); }
+    for(let i=n;i>=0;i--){ const f=i/n; pts.push([x0+f*(x1-x0), lowerY(f)]); }
     const band = el('polygon',{points:pts.map(p=>p.join(',')).join(' '), fill:'rgba(238,193,156,0.22)', stroke:'none'});
     svg.appendChild(band);
-    const centerPts=[];
-    for(let i=0;i<=n;i++){ const f=i/n; const x=x0+f*(x1-x0); const centerDrift=6*f; centerPts.push([x, yZero-50-centerDrift]); }
-    svg.appendChild(el('polyline',{points:centerPts.map(p=>p.join(',')).join(' '), fill:'none', stroke:ochre, 'stroke-width':2.5}));
-    // breakdown marker
+    svg.appendChild(el('line',{x1:x0,x2:x1,y1:upperY(),y2:upperY(), stroke:ochre, 'stroke-width':2.5}));
+    // breakdown marker — starts below the chart title row (y0-8) so its own
+    // label never collides with "robust confidence set for the effect"
     const bx = x0 + breakAt*(x1-x0);
-    svg.appendChild(el('line',{x1:bx,x2:bx,y1:y0,y2:yMax, stroke:teal, 'stroke-width':1.2, 'stroke-dasharray':'2,3'}));
-    const bt = el('text',{x:bx, y:y0-8, 'text-anchor':'middle', fill:teal, 'font-size':'11', 'font-weight':'600'});
+    const markerTop = 78;
+    svg.appendChild(el('line',{x1:bx,x2:bx,y1:markerTop,y2:yMax, stroke:teal, 'stroke-width':1.2, 'stroke-dasharray':'2,3'}));
+    const bt = el('text',{x:bx+8, y:markerTop-6, 'text-anchor':'start', fill:teal, 'font-size':'11', 'font-weight':'600'});
     bt.textContent='breakdown value M̄';
     svg.appendChild(bt);
     // x axis

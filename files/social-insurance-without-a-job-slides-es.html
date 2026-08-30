@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Seguridad social sin empleo</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
@@ -390,7 +393,7 @@
   <details class="explainer reveal r4">
     <summary>Cómo se construye la comparación, formalmente</summary>
     <div class="body">
-      <p>Diferencia de largo plazo, por estado <em>s</em>: &nbsp; <span class="mono">Y<sub>s,post</sub> − Y<sub>s,pre</sub> = β·I<sub>s,pre</sub> + X<sub>s,pre</sub>Γ + α + ε<sub>s</sub></span>, donde <span class="mono">I<sub>s,pre</sub></span> es la tasa de informalidad del estado en 2013&ndash;15 y <span class="mono">Y</span> es un resultado del mercado laboral para la brecha expuesta-menos-no-expuesta entre cohortes. Una versión de panel agrupado añade efectos fijos de cohorte, estado y trimestre, e interactúa el mismo término de informalidad con una función de exposición a nivel cohorte, 2016&ndash;2019. Las ponderaciones usan la raíz cuadrada de la población muestreada en cada celda; los errores estándar usan bootstrap wild-cluster por estado (32 clústeres).</p>
+      <p>Diferencia de largo plazo, por estado <em>s</em>: &nbsp; <span class="mono">Y<sub>s,post</sub> − Y<sub>s,pre</sub> = β·I<sub>s,pre</sub> + X<sub>s,pre</sub>Γ + α + ε<sub>s</sub></span>, donde <span class="mono">I<sub>s,pre</sub></span> es la tasa de informalidad del estado en 2013&ndash;15 y <span class="mono">Y</span> es un resultado del mercado laboral para la brecha expuesta-menos-no-expuesta entre cohortes. Esta comparación limpia entre dos grupos es la razón por la que la diferencia de largo plazo excluye a las dos cohortes parcialmente expuestas (1999&ndash;2000, con uno y dos años de exposición en bachillerato, respectivamente). Una versión de panel agrupado sí las conserva: añade efectos fijos de cohorte, estado y trimestre, e interactúa la informalidad previa con una función de exposición <em>continua</em> a nivel cohorte, 2016&ndash;2019, de modo que la exposición parcial entra con un peso parcial en vez de excluirse. Las ponderaciones usan la raíz cuadrada de la población muestreada en cada celda; los errores estándar usan bootstrap wild-cluster por estado (32 clústeres).</p>
     </div>
   </details>
 </section>
@@ -728,12 +731,12 @@
     const w = (x1-x0)/n;
     function colorFor(y){
       if(y>=2001 && y<=2004) return ochre;
-      if(y>=1999 && y<=2000) return line;
+      if(y>=1999 && y<=2000) return ochre;
       if(y>=1995 && y<=1998) return teal;
       return inkSoft;
     }
     function opFor(y){
-      if(y>=1999 && y<=2000) return 0.35;
+      if(y>=1999 && y<=2000) return 0.5;
       if(y>=1995 && y<=1998) return 0.85;
       if(y>=2001 && y<=2004) return 1;
       return 0.45;
@@ -752,8 +755,8 @@
     const legend = [
       {c:inkSoft, t:'Demasiado grandes para la muestra', op:0.45},
       {c:teal, t:'No expuestas (controles)', op:0.85},
-      {c:line, t:'Exposición parcial (excluidas)', op:0.35},
-      {c:ochre, t:'Cohortes expuestas', op:1}
+      {c:ochre, t:'Parcialmente expuestas (solo panel)', op:0.5},
+      {c:ochre, t:'Totalmente expuestas', op:1}
     ];
     let ly = top+barH+46;
     legend.forEach((L,i)=>{
@@ -882,45 +885,30 @@
   (function(){
     const svg = document.getElementById('chart-honest');
     const ochre = cssVar('--panel-accent'), teal=cssVar('--panel-fg'), line='rgba(255,255,255,0.28)', soft=cssVar('--panel-fg-soft');
-    const x0=50, x1=440, y0=40, yZero=180, yMax=270;
+    const x0=50, x1=440, y0=40, yZero=190, yMax=270;
     svg.appendChild(el('line',{x1:x0,x2:x1,y1:yZero,y2:yZero, stroke:line, 'stroke-width':1, 'stroke-dasharray':'4,4'}));
     const zt = el('text',{x:x1+6, y:yZero+4, fill:soft, 'font-size':'11'}); zt.textContent='0'; svg.appendChild(zt);
     const n = 22;
-    const breakAt = 0.62; // fraction along M axis where CI first touches zero
-    let upperPath = `M ${x0} ${yZero-70}`;
-    let lowerPath = `M ${x0} ${yZero-30}`;
-    for(let i=1;i<=n;i++){
-      const f = i/n;
-      const x = x0 + f*(x1-x0);
-      const widen = Math.pow(f,1.15);
-      const centerDrift = 6*f;
-      const upper = yZero-70 - centerDrift + widen*6;
-      const lower = yZero-30 - centerDrift - widen*46;
-      upperPath += ` L ${x} ${upper}`;
-      lowerPath += ` L ${x} ${lower}`;
-    }
-    const fillPath = upperPath + ' L ' + x1 + ' ' + (yZero-30) + ' ' + lowerPath.replace('M','L').split('L').reverse().join('L').replace(/^L/, 'L');
-    // simpler: build band by combining points
+    // The point estimate (upperY) stays flat: only the confidence set's lower
+    // edge (lowerY) sinks as the allowed pre-trend violation M̄ grows. Both
+    // are monotonic in f, so the band never crosses itself, and breakAt is
+    // solved from lowerY(f)=yZero rather than hardcoded, so the marker line
+    // always lands exactly where the band reaches zero.
+    const upperY = () => 106;
+    const lowerY = f => 130 + 125*Math.pow(f,1.3);
+    const breakAt = Math.pow((yZero-130)/125, 1/1.3);
     const pts=[];
-    for(let i=0;i<=n;i++){
-      const f=i/n; const x=x0+f*(x1-x0);
-      const widen=Math.pow(f,1.15); const centerDrift=6*f;
-      pts.push([x, yZero-70-centerDrift+widen*6]);
-    }
-    for(let i=n;i>=0;i--){
-      const f=i/n; const x=x0+f*(x1-x0);
-      const widen=Math.pow(f,1.15); const centerDrift=6*f;
-      pts.push([x, yZero-30-centerDrift-widen*46]);
-    }
+    for(let i=0;i<=n;i++){ const f=i/n; pts.push([x0+f*(x1-x0), upperY(f)]); }
+    for(let i=n;i>=0;i--){ const f=i/n; pts.push([x0+f*(x1-x0), lowerY(f)]); }
     const band = el('polygon',{points:pts.map(p=>p.join(',')).join(' '), fill:'rgba(238,193,156,0.22)', stroke:'none'});
     svg.appendChild(band);
-    const centerPts=[];
-    for(let i=0;i<=n;i++){ const f=i/n; const x=x0+f*(x1-x0); const centerDrift=6*f; centerPts.push([x, yZero-50-centerDrift]); }
-    svg.appendChild(el('polyline',{points:centerPts.map(p=>p.join(',')).join(' '), fill:'none', stroke:ochre, 'stroke-width':2.5}));
-    // breakdown marker
+    svg.appendChild(el('line',{x1:x0,x2:x1,y1:upperY(),y2:upperY(), stroke:ochre, 'stroke-width':2.5}));
+    // breakdown marker — starts below the chart title row (y0-8) so its own
+    // label never collides with "conjunto de confianza robusto para el efecto"
     const bx = x0 + breakAt*(x1-x0);
-    svg.appendChild(el('line',{x1:bx,x2:bx,y1:y0,y2:yMax, stroke:teal, 'stroke-width':1.2, 'stroke-dasharray':'2,3'}));
-    const bt = el('text',{x:bx, y:y0-8, 'text-anchor':'middle', fill:teal, 'font-size':'11', 'font-weight':'600'});
+    const markerTop = 78;
+    svg.appendChild(el('line',{x1:bx,x2:bx,y1:markerTop,y2:yMax, stroke:teal, 'stroke-width':1.2, 'stroke-dasharray':'2,3'}));
+    const bt = el('text',{x:bx+8, y:markerTop-6, 'text-anchor':'start', fill:teal, 'font-size':'11', 'font-weight':'600'});
     bt.textContent='valor de ruptura M̄';
     svg.appendChild(bt);
     // x axis

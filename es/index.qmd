@@ -31,8 +31,9 @@ y maestría por el ITAM.
 
 **En qué estoy.** [Seguridad social sin empleo](research/working-papers/social-insurance-without-a-job/index.qmd)
 pregunta si darle cobertura médica a estudiantes, desligada de cualquier trabajo,
-empuja a los jóvenes hacia la informalidad. No lo hace. En
-[Investigación](research.qmd) está el resto.
+empuja a los jóvenes hacia la informalidad. No lo hace. Lee el
+[explicador](../files/social-insurance-without-a-job-slides-es.html){target="_blank"}
+o en [Investigación](research.qmd) está el resto.
 
 **Mercado Laboral MX** recalcula los indicadores laborales de la ENOE desde
 microdatos cada trimestre, validados contra el boletín oficial de INEGI.

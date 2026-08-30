@@ -5,6 +5,7 @@ description: "En 2016, México dio cobertura médica a seis millones de estudian
 date: 2026-08-20
 author: "Alain Pineda"
 pdf: ../files/social-insurance-without-a-job.pdf
+explainer: ../files/social-insurance-without-a-job-slides-es.html
 ---
 
 ::: {.eyebrow}
@@ -53,7 +54,7 @@ cambió en 2016 fue que la cobertura quedó adherida a cada estudiante como pers
 con el número de seguridad social que la contratación formal exige. Cómo se
 entrega un beneficio puede importar más que si es contributivo o no.
 
-Existe una [versión en diapositivas](../../../../files/social-insurance-without-a-job-slides-es.html)
+Existe un [explicador](../../../../files/social-insurance-without-a-job-slides-es.html)
 de este documento que recorre el mismo resultado para un público general, con
 una explicación en lenguaje accesible de la prueba de sensibilidad de
 Rambachan y Roth (2023) usada para poner a prueba el supuesto de
@@ -61,7 +62,7 @@ identificación.
 
 ::: {.paper-links}
 - [Documento (PDF)](../../../../files/social-insurance-without-a-job.pdf)
-- [Diapositivas](../../../../files/social-insurance-without-a-job-slides-es.html){target="_blank"}
+- [Explicador](../../../../files/social-insurance-without-a-job-slides-es.html){target="_blank"}
 - [Replicación](https://zenodo.org/records/22168219)
 - [English version](/research/working-papers/social-insurance-without-a-job/)
 :::
