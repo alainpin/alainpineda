@@ -6,6 +6,12 @@ project:
   type: website
   resources:
     - CNAME
+    # Netlify lee netlify.toml de la RAIZ de lo que publica, y publica la rama
+    # gh-pages, o sea el contenido de _site/. Estando solo en la raiz del repo
+    # (rama main) nunca llegaba a produccion y sus reglas eran letra muerta:
+    # el redirect /index.es.html -> /es/ 404eaba desde que se escribio.
+    # Listarlo aqui lo copia a _site/ y con eso si lo lee.
+    - netlify.toml
     - files/
     - data/
 

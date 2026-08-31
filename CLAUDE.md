@@ -163,14 +163,30 @@ _site/es/         Spanish site at https://www.alainpineda.com/es/
    update its key in that map too — a stale key silently reverts the switcher
    on that page to its default prepend/strip logic, which 404s.
 
-   **Renaming a published slug also needs an `aliases:` front-matter entry**
-   pointing at the old URL, so existing links keep working: Quarto renders a
-   redirect stub at the old path. Use that, not `netlify.toml` — `build.sh`
-   never copies `netlify.toml` into `_site/`, so it never reaches `gh-pages`
-   and Netlify never reads it (its `[[redirects]]` block is dead as written).
-   The 2026-08-31 Findings → Quarterly Update rename is the worked example:
-   `/data-findings.html` and `/es/data-hallazgos.html` are aliases on the two
-   renamed pages.
+   **Renaming a published slug needs redirects in two places, on purpose.**
+   Add an `aliases:` front-matter entry on the renamed page pointing at the
+   old URL — Quarto renders a JS redirect stub there — *and* a `301` in
+   `netlify.toml`. The 301 is the one that matters for search: it's a real
+   server redirect, so Google passes the old URL's ranking to the new one,
+   which a JavaScript stub does not do reliably. The stub is the safety net
+   for the failure mode described just below. Add both, plus a variant of
+   each 301 without the `.html`, since Netlify resolves pretty URLs to the
+   file rather than through the redirect table.
+
+   Each of those 301s **must** carry `force = true`. Without it Netlify
+   serves the static file whenever one exists at that path — and one does,
+   the alias stub — so the rule never fires. The 2026-08-31 Findings →
+   Quarterly Update rename is the worked example, in both languages.
+
+   **`netlify.toml` only works because it is listed in `_quarto.yml`'s
+   `resources:`.** Netlify reads it from the root of what it publishes,
+   which is `gh-pages` (i.e. `_site/`), not `main`. Sitting only at the repo
+   root it never reached production: its `/index.es.html → /es/` redirect
+   had been quietly 404ing since the day it was written, found on
+   2026-08-31. If anyone drops it from `resources:`, every rule in that file
+   stops applying with no error anywhere — so **verify a redirect against
+   the live site (`curl -I`), never against a local build**, which cannot
+   exercise Netlify's rules at all.
 3. **The language switcher uses absolute paths** (`/` and `/es/`), not relative
    ones, because Quarto navbar hrefs would otherwise point at files outside the
    active profile's render list and error.
