@@ -123,9 +123,6 @@ esSignificativo = (delta, se) => delta != null && se != null && Math.abs(delta) 
 // base es el valor del periodo anterior (el denominador contra el que se
 // mide el cambio) -- se pasa para mostrar también el cambio porcentual
 // relativo junto al cambio en puntos porcentuales, ej. "▲ 0.41 pp (0.7%)".
-// Se omite donde un cambio relativo no tendría sentido (una brecha de
-// género puede cruzar cero, así que "porcentaje de la brecha" no es un
-// número interpretable ahí).
 // El pp se queda sin signo (la dirección la lleva solo la flecha, la
 // convención habitual del sitio), pero el porcentaje sí conserva su signo
 // -- también es la clave de orden de estas columnas, y un porcentaje sin
@@ -295,32 +292,6 @@ mayorMovimientoTrimBajada = cambiosTrimOrdenados.find(f => f.delta < 0) ?? null
 mayorMovimientoAnualSubida = cambiosAnualOrdenados.find(f => f.delta > 0) ?? null
 mayorMovimientoAnualBajada = cambiosAnualOrdenados.find(f => f.delta < 0) ?? null
 
-// Brecha de género (hombres menos mujeres) como su propia serie derivada:
-// se empata cada trimestre de hombres y mujeres por fecha, se resta, y se
-// combinan sus errores estándar en cuadratura -- así queda como cualquier
-// otra serie a la que calcularDeltasConSE puede calcularle cambio
-// trimestral/anual.
-brechaGenero = indicador => {
-  const hombres = datosCortes
-    .filter(d => d.indicador === indicador && d.corte === "sexo" && d.categoria_origen === "Hombre")
-    .sort((a, b) => a.fecha - b.fecha);
-  const mujeres = datosCortes
-    .filter(d => d.indicador === indicador && d.corte === "sexo" && d.categoria_origen === "Mujer")
-    .sort((a, b) => a.fecha - b.fecha);
-  const brechas = hombres.map(h => {
-    const m = mujeres.find(x => +x.fecha === +h.fecha);
-    return m ? { anio: h.anio, trimestre: h.trimestre, fecha: h.fecha, valor: h.valor - m.valor, ee: Math.sqrt(h.ee ** 2 + m.ee ** 2) } : null;
-  }).filter(Boolean);
-  if (brechas.length === 0) return null;
-  const ultimo = brechas[brechas.length - 1];
-  const { deltaTrim, seTrim } = calcularDeltasConSE(brechas);
-  return { valor: ultimo.valor, periodo: `${ultimo.anio}-T${ultimo.trimestre}`, deltaTrim, seTrim };
-}
-
-brechaTPEA = brechaGenero("TPEA")
-brechaTIL1 = brechaGenero("TIL1")
-brechaTD = brechaGenero("TD")
-
 filaMovimiento = (etiqueta, fila) => fila
   ? html`<tr>
   <td>${etiqueta}</td>
@@ -332,12 +303,6 @@ filaMovimiento = (etiqueta, fila) => fila
   <td>${etiqueta}</td>
   <td colspan="3" class="data-table-note">Ningún movimiento de este periodo supera el umbral de 95% de confianza.</td>
 </tr>`
-
-textoBrecha = (nombre, brecha) => {
-  if (!brecha) return html`<span>${nombre}: datos insuficientes por ahora.</span>`;
-  const sig = esSignificativo(brecha.deltaTrim, brecha.seTrim);
-  return html`Brecha de género en ${nombre.toLowerCase()} (hombres − mujeres): <strong>${brecha.valor.toFixed(1)} pp</strong> a ${brecha.periodo}${brecha.deltaTrim != null ? html` · trimestral: ${formatoDelta(brecha.deltaTrim)}${sig ? "" : " (no distinguible de sin cambio)"}` : ""}.`
-}
 
 ultimoPeriodoValidacion = validaciones.length
   ? `${validaciones[validaciones.length - 1].anio}-T${validaciones[validaciones.length - 1].trimestre}`
@@ -374,25 +339,6 @@ ${filaMovimiento("Mayor aumento anual", mayorMovimientoAnualSubida)}
 ${filaMovimiento("Mayor caída anual", mayorMovimientoAnualBajada)}
 </tbody>
 </table>`
-```
-
-:::
-
-### Brechas de género
-
-La brecha hombres-menos-mujeres para los indicadores donde los números
-principales de INEGI la esconden. No es exhaustiva — con el tiempo se
-pueden agregar más indicadores aquí.
-
-::: {.data-panel}
-
-```{ojs}
-//| echo: false
-html`<ul class="highlights-list">
-<li>${textoBrecha("Participación laboral", brechaTPEA)}</li>
-<li>${textoBrecha("Informalidad laboral", brechaTIL1)}</li>
-<li>${textoBrecha("Desocupación", brechaTD)}</li>
-</ul>`
 ```
 
 :::
