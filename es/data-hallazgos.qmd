@@ -251,7 +251,15 @@ ordenarFilas = (filas, columnaActiva, direccion) => {
 
 // El cambio de cada combinación (indicador, corte, categoría), filtrado a
 // las que superan el umbral de significancia -- el conjunto del que sale
-// "el mayor movimiento" abajo.
+// "el mayor movimiento" abajo. La significancia se sigue evaluando sobre
+// el delta crudo en pp contra su error estándar (es la estimación de nivel
+// que ese error realmente describe), pero se ordena por el cambio
+// PORCENTUAL relativo, igual que la tabla de abajo -- ordenar aquí por pp
+// crudo elegiría, por ejemplo, un movimiento de 6.9 pp sobre una base de
+// 27% antes que uno de 4.4 pp sobre una base de 14%, aunque el segundo sea
+// el movimiento relativo más grande, y no coincidiría con el orden de la
+// tabla justo debajo de este destacado, que usa los mismos datos por
+// categoría.
 todosLosCambios = (campoDelta, campoSE, campoBase) => {
   const filas = [];
   for (const indicador of indicadoresConCortes) {
@@ -273,7 +281,7 @@ todosLosCambios = (campoDelta, campoSE, campoBase) => {
       }
     }
   }
-  return filas.sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
+  return filas.sort((a, b) => Math.abs(cambioPct(b.delta, b.base) ?? 0) - Math.abs(cambioPct(a.delta, a.base) ?? 0));
 }
 
 mayorMovimientoTrim = todosLosCambios("deltaTrim", "seTrim", "baseTrim")[0] ?? null

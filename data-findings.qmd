@@ -256,7 +256,13 @@ ordenarFilas = (filas, columnaActiva, direccion) => {
 
 // Every (indicator, cut, category) combination's change, filtered to only
 // the ones that clear the significance bar -- the pool "biggest mover"
-// picks from below.
+// picks from below. Significance is still evaluated on the raw pp delta
+// against its standard error (that's the level estimate the SE actually
+// describes), but ranked by relative PERCENT change, same as the table
+// below it -- ranking by raw pp here would pick, say, a 6.9 pp move on a
+// 27% base over a 4.4 pp move on a 14% base, even though the second is
+// the larger swing in relative terms, and disagree with how the table
+// right below this headline sorts the exact same category-level data.
 todosLosCambios = (campoDelta, campoSE, campoBase) => {
   const filas = [];
   for (const indicador of indicadoresConCortes) {
@@ -278,7 +284,7 @@ todosLosCambios = (campoDelta, campoSE, campoBase) => {
       }
     }
   }
-  return filas.sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
+  return filas.sort((a, b) => Math.abs(cambioPct(b.delta, b.base) ?? 0) - Math.abs(cambioPct(a.delta, a.base) ?? 0));
 }
 
 mayorMovimientoTrim = todosLosCambios("deltaTrim", "seTrim", "baseTrim")[0] ?? null
