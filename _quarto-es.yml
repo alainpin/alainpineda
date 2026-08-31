@@ -25,8 +25,8 @@ website:
             text: Informalidad
           - href: es/data-desocupacion.qmd
             text: Desocupación
-          - href: es/data-hallazgos.qmd
-            text: Hallazgos
+          - href: es/data-actualizacion-trimestral.qmd
+            text: Actualización Trimestral
       - href: es/teaching.qmd
         text: Docencia
       - text: CV

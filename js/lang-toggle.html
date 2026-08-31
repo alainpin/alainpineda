@@ -12,13 +12,18 @@
 // is the fix: any page whose EN and ES slugs differ needs one entry here (in
 // either direction, matched automatically both ways), or a reader on that
 // page hits a 404 when they switch languages -- exactly what happened on
-// data-findings.qmd <-> es/data-hallazgos.qmd (and, it turned out, on
-// data-participation/informality/unemployment too) before this map existed.
+// the Quarterly Update page (data-quarterly-update.qmd <->
+// es/data-actualizacion-trimestral.qmd, formerly data-findings <->
+// data-hallazgos) -- and, it turned out, on
+// data-participation/informality/unemployment too -- before this map existed.
+// Keys here are the CURRENT slugs. The old ones still resolve because each
+// page carries an `aliases:` entry that renders a redirect stub, but a stub
+// is not a page the switcher ever runs on, so it needs no entry.
 var MAPA_SLUGS_ESPECIALES = {
   "/data-participation": "/es/data-participacion",
   "/data-informality": "/es/data-informalidad",
   "/data-unemployment": "/es/data-desocupacion",
-  "/data-findings": "/es/data-hallazgos"
+  "/data-quarterly-update": "/es/data-actualizacion-trimestral"
 };
 var MAPA_INVERSO = {};
 for (var clave in MAPA_SLUGS_ESPECIALES) {

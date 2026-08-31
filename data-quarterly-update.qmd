@@ -1,6 +1,8 @@
 ---
-title: "Labor Market MX — Findings"
+title: "Labor Market MX — Quarterly Update"
 date-modified: last-modified
+aliases:
+  - /data-findings.html
 ---
 
 ::: {.eyebrow}

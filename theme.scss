@@ -24,7 +24,7 @@ $ochre:      #b25a26 !default;   // finding line marker (export's --clay, its se
 // $teal or $ochre, which already carry their own meaning elsewhere.
 $ink-soft-light: #9a948b !default;
 $ink-soft-deep:  #4a4540 !default;
-// Directional color for the Findings page's change table only -- every
+// Directional color for the Quarterly Update page's change table only -- every
 // other chart on the labor-market pages deliberately stays neutral (no
 // good/bad coding), but a table meant to be scanned row by row benefits
 // from color marking direction at a glance. Kept deliberately pale and
@@ -468,7 +468,7 @@ form[class^="oi-"] select {
   max-width: 100%;
 }
 
-// ---- Data table (data-findings.qmd) ----
+// ---- Data table (data-quarterly-update.qmd) ----
 .data-table {
   width: 100%;
   border-collapse: collapse;
@@ -551,7 +551,7 @@ form[class^="oi-"] select {
   color: $ink-soft;
 }
 
-// ---- Highlights list (data-findings.qmd) ----
+// ---- Highlights list (data-quarterly-update.qmd) ----
 .highlights-list {
   margin: 0;
   padding-left: 1.2rem;

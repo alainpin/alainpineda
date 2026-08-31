@@ -27,8 +27,8 @@ website:
             text: Informality
           - href: data-unemployment.qmd
             text: Unemployment
-          - href: data-findings.qmd
-            text: Findings
+          - href: data-quarterly-update.qmd
+            text: Quarterly Update
       - href: teaching.qmd
         text: Teaching
       - text: CV

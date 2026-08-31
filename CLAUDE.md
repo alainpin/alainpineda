@@ -148,16 +148,29 @@ _site/es/         Spanish site at https://www.alainpineda.com/es/
    **The four Labor Market MX data pages are the one deliberate exception** —
    their Spanish slugs are real Spanish words (`data-participacion`, not
    `data-participation`; also `data-informalidad`, `data-desocupacion`,
-   `data-hallazgos`), which reads far better for the Spanish audience than an
+   `data-actualizacion-trimestral`), which reads far better for the Spanish
+   audience than an
    English word sitting under `/es/`. `js/lang-toggle.html`'s
    `MAPA_SLUGS_ESPECIALES` is what makes the ES/EN navbar switcher still work
    for these four — its default logic just prepends/strips `/es`, which 404s
    the moment a slug diverges. This broke silently on all four pages until
-   2026-08-30 (caught only when the owner tried the switcher on the new
-   Findings page). **Any future page whose EN and ES slugs differ needs a new
-   entry in that map**, in either direction — don't introduce a diverging slug
-   pair without adding one, and don't "fix" this by renaming the Spanish slug
-   to match English; the translated slug is the point.
+   2026-08-30 (caught only when the owner tried the switcher on the then-new
+   Findings page, renamed to Quarterly Update on 2026-08-31). **Any future
+   page whose EN and ES slugs differ needs a new entry in that map**, in
+   either direction — don't introduce a diverging slug pair without adding
+   one, and don't "fix" this by renaming the Spanish slug to match English;
+   the translated slug is the point. When you *change* an existing slug,
+   update its key in that map too — a stale key silently reverts the switcher
+   on that page to its default prepend/strip logic, which 404s.
+
+   **Renaming a published slug also needs an `aliases:` front-matter entry**
+   pointing at the old URL, so existing links keep working: Quarto renders a
+   redirect stub at the old path. Use that, not `netlify.toml` — `build.sh`
+   never copies `netlify.toml` into `_site/`, so it never reaches `gh-pages`
+   and Netlify never reads it (its `[[redirects]]` block is dead as written).
+   The 2026-08-31 Findings → Quarterly Update rename is the worked example:
+   `/data-findings.html` and `/es/data-hallazgos.html` are aliases on the two
+   renamed pages.
 3. **The language switcher uses absolute paths** (`/` and `/es/`), not relative
    ones, because Quarto navbar hrefs would otherwise point at files outside the
    active profile's render list and error.
@@ -721,7 +734,8 @@ publish an English-only site, silently dropping `/es/`.
 gets a minucious (thorough, not spot-check) verification pass, in a real
 browser, before it's reported done — not just `./build.sh` succeeding.**
 The owner asked for this explicitly after the ES/EN switcher 404ed on the
-new Findings page (and, it turned out, silently on three other pages too —
+then-new Findings page, now Quarterly Update (and, it turned out, silently
+on three other pages too —
 see section 4's Labor Market MX slug exception). Three things are
 mandatory on every push that touches a page, not just the page(s) changed:
 
@@ -911,8 +925,9 @@ without being asked.
 
 The "Labor Market MX" / "Mercado Laboral MX" navbar section
 (`data.qmd`/`es/data.qmd` and everything under it: `data-participation.qmd`,
-`data-informality.qmd`, `data-unemployment.qmd`, `data-findings.qmd`, and
-their `es/` counterparts) is a public mirror of a separate, private Quarto +
+`data-informality.qmd`, `data-unemployment.qmd`,
+`data-quarterly-update.qmd` (called `data-findings.qmd` until 2026-08-31),
+and their `es/` counterparts) is a public mirror of a separate, private Quarto +
 Observable dashboard project the owner maintains elsewhere. That project has
 its own codebase, its own `CLAUDE.md`, and its own much longer history of
 design review — this repo only receives the finished, "safe for a general
@@ -946,7 +961,7 @@ work on these pages rather than re-deriving a different answer:
 - **Every per-cut view names its own latest quarter explicitly**
   (a "Latest quarter: YYYY-TQ" caption computed from the data actually shown,
   not assumed to match other cuts/indicators on the same page).
-- **Findings/change tables color only the up/down arrow glyph, never the
+- **Quarterly Update / change tables color only the up/down arrow glyph, never the
   whole value**, and use pale tones, not saturated red/green — a strong
   color across the whole number reads as a normative "good/bad" judgment,
   which this site avoids everywhere (see `$up`/`$down` in `theme.scss`).

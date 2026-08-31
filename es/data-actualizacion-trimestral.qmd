@@ -1,6 +1,8 @@
 ---
-title: "Mercado Laboral MX — Hallazgos"
+title: "Mercado Laboral MX — Actualización Trimestral"
 date-modified: last-modified
+aliases:
+  - /es/data-hallazgos.html
 ---
 
 ::: {.eyebrow}
