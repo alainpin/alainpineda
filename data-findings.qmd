@@ -287,8 +287,16 @@ todosLosCambios = (campoDelta, campoSE, campoBase) => {
   return filas.sort((a, b) => Math.abs(cambioPct(b.delta, b.base) ?? 0) - Math.abs(cambioPct(a.delta, a.base) ?? 0));
 }
 
-mayorMovimientoTrim = todosLosCambios("deltaTrim", "seTrim", "baseTrim")[0] ?? null
-mayorMovimientoAnual = todosLosCambios("deltaAnual", "seAnual", "baseAnual")[0] ?? null
+// Split into a biggest increase and a biggest decrease per period, rather
+// than one overall winner -- todosLosCambios is already sorted by
+// |percent change| descending, so the first row matching each sign is
+// that direction's biggest mover.
+cambiosTrimOrdenados = todosLosCambios("deltaTrim", "seTrim", "baseTrim")
+cambiosAnualOrdenados = todosLosCambios("deltaAnual", "seAnual", "baseAnual")
+mayorMovimientoTrimSubida = cambiosTrimOrdenados.find(f => f.delta > 0) ?? null
+mayorMovimientoTrimBajada = cambiosTrimOrdenados.find(f => f.delta < 0) ?? null
+mayorMovimientoAnualSubida = cambiosAnualOrdenados.find(f => f.delta > 0) ?? null
+mayorMovimientoAnualBajada = cambiosAnualOrdenados.find(f => f.delta < 0) ?? null
 
 // Gender gap (men minus women) as its own derived series: match each
 // quarter's male and female estimates by date, subtract, and combine their
@@ -313,10 +321,19 @@ brechaGenero = indicador => {
 
 brechaTPEA = brechaGenero("TPEA")
 brechaTIL1 = brechaGenero("TIL1")
+brechaTD = brechaGenero("TD")
 
-textoMovimiento = (fila, sinCambio) => fila
-  ? html`${nombres[fila.indicador]} among <strong>${fila.categoria}</strong> (${cortes[fila.corte]}): ${formatoDelta(fila.delta, fila.base)}, now ${fila.valor}% (${fila.periodo}).`
-  : html`<span>${sinCambio}</span>`
+filaMovimiento = (etiqueta, fila) => fila
+  ? html`<tr>
+  <td>${etiqueta}</td>
+  <td>${nombres[fila.indicador]}<span class="data-table-period"> — ${fila.categoria} (${cortes[fila.corte]})</span></td>
+  <td class="data-table-num">${formatoDelta(fila.delta, fila.base)}</td>
+  <td class="data-table-num">${fila.valor}%<span class="data-table-period">(${fila.periodo})</span></td>
+</tr>`
+  : html`<tr>
+  <td>${etiqueta}</td>
+  <td colspan="3" class="data-table-note">No move clears the 95% confidence threshold this period.</td>
+</tr>`
 
 textoBrecha = (nombre, brecha) => {
   if (!brecha) return html`<span>${nombre}: not enough data yet.</span>`;
@@ -338,19 +355,45 @@ ultimasValidaciones = {
 ### Highlights this quarter
 
 Auto-generated from the same by-group data behind Participation, Informality,
-and Unemployment. The two "biggest mover" lines only count a change if it
-clears a 95% confidence threshold — otherwise the quarter's biggest swing is
-usually just the smallest sample, not a real move.
+and Unemployment: the biggest increase and the biggest decrease, both
+quarter-over-quarter and year-over-year, ranked by percent change. A row
+only appears if that move clears a 95% confidence threshold — otherwise
+the quarter's biggest swing is usually just the smallest sample, not a
+real move.
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+html`<table class="data-table">
+<thead><tr>
+  <th>Move</th><th>Indicator</th><th>Change</th><th>Latest</th>
+</tr></thead>
+<tbody>
+${filaMovimiento("Biggest quarterly increase", mayorMovimientoTrimSubida)}
+${filaMovimiento("Biggest quarterly decrease", mayorMovimientoTrimBajada)}
+${filaMovimiento("Biggest annual increase", mayorMovimientoAnualSubida)}
+${filaMovimiento("Biggest annual decrease", mayorMovimientoAnualBajada)}
+</tbody>
+</table>`
+```
+
+:::
+
+### Gender gaps
+
+The men-minus-women gap for the indicators where INEGI's own headline
+numbers hide it. Not exhaustive — more indicators may be added here over
+time.
 
 ::: {.data-panel}
 
 ```{ojs}
 //| echo: false
 html`<ul class="highlights-list">
-<li>Biggest quarter-over-quarter move: ${textoMovimiento(mayorMovimientoTrim, "No quarter-over-quarter change this period clears the 95% confidence threshold.")}</li>
-<li>Biggest year-over-year move: ${textoMovimiento(mayorMovimientoAnual, "No year-over-year change this period clears the 95% confidence threshold.")}</li>
 <li>${textoBrecha("Labor force participation", brechaTPEA)}</li>
 <li>${textoBrecha("Labor informality", brechaTIL1)}</li>
+<li>${textoBrecha("Unemployment", brechaTD)}</li>
 </ul>`
 ```
 

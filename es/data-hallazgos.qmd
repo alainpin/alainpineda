@@ -284,8 +284,16 @@ todosLosCambios = (campoDelta, campoSE, campoBase) => {
   return filas.sort((a, b) => Math.abs(cambioPct(b.delta, b.base) ?? 0) - Math.abs(cambioPct(a.delta, a.base) ?? 0));
 }
 
-mayorMovimientoTrim = todosLosCambios("deltaTrim", "seTrim", "baseTrim")[0] ?? null
-mayorMovimientoAnual = todosLosCambios("deltaAnual", "seAnual", "baseAnual")[0] ?? null
+// Separado en mayor aumento y mayor caída por periodo, en vez de un solo
+// ganador general -- todosLosCambios ya viene ordenado por |cambio
+// porcentual| descendente, así que la primera fila que coincide con cada
+// signo es el mayor movimiento de esa dirección.
+cambiosTrimOrdenados = todosLosCambios("deltaTrim", "seTrim", "baseTrim")
+cambiosAnualOrdenados = todosLosCambios("deltaAnual", "seAnual", "baseAnual")
+mayorMovimientoTrimSubida = cambiosTrimOrdenados.find(f => f.delta > 0) ?? null
+mayorMovimientoTrimBajada = cambiosTrimOrdenados.find(f => f.delta < 0) ?? null
+mayorMovimientoAnualSubida = cambiosAnualOrdenados.find(f => f.delta > 0) ?? null
+mayorMovimientoAnualBajada = cambiosAnualOrdenados.find(f => f.delta < 0) ?? null
 
 // Brecha de género (hombres menos mujeres) como su propia serie derivada:
 // se empata cada trimestre de hombres y mujeres por fecha, se resta, y se
@@ -311,10 +319,19 @@ brechaGenero = indicador => {
 
 brechaTPEA = brechaGenero("TPEA")
 brechaTIL1 = brechaGenero("TIL1")
+brechaTD = brechaGenero("TD")
 
-textoMovimiento = (fila, sinCambio) => fila
-  ? html`${nombres[fila.indicador]} en <strong>${fila.categoria}</strong> (${cortes[fila.corte]}): ${formatoDelta(fila.delta, fila.base)}, ahora ${fila.valor}% (${fila.periodo}).`
-  : html`<span>${sinCambio}</span>`
+filaMovimiento = (etiqueta, fila) => fila
+  ? html`<tr>
+  <td>${etiqueta}</td>
+  <td>${nombres[fila.indicador]}<span class="data-table-period"> — ${fila.categoria} (${cortes[fila.corte]})</span></td>
+  <td class="data-table-num">${formatoDelta(fila.delta, fila.base)}</td>
+  <td class="data-table-num">${fila.valor}%<span class="data-table-period">(${fila.periodo})</span></td>
+</tr>`
+  : html`<tr>
+  <td>${etiqueta}</td>
+  <td colspan="3" class="data-table-note">Ningún movimiento de este periodo supera el umbral de 95% de confianza.</td>
+</tr>`
 
 textoBrecha = (nombre, brecha) => {
   if (!brecha) return html`<span>${nombre}: datos insuficientes por ahora.</span>`;
@@ -336,20 +353,45 @@ ultimasValidaciones = {
 ### Lo más destacado este trimestre
 
 Generado automáticamente a partir de los mismos datos por corte detrás de
-Participación, Informalidad y Desocupación. Las dos líneas de "mayor
-movimiento" solo cuentan un cambio si supera un umbral de 95% de confianza
-— si no, el mayor movimiento del trimestre suele ser solo la muestra más
-chica, no un cambio real.
+Participación, Informalidad y Desocupación: el mayor aumento y la mayor
+caída, trimestral y anual, ordenados por cambio porcentual. Una fila solo
+aparece si ese movimiento supera un umbral de 95% de confianza — si no,
+el mayor movimiento del trimestre suele ser solo la muestra más chica,
+no un cambio real.
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+html`<table class="data-table">
+<thead><tr>
+  <th>Movimiento</th><th>Indicador</th><th>Cambio</th><th>Último dato</th>
+</tr></thead>
+<tbody>
+${filaMovimiento("Mayor aumento trimestral", mayorMovimientoTrimSubida)}
+${filaMovimiento("Mayor caída trimestral", mayorMovimientoTrimBajada)}
+${filaMovimiento("Mayor aumento anual", mayorMovimientoAnualSubida)}
+${filaMovimiento("Mayor caída anual", mayorMovimientoAnualBajada)}
+</tbody>
+</table>`
+```
+
+:::
+
+### Brechas de género
+
+La brecha hombres-menos-mujeres para los indicadores donde los números
+principales de INEGI la esconden. No es exhaustiva — con el tiempo se
+pueden agregar más indicadores aquí.
 
 ::: {.data-panel}
 
 ```{ojs}
 //| echo: false
 html`<ul class="highlights-list">
-<li>Mayor movimiento trimestral: ${textoMovimiento(mayorMovimientoTrim, "Ningún cambio trimestral de este periodo supera el umbral de 95% de confianza.")}</li>
-<li>Mayor movimiento anual: ${textoMovimiento(mayorMovimientoAnual, "Ningún cambio anual de este periodo supera el umbral de 95% de confianza.")}</li>
 <li>${textoBrecha("Participación laboral", brechaTPEA)}</li>
 <li>${textoBrecha("Informalidad laboral", brechaTIL1)}</li>
+<li>${textoBrecha("Desocupación", brechaTD)}</li>
 </ul>`
 ```
 
