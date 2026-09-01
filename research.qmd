@@ -58,7 +58,7 @@ entry links to the original.
 
 - **The Gender Gap in Labor Earnings: Occupation, Hours, and Hourly Pay.**
   *Quarterly Report April–June 2026*, Box 2.
-  [Read the summary](/policy/gender-earnings-gap-box/)
+  [Read the box (PDF, in Spanish)](https://www.banxico.org.mx/publicaciones-y-prensa/informes-trimestrales/recuadros/%7BF1730819-16B5-AAD5-B61D-420CD88F674C%7D.pdf) · [Summary](/policy/gender-earnings-gap-box/)
 
 <!-- Formato: **Titulo.** Informe, recuadro, y un solo link de salida. Una
      linea por recuadro, sin resumen y sin voz propia: son publicaciones
@@ -66,14 +66,22 @@ entry links to the original.
 
 ## Health and work
 
-Trained as an economist, I have also worked with colleagues in medicine and
-public health on questions where health and work meet.
+Questions where health and work meet, written for a policy audience.
 
 ::: {#health}
 :::
 
-## Other writing
+## Other work
+
+- **Health Care Utilization and Costs in Systemic Therapies for Metastatic
+  Melanoma, 2016–2020.** A collaboration with dermatologists and oncologists at
+  Stanford that began through Knight-Hennessy. *The Oncologist*, 2022.
+  [Article](https://academic.oup.com/oncolo/advance-article/doi/10.1093/oncolo/oyac219/6776043) · [Summary](/research/other/melanoma-utilization/)
 
 - **How Long Does an Informal Job Last in Mexico?** Undergraduate thesis,
   ITAM, 2017.
-  [Read the summary](/policy/thesis-informality-duration/)
+  [Thesis (PDF, in Spanish)](files/tesis-duracion-informalidad-laboral.pdf) · [Summary](/policy/thesis-informality-duration/)
+
+<!-- Renglones, no tarjetas: este es trabajo que no compite en peso con la
+     investigacion de arriba. Cada renglon enlaza primero a la cosa misma y
+     despues al resumen; nunca solo al resumen. -->

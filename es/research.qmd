@@ -53,17 +53,22 @@ entrada enlaza al original.
 - **Brecha de género en ingresos laborales: el papel de la ocupación, las horas
   trabajadas y la remuneración por hora.** *Informe Trimestral abril–junio
   2026*, Recuadro 2.
-  [Leer el resumen](/es/policy/gender-earnings-gap-box/)
+  [Leer el recuadro (PDF)](https://www.banxico.org.mx/publicaciones-y-prensa/informes-trimestrales/recuadros/%7BF1730819-16B5-AAD5-B61D-420CD88F674C%7D.pdf) · [Resumen](/es/policy/gender-earnings-gap-box/)
 
 ## Salud y trabajo
 
-Formado como economista, también he trabajado con colegas de medicina y salud
-pública en preguntas donde se cruzan la salud y el trabajo.
+Preguntas donde se cruzan la salud y el trabajo, escritas para un público de
+política pública.
 
 ::: {#health}
 :::
 
-## Otros textos
+## Otros trabajos
+
+- **Uso y costos de servicios de salud en terapias sistémicas para melanoma
+  metastásico, 2016–2020.** Colaboración con dermatólogos y oncólogos de
+  Stanford que nació en Knight-Hennessy. *The Oncologist*, 2022.
+  [Artículo](https://academic.oup.com/oncolo/advance-article/doi/10.1093/oncolo/oyac219/6776043) · [Resumen](/es/research/other/melanoma-utilization/)
 
 - **¿Cuánto dura un empleo informal en México?** Tesis de licenciatura, ITAM, 2017.
-  [Leer el resumen](/es/policy/thesis-informality-duration/)
+  [Tesis (PDF)](../files/tesis-duracion-informalidad-laboral.pdf) · [Resumen](/es/policy/thesis-informality-duration/)

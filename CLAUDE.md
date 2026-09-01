@@ -138,8 +138,9 @@ teaching.qmd           EN teaching page. Hand-written, no listing.
 research/
   working-papers/<slug>/index.qmd
   in-progress/<slug>/index.qmd
-  health/<slug>/index.qmd         "Health and work": interdisciplinary pieces
-                                  (melanoma paper, breastfeeding post). See §5.
+  health/<slug>/index.qmd         "Health and work" listing (breastfeeding post).
+  other/<slug>/index.qmd          Pages linked from the hand-written "Other
+                                  work" list (melanoma paper). Not a listing.
   published/<slug>/index.qmd      Empty since 2026-09-01; comes back on the page
                                   when an economics paper is published. See §5.
 policy/<slug>/index.qmd           Mini-pages for the Banxico box and the thesis.
@@ -268,7 +269,8 @@ Three Quarto listings read three directories:
 |---|---|---|
 | `research/working-papers/` | Working papers / Documentos de trabajo | Circulating draft exists |
 | `research/in-progress/` | Work in progress / En proceso | No public draft yet |
-| `research/health/` | Health and work / Salud y trabajo | Interdisciplinary work with medicine and public health colleagues |
+| `research/health/` | Health and work / Salud y trabajo | Policy writing where health and work meet |
+| `research/other/` | (no listing; linked from "Other work") | Pages for one-line entries that need a summary |
 | `research/published/` | (not on the page while empty) | Peer-reviewed economics publications |
 
 **Every English listing must exclude the Spanish mirror.** Quarto's `contents`
@@ -296,14 +298,35 @@ into three sections, in this order after "Work in progress":
    voice, linking to the box's mini-page or canonical URL. The sober
    treatment below still governs every entry here.
 2. **Health and work / Salud y trabajo** — a folder-driven listing on
-   `research/health/`, opened by one framing sentence ("Trained as an
-   economist, I have also worked with colleagues in medicine and public health
-   on questions where health and work meet"). Holds the melanoma paper
-   (moved from `research/published/`) and the IDB breastfeeding post (moved
-   from `policy/`). The point of the section is to make interdisciplinary
-   work read as range rather than as stray items: the connective tissue is
-   the owner, and the sentence says so once.
-3. **Other writing / Otros textos** — hand-written, currently the ITAM thesis.
+   `research/health/`, opened by one line ("Questions where health and work
+   meet, written for a policy audience"). Holds the IDB breastfeeding post
+   (moved from `policy/`). The melanoma paper was here for one revision and
+   the owner said it still felt out of place; it was, because the section fits
+   a piece about work and the paper is not about work, and because a listing
+   card gives it the same visual weight as the job market paper.
+3. **Other work / Otros trabajos** — hand-written one-liners: the melanoma
+   paper and the ITAM thesis. The melanoma line says "a collaboration with
+   dermatologists and oncologists at Stanford that began through
+   Knight-Hennessy": the affiliations are what the paper prints, and the
+   Knight-Hennessy origin is the owner's own account of it, which is also what
+   makes an economist's presence on an oncology paper legible in one clause.
+   Do not add anything about the coauthors beyond what the paper itself
+   prints — their programs, roles, or how the owner knows them are third-party
+   detail and stay out (section 0). The
+   melanoma page lives at `research/other/melanoma-utilization/`, a folder
+   with no listing, so a one-liner can still point at a summary page.
+
+**Every one-liner links to the thing itself first, then to the summary.**
+The owner asked for this on the Banxico entry (link the box directly, do not
+route readers through the summary page) and it is the rule for all three
+lists: box PDF · summary; article · summary; thesis PDF · summary. A one-liner
+that links only to a summary page is wrong.
+
+**Weight is carried by format.** Listing cards (title, subtitle, description,
+pills) are for the economics research and for pieces in the owner's own voice.
+Anything that should be present but not compete with the research gets a
+one-liner. Do not promote a one-liner to a card to "give it more presence";
+that was the original problem.
 
 Why: the old list mixed two registers (unsigned institutional boxes next to
 personally-authored pieces), and "Other publications" held a single medical
@@ -314,7 +337,9 @@ the page when an economics paper is published — a listing on an empty folder
 is not rendered, so do not add it back before then.
 
 The four moved pages carry `aliases:` for their old URLs and `netlify.toml`
-has matching 301s. Folder URLs use the splat form
+has matching 301s (melanoma's point at `research/other/` directly; the
+intermediate `research/health/` location was never published, so there is no
+redirect chain). Folder URLs use the splat form
 (`from = "/old/path/*"`, `to = "/new/path/:splat"`), which covers both
 `/path/` and `/path/index.html` in one rule. The breastfeeding pages also
 changed depth (2→3 levels EN, 3→4 ES), so their image paths were rewritten;
