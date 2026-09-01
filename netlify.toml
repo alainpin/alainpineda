@@ -74,10 +74,9 @@
   status = 301
   force = true
 
-# Reorganizacion de Research (2026-09-01). Lactancia salio de policy/ a
-# research/health/ ("Salud y trabajo"); melanoma salio de "Otras
-# publicaciones" a research/other/, donde vive como un renglon bajo "Otros
-# trabajos". Nada de esto se publico con la ruta intermedia, asi que no hay
+# Reorganizacion de Research (2026-09-01). Lactancia salio de policy/ y
+# melanoma de "Otras publicaciones"; los dos viven en research/other/ como
+# renglones bajo "Otros trabajos". Nada de esto se publico con la ruta intermedia, asi que no hay
 # cadena de redirects: cada regla apunta al destino final. Son URLs de carpeta, asi que
 # el comodin cubre tanto /ruta/ como /ruta/index.html en una sola regla.
 # Mismo criterio que arriba: force = true porque existe el stub del alias.
@@ -95,12 +94,12 @@
 
 [[redirects]]
   from = "/policy/breastfeeding-workplace-policy/*"
-  to = "/research/health/breastfeeding-workplace-policy/:splat"
+  to = "/research/other/breastfeeding-workplace-policy/:splat"
   status = 301
   force = true
 
 [[redirects]]
   from = "/es/policy/breastfeeding-workplace-policy/*"
-  to = "/es/research/health/breastfeeding-workplace-policy/:splat"
+  to = "/es/research/other/breastfeeding-workplace-policy/:splat"
   status = 301
   force = true

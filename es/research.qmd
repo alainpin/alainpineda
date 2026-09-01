@@ -19,15 +19,6 @@ listing:
     date-format: "YYYY"
     categories: false
     feed: false
-  - id: health
-    contents: "research/health/*/index.qmd"
-    type: default
-    template: ../listing-templates/research-listing.ejs.md
-    sort: "date desc"
-    fields: [title, subtitle, description]
-    date-format: "YYYY"
-    categories: false
-    feed: false
 ---
 
 Estudio mercados laborales marcados por una informalidad alta: el empleo
@@ -55,14 +46,6 @@ entrada enlaza al original.
   2026*, Recuadro 2.
   [Leer el recuadro (PDF)](https://www.banxico.org.mx/publicaciones-y-prensa/informes-trimestrales/recuadros/%7BF1730819-16B5-AAD5-B61D-420CD88F674C%7D.pdf) · [Resumen](/es/policy/gender-earnings-gap-box/)
 
-## Salud y trabajo
-
-Preguntas donde se cruzan la salud y el trabajo, escritas para un público de
-política pública.
-
-::: {#health}
-:::
-
 ## Otros trabajos
 
 - **Uso y costos de servicios de salud en terapias sistémicas para melanoma
@@ -70,5 +53,10 @@ política pública.
   Stanford que nació en Knight-Hennessy. *The Oncologist*, 2022.
   [Artículo](https://academic.oup.com/oncolo/advance-article/doi/10.1093/oncolo/oyac219/6776043) · [Resumen](/es/research/other/melanoma-utilization/)
 
-- **¿Cuánto dura un empleo informal en México?** Tesis de licenciatura, ITAM, 2017.
+- **¿Por qué apoyar la lactancia en el trabajo?** Banco Interamericano de
+  Desarrollo, blog de Género y Diversidad, agosto de 2022.
+  [Entrada](https://www.iadb.org/es/blog/genero-y-diversidad/lactancia-es-desarrollo-por-que-impulsar-la-lactancia-materna-en-el-trabajo) · [Resumen](/es/research/other/breastfeeding-workplace-policy/)
+
+- **¿Cuánto dura un empleo informal en México?** Tesis de licenciatura, ITAM,
+  2017. Premio Citibanamex de Economía 2017 y Premio Ex-ITAM 2018.
   [Tesis (PDF)](../files/tesis-duracion-informalidad-laboral.pdf) · [Resumen](/es/policy/thesis-informality-duration/)

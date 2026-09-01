@@ -59,7 +59,7 @@ dejaría fuera.
 
 ::: {.paper-links}
 - [Leer el texto en el BID](https://www.iadb.org/es/blog/genero-y-diversidad/lactancia-es-desarrollo-por-que-impulsar-la-lactancia-materna-en-el-trabajo)
-- [English version](/research/health/breastfeeding-workplace-policy/)
+- [English version](/research/other/breastfeeding-workplace-policy/)
 :::
 
 <details class="abstract">

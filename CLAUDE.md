@@ -138,9 +138,9 @@ teaching.qmd           EN teaching page. Hand-written, no listing.
 research/
   working-papers/<slug>/index.qmd
   in-progress/<slug>/index.qmd
-  health/<slug>/index.qmd         "Health and work" listing (breastfeeding post).
   other/<slug>/index.qmd          Pages linked from the hand-written "Other
-                                  work" list (melanoma paper). Not a listing.
+                                  work" list (melanoma paper, breastfeeding
+                                  post). Not a listing.
   published/<slug>/index.qmd      Empty since 2026-09-01; comes back on the page
                                   when an economics paper is published. See §5.
 policy/<slug>/index.qmd           Mini-pages for the Banxico box and the thesis.
@@ -269,7 +269,6 @@ Three Quarto listings read three directories:
 |---|---|---|
 | `research/working-papers/` | Working papers / Documentos de trabajo | Circulating draft exists |
 | `research/in-progress/` | Work in progress / En proceso | No public draft yet |
-| `research/health/` | Health and work / Salud y trabajo | Policy writing where health and work meet |
 | `research/other/` | (no listing; linked from "Other work") | Pages for one-line entries that need a summary |
 | `research/published/` | (not on the page while empty) | Peer-reviewed economics publications |
 
@@ -292,20 +291,24 @@ Spanish tree.
 
 **Superseded in part on 2026-09-01 — read this first.** The single
 "Policy and other writing" / "Política pública y otros textos" list was split
-into three sections, in this order after "Work in progress":
+into two sections, in this order after "Work in progress" (a third, "Health
+and work", existed for two revisions and was folded into "Other work" on the
+owner's call: with the melanoma paper gone it held one blog post, and he did
+not expect it to keep filling):
 
 1. **Banco de México** — one line per Quarterly Report box, no summary, no
    voice, linking to the box's mini-page or canonical URL. The sober
    treatment below still governs every entry here.
-2. **Health and work / Salud y trabajo** — a folder-driven listing on
-   `research/health/`, opened by one line ("Questions where health and work
-   meet, written for a policy audience"). Holds the IDB breastfeeding post
-   (moved from `policy/`). The melanoma paper was here for one revision and
-   the owner said it still felt out of place; it was, because the section fits
-   a piece about work and the paper is not about work, and because a listing
-   card gives it the same visual weight as the job market paper.
-3. **Other work / Otros trabajos** — hand-written one-liners: the melanoma
-   paper and the ITAM thesis. The melanoma line says "a collaboration with
+2. **Other work / Otros trabajos** — hand-written one-liners, in this order:
+   the melanoma paper, the IDB breastfeeding post, the ITAM thesis. The
+   thesis line names its two prizes (Premio Citibanamex de Economía 2017,
+   Premio Ex-ITAM 2018) on the research page itself, because that is what
+   justifies an undergraduate thesis being there at all; use the exact
+   spelling from the thesis page's own subtitle. The melanoma paper first sat
+   as a listing card under "Health and work" and the owner said it still felt
+   out of place; it did, because that section fit a piece about work and the
+   paper is not about work, and because a card gives it the same visual weight
+   as the job market paper. The melanoma line says "a collaboration with
    dermatologists and oncologists at Stanford that began through
    Knight-Hennessy": the affiliations are what the paper prints, and the
    Knight-Hennessy origin is the owner's own account of it, which is also what
@@ -313,14 +316,28 @@ into three sections, in this order after "Work in progress":
    Do not add anything about the coauthors beyond what the paper itself
    prints — their programs, roles, or how the owner knows them are third-party
    detail and stay out (section 0). The
-   melanoma page lives at `research/other/melanoma-utilization/`, a folder
+   melanoma and breastfeeding pages live under `research/other/`, a folder
    with no listing, so a one-liner can still point at a summary page.
 
 **Every one-liner links to the thing itself first, then to the summary.**
 The owner asked for this on the Banxico entry (link the box directly, do not
 route readers through the summary page) and it is the rule for all three
-lists: box PDF · summary; article · summary; thesis PDF · summary. A one-liner
-that links only to a summary page is wrong.
+lists: box PDF · summary; article · summary; post · summary; thesis PDF ·
+summary. A one-liner that links only to a summary page is wrong.
+
+**A page under Other work states its result in plain text, never in a
+`.finding`.** The melanoma page (2026-09-01) opens with a one-paragraph
+result and carries a `.chart-figure` rebuilt from the paper's Table 2, plus
+"What the paper does", "What it found", and "How to read it" sections written
+for a reader who is not an oncologist: a non-academic, or an economist who
+wants to know what was done. It has a public result, so the section 6 rule
+would allow a `.finding`; it does not get one because that device is the
+signature of the owner's economics and policy work, and using it here would
+undo the weight distinction the one-liner exists to make. The chart is
+rebuilt in the site's style rather than reproduced from the PDF even though
+the article is CC BY-NC: a rebuilt figure follows the light/dark themes and
+the numbers are the paper's own (Table 2, total and treatment-related cost
+per patient per month; "other care" is the difference).
 
 **Weight is carried by format.** Listing cards (title, subtitle, description,
 pills) are for the economics research and for pieces in the owner's own voice.
@@ -337,9 +354,9 @@ the page when an economics paper is published — a listing on an empty folder
 is not rendered, so do not add it back before then.
 
 The four moved pages carry `aliases:` for their old URLs and `netlify.toml`
-has matching 301s (melanoma's point at `research/other/` directly; the
-intermediate `research/health/` location was never published, so there is no
-redirect chain). Folder URLs use the splat form
+has matching 301s (all point at `research/other/` directly; the intermediate
+`research/health/` location was never published, so there is no redirect
+chain). Folder URLs use the splat form
 (`from = "/old/path/*"`, `to = "/new/path/:splat"`), which covers both
 `/path/` and `/path/index.html` in one rule. The breastfeeding pages also
 changed depth (2→3 levels EN, 3→4 ES), so their image paths were rewritten;
@@ -540,6 +557,17 @@ same day, worth internalizing before building the next one:
    chart scripts' history for the pattern) — do this from the start rather
    than retrofitting it, since it doubles every chart's file count (2 langs
    × 2 modes = 4 files per chart).
+
+**Run every figure script under a UTF-8 locale, and make the script insist
+on it.** The tool that invokes `Rscript` does not always inherit `LANG`.
+Without UTF-8, `svglite` writes accented characters in Spanish labels as
+stray bytes, with no error and no warning: `07-melanoma-figure.R` first
+produced a legend reading "Otra atenci..n m..dica", and it was only caught by
+looking at the rendered SVG. Both figure scripts now open with
+`if (!isTRUE(l10n_info()[["UTF-8"]])) stop(...)` so the failure is loud, and
+their run line is `LANG=es_MX.UTF-8 LC_ALL=es_MX.UTF-8 Rscript scripts/...`.
+Copy both into any new figure script. The same trap, on the data side, is
+documented at length in the private ENOE dashboard's own CLAUDE.md.
 
 **When to use which:** `.site-figure` for Stata/PDF-derived static images
 that can't be regenerated (JMP maps, anything sourced from a screenshot or a

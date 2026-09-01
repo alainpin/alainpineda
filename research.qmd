@@ -23,17 +23,6 @@ listing:
     date-format: "YYYY"
     categories: false
     feed: false
-  - id: health
-    contents:
-      - "research/health/*/index.qmd"
-      - "!es/**"
-    type: default
-    template: listing-templates/research-listing.ejs.md
-    sort: "date desc"
-    fields: [title, subtitle, description]
-    date-format: "YYYY"
-    categories: false
-    feed: false
 ---
 
 I study labor markets shaped by high informality: informal employment, gender
@@ -64,13 +53,6 @@ entry links to the original.
      linea por recuadro, sin resumen y sin voz propia: son publicaciones
      institucionales sin firma. Ver seccion 8 del CLAUDE.md. -->
 
-## Health and work
-
-Questions where health and work meet, written for a policy audience.
-
-::: {#health}
-:::
-
 ## Other work
 
 - **Health Care Utilization and Costs in Systemic Therapies for Metastatic
@@ -78,8 +60,12 @@ Questions where health and work meet, written for a policy audience.
   Stanford that began through Knight-Hennessy. *The Oncologist*, 2022.
   [Article](https://academic.oup.com/oncolo/advance-article/doi/10.1093/oncolo/oyac219/6776043) · [Summary](/research/other/melanoma-utilization/)
 
+- **Why Support Breastfeeding at Work?** Inter-American Development Bank,
+  Gender and Diversity blog, August 2022.
+  [Post (in Spanish)](https://www.iadb.org/es/blog/genero-y-diversidad/lactancia-es-desarrollo-por-que-impulsar-la-lactancia-materna-en-el-trabajo) · [Summary](/research/other/breastfeeding-workplace-policy/)
+
 - **How Long Does an Informal Job Last in Mexico?** Undergraduate thesis,
-  ITAM, 2017.
+  ITAM, 2017. Premio Citibanamex de Economía 2017 and Premio Ex-ITAM 2018.
   [Thesis (PDF, in Spanish)](files/tesis-duracion-informalidad-laboral.pdf) · [Summary](/policy/thesis-informality-duration/)
 
 <!-- Renglones, no tarjetas: este es trabajo que no compite en peso con la

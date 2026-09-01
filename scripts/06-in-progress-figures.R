@@ -21,9 +21,18 @@
 #      contra T-MEC, tal como estan escritas. Cero calculo propio y cero
 #      lectura causal: es el texto del tratado, no un resultado.
 #
-# Se corre A MANO:
-#   Rscript scripts/06-in-progress-figures.R
+# Se corre A MANO, con locale UTF-8. Hoy ninguna etiqueta en espanol de este
+# script lleva acento, pero el dia que alguna lo lleve, sin UTF-8 svglite la
+# escribe como bytes sueltos sin error ni aviso (paso en 07-melanoma-figure.R).
+# La guardia esta aqui para que ese dia falle ruidosamente en vez de publicar
+# un SVG corrupto:
+#   LANG=es_MX.UTF-8 LC_ALL=es_MX.UTF-8 Rscript scripts/06-in-progress-figures.R
 # ---------------------------------------------------------------------------
+
+if (!isTRUE(l10n_info()[["UTF-8"]])) {
+  stop("La sesion no esta en UTF-8. Corre: LANG=es_MX.UTF-8 LC_ALL=es_MX.UTF-8 ",
+       "Rscript scripts/06-in-progress-figures.R", call. = FALSE)
+}
 
 suppressPackageStartupMessages({
   library(ggplot2)
