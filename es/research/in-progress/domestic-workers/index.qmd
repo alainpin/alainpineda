@@ -10,11 +10,9 @@ author: "Alain Pineda"
 En proceso
 :::
 
-::: {.finding}
 La afiliación voluntaria es el primer paso estándar hacia un régimen obligatorio
 para trabajadores difíciles de alcanzar. Este proyecto pregunta cuánto de la
 brecha cierra en realidad.
-:::
 
 ### Qué hace el proyecto
 

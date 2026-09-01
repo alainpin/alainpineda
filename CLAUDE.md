@@ -545,7 +545,18 @@ Rules for writing a `.finding`:
 - No hedging stack. One qualifier maximum.
 - No jargon: no "extensive margin", no "identification", no "TWFE".
 - Two lines maximum. If it needs three, it is not sharp enough yet.
-- Every research and policy page gets exactly one. Never two.
+- Never two on a page.
+- **A page gets one only when it has a public result to state.** The device
+  promises a finding, so a page with nothing to report cannot have one: the
+  rule above forbids stating the question, and section 8 forbids publishing a
+  result from work that is not public yet. Those two constraints leave no
+  wording that satisfies both, which is exactly how the two `in-progress`
+  pages ended up opening with "This project asks..." for months.
+  Where there is no public result, open with a plain paragraph instead — the
+  same two sentences, without the wrapper. `published/melanoma-utilization`
+  and both `in-progress/` pages do this; `working-papers/social-insurance-
+  without-a-job` has a real one, because its PDF is public.
+  When a draft becomes public, that page earns a `.finding` and should get one.
 
 ### `.paper-links`
 
@@ -652,9 +663,10 @@ a personal blog and not like marketing copy.
 - Never oversell a result. If a decomposition is accounting, say it is
   accounting. If estimates are conditional correlations, say so. The owner works
   at a central bank and reputational precision matters more than punch.
-- Structure for each research page: `.eyebrow`, `.finding`,
-  "What the paper does", "Why it matters for policy", `.paper-links`, collapsed
-  abstract.
+- Structure for each research page: `.eyebrow`, then `.finding` if the page has
+  a public result to state (see section 6) or a plain opening paragraph if it
+  does not, "What the paper does", "Why it matters for policy", `.paper-links`,
+  collapsed abstract.
 - Spanish is **Mexican Spanish for an educated general audience**, not a literal
   translation. Use "empleo formal", "informalidad", "seguridad social",
   "trabajadoras del hogar", "brecha de ocupación". Keep institution names in
@@ -947,9 +959,13 @@ without being asked.
   that as part of the pre-launch checklist; don't flip visibility unprompted
   since it's a one-way change on a shared GitHub resource.
 - The policy brief PDF is linked but not yet in `files/`.
-- The `.finding` lines for `domestic-workers` and `nafta-to-usmca` are drafts
-  written from project descriptions, not from results. The owner must confirm or
-  rewrite them.
+- **Resolved 2026-09-01.** The `.finding` blocks on `domestic-workers` and
+  `nafta-to-usmca` stated the question rather than a result, which rule 1 in
+  section 6 forbids. Rewriting them was not possible: neither draft is public,
+  so section 8 blocks stating a result. Both pages now open with the same two
+  sentences as a plain paragraph, with no `.finding` wrapper, following
+  `published/melanoma-utilization`. Each earns a real `.finding` when its draft
+  becomes public.
 - `data.qmd`/`es/data.qmd` are live again (2026-08-29) with real ENOE national
   indicators, sourced via `scripts/02-labor-indicators.R` from a validated
   external R pipeline (not recomputed here). Still no by-state cut — that

@@ -10,11 +10,9 @@ author: "Alain Pineda"
 Work in progress
 :::
 
-::: {.finding}
 USMCA wrote labor standards directly into a trade agreement. This project measures
 whether the wage and bargaining provisions moved employment and pay, or only
 paperwork.
-:::
 
 ### What the project does
 

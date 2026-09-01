@@ -10,11 +10,9 @@ author: "Alain Pineda"
 Work in progress
 :::
 
-::: {.finding}
 Voluntary enrollment is the standard first step toward a mandatory regime for
 workers who are hard to reach. This project asks how much of the gap it actually
 closes.
-:::
 
 ### What the project does
 

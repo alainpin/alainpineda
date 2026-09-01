@@ -10,11 +10,9 @@ author: "Alain Pineda"
 En proceso
 :::
 
-::: {.finding}
 El T-MEC metió estándares laborales directamente en un acuerdo comercial. Este
 proyecto mide si las disposiciones salariales y de negociación movieron el empleo
 y los salarios, o solo el papeleo.
-:::
 
 ### Qué hace el proyecto
 
