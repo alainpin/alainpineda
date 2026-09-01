@@ -14,9 +14,6 @@ site. None of these cuts uses a custom definition: every one is the same
 formula applied within each group, using fields the ENOE already reports
 pre-coded.
 
-All series on this page are **original**, without seasonal adjustment.
-
-
 ```{ojs}
 //| echo: false
 //| output: false
@@ -372,6 +369,10 @@ corte_sel === "entidad"
   : graficaSerieMultiple(definicion_sel, corte_sel, ordenCategorias[corte_sel], etiquetaY)
 ```
 
+:::
+
+::: {.chart-note}
+All series above are **original**, without seasonal adjustment.
 :::
 
 <details class="abstract">

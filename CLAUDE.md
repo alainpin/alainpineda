@@ -510,7 +510,8 @@ empleo formal subió" is right. "This paper studies social insurance" is wrong.
 ## 6. The custom classes in `theme.scss`
 
 Three CSS classes carry the whole editorial structure. Use them; do not invent
-new ones without a reason.
+new ones without a reason. (A fourth, `.chart-note`, exists for technical
+captions under the data-page charts — see section 13.)
 
 ### `.eyebrow`
 
@@ -1097,3 +1098,38 @@ a gradual transition.
 
 **All the Labor Market MX pages now state that their series are original,
 without seasonal adjustment.** Nothing said so before.
+
+### Technical notes go below the charts, not above (2026-09-01)
+
+The original-series and trend-cycle explanation first went in the page intro,
+and the owner moved it. His reasoning is the rule to follow for anything
+similar: there was already too much text before the reader reaches the
+interesting part, and the trend-cycle line is a detail for a reader who knows
+what seasonal adjustment is, not something a general audience needs in order
+to read the chart.
+
+So: **the intro says what the page is; the technical caveat goes after the
+last chart**, in a `.chart-note` block, just above the "How this is built"
+fold. `.chart-note` (`theme.scss`) is the fourth custom class on the site,
+added for this — muted, smaller than body, capped at 620px. It exists because
+plain body text was too loud for something explicitly not aimed at the general
+reader. All five Labor Market MX pages use it, in both languages.
+
+### The validation table follows the site's themes, not the CSV's sort order
+
+`ultimasValidaciones` sorts by an explicit `ordenTemas` array before
+rendering: participation, then informality, then unemployment, matching the
+navbar. The CSV arrives sorted by indicator code, which interleaved the three.
+Display order is a presentation choice, so it lives in the `.qmd`, not in
+`scripts/04-labor-validations.R`.
+
+Two details in that array worth keeping: `TSUB` sits next to `SUBUTIL`,
+because underemployment is one of the components `SUBUTIL` aggregates, and
+`TCCO` goes last because it belongs to none of the three themes and has no
+page of its own. **Anything not in the array is appended, never dropped** — a
+new indicator upstream must not vanish from this table, which is the same
+failure mode the "not validated" rows exist to prevent.
+
+The "Changes this quarter" table on the same page is deliberately left alone:
+the reader sorts it by clicking a column header, so its order is UI state
+rather than an editorial choice.

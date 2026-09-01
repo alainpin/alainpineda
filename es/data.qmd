@@ -21,14 +21,6 @@ los trimestres desde 2005, no solo el más reciente: la brecha mediana es de
 0.013 puntos porcentuales y la mayor de 0.216. No son un hallazgo propio: son
 cifras públicas, presentadas aquí para consulta rápida.
 
-Todas las series aquí son **originales**, sin ajuste estacional. La línea
-tenue detrás de cada una es la serie de **tendencia-ciclo** del propio INEGI,
-mostrada como contexto de lectura. Esa línea se revisa hacia atrás conforme
-llegan trimestres nuevos, así que la cifra de cada tarjeta sale siempre de la
-serie original. Dos indicadores, desocupación ampliada y subutilización
-laboral, no tienen serie trimestral de tendencia-ciclo publicada por INEGI y
-aparecen sin ella.
-
 ```{ojs}
 //| echo: false
 raw = FileAttachment("../data/labor-indicators.csv").csv({ typed: true })
@@ -309,6 +301,15 @@ html`<div class="indicator-headline">${defSec.nombre}: ${ultimoSec.valor}%</div>
 //| echo: false
 graficaSerie(serieSec, { ajustada: serieAjustada(indicador_sel) })
 ```
+
+::: {.chart-note}
+Todas las series de arriba son **originales**, sin ajuste estacional. La línea
+tenue detrás de cada una es la serie de **tendencia-ciclo** del propio INEGI,
+mostrada como contexto de lectura; se revisa hacia atrás conforme llegan
+trimestres nuevos, así que la cifra de cada tarjeta sale siempre de la serie
+original. Desocupación ampliada y subutilización laboral no tienen serie
+trimestral de tendencia-ciclo publicada por INEGI y aparecen sin ella.
+:::
 
 <details class="abstract">
 <summary>Cómo está hecho</summary>

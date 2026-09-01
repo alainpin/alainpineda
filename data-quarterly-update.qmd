@@ -319,10 +319,34 @@ ultimoPeriodoValidacion = validaciones.length
   ? `${validaciones[validaciones.length - 1].anio}-Q${validaciones[validaciones.length - 1].trimestre}`
   : ""
 
+// Display order follows the site's own themes, in navbar order: participation,
+// informality, unemployment. The CSV arrives sorted by indicator code, which
+// interleaved the three. This is a presentation choice, so it lives here and
+// not in the CSV.
+//
+// TSUB sits next to SUBUTIL because underemployment is one of the components
+// SUBUTIL aggregates. TCCO goes last: it belongs to none of the three themes
+// and has no page of its own.
+//
+// Anything not listed is appended rather than dropped. A new indicator in the
+// upstream pipeline must not disappear from this table -- a silently missing
+// row reads as full coverage, which is the same failure the "not validated"
+// rows exist to prevent.
+ordenTemas = ["TPEA",
+              "TIL1", "TIL2", "TOSI1", "TOSI2",
+              "TD", "TDAMPL", "SUBUTIL", "TSUB",
+              "TCCO"]
+
 ultimasValidaciones = {
   const ultimoAnio = validaciones[validaciones.length - 1]?.anio;
   const ultimoTrim = validaciones[validaciones.length - 1]?.trimestre;
-  return validaciones.filter(v => v.anio === ultimoAnio && v.trimestre === ultimoTrim);
+  const rango = v => {
+    const i = ordenTemas.indexOf(v.indicador);
+    return i === -1 ? ordenTemas.length : i;
+  };
+  return validaciones
+    .filter(v => v.anio === ultimoAnio && v.trimestre === ultimoTrim)
+    .sort((a, b) => rango(a) - rango(b) || a.indicador.localeCompare(b.indicador));
 }
 ```
 

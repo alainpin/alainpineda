@@ -21,13 +21,6 @@ quarter back to 2005, not only the most recent one: the median gap is 0.013
 percentage points and the largest is 0.216. Not an original finding: these are
 public figures, presented here for quick reference.
 
-All series here are **original**, without seasonal adjustment. The faint line
-behind each one is INEGI's own **trend-cycle** series, shown as reading
-context. That line is revised backward as new quarters arrive, so the figure
-quoted on each card always comes from the original series. Two indicators,
-broader unemployment and labor underutilization, have no quarterly trend-cycle
-series published by INEGI and appear without one.
-
 ```{ojs}
 //| echo: false
 raw = FileAttachment("data/labor-indicators.csv").csv({ typed: true })
@@ -308,6 +301,15 @@ html`<div class="indicator-headline">${defSec.nombre}: ${ultimoSec.valor}%</div>
 //| echo: false
 graficaSerie(serieSec, { ajustada: serieAjustada(indicador_sel) })
 ```
+
+::: {.chart-note}
+All series above are **original**, without seasonal adjustment. The faint line
+behind each one is INEGI's own **trend-cycle** series, shown as reading
+context; it is revised backward as new quarters arrive, so the figure quoted
+on each card always comes from the original series. Broader unemployment and
+labor underutilization have no quarterly trend-cycle series published by INEGI
+and appear without one.
+:::
 
 <details class="abstract">
 <summary>How this is built</summary>

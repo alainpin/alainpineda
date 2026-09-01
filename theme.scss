@@ -504,6 +504,18 @@ form[class^="oi-"] select {
   line-height: 1.4;
   max-width: 320px;
 }
+// Nota tecnica que va DEBAJO de las graficas, no antes. Sirve al lector que
+// pregunta como esta construida la serie, no al que solo quiere ver el dato,
+// asi que no gasta espacio arriba ni compite con las graficas: va atenuada y
+// mas chica que el cuerpo. Regla del owner (2026-09-01): lo interesante
+// primero, el detalle tecnico despues.
+.chart-note {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: $ink-soft;
+  max-width: 620px;
+  margin: 1.6rem 0 0;
+}
 .data-table-period {
   color: $ink-soft;
   font-size: 0.85em;

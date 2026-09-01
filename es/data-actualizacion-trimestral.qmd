@@ -315,10 +315,34 @@ ultimoPeriodoValidacion = validaciones.length
   ? `${validaciones[validaciones.length - 1].anio}-T${validaciones[validaciones.length - 1].trimestre}`
   : ""
 
+// El orden sigue los temas del propio sitio, en el orden del navbar:
+// participación, informalidad, desocupación. El CSV llega ordenado por código
+// de indicador, que mezclaba los tres. Es una decisión de presentación, así
+// que vive aquí y no en el CSV.
+//
+// TSUB va junto a SUBUTIL porque la subocupación es uno de los componentes que
+// SUBUTIL agrega. TCCO va al final: no pertenece a ninguno de los tres temas
+// y no tiene página propia.
+//
+// Lo que no esté en la lista se agrega al final, no se descarta. Un indicador
+// nuevo del pipeline no debe desaparecer de esta tabla: un renglón ausente en
+// silencio se lee como cobertura completa, que es justo la falla que evitan
+// los renglones de "no validado".
+ordenTemas = ["TPEA",
+              "TIL1", "TIL2", "TOSI1", "TOSI2",
+              "TD", "TDAMPL", "SUBUTIL", "TSUB",
+              "TCCO"]
+
 ultimasValidaciones = {
   const ultimoAnio = validaciones[validaciones.length - 1]?.anio;
   const ultimoTrim = validaciones[validaciones.length - 1]?.trimestre;
-  return validaciones.filter(v => v.anio === ultimoAnio && v.trimestre === ultimoTrim);
+  const rango = v => {
+    const i = ordenTemas.indexOf(v.indicador);
+    return i === -1 ? ordenTemas.length : i;
+  };
+  return validaciones
+    .filter(v => v.anio === ultimoAnio && v.trimestre === ultimoTrim)
+    .sort((a, b) => rango(a) - rango(b) || a.indicador.localeCompare(b.indicador));
 }
 ```
 
