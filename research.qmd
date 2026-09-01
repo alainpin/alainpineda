@@ -23,9 +23,9 @@ listing:
     date-format: "YYYY"
     categories: false
     feed: false
-  - id: published
+  - id: health
     contents:
-      - "research/published/*/index.qmd"
+      - "research/health/*/index.qmd"
       - "!es/**"
     type: default
     template: listing-templates/research-listing.ejs.md
@@ -51,28 +51,29 @@ ends up covered, who doesn't, and why.
 ::: {#in-progress}
 :::
 
-## Policy and other writing
+## Banco de México
 
-Short pieces written for non-academic audiences. Each links out to the
-publisher.
+Boxes from the Quarterly Report. These are institutional publications. Each
+entry links to the original.
 
 - **The Gender Gap in Labor Earnings: Occupation, Hours, and Hourly Pay.**
-  Banco de México, *Quarterly Report April–June 2026*, Box 2.
+  *Quarterly Report April–June 2026*, Box 2.
   [Read the summary](/policy/gender-earnings-gap-box/)
 
-- **Why Support Breastfeeding at Work?** Inter-American Development Bank,
-  Gender and Diversity blog, August 2022.
-  [Read the summary](/policy/breastfeeding-workplace-policy/)
+<!-- Formato: **Titulo.** Informe, recuadro, y un solo link de salida. Una
+     linea por recuadro, sin resumen y sin voz propia: son publicaciones
+     institucionales sin firma. Ver seccion 8 del CLAUDE.md. -->
+
+## Health and work
+
+Trained as an economist, I have also worked with colleagues in medicine and
+public health on questions where health and work meet.
+
+::: {#health}
+:::
+
+## Other writing
 
 - **How Long Does an Informal Job Last in Mexico?** Undergraduate thesis,
   ITAM, 2017.
   [Read the summary](/policy/thesis-informality-duration/)
-
-<!-- Formato: **Titulo.** Publicacion, fecha, y un solo link de salida.
-     Una linea por pieza, sin resumen. Si alguna vez una nota merece pagina
-     propia, crea policy/<slug>/index.qmd y enlazala aqui como cualquier otra. -->
-
-## Other publications
-
-::: {#published}
-:::

@@ -18,6 +18,11 @@ From there, the practical craft: structuring an argument, choosing what to show,
 designing tables and figures that carry the point, and writing for diverse
 audiences. Materials are public.
 
+The [explainer](files/social-insurance-without-a-job-slides.html) for my job
+market paper is the same craft applied to my own work. It walks a general
+reader through the question, the method, and what the estimates can and
+cannot say.
+
 ::: {.paper-links}
 - [Syllabus (PDF)](files/storytelling-syllabus.pdf)
 - [Slides (ZIP)](files/storytelling-slides.zip)

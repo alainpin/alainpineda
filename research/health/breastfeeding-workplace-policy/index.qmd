@@ -3,6 +3,9 @@ title: "Why Support Breastfeeding at Work?"
 subtitle: "IDB Gender and Diversity blog, August 2022"
 description: "Paid breastfeeding breaks and lactation rooms exist on paper across Latin America and the Caribbean, but weak enforcement and high informality keep them from reaching most working mothers."
 author: "Alain Pineda"
+date: 2022-08-03
+aliases:
+  - /policy/breastfeeding-workplace-policy/
 ---
 
 ::: {.eyebrow}
@@ -29,8 +32,8 @@ size are required to provide them, excluding a large share of working women
 from the right entirely.
 
 ::: {.chart-figure}
-![](../../images/breastfeeding-policy-coverage-en-light.svg){.chart-img-light}
-![](../../images/breastfeeding-policy-coverage-en-dark.svg){.chart-img-dark}
+![](../../../images/breastfeeding-policy-coverage-en-light.svg){.chart-img-light}
+![](../../../images/breastfeeding-policy-coverage-en-dark.svg){.chart-img-dark}
 
 Workplace breastfeeding policies across 24 Latin American and Caribbean
 countries reviewed by UNICEF (2020). Source: IDB blog, based on UNICEF data.
@@ -51,7 +54,7 @@ benefit to workers a strictly employer-funded mandate would leave out.
 
 ::: {.paper-links}
 - [Read the post at IDB (in Spanish)](https://www.iadb.org/es/blog/genero-y-diversidad/lactancia-es-desarrollo-por-que-impulsar-la-lactancia-materna-en-el-trabajo)
-- [Versión en español](/es/policy/breastfeeding-workplace-policy/)
+- [Versión en español](/es/research/health/breastfeeding-workplace-policy/)
 :::
 
 <details class="abstract">

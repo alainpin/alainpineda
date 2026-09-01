@@ -4,6 +4,8 @@ subtitle: "The Oncologist, 2022"
 description: "A newer generation of cancer drugs, called immune checkpoint inhibitors, has lowered death rates from advanced melanoma but changed how and where patients are treated. This paper documents how health care use and costs shifted across melanoma treatments between 2016 and 2020."
 date: 2022-10-01
 pdf: files/melanoma-cost-utilization.pdf
+aliases:
+  - /research/published/melanoma-utilization/
 ---
 
 ::: {.eyebrow}

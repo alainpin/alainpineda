@@ -19,8 +19,8 @@ listing:
     date-format: "YYYY"
     categories: false
     feed: false
-  - id: published
-    contents: "research/published/*/index.qmd"
+  - id: health
+    contents: "research/health/*/index.qmd"
     type: default
     template: ../listing-templates/research-listing.ejs.md
     sort: "date desc"
@@ -45,24 +45,25 @@ esto: quién termina cubierto, quién no, y por qué.
 ::: {#in-progress}
 :::
 
-## Política pública y otros textos
+## Banco de México
 
-Textos breves dirigidos a audiencias no académicas. Cada uno enlaza a la
-publicación original.
+Recuadros del Informe Trimestral. Son publicaciones institucionales. Cada
+entrada enlaza al original.
 
 - **Brecha de género en ingresos laborales: el papel de la ocupación, las horas
-  trabajadas y la remuneración por hora.** Banco de México, *Informe Trimestral
-  abril–junio 2026*, Recuadro 2.
+  trabajadas y la remuneración por hora.** *Informe Trimestral abril–junio
+  2026*, Recuadro 2.
   [Leer el resumen](/es/policy/gender-earnings-gap-box/)
 
-- **¿Por qué apoyar la lactancia en el trabajo?** Banco Interamericano de
-  Desarrollo, blog de Género y Diversidad, agosto de 2022.
-  [Leer el resumen](/es/policy/breastfeeding-workplace-policy/)
+## Salud y trabajo
+
+Formado como economista, también he trabajado con colegas de medicina y salud
+pública en preguntas donde se cruzan la salud y el trabajo.
+
+::: {#health}
+:::
+
+## Otros textos
 
 - **¿Cuánto dura un empleo informal en México?** Tesis de licenciatura, ITAM, 2017.
   [Leer el resumen](/es/policy/thesis-informality-duration/)
-
-## Otras publicaciones
-
-::: {#published}
-:::

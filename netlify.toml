@@ -73,3 +73,32 @@
   to = "/es/data-actualizacion-trimestral.html"
   status = 301
   force = true
+
+# Reorganizacion de Research (2026-09-01). Melanoma salio de "Otras
+# publicaciones" y lactancia de policy/: los dos viven ahora bajo
+# research/health/, la seccion "Salud y trabajo". Son URLs de carpeta, asi que
+# el comodin cubre tanto /ruta/ como /ruta/index.html en una sola regla.
+# Mismo criterio que arriba: force = true porque existe el stub del alias.
+[[redirects]]
+  from = "/research/published/melanoma-utilization/*"
+  to = "/research/health/melanoma-utilization/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/es/research/published/melanoma-utilization/*"
+  to = "/es/research/health/melanoma-utilization/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/policy/breastfeeding-workplace-policy/*"
+  to = "/research/health/breastfeeding-workplace-policy/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/es/policy/breastfeeding-workplace-policy/*"
+  to = "/es/research/health/breastfeeding-workplace-policy/:splat"
+  status = 301
+  force = true

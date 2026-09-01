@@ -18,6 +18,11 @@ de Robert Shiller. A partir de ahí, el oficio práctico: estructurar el
 argumento, decidir qué mostrar, diseñar cuadros y gráficas que carguen el
 punto, y escribir para audiencias diversas. Los materiales son públicos.
 
+El [explicador](../files/social-insurance-without-a-job-slides-es.html) de mi
+job market paper es el mismo oficio aplicado a mi propio trabajo. Lleva a un
+lector general por la pregunta, el método, y lo que las estimaciones pueden y
+no pueden decir.
+
 ::: {.paper-links}
 - [Temario (PDF)](../files/storytelling-syllabus.pdf)
 - [Presentaciones (ZIP)](../files/storytelling-slides.zip)

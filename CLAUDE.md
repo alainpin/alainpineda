@@ -130,14 +130,19 @@ build.sh               Renders both profiles and merges Spanish into _site/es.
 theme.scss             All design tokens and custom classes.
 
 index.qmd              EN landing (Quarto `about: trestles`).
-research.qmd           EN research page. Three folder-driven listings PLUS a
-                       hand-written "Policy and other writing" subsection.
+research.qmd           EN research page. Three folder-driven listings
+                       (working-papers, in-progress, health) plus two
+                       hand-written lists (Banco de México, Other writing).
 teaching.qmd           EN teaching page. Hand-written, no listing.
 
 research/
   working-papers/<slug>/index.qmd
   in-progress/<slug>/index.qmd
-  published/<slug>/index.qmd
+  health/<slug>/index.qmd         "Health and work": interdisciplinary pieces
+                                  (melanoma paper, breastfeeding post). See §5.
+  published/<slug>/index.qmd      Empty since 2026-09-01; comes back on the page
+                                  when an economics paper is published. See §5.
+policy/<slug>/index.qmd           Mini-pages for the Banxico box and the thesis.
 
 data.qmd               EN interactive figures (Observable). In the navbar.
 es/                    Full Spanish mirror: index, research, data, teaching,
@@ -263,7 +268,8 @@ Three Quarto listings read three directories:
 |---|---|---|
 | `research/working-papers/` | Working papers / Documentos de trabajo | Circulating draft exists |
 | `research/in-progress/` | Work in progress / En proceso | No public draft yet |
-| `research/published/` | Other publications / Otras publicaciones | Peer-reviewed, published |
+| `research/health/` | Health and work / Salud y trabajo | Interdisciplinary work with medicine and public health colleagues |
+| `research/published/` | (not on the page while empty) | Peer-reviewed economics publications |
 
 **Every English listing must exclude the Spanish mirror.** Quarto's `contents`
 globs are not anchored to the page's directory, so `research/working-papers/*`
@@ -281,6 +287,43 @@ reads:
 Spanish tree.
 
 ### Policy: a subsection, not a section — deliberate
+
+**Superseded in part on 2026-09-01 — read this first.** The single
+"Policy and other writing" / "Política pública y otros textos" list was split
+into three sections, in this order after "Work in progress":
+
+1. **Banco de México** — one line per Quarterly Report box, no summary, no
+   voice, linking to the box's mini-page or canonical URL. The sober
+   treatment below still governs every entry here.
+2. **Health and work / Salud y trabajo** — a folder-driven listing on
+   `research/health/`, opened by one framing sentence ("Trained as an
+   economist, I have also worked with colleagues in medicine and public health
+   on questions where health and work meet"). Holds the melanoma paper
+   (moved from `research/published/`) and the IDB breastfeeding post (moved
+   from `policy/`). The point of the section is to make interdisciplinary
+   work read as range rather than as stray items: the connective tissue is
+   the owner, and the sentence says so once.
+3. **Other writing / Otros textos** — hand-written, currently the ITAM thesis.
+
+Why: the old list mixed two registers (unsigned institutional boxes next to
+personally-authored pieces), and "Other publications" held a single medical
+paper, which read either as the owner's only publication or as an oddity.
+Classifying by venue was the problem; these sections classify by what the
+work is. The `research/published/` bucket stays in the repo and returns to
+the page when an economics paper is published — a listing on an empty folder
+is not rendered, so do not add it back before then.
+
+The four moved pages carry `aliases:` for their old URLs and `netlify.toml`
+has matching 301s. Folder URLs use the splat form
+(`from = "/old/path/*"`, `to = "/new/path/:splat"`), which covers both
+`/path/` and `/path/index.html` in one rule. The breastfeeding pages also
+changed depth (2→3 levels EN, 3→4 ES), so their image paths were rewritten;
+that is the trap in §4 invariant 5, and it is why a moved page must be
+re-verified for resolved images, not just for rendering.
+
+The paragraphs below describe the pre-2026-09-01 layout and remain accurate
+about how a Banxico box entry must be written.
+
 
 There is **no `policy.qmd`** — the section still lives inside `research.qmd`
 and `es/research.qmd`, not as its own top-level nav item. (A `policy/`
@@ -649,6 +692,17 @@ body behind `typeof items !== 'undefined'` or that pass throws too.
 
 If a fourth listing needs the same PDF-pill treatment, point it at the same
 template file rather than writing a new one.
+
+---
+
+### Teaching links the explainer (2026-09-01)
+
+`teaching.qmd` / `es/teaching.qmd` now carry one sentence under Storytelling in
+Economics pointing at the job-market-paper explainer as "the same craft applied
+to my own work". This is the one cross-link that makes the site's throughline
+visible — an economist whose distinguishing trait is caring about being
+understood — without stating it anywhere as a slogan. Keep it as a sentence
+with an inline link, not a pill: the pill row is for course materials.
 
 ---
 

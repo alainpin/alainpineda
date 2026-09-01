@@ -3,6 +3,9 @@ title: "¿Por qué apoyar la lactancia en el trabajo?"
 subtitle: "Blog de Género y Diversidad del BID, agosto de 2022"
 description: "Los descansos remunerados y las salas de lactancia existen en el papel en toda América Latina y el Caribe, pero el cumplimiento débil y la informalidad impiden que lleguen a la mayoría de las madres trabajadoras."
 author: "Alain Pineda"
+date: 2022-08-03
+aliases:
+  - /es/policy/breastfeeding-workplace-policy/
 ---
 
 ::: {.eyebrow}
@@ -30,8 +33,8 @@ número mínimo de empleados, lo que excluye del derecho a una parte
 importante de las trabajadoras.
 
 ::: {.chart-figure}
-![](../../../images/breastfeeding-policy-coverage-es-light.svg){.chart-img-light}
-![](../../../images/breastfeeding-policy-coverage-es-dark.svg){.chart-img-dark}
+![](../../../../images/breastfeeding-policy-coverage-es-light.svg){.chart-img-light}
+![](../../../../images/breastfeeding-policy-coverage-es-dark.svg){.chart-img-dark}
 
 Políticas laborales de apoyo a la lactancia en 24 países de América Latina y
 el Caribe revisados por UNICEF (2020). Fuente: blog del BID, con datos de
@@ -56,7 +59,7 @@ dejaría fuera.
 
 ::: {.paper-links}
 - [Leer el texto en el BID](https://www.iadb.org/es/blog/genero-y-diversidad/lactancia-es-desarrollo-por-que-impulsar-la-lactancia-materna-en-el-trabajo)
-- [English version](/policy/breastfeeding-workplace-policy/)
+- [English version](/research/health/breastfeeding-workplace-policy/)
 :::
 
 <details class="abstract">
