@@ -11,7 +11,7 @@ ENOE, INEGI · Quarterly, 2005–2026 · National
 
 Updated every time INEGI publishes a new quarter: what changed from the
 prior quarter and from a year earlier, and how closely this pipeline
-matches INEGI's own official bulletin for that same period. Same quality
+matches the series INEGI itself publishes for that same period. Same quality
 check described on the [overview page](data.qmd), laid out here in full
 instead of a single summary line.
 
@@ -38,8 +38,13 @@ nombres = ({
   SUBUTIL: "Labor underutilization"
 })
 
+// Notes are keys the page translates, not prose written into this file. The
+// validation itself decides which key each row gets (see
+// scripts/04-labor-validations.R), so a note can never outlive the condition
+// it describes -- which is what happened to the hand-written one it replaced.
 notas = ({
-  TCCO: "Likely a rebase of INEGI’s minimum-wage threshold (the bulletin cites a “January 2026 base”); verified correct by independently reconstructing TCCO from raw microdata."
+  sin_bie: "No matching quarterly series in INEGI's BIE; not validated.",
+  excede: "Exceeds the 0.25 pp tolerance against the BIE series."
 })
 
 // Only these have sex/age/education/state breakdowns computed so far (see
@@ -432,11 +437,11 @@ ${ordenarFilas(cambiosPorCorte(definicion_sel, corte_sel), columnaOrdenCorte, di
 
 :::
 
-### Comparison against the official bulletin
+### Comparison against INEGI's own published series
 
 ```{ojs}
 //| echo: false
-html`<p>Latest validation: <strong>${ultimoPeriodoValidacion}</strong>. Filled in by hand each quarter, comparing this pipeline against INEGI's <strong>quarterly</strong> press release, not the monthly one, which uses a different methodology and isn't comparable (two separate bulletins, with separate release numbers, come out almost the same day).</p>`
+html`<p>Latest validation: <strong>${ultimoPeriodoValidacion}</strong>. This pipeline is checked against the <strong>original series INEGI publishes in its Banco de Información Económica</strong> (BIE), which INEGI updates the same day as the quarterly release. The BIE carries the full history, so all ${new Set(validaciones.map(v => v.anio + "-" + v.trimestre)).size} quarters are re-checked on every run rather than only the most recent one. Two indicators have no matching quarterly series in the BIE and are published as unvalidated rather than left out of the table.</p>`
 ```
 
 ::: {.data-panel}
@@ -450,10 +455,10 @@ html`<table class="data-table">
 <tbody>
 ${ultimasValidaciones.map(v => html`<tr>
   <td>${nombres[v.indicador] ?? v.indicador}</td>
-  <td class="data-table-num">${v.oficial}%</td>
-  <td class="data-table-num">${v.pipeline}%</td>
-  <td class="data-table-num">${v.diferencia_pp.toFixed(2)} pp</td>
-  <td class="data-table-note">${notas[v.indicador] || "—"}</td>
+  <td class="data-table-num">${v.oficial == null ? "—" : v.oficial + "%"}</td>
+  <td class="data-table-num">${v.pipeline == null ? "—" : v.pipeline + "%"}</td>
+  <td class="data-table-num">${v.diferencia_pp == null ? "—" : v.diferencia_pp.toFixed(2) + " pp"}</td>
+  <td class="data-table-note">${notas[v.nota_clave] || "—"}</td>
 </tr>`)}
 </tbody>
 </table>`
@@ -466,8 +471,14 @@ ${ultimasValidaciones.map(v => html`<tr>
 
 Same pipeline and same public [repository](https://github.com/alainpin/alainpineda)
 as the [overview page](data.qmd). "Difference" is the absolute gap between
-this pipeline and the figure INEGI rounds to one decimal in its bulletin —
-a gap of up to roughly 0.05 pp is rounding, not a sign of error.
+this pipeline and INEGI's own published value for the same series. Across all
+20 series and 85 quarters checked, the median gap is 0.013 pp and the largest
+is 0.216 pp. Gaps of this size drift slightly by sub-period, which is
+consistent with revisions to the survey's expansion factors after
+recalibration to updated population projections, and the tolerance is set at
+0.25 pp. 2020-Q2 is excluded from the comparison throughout: the BIE splices
+in the ETOE telephone survey for that quarter, and this pipeline leaves it as
+a genuine gap.
 Quarter-over-quarter and year-over-year changes are computed against the
 exact matching period, not by row position, so the 2020-Q2 gap (ETOE, not
 comparable) never produces a change calculated across two quarters of

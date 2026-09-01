@@ -36,7 +36,7 @@ workers into informality. It does not. Read the
 or see [Research](research.qmd) for the rest.
 
 **Labor Market MX** recomputes the ENOE's headline labor indicators from
-microdata every quarter, validated against INEGI's own published bulletin.
+microdata every quarter, checked against INEGI's own published series.
 [See the data](data.qmd).
 
 ::: {.hero-motif}

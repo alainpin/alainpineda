@@ -14,17 +14,24 @@ html`<div class="indicator-meta">Latest available data: ENOE ${ultimoPeriodoGlob
 
 Official statistics from Mexico's National Survey of Occupation and
 Employment (ENOE), public data from INEGI. Recomputed here from microdata
-using the institute's own methodology — survey design, strata, and expansion
-factors, not a simple average — and validated every quarter against INEGI's
-own published bulletin for that period (the 2026-T2 check matched within 0.01
-percentage points on four of five headline indicators; critical employment
-conditions differed by 0.30 pp, likely from INEGI updating its minimum-wage
-threshold that quarter rather than a pipeline error). Not an original
-finding: these are public figures, presented here for quick reference.
+using the institute's own methodology (survey design, strata, and expansion
+factors, not a simple average) and checked against the original series INEGI
+publishes in its Banco de Información Económica. That check runs over every
+quarter back to 2005, not only the most recent one: the median gap is 0.013
+percentage points and the largest is 0.216. Not an original finding: these are
+public figures, presented here for quick reference.
+
+All series here are **original**, without seasonal adjustment. The faint line
+behind each one is INEGI's own **trend-cycle** series, shown as reading
+context. That line is revised backward as new quarters arrive, so the figure
+quoted on each card always comes from the original series. Two indicators,
+broader unemployment and labor underutilization, have no quarterly trend-cycle
+series published by INEGI and appear without one.
 
 ```{ojs}
 //| echo: false
 raw = FileAttachment("data/labor-indicators.csv").csv({ typed: true })
+ajustadaRaw = FileAttachment("data/labor-seasonal.csv").csv({ typed: true })
 
 datos = raw.map(d => ({ ...d, fecha: new Date(d.anio, (d.trimestre - 1) * 3, 1) }))
 
@@ -127,8 +134,43 @@ dominioAjustado = (serie, margenMinimo = 0.4) => {
   return [min - margen, max + margen];
 }
 
-graficaSerie = (serie, { width = 780, height = 340, marginLeft = 42, color = "var(--teal)" } = {}) => {
+// 2020-Q2 does not exist in the source. ENOE was suspended and replaced by
+// the ETOE telephone survey, which INEGI does not publish as a comparable
+// estimate. Joining the two sides with a straight line reads a change of
+// method as a gradual transition, so a point with an undefined value is
+// inserted in the gap and Plot breaks the line there instead.
+conHuecos = serie => {
+  const salida = [];
+  for (let i = 0; i < serie.length; i++) {
+    salida.push(serie[i]);
+    if (i < serie.length - 1) {
+      const a = serie[i], b = serie[i + 1];
+      const meses = (b.fecha.getFullYear() - a.fecha.getFullYear()) * 12 +
+                    (b.fecha.getMonth() - a.fecha.getMonth());
+      if (meses > 3) {
+        salida.push({ ...a,
+          fecha: new Date(a.fecha.getFullYear(), a.fecha.getMonth() + 3, 1),
+          valor: undefined, ee: undefined });
+      }
+    }
+  }
+  return salida;
+}
+
+// Trend-cycle series, published by INEGI itself in its Banco de Informacion
+// Economica. Quarterly ones come as percentages, unlike the monthly ones,
+// which are index numbers, so they sit directly on the same axis as the
+// original series with no rescaling. Six indicators have one; the rest return
+// an empty array and simply get no background line.
+serieAjustada = (codigo, tipo = "tendencia_ciclo") => ajustadaRaw
+  .filter(d => d.indicador === codigo && d.tipo === tipo)
+  .map(d => ({ ...d, fecha: new Date(d.anio, (d.trimestre - 1) * 3, 1) }))
+  .sort((a, b) => a.fecha - b.fecha)
+
+graficaSerie = (serie, { width = 780, height = 340, marginLeft = 42, color = "var(--teal)", ajustada = null } = {}) => {
   const ultimo = serie[serie.length - 1];
+  const serieRota = conHuecos(serie);
+  const ajustadaRota = ajustada && ajustada.length ? conHuecos(ajustada) : null;
   return Plot.plot({
     width, height, marginLeft,
     marginBottom: 30,
@@ -138,13 +180,21 @@ graficaSerie = (serie, { width = 780, height = 340, marginLeft = 42, color = "va
     y: { label: "%", grid: true, domain: dominioAjustado(serie), ticks: 4 },
     x: { label: null },
     marks: [
-      Plot.areaY(serie, {
+      Plot.areaY(serieRota, {
         x: "fecha",
-        y1: d => d.valor - 1.96 * d.ee,
-        y2: d => d.valor + 1.96 * d.ee,
+        y1: d => d.valor == null ? undefined : d.valor - 1.96 * d.ee,
+        y2: d => d.valor == null ? undefined : d.valor + 1.96 * d.ee,
         fill: color, fillOpacity: 0.12
       }),
-      Plot.lineY(serie, {
+      // The trend-cycle line is thinner and faded on purpose. It is reading
+      // context for the original series, not a second indicator, and the
+      // number quoted on the card always comes from the original.
+      ...(ajustadaRota ? [Plot.lineY(ajustadaRota, {
+        x: "fecha", y: "valor",
+        stroke: color, strokeWidth: 1.4, strokeOpacity: 0.5,
+        strokeLinejoin: "round", strokeLinecap: "round"
+      })] : []),
+      Plot.lineY(serieRota, {
         x: "fecha", y: "valor",
         stroke: color, strokeWidth: 2,
         strokeLinejoin: "round", strokeLinecap: "round"
@@ -192,7 +242,7 @@ html`<div class="indicator-grid">${indicadoresPrincipales.map(codigo => {
   <div class="indicator-meta">± ${(1.96 * ultimo.ee).toFixed(2)} pp · ${ultimo.anio}-Q${ultimo.trimestre}</div>
   <div class="indicator-delta">${formatoDelta(deltaTrim)} q/q · ${formatoDelta(deltaAnual)} y/y</div>
   <div class="indicator-desc">${def.texto}</div>`;
-  div.append(head, graficaSerie(serie, { width: 250, height: 190, marginLeft: 32, color: coloresPrincipales[codigo] }));
+  div.append(head, graficaSerie(serie, { width: 250, height: 190, marginLeft: 32, color: coloresPrincipales[codigo], ajustada: serieAjustada(codigo) }));
   return div;
 })}</div>`
 ```
@@ -219,7 +269,7 @@ html`<div class="indicator-grid indicator-grid-2">${indicadoresEscalera.map(codi
   <div class="indicator-meta">± ${(1.96 * ultimo.ee).toFixed(2)} pp · ${ultimo.anio}-Q${ultimo.trimestre}</div>
   <div class="indicator-delta">${formatoDelta(deltaTrim)} q/q · ${formatoDelta(deltaAnual)} y/y</div>
   <div class="indicator-desc">${def.texto}</div>`;
-  div.append(head, graficaSerie(serie, { width: 380, height: 190, marginLeft: 32, color: coloresEscalera[codigo] }));
+  div.append(head, graficaSerie(serie, { width: 380, height: 190, marginLeft: 32, color: coloresEscalera[codigo], ajustada: serieAjustada(codigo) }));
   return div;
 })}</div>`
 ```
@@ -256,7 +306,7 @@ html`<div class="indicator-headline">${defSec.nombre}: ${ultimoSec.valor}%</div>
 
 ```{ojs}
 //| echo: false
-graficaSerie(serieSec)
+graficaSerie(serieSec, { ajustada: serieAjustada(indicador_sel) })
 ```
 
 <details class="abstract">
@@ -270,11 +320,12 @@ est_d_tri, weights = fac_tri`) — lives in a separate private R project, not
 in this site's repository. The shaded band on each chart, and the ± figure
 next to each headline number, is a 95% confidence interval (±1.96 standard
 errors) from that same design, not a simple margin of error. Every rate
-above is checked against INEGI's own
-published bulletin each quarter; the 2026-T2 check found a largest gap of
-0.30 percentage points, in critical employment conditions (TCCO), likely
-from a minimum-wage rebasing on INEGI's side rather than a computation
-error — the other four checked indicators matched within 0.01 pp.
+above is checked against the original series INEGI publishes in its Banco de
+Información Económica, over the full history rather than only the latest
+quarter: the median gap is 0.013 percentage points and the largest is 0.216.
+Broader unemployment and labor underutilization have no matching series there
+and are reported as unvalidated on the
+[quarterly update](data-quarterly-update.qmd) page.
 
 **2. This site only reads a public CSV.** `scripts/02-labor-indicators.R`
 exports the national-level rates from that pipeline into

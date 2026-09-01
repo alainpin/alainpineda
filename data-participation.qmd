@@ -12,6 +12,9 @@ own site — sex, age group, education level, and state. None of these cuts
 uses a custom definition: every one is the same TPEA formula applied within
 each group, using fields the ENOE already reports pre-coded.
 
+All series on this page are **original**, without seasonal adjustment.
+
+
 ```{ojs}
 //| echo: false
 //| output: false

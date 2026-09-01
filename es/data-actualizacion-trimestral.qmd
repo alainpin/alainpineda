@@ -11,7 +11,7 @@ ENOE, INEGI · Trimestral, 2005–2026 · Nacional
 
 Se actualiza cada vez que INEGI publica un trimestre nuevo: qué cambió
 respecto al trimestre y al año anterior, y qué tan cerca está el pipeline
-del boletín oficial de INEGI ese mismo periodo. Mismo control de calidad
+de las series que el propio INEGI publica para ese mismo periodo. Mismo control de calidad
 descrito en la [página de panorama](data.qmd), aquí en detalle completo en
 vez de una sola línea resumen.
 
@@ -38,8 +38,13 @@ nombres = ({
   SUBUTIL: "Subutilización laboral"
 })
 
+// Las notas son claves que la página traduce, no prosa escrita en este
+// archivo. La validación misma decide qué clave lleva cada renglón (ver
+// scripts/04-labor-validations.R), así que una nota no puede sobrevivir a la
+// condición que describe, que es lo que le pasó a la que estaba escrita a mano.
 notas = ({
-  TCCO: "Probablemente un rebase del umbral de salario mínimo de INEGI (el boletín cita una “base enero de 2026”); se verificó correcto reconstruyendo TCCO de forma independiente desde el microdato crudo."
+  sin_bie: "Sin serie trimestral equivalente en el BIE de INEGI; no validado.",
+  excede: "Excede la tolerancia de 0.25 pp frente a la serie del BIE."
 })
 
 // Solo estos ya tienen cortes por sexo/edad/escolaridad/entidad calculados
@@ -429,11 +434,11 @@ ${ordenarFilas(cambiosPorCorte(definicion_sel, corte_sel), columnaOrdenCorte, di
 
 :::
 
-### Comparación con el boletín oficial
+### Comparación con las series que publica el propio INEGI
 
 ```{ojs}
 //| echo: false
-html`<p>Última validación: <strong>${ultimoPeriodoValidacion}</strong>. Se llena a mano cada trimestre, comparando este pipeline contra el comunicado de prensa <strong>trimestral</strong> de INEGI — no el mensual, que usa otra metodología y no es comparable (dos boletines distintos, con números de comunicado distintos, salen casi el mismo día).</p>`
+html`<p>Última validación: <strong>${ultimoPeriodoValidacion}</strong>. Este pipeline se coteja contra las <strong>series originales que INEGI publica en su Banco de Información Económica</strong> (BIE), que INEGI actualiza el mismo día que el comunicado trimestral. El BIE trae la serie completa, así que en cada corrida se revalidan los ${new Set(validaciones.map(v => v.anio + "-" + v.trimestre)).size} trimestres y no solo el más reciente. Dos indicadores no tienen serie trimestral equivalente en el BIE y se publican como no validados en vez de quedar fuera de la tabla.</p>`
 ```
 
 ::: {.data-panel}
@@ -447,10 +452,10 @@ html`<table class="data-table">
 <tbody>
 ${ultimasValidaciones.map(v => html`<tr>
   <td>${nombres[v.indicador] ?? v.indicador}</td>
-  <td class="data-table-num">${v.oficial}%</td>
-  <td class="data-table-num">${v.pipeline}%</td>
-  <td class="data-table-num">${v.diferencia_pp.toFixed(2)} pp</td>
-  <td class="data-table-note">${notas[v.indicador] || "—"}</td>
+  <td class="data-table-num">${v.oficial == null ? "—" : v.oficial + "%"}</td>
+  <td class="data-table-num">${v.pipeline == null ? "—" : v.pipeline + "%"}</td>
+  <td class="data-table-num">${v.diferencia_pp == null ? "—" : v.diferencia_pp.toFixed(2) + " pp"}</td>
+  <td class="data-table-note">${notas[v.nota_clave] || "—"}</td>
 </tr>`)}
 </tbody>
 </table>`
@@ -463,8 +468,14 @@ ${ultimasValidaciones.map(v => html`<tr>
 
 Mismo pipeline y mismo [repositorio del sitio](https://github.com/alainpin/alainpineda)
 que la [página de panorama](data.qmd). "Diferencia" es la brecha absoluta
-entre este pipeline y la cifra que INEGI redondea a un decimal en su
-boletín — una brecha de hasta ~0.05 pp es redondeo, no una señal de error.
+entre este pipeline y el valor que el propio INEGI publica para esa misma
+serie. Sobre las 20 series y 85 trimestres cotejados, la brecha mediana es de
+0.013 pp y la mayor de 0.216 pp. Brechas de ese tamaño derivan ligeramente por
+subperiodo, lo que es consistente con revisiones a los factores de expansión
+de la encuesta tras recalibrarse a proyecciones de población actualizadas, y
+la tolerancia está en 0.25 pp. 2020-T2 queda excluido de la comparación en
+todos los casos: el BIE empalma ahí la ETOE telefónica y este pipeline lo deja
+como un hueco real.
 Los cambios de trimestre y de año se calculan sobre el periodo exacto, no
 por posición de fila, así que el hueco de 2020-T2 (ETOE, no comparable)
 nunca produce un cambio calculado sobre dos trimestres de distancia. Los

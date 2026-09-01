@@ -13,6 +13,9 @@ INEGI no publica en su propio sitio. Ningún corte usa una definición propia:
 todos son la misma fórmula aplicada dentro de cada grupo, usando campos que
 la ENOE ya trae precodificados.
 
+Todas las series de esta página son **originales**, sin ajuste estacional.
+
+
 ```{ojs}
 //| echo: false
 //| output: false

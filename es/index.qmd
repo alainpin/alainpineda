@@ -36,7 +36,7 @@ empuja a los jóvenes hacia la informalidad. No lo hace. Lee el
 o en [Investigación](research.qmd) está el resto.
 
 **Mercado Laboral MX** recalcula los indicadores laborales de la ENOE desde
-microdatos cada trimestre, validados contra el boletín oficial de INEGI.
+microdatos cada trimestre, cotejados contra las series que publica el propio INEGI.
 [Ver los datos](data.qmd).
 
 ::: {.hero-motif}

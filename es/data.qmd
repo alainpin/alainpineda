@@ -14,18 +14,25 @@ html`<div class="indicator-meta">Dato más reciente: ENOE ${ultimoPeriodoGlobal}
 
 Estadísticas oficiales de la Encuesta Nacional de Ocupación y Empleo (ENOE),
 información pública de INEGI. Se recalculan aquí desde microdatos con la
-metodología oficial del instituto — diseño muestral, estratos y factores de
-expansión, no un promedio simple — y se validan cada trimestre contra el
-boletín oficial de INEGI de ese mismo periodo (la validación de 2026-T2
-cuadró dentro de 0.01 puntos porcentuales en cuatro de cinco indicadores
-principales; condiciones críticas de ocupación difirió por 0.30 pp,
-probablemente porque INEGI actualizó su umbral de salario mínimo ese
-trimestre, no por un error del pipeline). No son un hallazgo propio: son
+metodología oficial del instituto (diseño muestral, estratos y factores de
+expansión, no un promedio simple) y se cotejan contra las series originales
+que INEGI publica en su Banco de Información Económica. Ese cotejo cubre todos
+los trimestres desde 2005, no solo el más reciente: la brecha mediana es de
+0.013 puntos porcentuales y la mayor de 0.216. No son un hallazgo propio: son
 cifras públicas, presentadas aquí para consulta rápida.
+
+Todas las series aquí son **originales**, sin ajuste estacional. La línea
+tenue detrás de cada una es la serie de **tendencia-ciclo** del propio INEGI,
+mostrada como contexto de lectura. Esa línea se revisa hacia atrás conforme
+llegan trimestres nuevos, así que la cifra de cada tarjeta sale siempre de la
+serie original. Dos indicadores, desocupación ampliada y subutilización
+laboral, no tienen serie trimestral de tendencia-ciclo publicada por INEGI y
+aparecen sin ella.
 
 ```{ojs}
 //| echo: false
 raw = FileAttachment("../data/labor-indicators.csv").csv({ typed: true })
+ajustadaRaw = FileAttachment("../data/labor-seasonal.csv").csv({ typed: true })
 
 datos = raw.map(d => ({ ...d, fecha: new Date(d.anio, (d.trimestre - 1) * 3, 1) }))
 
@@ -128,8 +135,43 @@ dominioAjustado = (serie, margenMinimo = 0.4) => {
   return [min - margen, max + margen];
 }
 
-graficaSerie = (serie, { width = 780, height = 340, marginLeft = 42, color = "var(--teal)" } = {}) => {
+// 2020-T2 no existe en la fuente. La ENOE se suspendio y fue sustituida por
+// la ETOE telefonica, que INEGI no publica como estimacion comparable. Unir
+// los dos lados con una recta lee un cambio de metodologia como una
+// transicion gradual, asi que se inserta un punto con valor indefinido en el
+// hueco y Plot corta la linea ahi.
+conHuecos = serie => {
+  const salida = [];
+  for (let i = 0; i < serie.length; i++) {
+    salida.push(serie[i]);
+    if (i < serie.length - 1) {
+      const a = serie[i], b = serie[i + 1];
+      const meses = (b.fecha.getFullYear() - a.fecha.getFullYear()) * 12 +
+                    (b.fecha.getMonth() - a.fecha.getMonth());
+      if (meses > 3) {
+        salida.push({ ...a,
+          fecha: new Date(a.fecha.getFullYear(), a.fecha.getMonth() + 3, 1),
+          valor: undefined, ee: undefined });
+      }
+    }
+  }
+  return salida;
+}
+
+// Serie de tendencia-ciclo, publicada por el propio INEGI en su Banco de
+// Informacion Economica. Las trimestrales vienen en porcentaje, a diferencia
+// de las mensuales, que son numeros indice, asi que caben directo en el mismo
+// eje que la serie original sin reescalar. Seis indicadores la tienen; el
+// resto devuelve un arreglo vacio y simplemente va sin linea de fondo.
+serieAjustada = (codigo, tipo = "tendencia_ciclo") => ajustadaRaw
+  .filter(d => d.indicador === codigo && d.tipo === tipo)
+  .map(d => ({ ...d, fecha: new Date(d.anio, (d.trimestre - 1) * 3, 1) }))
+  .sort((a, b) => a.fecha - b.fecha)
+
+graficaSerie = (serie, { width = 780, height = 340, marginLeft = 42, color = "var(--teal)", ajustada = null } = {}) => {
   const ultimo = serie[serie.length - 1];
+  const serieRota = conHuecos(serie);
+  const ajustadaRota = ajustada && ajustada.length ? conHuecos(ajustada) : null;
   return Plot.plot({
     width, height, marginLeft,
     marginBottom: 30,
@@ -139,13 +181,21 @@ graficaSerie = (serie, { width = 780, height = 340, marginLeft = 42, color = "va
     y: { label: "%", grid: true, domain: dominioAjustado(serie), ticks: 4 },
     x: { label: null },
     marks: [
-      Plot.areaY(serie, {
+      Plot.areaY(serieRota, {
         x: "fecha",
-        y1: d => d.valor - 1.96 * d.ee,
-        y2: d => d.valor + 1.96 * d.ee,
+        y1: d => d.valor == null ? undefined : d.valor - 1.96 * d.ee,
+        y2: d => d.valor == null ? undefined : d.valor + 1.96 * d.ee,
         fill: color, fillOpacity: 0.12
       }),
-      Plot.lineY(serie, {
+      // La linea de tendencia-ciclo va mas delgada y atenuada a proposito. Es
+      // contexto de lectura de la serie original, no un segundo indicador, y
+      // la cifra de la tarjeta sale siempre de la original.
+      ...(ajustadaRota ? [Plot.lineY(ajustadaRota, {
+        x: "fecha", y: "valor",
+        stroke: color, strokeWidth: 1.4, strokeOpacity: 0.5,
+        strokeLinejoin: "round", strokeLinecap: "round"
+      })] : []),
+      Plot.lineY(serieRota, {
         x: "fecha", y: "valor",
         stroke: color, strokeWidth: 2,
         strokeLinejoin: "round", strokeLinecap: "round"
@@ -193,7 +243,7 @@ html`<div class="indicator-grid">${indicadoresPrincipales.map(codigo => {
   <div class="indicator-meta">± ${(1.96 * ultimo.ee).toFixed(2)} pp · ${ultimo.anio}-T${ultimo.trimestre}</div>
   <div class="indicator-delta">${formatoDelta(deltaTrim)} trim. · ${formatoDelta(deltaAnual)} anual</div>
   <div class="indicator-desc">${def.texto}</div>`;
-  div.append(head, graficaSerie(serie, { width: 250, height: 190, marginLeft: 32, color: coloresPrincipales[codigo] }));
+  div.append(head, graficaSerie(serie, { width: 250, height: 190, marginLeft: 32, color: coloresPrincipales[codigo], ajustada: serieAjustada(codigo) }));
   return div;
 })}</div>`
 ```
@@ -220,7 +270,7 @@ html`<div class="indicator-grid indicator-grid-2">${indicadoresEscalera.map(codi
   <div class="indicator-meta">± ${(1.96 * ultimo.ee).toFixed(2)} pp · ${ultimo.anio}-T${ultimo.trimestre}</div>
   <div class="indicator-delta">${formatoDelta(deltaTrim)} trim. · ${formatoDelta(deltaAnual)} anual</div>
   <div class="indicator-desc">${def.texto}</div>`;
-  div.append(head, graficaSerie(serie, { width: 380, height: 190, marginLeft: 32, color: coloresEscalera[codigo] }));
+  div.append(head, graficaSerie(serie, { width: 380, height: 190, marginLeft: 32, color: coloresEscalera[codigo], ajustada: serieAjustada(codigo) }));
   return div;
 })}</div>`
 ```
@@ -257,7 +307,7 @@ html`<div class="indicator-headline">${defSec.nombre}: ${ultimoSec.valor}%</div>
 
 ```{ojs}
 //| echo: false
-graficaSerie(serieSec)
+graficaSerie(serieSec, { ajustada: serieAjustada(indicador_sel) })
 ```
 
 <details class="abstract">
@@ -271,12 +321,12 @@ strata = est_d_tri, weights = fac_tri`) — vive en un proyecto de R privado
 aparte, no en este repositorio. La banda sombreada de cada gráfica, y la
 cifra ± junto a cada dato principal, es un intervalo de 95% de confianza
 (±1.96 errores estándar) calculado con ese mismo diseño, no un margen de
-error simple. Cada tasa de arriba está contrastada contra
-el boletín oficial de INEGI cada trimestre; la validación de 2026-T2
-encontró una diferencia máxima de 0.30 puntos porcentuales en condiciones
-críticas de ocupación (TCCO), probablemente por un rebase del salario
-mínimo de parte de INEGI y no un error de cómputo — los otros cuatro
-indicadores contrastados cuadraron dentro de 0.01 pp.
+error simple. Cada tasa de arriba está contrastada contra las series
+originales que INEGI publica en su Banco de Información Económica, sobre toda
+la historia y no solo el trimestre más reciente: la brecha mediana es de 0.013
+puntos porcentuales y la mayor de 0.216. Desocupación ampliada y subutilización
+laboral no tienen serie equivalente ahí y se reportan como no validadas en la
+página de [actualización trimestral](data-actualizacion-trimestral.qmd).
 
 **2. Este sitio solo lee un CSV público.** `scripts/02-labor-indicators.R`
 exporta las tasas nacionales de ese pipeline a `data/labor-indicators.csv` —
