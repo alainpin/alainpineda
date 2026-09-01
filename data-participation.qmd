@@ -339,6 +339,196 @@ corte_sel === "entidad"
 
 :::
 
+### The gap between women and men, by age
+
+Participation differs by sex more than by any other breakdown on this page.
+The gap is shown here as (men − women) / men, so it has no units and the age
+groups can share one chart. The line in ink is the national gap without the
+age split.
+
+```{ojs}
+//| echo: false
+//| output: false
+// Crossed cut sex x age (corte = "sexo_edad"): categoria_origen is the sex,
+// categoria_destino the age group. It is the only cut on the site that uses
+// categoria_destino; the marginal cuts leave it empty.
+serieCruzada = (origen, destino) => datos
+  .filter(d => d.corte === "sexo_edad" && d.categoria_origen === origen &&
+               d.categoria_destino === destino)
+  .sort((a, b) => a.fecha - b.fecha)
+
+gruposEdad = [...new Set(datos
+  .filter(d => d.corte === "sexo_edad")
+  .map(d => d.categoria_destino))]
+  .sort()
+
+// Normalized gap by age group. Men and women are paired by quarter rather
+// than by position: if one series ever lacked a quarter, a positional zip
+// would silently misalign everything after it.
+brechaPorEdad = grupo => {
+  const h = serieCruzada("Hombre", grupo);
+  const m = new Map(serieCruzada("Mujer", grupo).map(d => [`${d.anio}-${d.trimestre}`, d]));
+  return h.flatMap(dh => {
+    const dm = m.get(`${dh.anio}-${dh.trimestre}`);
+    if (!dm || !dh.valor) return [];
+    return [{ fecha: dh.fecha, anio: dh.anio, trimestre: dh.trimestre,
+              grupo, valor: (dh.valor - dm.valor) / dh.valor, H: dh.valor, M: dm.valor }];
+  });
+}
+
+// National gap without the age split, from the marginal "sexo" cut.
+// filasCorte (and so serieCategoria) translates categoria_origen through
+// etiquetaEn on this page, so the sex labels must be asked for in their
+// translated form. serieCruzada above reads `datos` directly, which is not
+// translated, so it keeps the Spanish labels. Asking for "Hombre" here
+// returned nothing and the chart threw on an undefined last element.
+brechaAgregada = {
+  const h = serieCategoria("sexo", etiquetaEn["Hombre"]);
+  const m = new Map(serieCategoria("sexo", etiquetaEn["Mujer"]).map(d => [`${d.anio}-${d.trimestre}`, d]));
+  return h.flatMap(dh => {
+    const dm = m.get(`${dh.anio}-${dh.trimestre}`);
+    if (!dm || !dh.valor) return [];
+    return [{ fecha: dh.fecha, anio: dh.anio, trimestre: dh.trimestre,
+              grupo: "__total__", valor: (dh.valor - dm.valor) / dh.valor, H: dh.valor, M: dm.valor }];
+  });
+}
+
+// Ordered cool -> warm palette from theme.scss, not a single-hue ramp: six
+// series that cross each other are not separable by lightness alone.
+colorEdad = grupo => {
+  const i = gruposEdad.indexOf(grupo);
+  return i < 0 ? "var(--ink)" : `var(--edad-${i + 1})`;
+}
+
+// Pushes apart end-of-line labels that would overlap. Works in pixels and
+// converts back to data units, which is why both charts fix their y-domain
+// instead of using nice: without a known domain there is no way back.
+etiquetasSeparadas = (items, dominio, alto, margenSup, margenInf, minGap) => {
+  const ih = alto - margenSup - margenInf;
+  const [d0, d1] = dominio;
+  const aPixel = v => margenSup + ih * (d1 - v) / (d1 - d0);
+  const aValor = p => d1 - (p - margenSup) * (d1 - d0) / ih;
+  const arr = items.map(it => ({ ...it, y: aPixel(it.valor) })).sort((a, b) => a.y - b.y);
+  for (let i = 1; i < arr.length; i++) if (arr[i].y - arr[i - 1].y < minGap) arr[i].y = arr[i - 1].y + minGap;
+  const exceso = arr.length ? arr[arr.length - 1].y - (margenSup + ih) : 0;
+  if (exceso > 0) {
+    arr.forEach(it => { it.y -= exceso; });
+    for (let i = 1; i < arr.length; i++) if (arr[i].y - arr[i - 1].y < minGap) arr[i].y = arr[i - 1].y + minGap;
+  }
+  if (arr.length && arr[0].y < margenSup) { const f = margenSup - arr[0].y; arr.forEach(it => { it.y += f; }); }
+  return arr.map(it => ({ ...it, valorEtiqueta: aValor(it.y) }));
+}
+
+dominioBrecha = [0.30, 0.70]
+dominioNiveles = [15, 68]
+
+graficaBrechaEdad = {
+  const alto = 400, mt = 14, mb = 34;
+  const datosEdad = gruposEdad.flatMap(g => conHuecos(brechaPorEdad(g)));
+  const total = conHuecos(brechaAgregada);
+  // .filter(Boolean): an empty series yields an undefined last element, and
+  // the label separator reads .valor from it. Drop it and render without
+  // that label rather than throwing and losing the whole chart.
+  const finales = [...gruposEdad.map(g => { const s = brechaPorEdad(g); return s[s.length - 1]; }),
+                   brechaAgregada[brechaAgregada.length - 1]].filter(Boolean);
+  const etiquetas = etiquetasSeparadas(finales, dominioBrecha, alto, mt, mb, 15);
+  return Plot.plot({
+    width: 680, height: alto, marginLeft: 46, marginBottom: mb, marginTop: mt, marginRight: 96,
+    style: { background: "transparent", fontFamily: "IBM Plex Sans, sans-serif", fontSize: "13px" },
+    y: { label: "(men − women) / men", grid: true, domain: dominioBrecha },
+    x: { label: null },
+    marks: [
+      Plot.gridY({ stroke: "var(--rule)" }),
+      Plot.lineY(datosEdad, { x: "fecha", y: "valor", z: "grupo",
+        stroke: d => colorEdad(d.grupo), strokeWidth: 1.7, strokeLinejoin: "round", strokeLinecap: "round" }),
+      Plot.lineY(total, { x: "fecha", y: "valor",
+        stroke: "var(--ink)", strokeWidth: 2.6, strokeLinejoin: "round", strokeLinecap: "round" }),
+      Plot.link(etiquetas.filter(e => Math.abs(e.valorEtiqueta - e.valor) > 0.004), {
+        x1: "fecha", y1: "valor", x2: "fecha", y2: "valorEtiqueta",
+        stroke: d => colorEdad(d.grupo), strokeWidth: 0.75, strokeOpacity: 0.5, dx: 3 }),
+      Plot.text(etiquetas, { x: "fecha", y: "valorEtiqueta", text: d => d.grupo === "__total__" ? "All ages" : (etiquetaEn[d.grupo] ?? d.grupo),
+        dx: 10, textAnchor: "start", fontSize: 11, fill: d => colorEdad(d.grupo),
+        fontWeight: d => d.grupo === "__total__" ? 600 : 400 }),
+      Plot.tip(datosEdad.filter(d => d.valor != null), Plot.pointer({ x: "fecha", y: "valor",
+        title: d => `${d.anio}-Q${d.trimestre} · ${etiquetaEn[d.grupo] ?? d.grupo}\ngap ${d.valor.toFixed(3)}\nmen ${d.H}% · women ${d.M}%` })),
+      Plot.axisX({ stroke: "var(--rule)", tickSize: 0 }),
+      Plot.axisY({ stroke: "var(--rule)", tickSize: 0 })
+    ]
+  });
+}
+
+graficaNivelesMujeresEdad = {
+  const alto = 350, mt = 14, mb = 34;
+  const datosM = gruposEdad.flatMap(g => conHuecos(serieCruzada("Mujer", g).map(d => ({ ...d, grupo: g }))));
+  const finales = gruposEdad
+    .map(g => { const s = serieCruzada("Mujer", g); return s.length ? { ...s[s.length - 1], grupo: g } : null; })
+    .filter(Boolean);
+  const etiquetas = etiquetasSeparadas(finales, dominioNiveles, alto, mt, mb, 15);
+  return Plot.plot({
+    width: 680, height: alto, marginLeft: 46, marginBottom: mb, marginTop: mt, marginRight: 96,
+    style: { background: "transparent", fontFamily: "IBM Plex Sans, sans-serif", fontSize: "13px" },
+    y: { label: "Participation (%)", grid: true, domain: dominioNiveles },
+    x: { label: null },
+    marks: [
+      Plot.gridY({ stroke: "var(--rule)" }),
+      Plot.lineY(datosM, { x: "fecha", y: "valor", z: "grupo",
+        stroke: d => colorEdad(d.grupo), strokeWidth: 1.9, strokeLinejoin: "round", strokeLinecap: "round" }),
+      Plot.link(etiquetas.filter(e => Math.abs(e.valorEtiqueta - e.valor) > 0.5), {
+        x1: "fecha", y1: "valor", x2: "fecha", y2: "valorEtiqueta",
+        stroke: d => colorEdad(d.grupo), strokeWidth: 0.75, strokeOpacity: 0.5, dx: 3 }),
+      Plot.text(etiquetas, { x: "fecha", y: "valorEtiqueta", text: d => d.grupo === "__total__" ? "All ages" : (etiquetaEn[d.grupo] ?? d.grupo),
+        dx: 10, textAnchor: "start", fontSize: 11, fill: d => colorEdad(d.grupo) }),
+      Plot.tip(datosM.filter(d => d.valor != null), Plot.pointer({ x: "fecha", y: "valor",
+        title: d => `${d.anio}-Q${d.trimestre} · women ${etiquetaEn[d.grupo] ?? d.grupo}\n${d.valor}% ± ${(1.96 * d.ee).toFixed(2)} pp` })),
+      Plot.axisX({ stroke: "var(--rule)", tickSize: 0 }),
+      Plot.axisY({ stroke: "var(--rule)", tickSize: 0 })
+    ]
+  });
+}
+```
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+graficaBrechaEdad
+```
+
+:::
+
+A narrowing gap looks the same whether women enter the labor force or men
+leave it. The chart below shows women's participation on its own, by age
+group, so the two can be told apart.
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+graficaNivelesMujeresEdad
+```
+
+:::
+
+Between 2005 and 2026 the national gap narrowed from 0.50 to 0.38, its
+lowest value in the series. In 2005 women's participation was about half of
+men's; in 2026-Q2 it is about 62% of men's.
+
+Most of that narrowing came from women entering the labor force. Among women
+aged 30 to 39, participation rose from 49.9% in 2005 to a peak of 63.4%; among
+those 50 to 59, from 39.3% to 53.2%. In every age group between 20 and 59,
+women's participation reached its highest value between 2023-Q4 and 2025-Q4
+and has been flat or slightly lower since.
+
+The gap has kept narrowing after those peaks. In 2026-Q2 the groups 40 to 49,
+50 to 59, and 60 and over, and the national series, all show their narrowest
+gap on record. Since each group's peak in women's participation, men's
+participation has fallen in five of the six groups, in each case by more than
+women's.
+
+The youngest group is the exception. Among people aged 14 to 19 the gap is
+essentially where it was in 2005, at 0.50, while participation fell for both
+women, from 24.8% to 18.0%, and men, from 49.3% to 36.1%.
+
 ::: {.chart-note}
 All series above are **original**, without seasonal adjustment.
 :::

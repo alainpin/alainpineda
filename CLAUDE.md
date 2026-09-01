@@ -1253,6 +1253,64 @@ Both follow section 5's `.chart-figure` pattern: four SVGs each (two languages
 × two themes), tokens hand-copied from the SCSS, transparent background. Mind
 the path depth — `../../../images/` from EN, `../../../../` from ES.
 
+### The overview page opens with questions, not indicators (2026-09-01)
+
+`data.qmd` / `es/data.qmd` carry a short "Start from a question" list right
+after the intro: four reader questions, each routing to the page whose data
+answers it. The owner's diagnosis was that the section informed but did not
+invite; a dashboard of ten rates gives a general reader nothing to hold on
+to, while a question does. This is framing, not opinion: every question has
+a factual answer at its link, and none implies what that answer is.
+
+Section 7 bans rhetorical questions as headings. These are neither headings
+nor rhetorical, and that is the line to hold if the list grows: a question
+goes in only if a page answers it with data, and it is phrased so that it
+does not lean toward an answer ("How much of the workforce is unemployed,
+discouraged, or working fewer hours than it wants?", never "Is unemployment
+really as low as it looks?").
+
+### The participation gap by age is on the Participation page (2026-09-01)
+
+`data-participation.qmd` / `es/data-participacion.qmd` end with "The gap
+between women and men, by age": two Observable charts and five paragraphs.
+It was ported from the private dashboard, where it is the most-read section,
+as the test case for the site's rule on these pages: describe what the
+series show, never why.
+
+- **Data.** The crossed cut `sexo_edad` (TPEA by sex × age group) is now in
+  `data/labor-indicators-cuts.csv`, published by
+  `scripts/03-labor-indicators-cuts.R`, which carries `categoria_destino`
+  (the age group) for that cut. It is the only cut that uses that column.
+  Every other page filters by `corte` before reading rows, so the extra rows
+  and column are invisible to them; this was verified, not assumed.
+- **Colors.** Six ordered tokens `$edad-1..6` in `theme.scss` (light,
+  `!default`) and `theme-dark.scss`, exposed as `--edad-1..6` on `:root`
+  for OJS. Cool-to-warm hue progression rather than a single-hue ramp: age
+  is ordered, but six lines that cross are not separable by lightness. Values
+  and the >=3:1 contrast check come from the private dashboard's own review.
+- **Charts.** Gap as (men − women) / men, unitless so six age groups plus the
+  national line share one chart; then women's participation levels by age on
+  its own, because a gap that closes from women entering looks identical to
+  one that closes from men leaving. Both fix their y-domain; the end-of-line
+  label separator converts pixels back to data units and cannot without one.
+  Ink for the national line, the age palette for the groups.
+- **Text.** Every number in the five paragraphs was recomputed from the CSV
+  before writing, and two earlier session claims did not survive that check:
+  men's participation fell since the women's peak in five of six groups (it
+  rose 0.4 pp in 30–39), and the 60+ women's peak was 2020-Q1, not 2023–25.
+  The page says "five of the six" and limits the 2023-Q4–2025-Q4 claim to
+  ages 20–59. Recompute before editing any of these sentences.
+- **What it does not say.** The private version reads the 14–19 pattern as
+  school enrollment. That is an interpretation and it stays off the public
+  page. The public text stops at what the series show.
+
+**Age labels are inherited.** ENOE's precoded `eda7c` band is labelled
+"14 a 19" / "14 to 19" while every rate on the site is computed on ages 15
+and over, so the band is really 15–19. The label is used site-wide (the
+"By breakdown" bars, `etiquetaEn`, this section) and was not changed here;
+it is a site-wide decision the owner has not yet made. Do not fix it in one
+place only.
+
 ### Technical notes go below the charts, not above (2026-09-01)
 
 The original-series and trend-cycle explanation first went in the page intro,

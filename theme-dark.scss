@@ -25,6 +25,13 @@ $rule:       #332c26;   // hairlines
 $teal:       #63b0b0;   // enlaces, el --accent del export subido de luminosidad
 $teal-deep:  #8dcdcb;   // hover, un paso mas claro
 $ochre:      #be8d74;   // la barra del finding, el --clay del export aclarado
+// Rampa de edad, subida de luminosidad para aguantar sobre #171513.
+$edad-1: #63b0b0;
+$edad-2: #7fb3e8;
+$edad-3: #b09ae8;
+$edad-4: #e894c0;
+$edad-5: #e0a05a;
+$edad-6: #b9d65e;
 $ink-soft-light: #c4bfb5;   // ladder claro -- mas luminoso que $ink-soft
 $ink-soft-deep:  #6b6660;   // ladder oscuro -- el $ink-soft del tema claro
 // Actualizacion Trimestral, cambios trimestre-a-trimestre -- solo la flecha lleva color, y

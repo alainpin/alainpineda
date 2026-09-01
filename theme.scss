@@ -19,6 +19,17 @@ $rule:       #e0d8c5 !default;   // hairlines (export's --paper-3)
 $teal:       #0f5757 !default;   // links, primary accent
 $teal-deep:  #0c4646 !default;   // hover (export's --accent-2)
 $ochre:      #b25a26 !default;   // finding line marker (export's --clay, its secondary accent)
+// Ordered palette for the six ENOE age groups (participation gap by age on
+// data-participation.qmd). Age is ordered, so the hues progress cool -> warm
+// (teal, blue, violet, magenta, orange, gold), but a single-hue ramp would
+// not separate six series that cross each other, so the hue turns. Each step
+// measured >= 3:1 against $paper in its own theme.
+$edad-1: #0f5757 !default;
+$edad-2: #2f6ea8 !default;
+$edad-3: #7a56a6 !default;
+$edad-4: #b04a86 !default;
+$edad-5: #c2611f !default;
+$edad-6: #8a7310 !default;
 // A light/deep pair of the same neutral, for a group of series that should
 // read as one theme (e.g. the subutilization ladder) without borrowing
 // $teal or $ochre, which already carry their own meaning elsewhere.
@@ -71,6 +82,14 @@ $link-decoration: none;
   --ink-soft: #{$ink-soft};
   --ink-soft-light: #{$ink-soft-light};
   --ink-soft-deep: #{$ink-soft-deep};
+  // Age-group ramp for the participation-gap charts; resolved live so the
+  // lines follow the light/dark toggle like every other OJS color here.
+  --edad-1: #{$edad-1};
+  --edad-2: #{$edad-2};
+  --edad-3: #{$edad-3};
+  --edad-4: #{$edad-4};
+  --edad-5: #{$edad-5};
+  --edad-6: #{$edad-6};
   // For OJS chart marks that need a real theme-aware color string (map
   // borders/text, table deltas) rather than a Sass value baked in at build
   // time -- these are resolved by the browser, so they follow the light/

@@ -54,12 +54,20 @@ indicadores_con_cortes <- c("TPEA", "TIL1", "TIL2", "TOSI1", "TOSI2", "TD", "TDA
 # "nacional" va incluido: seis paginas lo leen de ESTE archivo como linea de
 # referencia detras de cada corte (data-participation.qmd:28 y equivalentes).
 # Quitarlo no da error, solo desaparece esa linea de las seis paginas.
-cortes_publicados <- c("nacional", "sexo", "edad", "nivel_educativo", "entidad")
+cortes_publicados <- c("nacional", "sexo", "edad", "nivel_educativo", "entidad",
+                       # sexo_edad entro el 2026-09-01 para la seccion de brecha de
+                       # participacion por edad en data-participation.qmd. Es el
+                       # unico corte con `categoria_destino` no vacia (el grupo de
+                       # edad); en los cortes marginales readr la escribe como NA, igual que
+                       # categoria_origen en el corte nacional. Las paginas filtran por
+                       # corte antes de leerla, asi que nunca ven ese NA.
+                       "sexo_edad")
 
 tabla <- arrow::read_parquet(ruta_indicadores) |>
   filter(indicador %in% indicadores_con_cortes, corte %in% cortes_publicados) |>
   transmute(
     anio, trimestre, indicador, regimen, corte, categoria_origen,
+    categoria_destino,
     valor = round(valor, 2),
     ee = round(ee, 3),
     n_obs

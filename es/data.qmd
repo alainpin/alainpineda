@@ -21,6 +21,17 @@ los trimestres desde 2005, no solo el más reciente: la brecha mediana es de
 0.013 puntos porcentuales y la mayor de 0.216. No son un hallazgo propio: son
 cifras públicas, presentadas aquí para consulta rápida.
 
+Empieza por una pregunta:
+
+- ¿Cuánta gente trabaja sin las protecciones de un empleo formal?
+  [Informalidad](data-informalidad.qmd).
+- ¿Qué parte de la fuerza de trabajo está desocupada, desalentada o trabaja
+  menos horas de las que quisiera? [Desocupación](data-desocupacion.qmd).
+- ¿Quién participa en el mercado laboral, por sexo, edad, escolaridad y
+  entidad? [Participación](data-participacion.qmd).
+- ¿Qué cambió este trimestre?
+  [Actualización trimestral](data-actualizacion-trimestral.qmd).
+
 ```{ojs}
 //| echo: false
 raw = FileAttachment("../data/labor-indicators.csv").csv({ typed: true })
