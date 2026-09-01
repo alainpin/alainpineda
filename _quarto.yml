@@ -4,16 +4,21 @@
 
 project:
   type: website
+  # La "/" inicial ancla cada glob a la raiz del proyecto. Sin ella Quarto lo
+  # resuelve a cualquier profundidad (como los globs de los listings), y como
+  # cada perfil deja el output-dir del otro en la raiz, `data/` tambien
+  # alcanzaba _site-es/data/, _site-es/_site/data/, ... Cada build local
+  # anidaba un nivel mas (llego a 16 niveles y 2 GB por lado).
   resources:
-    - CNAME
+    - /CNAME
     # Netlify lee netlify.toml de la RAIZ de lo que publica, y publica la rama
     # gh-pages, o sea el contenido de _site/. Estando solo en la raiz del repo
     # (rama main) nunca llegaba a produccion y sus reglas eran letra muerta:
     # el redirect /index.es.html -> /es/ 404eaba desde que se escribio.
     # Listarlo aqui lo copia a _site/ y con eso si lo lee.
-    - netlify.toml
-    - files/
-    - data/
+    - /netlify.toml
+    - /files/
+    - /data/
 
 profile:
   default: en

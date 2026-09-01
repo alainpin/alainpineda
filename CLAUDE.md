@@ -898,6 +898,17 @@ pushes `_site/` to the `gh-pages` branch. Netlify is configured to serve
 `gh-pages` with an empty build command. DNS lives at Netlify and is not managed
 from this repo.
 
+**Resource globs in `_quarto.yml` carry a leading `/`, and must keep it.**
+Quarto resolves a `resources:` entry at any depth, the same way it resolves
+listing globs (section 5), so a bare `data/` also matched `_site-es/data/`.
+Because each profile leaves the other's output directory sitting in the
+project root, every local build copied it in again one level deeper: found
+on 2026-09-01 at 16 levels and 2 GB per side. Quarto does not clean an
+output directory between renders, so if that nest ever reappears, delete
+`_site/_site-es` and `_site-es/_site` by hand; CI is unaffected because it
+renders from a clean checkout. Verified against a minimal project: `/data/`
+copies only the root directory, `data/` copies every directory of that name.
+
 **Never run `quarto publish`.** It re-renders with a single profile and would
 publish an English-only site, silently dropping `/es/`.
 
