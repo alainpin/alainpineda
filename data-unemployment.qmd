@@ -9,8 +9,8 @@ ENOE, INEGI · Quarterly, 2005–2026 · By sex, age, education, and state
 
 Third page in this series, same pattern as [Participation](data-participation.qmd)
 and [Informality](data-informality.qmd): the labor underutilization ladder
-(TD, TDAMPL, SUBUTIL) broken down by cuts INEGI doesn't publish on its own
-site. None of these cuts uses a custom definition: every one is the same
+(TD, TDAMPL, SUBUTIL) broken down by sex, age group, education level, and
+state. None of these cuts uses a custom definition: every one is the same
 formula applied within each group, using fields the ENOE already reports
 pre-coded.
 
@@ -61,7 +61,7 @@ cortes = ({
 // a categorization.
 ordenCategorias = ({
   sexo: ["Men", "Women"],
-  edad: ["14 to 19", "20 to 29", "30 to 39", "40 to 49", "50 to 59", "60 and over"],
+  edad: ["15 to 19", "20 to 29", "30 to 39", "40 to 49", "50 to 59", "60 and over"],
   nivel_educativo: ["Incomplete primary", "Primary", "Secondary", "High school and beyond"]
 })
 
@@ -74,7 +74,7 @@ ordenCategorias = ({
 // absent shape).
 etiquetaEn = ({
   "Hombre": "Men", "Mujer": "Women",
-  "14 a 19": "14 to 19", "20 a 29": "20 to 29", "30 a 39": "30 to 39",
+  "15 a 19": "15 to 19", "20 a 29": "20 to 29", "30 a 39": "30 to 39",
   "40 a 49": "40 to 49", "50 a 59": "50 to 59", "60 y más": "60 and over",
   "Primaria incompleta": "Incomplete primary", "Primaria completa": "Primary",
   "Secundaria completa": "Secondary", "Medio superior y superior": "High school and beyond",

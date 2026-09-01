@@ -23,12 +23,12 @@ cifras públicas, presentadas aquí para consulta rápida.
 
 Empieza por una pregunta:
 
+- ¿Quién participa en el mercado laboral, por sexo, edad, escolaridad y
+  entidad? [Participación](data-participacion.qmd).
 - ¿Cuánta gente trabaja sin las protecciones de un empleo formal?
   [Informalidad](data-informalidad.qmd).
 - ¿Qué parte de la fuerza de trabajo está desocupada, desalentada o trabaja
   menos horas de las que quisiera? [Desocupación](data-desocupacion.qmd).
-- ¿Quién participa en el mercado laboral, por sexo, edad, escolaridad y
-  entidad? [Participación](data-participacion.qmd).
 - ¿Qué cambió este trimestre?
   [Actualización trimestral](data-actualizacion-trimestral.qmd).
 

@@ -7,8 +7,8 @@ date-modified: last-modified
 ENOE, INEGI · Quarterly, 2005–2026 · By sex, age, education, and state
 :::
 
-Labor force participation broken down by cuts INEGI doesn't publish on its
-own site — sex, age group, education level, and state. None of these cuts
+Labor force participation broken down by sex, age group, education level,
+and state. None of these cuts
 uses a custom definition: every one is the same TPEA formula applied within
 each group, using fields the ENOE already reports pre-coded.
 
@@ -49,7 +49,7 @@ cortes = ({
 // sorted by TPEA level.
 ordenCategorias = ({
   sexo: ["Men", "Women"],
-  edad: ["14 to 19", "20 to 29", "30 to 39", "40 to 49", "50 to 59", "60 and over"],
+  edad: ["15 to 19", "20 to 29", "30 to 39", "40 to 49", "50 to 59", "60 and over"],
   nivel_educativo: ["Incomplete primary", "Primary", "Secondary", "High school and beyond"]
 })
 
@@ -63,7 +63,7 @@ ordenCategorias = ({
 // site: no console error, just an absent shape).
 etiquetaEn = ({
   "Hombre": "Men", "Mujer": "Women",
-  "14 a 19": "14 to 19", "20 a 29": "20 to 29", "30 a 39": "30 to 39",
+  "15 a 19": "15 to 19", "20 a 29": "20 to 29", "30 a 39": "30 to 39",
   "40 a 49": "40 to 49", "50 a 59": "50 to 59", "60 y más": "60 and over",
   "Primaria incompleta": "Incomplete primary", "Primaria completa": "Primary",
   "Secundaria completa": "Secondary", "Medio superior y superior": "High school and beyond",
@@ -372,9 +372,21 @@ brechaPorEdad = grupo => {
     const dm = m.get(`${dh.anio}-${dh.trimestre}`);
     if (!dm || !dh.valor) return [];
     return [{ fecha: dh.fecha, anio: dh.anio, trimestre: dh.trimestre,
-              grupo, valor: (dh.valor - dm.valor) / dh.valor, H: dh.valor, M: dm.valor }];
+              grupo, valor: (dh.valor - dm.valor) / dh.valor, H: dh.valor, M: dm.valor,
+              ee: eeBrecha(dh, dm) }];
   });
 }
+
+// Standard error of the gap g = (H - M) / H by the delta method:
+// dg/dH = M / H^2, dg/dM = -1 / H, so Var(g) ~ (M/H^2)^2 Var(H) + (1/H)^2 Var(M).
+// Men and women are disjoint domains of the same survey, so their estimates
+// are treated as independent; that ignores any covariance from shared strata
+// and PSUs, the same approximation the rest of the site makes when it
+// combines two estimates. Bands and tooltips are +-1.96 of this.
+eeBrecha = (dh, dm) => Math.sqrt(
+  Math.pow(dm.valor / (dh.valor * dh.valor), 2) * dh.ee * dh.ee +
+  Math.pow(1 / dh.valor, 2) * dm.ee * dm.ee
+)
 
 // National gap without the age split, from the marginal "sexo" cut.
 // filasCorte (and so serieCategoria) translates categoria_origen through
@@ -389,7 +401,8 @@ brechaAgregada = {
     const dm = m.get(`${dh.anio}-${dh.trimestre}`);
     if (!dm || !dh.valor) return [];
     return [{ fecha: dh.fecha, anio: dh.anio, trimestre: dh.trimestre,
-              grupo: "__total__", valor: (dh.valor - dm.valor) / dh.valor, H: dh.valor, M: dm.valor }];
+              grupo: "__total__", valor: (dh.valor - dm.valor) / dh.valor, H: dh.valor, M: dm.valor,
+              ee: eeBrecha(dh, dm) }];
   });
 }
 
@@ -439,6 +452,12 @@ graficaBrechaEdad = () => {
     x: { label: null },
     marks: [
       Plot.gridY({ stroke: "var(--rule)" }),
+      // 95% band on the national line only. Six overlapping bands would
+      // hide the lines; every series carries its interval in the tooltip.
+      Plot.areaY(total, { x: "fecha",
+        y1: d => d.valor == null ? undefined : d.valor - 1.96 * d.ee,
+        y2: d => d.valor == null ? undefined : d.valor + 1.96 * d.ee,
+        fill: "var(--ink)", fillOpacity: 0.09 }),
       Plot.lineY(datosEdad, { x: "fecha", y: "valor", z: "grupo",
         stroke: d => colorEdad(d.grupo), strokeWidth: 1.7, strokeLinejoin: "round", strokeLinecap: "round" }),
       Plot.lineY(total, { x: "fecha", y: "valor",
@@ -450,7 +469,7 @@ graficaBrechaEdad = () => {
         dx: 10, textAnchor: "start", fontSize: 11, fill: d => colorEdad(d.grupo),
         fontWeight: d => d.grupo === "__total__" ? 600 : 400 }),
       Plot.tip(datosEdad.filter(d => d.valor != null), Plot.pointer({ x: "fecha", y: "valor",
-        title: d => `${d.anio}-Q${d.trimestre} · ${etiquetaEn[d.grupo] ?? d.grupo}\ngap ${d.valor.toFixed(3)}\nmen ${d.H}% · women ${d.M}%` })),
+        title: d => `${d.anio}-Q${d.trimestre} · ${etiquetaEn[d.grupo] ?? d.grupo}\ngap ${d.valor.toFixed(3)} ± ${(1.96 * d.ee).toFixed(3)}\nmen ${d.H}% · women ${d.M}%` })),
       Plot.axisX({ stroke: "var(--rule)", tickSize: 0 }),
       Plot.axisY({ stroke: "var(--rule)", tickSize: 0 })
     ]
@@ -525,7 +544,7 @@ gap on record. Since each group's peak in women's participation, men's
 participation has fallen in five of the six groups, in each case by more than
 women's.
 
-The youngest group is the exception. Among people aged 14 to 19 the gap is
+The youngest group is the exception. Among people aged 15 to 19 the gap is
 essentially where it was in 2005, at 0.50, while participation fell for both
 women, from 24.8% to 18.0%, and men, from 49.3% to 36.1%.
 
@@ -541,7 +560,11 @@ as the [overview page](data.qmd) — see its "How this is built" section for
 the full description. The only difference here: the source data includes
 the demographic and state breakdowns, which the overview page's national
 figures don't need. The shaded band and error bars are a 95% confidence
-interval (±1.96 standard errors) from the ENOE's complex survey design. The
+interval (±1.96 standard errors) from the ENOE's complex survey design. For
+the gap by age, (men − women) / men, the interval comes from the delta
+method applied to the two survey estimates, treating men and women as
+independent domains; it is drawn as a band on the national line and shown
+in the tooltip for every series. The
 state breakdown uses the 32 state-level estimates the quarterly ENOE
 supports (unlike the monthly release). 2020-Q2 (the ETOE, a phone-based
 substitute survey run during the strictest pandemic lockdown) is excluded

@@ -7,8 +7,8 @@ date-modified: last-modified
 ENOE, INEGI · Trimestral, 2005–2026 · Por sexo, edad, escolaridad y entidad
 :::
 
-Participación laboral desglosada por los cortes que INEGI no publica en su
-propio sitio — sexo, grupo de edad, nivel educativo y entidad. Ningún corte
+Participación laboral desglosada por sexo, grupo de edad, nivel educativo y
+entidad. Ningún corte
 usa una definición propia: todos son la misma fórmula de TPEA aplicada
 dentro de cada grupo, usando campos que la ENOE ya trae precodificados.
 
@@ -49,7 +49,7 @@ cortes = ({
 // nunca el orden por nivel de TPEA.
 ordenCategorias = ({
   sexo: ["Hombre", "Mujer"],
-  edad: ["14 a 19", "20 a 29", "30 a 39", "40 a 49", "50 a 59", "60 y más"],
+  edad: ["15 a 19", "20 a 29", "30 a 39", "40 a 49", "50 a 59", "60 y más"],
   nivel_educativo: ["Primaria incompleta", "Primaria completa", "Secundaria completa", "Medio superior y superior"]
 })
 
@@ -352,9 +352,21 @@ brechaPorEdad = grupo => {
     const dm = m.get(`${dh.anio}-${dh.trimestre}`);
     if (!dm || !dh.valor) return [];
     return [{ fecha: dh.fecha, anio: dh.anio, trimestre: dh.trimestre,
-              grupo, valor: (dh.valor - dm.valor) / dh.valor, H: dh.valor, M: dm.valor }];
+              grupo, valor: (dh.valor - dm.valor) / dh.valor, H: dh.valor, M: dm.valor,
+              ee: eeBrecha(dh, dm) }];
   });
 }
+
+// Error estandar de la brecha g = (H - M) / H por el metodo delta:
+// dg/dH = M / H^2, dg/dM = -1 / H, asi Var(g) ~ (M/H^2)^2 Var(H) + (1/H)^2 Var(M).
+// Hombres y mujeres son dominios disjuntos de la misma encuesta; se tratan
+// como independientes, que ignora la covarianza por estratos y UPM
+// compartidos: la misma aproximacion que hace el resto del sitio al combinar
+// dos estimaciones. Bandas y tooltips son +-1.96 de esto.
+eeBrecha = (dh, dm) => Math.sqrt(
+  Math.pow(dm.valor / (dh.valor * dh.valor), 2) * dh.ee * dh.ee +
+  Math.pow(1 / dh.valor, 2) * dm.ee * dm.ee
+)
 
 // National gap without the age split, from the marginal "sexo" cut.
 brechaAgregada = {
@@ -364,7 +376,8 @@ brechaAgregada = {
     const dm = m.get(`${dh.anio}-${dh.trimestre}`);
     if (!dm || !dh.valor) return [];
     return [{ fecha: dh.fecha, anio: dh.anio, trimestre: dh.trimestre,
-              grupo: "__total__", valor: (dh.valor - dm.valor) / dh.valor, H: dh.valor, M: dm.valor }];
+              grupo: "__total__", valor: (dh.valor - dm.valor) / dh.valor, H: dh.valor, M: dm.valor,
+              ee: eeBrecha(dh, dm) }];
   });
 }
 
@@ -414,6 +427,12 @@ graficaBrechaEdad = () => {
     x: { label: null },
     marks: [
       Plot.gridY({ stroke: "var(--rule)" }),
+      // Banda de 95% solo en la linea nacional: seis bandas encimadas
+      // taparian las lineas; cada serie lleva su intervalo en el tooltip.
+      Plot.areaY(total, { x: "fecha",
+        y1: d => d.valor == null ? undefined : d.valor - 1.96 * d.ee,
+        y2: d => d.valor == null ? undefined : d.valor + 1.96 * d.ee,
+        fill: "var(--ink)", fillOpacity: 0.09 }),
       Plot.lineY(datosEdad, { x: "fecha", y: "valor", z: "grupo",
         stroke: d => colorEdad(d.grupo), strokeWidth: 1.7, strokeLinejoin: "round", strokeLinecap: "round" }),
       Plot.lineY(total, { x: "fecha", y: "valor",
@@ -425,7 +444,7 @@ graficaBrechaEdad = () => {
         dx: 10, textAnchor: "start", fontSize: 11, fill: d => colorEdad(d.grupo),
         fontWeight: d => d.grupo === "__total__" ? 600 : 400 }),
       Plot.tip(datosEdad.filter(d => d.valor != null), Plot.pointer({ x: "fecha", y: "valor",
-        title: d => `${d.anio}-T${d.trimestre} · ${d.grupo}\nbrecha ${d.valor.toFixed(3)}\nhombres ${d.H}% · mujeres ${d.M}%` })),
+        title: d => `${d.anio}-T${d.trimestre} · ${d.grupo}\nbrecha ${d.valor.toFixed(3)} ± ${(1.96 * d.ee).toFixed(3)}\nhombres ${d.H}% · mujeres ${d.M}%` })),
       Plot.axisX({ stroke: "var(--rule)", tickSize: 0 }),
       Plot.axisY({ stroke: "var(--rule)", tickSize: 0 })
     ]
@@ -500,7 +519,7 @@ brecha más estrecha en toda la serie. Desde el máximo de participación
 femenina de cada grupo, la participación de los hombres ha caído en cinco de
 los seis grupos, en cada caso más que la de las mujeres.
 
-El grupo más joven es la excepción. Entre las personas de 14 a 19 años la
+El grupo más joven es la excepción. Entre las personas de 15 a 19 años la
 brecha está prácticamente donde estaba en 2005, en 0.50, mientras la
 participación cayó tanto para las mujeres, de 24.8% a 18.0%, como para los
 hombres, de 49.3% a 36.1%.
@@ -518,7 +537,10 @@ para la descripción completa. La única diferencia aquí: los datos fuente
 incluyen los cortes demográficos y por entidad, que las cifras nacionales de
 la página de panorama no necesitan. La banda sombreada y las líneas de error
 son un intervalo de 95% de confianza (±1.96 errores estándar) del diseño
-muestral complejo de la ENOE. El corte por entidad usa las 32 estimaciones
+muestral complejo de la ENOE. Para la brecha por edad, (hombres − mujeres) /
+hombres, el intervalo sale del método delta aplicado a las dos estimaciones,
+tratando a hombres y mujeres como dominios independientes; se dibuja como
+banda en la línea nacional y aparece en el tooltip de todas las series. El corte por entidad usa las 32 estimaciones
 estatales que la ENOE trimestral sí soporta (a diferencia de la mensual).
 2020-T2 (la ETOE, encuesta telefónica sustituta durante el confinamiento
 más estricto) se excluye por completo de la serie en vez de mostrarse como

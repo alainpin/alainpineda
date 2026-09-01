@@ -1346,12 +1346,23 @@ series show, never why.
   school enrollment. That is an interpretation and it stays off the public
   page. The public text stops at what the series show.
 
-**Age labels are inherited.** ENOE's precoded `eda7c` band is labelled
-"14 a 19" / "14 to 19" while every rate on the site is computed on ages 15
-and over, so the band is really 15–19. The label is used site-wide (the
-"By breakdown" bars, `etiquetaEn`, this section) and was not changed here;
-it is a site-wide decision the owner has not yet made. Do not fix it in one
-place only.
+**The youngest age group is "15 a 19" / "15 to 19", not "14 a 19".** ENOE's
+precoded `eda7c` band is named "14 a 19", but every rate on the site is
+computed on ages 15 and over, so the band only ever contains 15–19. The owner
+decided on 2026-09-01 that labels follow the data. The fix was made at the
+source (`mapa_edad` in the private pipeline, with the parquet relabelled in
+place), so the exported CSVs carry "15 a 19"; the page-side maps
+(`etiquetaEn`, the `edad` order arrays) and prose were updated to match. If
+"14 a 19" ever reappears in a CSV, the private export was run from a stale
+parquet — do not patch it on the page side.
+
+**The gap chart carries 95% intervals.** The gap (men − women) / men gets a
+standard error by the delta method from the two survey estimates, treating
+men and women as independent domains (the same independence approximation
+the quarterly-update page makes). The band is drawn only on the national
+line — six overlapping bands would hide the lines — and every series shows
+its interval in the tooltip. The women's-levels chart uses the `ee` column
+directly in its tooltip.
 
 ### Technical notes go below the charts, not above (2026-09-01)
 

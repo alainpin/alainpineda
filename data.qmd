@@ -23,12 +23,12 @@ public figures, presented here for quick reference.
 
 Start from a question:
 
+- Who takes part in the labor market, by sex, age, schooling, and state?
+  [Participation](data-participation.qmd).
 - How many people work without the protections of a formal job?
   [Informality](data-informality.qmd).
 - How much of the workforce is unemployed, discouraged, or working fewer
   hours than it wants? [Unemployment](data-unemployment.qmd).
-- Who takes part in the labor market, by sex, age, schooling, and state?
-  [Participation](data-participation.qmd).
 - What changed this quarter? [Quarterly Update](data-quarterly-update.qmd).
 
 ```{ojs}

@@ -408,9 +408,9 @@ ${ordenarFilas(cambiosTrimestre, columnaOrdenTrim, direccionOrdenTrim).map(d => 
 
 ### Cambios por corte
 
-Los mismos cambios trimestrales y anuales de arriba, desglosados por los
-cortes que INEGI no publica en su propio sitio — sexo, edad, escolaridad y
-entidad. Cada cambio muestra el movimiento en puntos porcentuales y, entre
+Los mismos cambios trimestrales y anuales de arriba, desglosados por sexo,
+edad, escolaridad y entidad. Cada cambio muestra el movimiento en puntos
+porcentuales y, entre
 paréntesis, el cambio porcentual equivalente respecto al periodo anterior.
 Haz clic en un encabezado de columna para ordenar por él — igual que en la
 tabla de arriba, las columnas de cambio ordenan por ese porcentaje, no por

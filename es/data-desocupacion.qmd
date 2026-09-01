@@ -9,8 +9,8 @@ ENOE, INEGI · Trimestral, 2005–2026 · Por sexo, edad, escolaridad y entidad
 
 Tercera página de esta serie, mismo patrón que [Participación](data-participacion.qmd)
 e [Informalidad](data-informalidad.qmd): la escalera de subutilización
-laboral (TD, TDAMPL, SUBUTIL) desglosada por los cortes que INEGI no
-publica en su propio sitio. Ningún corte usa una definición propia: todos
+laboral (TD, TDAMPL, SUBUTIL) desglosada por sexo, grupo de edad, nivel
+educativo y entidad. Ningún corte usa una definición propia: todos
 son la misma fórmula aplicada dentro de cada grupo, usando campos que la
 ENOE ya trae precodificados.
 
@@ -61,7 +61,7 @@ cortes = ({
 // categorizacion.
 ordenCategorias = ({
   sexo: ["Hombre", "Mujer"],
-  edad: ["14 a 19", "20 a 29", "30 a 39", "40 a 49", "50 a 59", "60 y más"],
+  edad: ["15 a 19", "20 a 29", "30 a 39", "40 a 49", "50 a 59", "60 y más"],
   nivel_educativo: ["Primaria incompleta", "Primaria completa", "Secundaria completa", "Medio superior y superior"]
 })
 
