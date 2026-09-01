@@ -965,7 +965,8 @@ without being asked.
   so section 8 blocks stating a result. Both pages now open with the same two
   sentences as a plain paragraph, with no `.finding` wrapper, following
   `published/melanoma-utilization`. Each earns a real `.finding` when its draft
-  becomes public.
+  becomes public. Both then got a figure instead, as the page's visual anchor —
+  see the rule below.
 - `data.qmd`/`es/data.qmd` are live again (2026-08-29) with real ENOE national
   indicators, sourced via `scripts/02-labor-indicators.R` from a validated
   external R pipeline (not recomputed here). Still no by-state cut — that
@@ -1114,6 +1115,36 @@ a gradual transition.
 
 **All the Labor Market MX pages now state that their series are original,
 without seasonal adjustment.** Nothing said so before.
+
+### Figures on an in-progress page make the question vivid, never the answer
+
+`scripts/06-in-progress-figures.R` builds the figure on each `in-progress`
+page. The constraint that shapes both is the same one that removed their
+`.finding`: there is no public result to show, so the figure has to motivate
+the question without implying an answer.
+
+In practice that means **magnitudes, not time series.** A series with the
+reform date marked reads as a difference in means no matter how the caption
+labels it, and that would put the finding back in through the side door.
+
+This is not hypothetical. The ENOE coverage rate for domestic workers sits
+near 2% for 2005–2019 and then steps to roughly 4% and stays there. That
+series is the best-looking chart available and it is deliberately not used;
+the page shows a single cross-section instead.
+
+- `domestic-workers-coverage`: how many domestic workers there are and what
+  share has social security, one quarter, no time axis. ENOE microdata via the
+  paper's own pipeline — same standing as the Labor Market MX series the site
+  already publishes: public source, own calculation, descriptive.
+- `usmca-rules`: NAFTA against USMCA on the automotive rules of origin, as
+  written. Source is CRS IF12082, Table 1. No computation at all, so no
+  causal read is available to the reader. A wage-level comparison was
+  considered and rejected: it would need an exchange rate and an hours
+  assumption, which is a derived number on a research page.
+
+Both follow section 5's `.chart-figure` pattern: four SVGs each (two languages
+× two themes), tokens hand-copied from the SCSS, transparent background. Mind
+the path depth — `../../../images/` from EN, `../../../../` from ES.
 
 ### Technical notes go below the charts, not above (2026-09-01)
 

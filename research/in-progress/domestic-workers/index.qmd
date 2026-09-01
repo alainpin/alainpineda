@@ -14,6 +14,13 @@ Voluntary enrollment is the standard first step toward a mandatory regime for
 workers who are hard to reach. This project asks how much of the gap it actually
 closes.
 
+::: {.chart-figure}
+![](../../../images/domestic-workers-coverage-en-light.svg){.chart-img-light}
+![](../../../images/domestic-workers-coverage-en-dark.svg){.chart-img-dark}
+
+Domestic workers in Mexico and the share with social security, 2026-Q2. Own calculation from ENOE microdata using the survey's complex design; coverage is affiliation to IMSS or ISSSTE.
+:::
+
 ### What the project does
 
 Domestic workers provide essential services for private households, yet they

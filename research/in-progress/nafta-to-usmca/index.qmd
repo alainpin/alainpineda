@@ -14,6 +14,13 @@ USMCA wrote labor standards directly into a trade agreement. This project measur
 whether the wage and bargaining provisions moved employment and pay, or only
 paperwork.
 
+::: {.chart-figure}
+![](../../../images/usmca-rules-en-light.svg){.chart-img-light}
+![](../../../images/usmca-rules-en-dark.svg){.chart-img-dark}
+
+Automotive rules of origin, as written. Source: Congressional Research Service, *USMCA: Automotive Rules of Origin* (IF12082, December 2023), Table 1, based on NAFTA and USMCA text. The labor value content requirement is 40% for passenger vehicles and 45% for light trucks.
+:::
+
 ### What the project does
 
 The United States-Mexico-Canada Agreement replaced NAFTA in 2020, updating trade

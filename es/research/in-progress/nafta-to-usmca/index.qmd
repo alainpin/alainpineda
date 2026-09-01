@@ -14,6 +14,13 @@ El T-MEC metió estándares laborales directamente en un acuerdo comercial. Este
 proyecto mide si las disposiciones salariales y de negociación movieron el empleo
 y los salarios, o solo el papeleo.
 
+::: {.chart-figure}
+![](../../../../images/usmca-rules-es-light.svg){.chart-img-light}
+![](../../../../images/usmca-rules-es-dark.svg){.chart-img-dark}
+
+Reglas de origen automotrices, tal como están escritas. Fuente: Congressional Research Service, *USMCA: Automotive Rules of Origin* (IF12082, diciembre 2023), Tabla 1, con base en el texto del TLCAN y del T-MEC. El requisito de contenido laboral es 40% para automóviles y 45% para camiones ligeros.
+:::
+
 ### Qué hace el proyecto
 
 El Tratado entre México, Estados Unidos y Canadá sustituyó al TLCAN en 2020 y

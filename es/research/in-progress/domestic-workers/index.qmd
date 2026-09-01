@@ -14,6 +14,13 @@ La afiliación voluntaria es el primer paso estándar hacia un régimen obligato
 para trabajadores difíciles de alcanzar. Este proyecto pregunta cuánto de la
 brecha cierra en realidad.
 
+::: {.chart-figure}
+![](../../../../images/domestic-workers-coverage-es-light.svg){.chart-img-light}
+![](../../../../images/domestic-workers-coverage-es-dark.svg){.chart-img-dark}
+
+Personas trabajadoras del hogar en México y proporción con seguridad social, 2026-T2. Cálculo propio con microdatos de la ENOE y su diseño muestral complejo; la cobertura es afiliación al IMSS o al ISSSTE.
+:::
+
 ### Qué hace el proyecto
 
 Las personas trabajadoras del hogar prestan servicios esenciales para los hogares
