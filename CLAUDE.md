@@ -939,6 +939,33 @@ mandatory on every push that touches a page, not just the page(s) changed:
 This is not optional polish — treat a push that skips these three checks as
 incomplete, the same way an unrun `./build.sh` would be.
 
+**How to run the mobile check on a page with Observable charts (2026-09-01).**
+Two tools each fail in a way that looks like a result, and both were caught
+the same day:
+
+- The Claude Code browser pane does **not** execute the OJS runtime, neither
+  in an iframe nor when navigated to the page directly under mobile
+  emulation: after 30+ seconds there are no chart SVGs and not even the
+  `Inputs.select` forms exist. Its "no overflow" answer covers the static
+  layout only. That part is still worth having — measure
+  `document.documentElement.scrollWidth` there at the mobile preset — but it
+  says nothing about charts or selectors.
+- Headless Chrome **clamps the window to a 500px minimum and crops the
+  screenshot**. A `--window-size=390` capture is pixel-identical to the left
+  390px of a 500px render (verified: mean difference 0.00, while 500 vs 600
+  differ). It shows the title cut mid-word and the search icon missing, which
+  reads exactly like a page that is too wide. It is not evidence of anything.
+
+What actually settles it for a chart or an input: the container. Every Plot
+figure on these pages sits inside `.data-panel`, whose `overflow-x: auto` is
+what keeps a 640–680px figure scrolling within the panel instead of widening
+the body — Plot ships `style="max-width: initial"` on its figure, so a chart
+placed *outside* that panel will widen the page. `Inputs.select` forms are
+constrained by the `form[class^="oi-"]` rules in `theme.scss` (wrap, select
+`max-width: 100%`). So for a new chart: put it in `.data-panel`, then run the
+pane's static scrollWidth check. For a new kind of OJS output, verify the
+container rule the same way rather than trusting either screenshot method.
+
 - [ ] `./build.sh` completes without errors
 - [ ] `_site/index.html` and `_site/es/index.html` both exist
 - [ ] The ES navbar shows Spanish labels, the EN navbar English ones
@@ -1141,6 +1168,21 @@ work on these pages rather than re-deriving a different answer:
 Known bugs already hit once on this class of page — worth knowing before you
 reintroduce one of them:
 
+0. **A display cell that is just the name of a chart cell shows the
+   inspector, not the chart.** Define `grafica = { ... return Plot.plot(...) }`
+   and then write a cell containing only `grafica`, and the page renders
+   `▶ SVGSVGElement {value: null, scale: ƒ, legend: ƒ}` where the chart should
+   be, while the real SVG sits inside the hidden definition cell. Every chart
+   on these pages is therefore a **function** called from the display cell
+   (`graficaSerieMultiple(...)`, `graficaBrechaEdad()`); the private dashboard
+   gets the same effect by interpolating into an `html\`...\`` template. Two
+   consequences for verification: a text search of the served HTML finds the
+   chart's labels inside an `<svg>` even when the visible cell shows the
+   inspector, because the hidden cell holds the node, so strip
+   `class="cell hidden"` blocks before searching; and a headless DOM check is
+   not a substitute for looking at a screenshot of the section at least once.
+   Caught on 2026-09-01 on the participation-gap charts, after the DOM check
+   had passed.
 1. **An Observable JS module can hang forever, with no console error, if a
    single object literal contains two `color-mix(...)` string values.**
    Define fixed color tokens instead of computing more than one

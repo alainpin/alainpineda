@@ -422,8 +422,8 @@ etiquetasSeparadas = (items, dominio, alto, margenSup, margenInf, minGap) => {
 dominioBrecha = [0.30, 0.70]
 dominioNiveles = [15, 68]
 
-graficaBrechaEdad = {
-  const alto = 400, mt = 14, mb = 34;
+graficaBrechaEdad = () => {
+  const alto = 416, mt = 30, mb = 34;
   const datosEdad = gruposEdad.flatMap(g => conHuecos(brechaPorEdad(g)));
   const total = conHuecos(brechaAgregada);
   // .filter(Boolean): an empty series yields an undefined last element, and
@@ -457,8 +457,8 @@ graficaBrechaEdad = {
   });
 }
 
-graficaNivelesMujeresEdad = {
-  const alto = 350, mt = 14, mb = 34;
+graficaNivelesMujeresEdad = () => {
+  const alto = 366, mt = 30, mb = 34;
   const datosM = gruposEdad.flatMap(g => conHuecos(serieCruzada("Mujer", g).map(d => ({ ...d, grupo: g }))));
   const finales = gruposEdad
     .map(g => { const s = serieCruzada("Mujer", g); return s.length ? { ...s[s.length - 1], grupo: g } : null; })
@@ -491,7 +491,7 @@ graficaNivelesMujeresEdad = {
 
 ```{ojs}
 //| echo: false
-graficaBrechaEdad
+graficaBrechaEdad()
 ```
 
 :::
@@ -504,7 +504,7 @@ group, so the two can be told apart.
 
 ```{ojs}
 //| echo: false
-graficaNivelesMujeresEdad
+graficaNivelesMujeresEdad()
 ```
 
 :::
