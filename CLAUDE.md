@@ -6,6 +6,47 @@ to ask the owner how the site works.
 
 ---
 
+## 0. This repository is public. Standing rule, effective 2026-08-31
+
+**Everything committed here must be consistent with what is already published
+on the website — this file and `README.md` included.** They are not private
+notes. They ship with the repo and anyone can read them.
+
+The test for any line is simple: *is this already on alainpineda.com?* If not,
+it does not belong in the repo. That covers:
+
+- **Personal information** not on the site. His Banco de México address
+  (`alain.pineda@banxico.org.mx`) is published, so it is fine. His personal
+  Gmail is not, so it must never appear — including inside a filesystem path,
+  which is how it leaked into four `scripts/` files before being caught.
+  Absolute paths that embed an account name go in an environment variable
+  (`ENOE_DASHBOARD_DIR`), never in a committed file.
+- **Detail about his role at Banco de México beyond what the site states.**
+  His division and title are published and can be referenced. Internal
+  process, pending consultations with his area, or the reasoning behind an
+  institutional-neutrality decision are not.
+- **Third parties.** Never name a private individual, and never describe
+  material that involves one.
+- **Editorial decisions framed as admissions.** Record the rule to follow, not
+  the deliberation that produced it. "These slides were cut deliberately;
+  carry the cut forward" is useful to a future session. Explaining *why* each
+  one was cut turns an internal judgment call into a public statement.
+- **Anything about unpublished or internal work**, which section 8 already
+  prohibits on the site itself and which applies equally to these files.
+
+**Do this proactively, not on request.** Before any commit, and whenever a
+section of this file or the README grows, re-read what you are about to commit
+against the test above. A useful sweep: search tracked files for email
+addresses, absolute paths containing a username, and credentials, then confirm
+each hit is something the site already publishes.
+
+This rule exists because the README had accumulated a stale to-do list stating
+that his teaching slides had contained internal Banxico figures, and this file
+had accumulated several decisions of the kind described above. Both were
+written as working notes, which is exactly how it happens.
+
+---
+
 ## 1. Who this is for
 
 **Owner:** Alain Pineda. PhD in Economics (Stanford, 2024, Knight-Hennessy
@@ -17,14 +58,13 @@ social insurance expansion, labor market trajectories, equality of opportunity.
 Empirical microeconomics using Mexican administrative and survey microdata
 (ENOE, IMSS records, employer-employee matched data).
 
-**Tooling reality, important:** he comes from **Stata** and is migrating to **R**
-on his personal machine. Write R, not Python: the deciding factor is that ENOE is
-a complex survey and `survey`/`srvyr` handle strata and expansion factors
-properly, which Python still does not. Use `haven` to read legacy `.dta` files,
-`fixest` for panel fixed effects (it maps cleanly onto `reghdfe`), `srvyr` for
-survey means, `modelsummary` for tables, `ggplot2` for static figures. He reads
-code comfortably but is not a web developer. Never propose a solution that
-requires a JavaScript toolchain, `npm`, or ongoing build dependencies.
+**Tooling, important:** write **R**, not Python. The deciding factor is that
+ENOE is a complex survey and `survey`/`srvyr` handle strata and expansion
+factors properly, which Python still does not. Use `haven` to read `.dta`
+files, `fixest` for panel fixed effects (it maps cleanly onto `reghdfe`),
+`srvyr` for survey means, `modelsummary` for tables, `ggplot2` for static
+figures. Never propose a solution that requires a JavaScript toolchain, `npm`,
+or ongoing build dependencies.
 
 **Audiences the site serves, in priority order:**
 
@@ -633,9 +673,8 @@ a personal blog and not like marketing copy.
 - **Quarterly Report boxes ("recuadros") are institutional publications and are
   not individually signed.** This is why policy items are a one-line list rather
   than full pages. Never add an author line, a `.finding`, or a summary to a
-  Banxico box entry, and never upgrade the attribution on your own. If the owner
-  later confirms with his area how staff may attribute boxes, he will say so
-  explicitly.
+  Banxico box entry, and never upgrade the attribution on your own. If the
+  attribution convention ever changes, the owner will say so explicitly.
 - Never host a copy of a Banxico PDF in `files/`. Always link to the canonical
   banxico.org.mx URL.
 - Do not publish results, figures, or numbers from unpublished internal work.
@@ -829,18 +868,13 @@ not the personal thank-you frame) directly on the public `teaching.qmd` /
 `height="352"`). This is a deliberate, current decision, not a reversal of
 the slide-deck cut above — the two are different surfaces (the LaTeX deck vs.
 the site page) and different framings (a personal aside vs. a described class
-exercise). Clase 14 also had its MAGA/4T political-narrative
-comparison (three slides, `resources/maga.png` / `4t.png` / `pollev_4t.png`)
-removed at the owner's request, given his Banxico role — an institutional-
-neutrality call, not a factual correction, so don't second-guess it if asked
-to "fix" that deck later. Clase 4's last slide (`resources/ccps4.png`, a
-screenshot of a real Twitter/X exchange between named private individuals) was
-removed for the same reason — a privacy call, not a content error. Clase 15
-(grad-school-abroad advice, off-topic for a storytelling course) is excluded
-from the set entirely — never compiled, never zipped. Clase 13's business-
-storytelling images (Super Bowl ads, Nike, Apple, 23andMe, Theranos/SBF-style
-cautionary tales) were kept as-is; the owner was asked about the copyright
-angle and chose to keep them.
+exercise). A few slides were also cut from individual decks at the owner's
+request. Those cuts are deliberate and already reviewed: if a deck is ever
+recompiled from a newer Overleaf export, carry them forward rather than
+restoring what the current published set leaves out, and ask the owner before
+changing what any deck includes. Clase 15 (grad-school-abroad advice,
+off-topic for a storytelling course) is excluded from the set entirely, never
+compiled and never zipped.
 
 A Quarto `revealjs` conversion was prototyped on Clase 13 and rejected by the
 owner ("needs a lot more work") in favor of PDFs — don't revisit that path
@@ -927,9 +961,6 @@ without being asked.
   of the figure. Since policy staff are the first audience, prefer a static
   `ggplot2` SVG for any figure that must be seen, and keep Observable for
   figures where choosing an indicator or a year actually helps.
-- R is not yet installed on the owner's personal machine as of this writing. The
-  suggested setup is R plus Positron or RStudio, and
-  `install.packages(c("tidyverse","haven","srvyr","fixest","modelsummary","here"))`.
 - No RSS feed, no Google Analytics, no Plausible. Add only if asked.
 - The site was first built end to end with Quarto 1.7.32 on 2026-08-28:
   `./build.sh` completes clean, with no warnings, and produces `_site/` and

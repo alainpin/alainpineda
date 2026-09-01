@@ -26,13 +26,18 @@ library(dplyr)
 library(readr)
 library(here)
 
-# Ruta al proyecto Dashboard (repo/carpeta distinta a este sitio). Mismo
-# criterio que scripts/02: si esa carpeta se mueve, este es el unico lugar
-# que hay que actualizar aqui.
-ruta_validaciones <- paste0(
-  "/Users/alainpineda/Library/CloudStorage/GoogleDrive-alainpp25@gmail.com/",
-  "My Drive/PhD/Projects/ENOE/Dashboard/site/data/validaciones.csv"
-)
+# La carpeta del proyecto Dashboard se lee de la variable de entorno
+# ENOE_DASHBOARD_DIR. No va escrita aqui a proposito: la ruta de Google Drive
+# incluye la cuenta personal del owner, y este repo es publico. Ponla en
+# ~/.Renviron:
+#   ENOE_DASHBOARD_DIR=/ruta/a/PhD/Projects/ENOE/Dashboard
+dir_dashboard <- Sys.getenv("ENOE_DASHBOARD_DIR", unset = "")
+if (!nzchar(dir_dashboard)) {
+  stop("Falta ENOE_DASHBOARD_DIR. Ponla en ~/.Renviron apuntando a la carpeta ",
+       "del proyecto Dashboard y reinicia R.", call. = FALSE)
+}
+
+ruta_validaciones <- file.path(dir_dashboard, "site/data/validaciones.csv")
 
 if (!file.exists(ruta_validaciones)) {
   stop("No se encontro ", ruta_validaciones,

@@ -27,15 +27,37 @@ library(readr)
 library(arrow)
 library(here)
 
-ruta_indicadores <- paste0(
-  "/Users/alainpineda/Library/CloudStorage/GoogleDrive-alainpp25@gmail.com/",
-  "My Drive/PhD/Projects/ENOE/Dashboard/data/processed/indicadores.parquet"
-)
+# La carpeta del proyecto Dashboard se lee de la variable de entorno
+# ENOE_DASHBOARD_DIR. No va escrita aqui a proposito: la ruta de Google Drive
+# incluye la cuenta personal del owner, y este repo es publico. Ponla en
+# ~/.Renviron:
+#   ENOE_DASHBOARD_DIR=/ruta/a/PhD/Projects/ENOE/Dashboard
+dir_dashboard <- Sys.getenv("ENOE_DASHBOARD_DIR", unset = "")
+if (!nzchar(dir_dashboard)) {
+  stop("Falta ENOE_DASHBOARD_DIR. Ponla en ~/.Renviron apuntando a la carpeta ",
+       "del proyecto Dashboard y reinicia R.", call. = FALSE)
+}
+
+ruta_indicadores <- file.path(dir_dashboard, "data/processed/indicadores.parquet")
 
 indicadores_con_cortes <- c("TPEA", "TIL1", "TIL2", "TOSI1", "TOSI2", "TD", "TDAMPL", "SUBUTIL")
 
+# Lista blanca de cortes, no solo de indicadores. Sin ella, cualquier corte
+# nuevo del pipeline privado se publica solo en la siguiente corrida, y eso ya
+# fallo una vez: el corte cruzado `sexo_edad` entro con 1020 renglones que
+# ademas quedaban corruptos, porque el transmute de abajo no arrastra
+# `categoria_destino` y los seis grupos de edad caian todos etiquetados
+# "Hombre" o "Mujer", indistinguibles entre si.
+#
+# Publicar un corte cruzado requiere decidirlo a proposito: agregarlo aqui, y
+# agregar `categoria_destino` al transmute y a las paginas que lo consuman.
+# "nacional" va incluido: seis paginas lo leen de ESTE archivo como linea de
+# referencia detras de cada corte (data-participation.qmd:28 y equivalentes).
+# Quitarlo no da error, solo desaparece esa linea de las seis paginas.
+cortes_publicados <- c("nacional", "sexo", "edad", "nivel_educativo", "entidad")
+
 tabla <- arrow::read_parquet(ruta_indicadores) |>
-  filter(indicador %in% indicadores_con_cortes) |>
+  filter(indicador %in% indicadores_con_cortes, corte %in% cortes_publicados) |>
   transmute(
     anio, trimestre, indicador, regimen, corte, categoria_origen,
     valor = round(valor, 2),
