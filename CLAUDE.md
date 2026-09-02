@@ -1535,19 +1535,14 @@ it is descriptive and exploratory, and that it has nothing to do with the
 owner's work at Banco de México — and then claims the one thing it does share
 with the rest of the site: every number goes through the survey's own design.
 
-**It was called "Notes" for about an hour.** The owner renamed it because
-"Notas" reads too close to the Bank's *Notas Técnicas*, and because the section
-should say plainly that it is for fun. Do not rename it back toward anything
-that reads like a publication series. The same instinct is already recorded for
-his deliverables generally.
+**Do not rename the section toward anything that reads like a publication
+series.** It was called "Notes" for about an hour and the owner changed it. The
+name should say plainly that the section is for fun.
 
-**The topic boundary is the real institutional constraint here, not the tone.**
-Public microdata on pets is safe. A "fun" piece on the labor market or on
-inflation expectations is not, because that is the owner's actual portfolio in
-the Real Sector Research Division and it would blur the line the footer
-disclaimer cannot repair on its own. The test to apply before starting a new
-curiosity: *could this topic appear in a report from his area?* If yes, it does
-not go here. §8 still governs everything else.
+**Topic boundary, applied before starting a new curiosity:** could this topic
+appear in a report from the owner's own division? If yes, it does not go here.
+Public microdata on pets passes the test; labour-market and monetary topics do
+not. §8 governs everything else.
 
 **Same slug in both languages, and keep it that way.** `curiosities` is the
 folder in both trees, so the switcher's default prepend/strip logic works and

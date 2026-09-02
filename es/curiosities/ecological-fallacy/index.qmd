@@ -138,9 +138,10 @@ graficaMapa(filasMapa, etiquetaMapa, esquemaMapa)
 ## El orden entre entidades es casi todo ruido muestral
 
 Cada entidad se estima con alrededor de mil viviendas. El error estándar
-mediano es de 1.7 puntos, así que el intervalo de confianza al 95% mide cerca
-de 3.3 puntos. La distancia entre Tlaxcala y Puebla es de medio punto. Cabe
-seis veces dentro de ese intervalo.
+mediano es de 1.7 puntos, así que el intervalo de confianza al 95% se extiende
+3.3 puntos hacia cada lado de la estimación y mide 6.6 puntos. La distancia
+entre Tlaxcala y Puebla es de 0.47 puntos. Cabe catorce veces dentro de ese
+intervalo.
 
 ::: {.chart-figure}
 ![](../../../images/pets-ranking-es-light.svg){.chart-img-light}
@@ -212,7 +213,7 @@ Robinson, W. S. (1950). Ecological Correlations and the Behavior of
 Individuals. *American Sociological Review* 15(3), 351–357.
 
 <details class="abstract">
-<summary>Resumen completo</summary>
+<summary>Cómo está hecho</summary>
 
 Fuente: INEGI, Encuesta Nacional de Bienestar Autorreportado 2025, microdatos
 abiertos, tabla de vivienda. Las mascotas son las preguntas P1.8.1.1 a

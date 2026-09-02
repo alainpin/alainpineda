@@ -135,9 +135,9 @@ graficaMapa(filasMapa, etiquetaMapa, esquemaMapa)
 ## The state ranking is mostly sampling noise
 
 Each state is estimated from about a thousand homes. The median standard error
-is 1.7 points, so a 95% confidence interval is roughly 3.3 points wide. The
-distance between Tlaxcala and Puebla is half a point. It fits six times inside
-that interval.
+is 1.7 points, so a 95% confidence interval runs 3.3 points either side of the
+estimate and is 6.6 points wide. The distance between Tlaxcala and Puebla is
+0.47 of a point. It fits fourteen times inside that interval.
 
 ::: {.chart-figure}
 ![](../../images/pets-ranking-en-light.svg){.chart-img-light}
