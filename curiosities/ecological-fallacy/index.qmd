@@ -39,8 +39,7 @@ travelled, and so did a ranking of states.
 ## Where the pets are
 
 Pets are not spread evenly. Hidalgo, Tlaxcala, Oaxaca and Puebla sit near 73%
-of homes. Mexico City closes the list at 56%. The first reading of that map is
-that a pet is a luxury and the map should look the other way around.
+of homes. Mexico City closes the list at 56%.
 
 ```{ojs}
 //| echo: false

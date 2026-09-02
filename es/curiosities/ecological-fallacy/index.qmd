@@ -40,9 +40,7 @@ La cifra circuló, y con ella un orden de las entidades.
 ## Dónde están las mascotas
 
 Las mascotas no se reparten parejo. Hidalgo, Tlaxcala, Oaxaca y Puebla rondan
-el 73% de las viviendas. La Ciudad de México cierra la lista con 56%. La
-primera lectura de ese mapa es que una mascota es un lujo y que el mapa
-debería verse al revés.
+el 73% de las viviendas. La Ciudad de México cierra la lista con 56%.
 
 ```{ojs}
 //| echo: false
