@@ -1,10 +1,10 @@
 project:
   output-dir: _site
   render:
-    - "*.qmd"
-    - "research/"
-    - "policy/"
-    - "curiosities/"
+    - "/*.qmd"
+    - "/research/"
+    - "/policy/"
+    - "/curiosities/"
 
 lang: en
 
