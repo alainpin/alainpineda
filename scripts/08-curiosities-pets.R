@@ -1,5 +1,6 @@
 # ---------------------------------------------------------------------------
-# Nota: mascotas, ingreso y la falacia ecologica (notes/ecological-fallacy/)
+# Curiosidad: mascotas, ingreso y la falacia ecologica
+# (curiosities/ecological-fallacy/)
 #
 # Fuente: INEGI, Encuesta Nacional de Bienestar Autorreportado (ENBIARE) 2025,
 # microdatos abiertos. Las mascotas no son un modulo: son seis reactivos de la
@@ -15,21 +16,21 @@
 # puede venir de una media sin ponderar.
 #
 # Escribe:
-#   data/notes-pets-nacional.csv    una fila, las cifras nacionales
-#   data/notes-pets-estados.csv     32 filas, con error estandar
-#   data/notes-pets-gradiente.csv   9 filas, por numero de activos del hogar
+#   data/pets-nacional.csv    una fila, las cifras nacionales
+#   data/pets-estados.csv     32 filas, con error estandar
+#   data/pets-gradiente.csv   9 filas, por numero de activos del hogar
 #   images/pets-aggregation-<lang>-<mode>.svg   la figura de la tesis
 #   images/pets-ranking-<lang>-<mode>.svg       el ranking con intervalos
 #
 # Se corre A MANO, con locale UTF-8. Sin el, svglite escribe los acentos de las
 # etiquetas en espanol como bytes sueltos, sin error y sin aviso (paso en
 # 07-melanoma-figure.R):
-#   LANG=es_MX.UTF-8 LC_ALL=es_MX.UTF-8 Rscript scripts/08-notes-pets.R
+#   LANG=es_MX.UTF-8 LC_ALL=es_MX.UTF-8 Rscript scripts/08-curiosities-pets.R
 # ---------------------------------------------------------------------------
 
 if (!isTRUE(l10n_info()[["UTF-8"]])) {
   stop("La sesion no esta en UTF-8. Corre: LANG=es_MX.UTF-8 LC_ALL=es_MX.UTF-8 ",
-       "Rscript scripts/08-notes-pets.R", call. = FALSE)
+       "Rscript scripts/08-curiosities-pets.R", call. = FALSE)
 }
 
 suppressPackageStartupMessages({
@@ -171,9 +172,9 @@ regresion <- do.call(rbind, lapply(c("mascota", "perro", "gato"), coefs))
 # Corte rural / urbano, que es el mecanismo que explica la inversion.
 rur <- svyby(~mascota + perro + gato + n_perro + n_gato, ~rural, dis, svymean)
 
-utils::write.csv(nacional,  here("data", "notes-pets-nacional.csv"),  row.names = FALSE)
-utils::write.csv(estados,   here("data", "notes-pets-estados.csv"),   row.names = FALSE)
-utils::write.csv(gradiente, here("data", "notes-pets-gradiente.csv"), row.names = FALSE)
+utils::write.csv(nacional,  here("data", "pets-nacional.csv"),  row.names = FALSE)
+utils::write.csv(estados,   here("data", "pets-estados.csv"),   row.names = FALSE)
+utils::write.csv(gradiente, here("data", "pets-gradiente.csv"), row.names = FALSE)
 
 message("\n--- Cifras que cita la nota ---")
 print(nacional)

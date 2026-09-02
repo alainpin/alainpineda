@@ -1,0 +1,28 @@
+---
+title: "Curiosities"
+listing:
+  - id: curiosities
+    contents:
+      - "curiosities/*/index.qmd"
+      - "!es/**"
+    type: default
+    template: listing-templates/research-listing.ejs.md
+    sort: "date desc"
+    fields: [title, subtitle, description]
+    date-format: "YYYY"
+    categories: false
+    feed: false
+---
+
+Things I looked into for fun. Each one takes a public dataset that happens to
+be in circulation and uses it to explain one idea in statistics or economics.
+The dataset is the occasion; the idea is the point.
+
+None of this is research. It is descriptive and exploratory, it says what the
+data show and stops there, and it has nothing to do with my work at Banco de
+México. What it does share with the rest of the site is the arithmetic: every
+number comes from a public source and is computed with the survey's own
+design, the same standard the [Labor Market MX](data.qmd) pages follow.
+
+::: {#curiosities}
+:::

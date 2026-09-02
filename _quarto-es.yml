@@ -27,8 +27,8 @@ website:
             text: Desocupación
           - href: es/data-actualizacion-trimestral.qmd
             text: Actualización Trimestral
-      - href: es/notes.qmd
-        text: Notas
+      - href: es/curiosities.qmd
+        text: Curiosidades
       - href: es/teaching.qmd
         text: Docencia
       - text: CV

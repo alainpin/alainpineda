@@ -1,21 +1,40 @@
 ---
 title: "Pets, income, and the ecological fallacy"
-subtitle: "Note · ENBIARE 2025"
-description: "Between Mexican states, homes with more assets are less likely to have a pet. Within the country, they are more likely. The same data at two levels of aggregation gives opposite signs, which is what the ecological fallacy looks like in practice."
+subtitle: "Curiosity · ENBIARE 2025"
+description: "A relationship measured between groups can reverse for the individuals inside them. That mistake has a name, the ecological fallacy, and INEGI's new pet data is an unusually clean example of it."
 date: 2026-09-02
 date-modified: last-modified
 author: "Alain Pineda"
 ---
 
 ::: {.eyebrow}
-Note · INEGI, ENBIARE 2025 · Public microdata
+Curiosity · INEGI, ENBIARE 2025 · Public microdata
 :::
+
+Statistics has an old mistake with a name. It shows up when a relationship is
+measured between groups and then read as if it also held for the individuals
+inside those groups. The two are different quantities. They can differ by a
+lot, and they can point in opposite directions.
+
+The example that named the mistake is from 1950. Looking at the 1930 US
+census, the sociologist W. S. Robinson found that states with more foreign-born
+residents had less illiteracy, a correlation of −0.53 across states. Among
+individuals the relationship ran the other way: a foreign-born person was more
+likely to be illiterate, a correlation of +0.12. Both numbers are right. They
+answer different questions, and only the second one is about people. Robinson
+called the first an ecological correlation, and treating it as if it were the
+second became known as the **ecological fallacy**.
+
+The trap is easy to describe and hard to see in the wild, because aggregated
+data never announces that it is aggregated. Mexico now has an unusually clean
+example, and it is about pets.
+
+## What INEGI published
 
 In July 2026 INEGI released the microdata of its 2025 wellbeing survey. For
 the first time it counts pets: 66.4% of homes have at least one, and the
 survey expands to 41.2 million dogs and 19.2 million cats. The headline
-travelled, and so did a ranking of states. The ranking is where the
-interesting problem starts.
+travelled, and so did a ranking of states.
 
 ## Where the pets are
 
@@ -26,7 +45,7 @@ that a pet is a luxury and the map should look the other way around.
 ```{ojs}
 //| echo: false
 //| output: false
-pets = FileAttachment("../../data/notes-pets-estados.csv").csv({ typed: true })
+pets = FileAttachment("../../data/pets-estados.csv").csv({ typed: true })
 mx = FileAttachment("../../data/mx-estados.json").json()
 
 // Same state-code map the Labor Market MX pages use. The topojson keys are
@@ -145,11 +164,10 @@ Between states the relationship is negative. Within the country it is positive
 and close to monotone, rising 21.9 points from homes with no assets to homes
 with all eight. Both panels describe the same 32,908 homes.
 
-This is the **ecological fallacy**: a relationship measured across groups need
-not hold, and need not even keep its sign, for the individuals inside those
-groups. The state-level correlation is a fact about states. Reading it as a
-fact about households is the error, and nothing in the state-level data warns
-that it is happening.
+That is Robinson's reversal, with pets in place of literacy. The left panel is
+a fact about states and it is correctly measured. It is simply not a fact about
+households, and nothing in it warns that the household version runs the other
+way.
 
 ## What produces the reversal
 
@@ -170,7 +188,11 @@ The same trap is available wherever data arrive already grouped. A comparison
 of countries read as a statement about people. A state map of poverty next to a
 state map of anything else. Any regression whose unit is a region when the
 claim is about individuals. The question that catches it is short: what is one
-row of this table?
+row of this table? If the answer is a state and the claim is about households,
+the two do not have to agree.
+
+Robinson, W. S. (1950). Ecological Correlations and the Behavior of
+Individuals. *American Sociological Review* 15(3), 351–357.
 
 <details class="abstract">
 <summary>How this is built</summary>
@@ -186,7 +208,7 @@ strata and expansion factors) through R's `survey` package, the same standard
 the Labor Market MX pages apply to the ENOE. The national figures reproduce
 INEGI's own release exactly. The script that downloads the microdata, computes
 every number on this page and draws both figures is
-[`scripts/08-notes-pets.R`](https://github.com/alainpin/alainpineda/blob/main/scripts/08-notes-pets.R)
+[`scripts/08-curiosities-pets.R`](https://github.com/alainpin/alainpineda/blob/main/scripts/08-curiosities-pets.R)
 in this site's public repository.
 
 The survey records whether the home has a dog, a cat, or another pet, and how

@@ -1,0 +1,28 @@
+---
+title: "Curiosidades"
+listing:
+  - id: curiosidades
+    contents:
+      - "curiosities/*/index.qmd"
+    type: default
+    template: ../listing-templates/research-listing.ejs.md
+    sort: "date desc"
+    fields: [title, subtitle, description]
+    date-format: "YYYY"
+    categories: false
+    feed: false
+---
+
+Cosas que revisé por gusto. Cada una toma una base pública que anda
+circulando y la usa para explicar una idea de estadística o de economía. La
+base es el pretexto; la idea es lo que importa.
+
+Nada de esto es investigación. Es descriptivo y exploratorio, dice qué
+muestran los datos y ahí se detiene, y no tiene relación con mi trabajo en el
+Banco de México. Lo que sí comparte con el resto del sitio es la aritmética:
+cada cifra viene de una fuente pública y se calcula con el diseño muestral de
+la encuesta, el mismo estándar que siguen las páginas de
+[Mercado Laboral MX](data.qmd).
+
+::: {#curiosidades}
+:::

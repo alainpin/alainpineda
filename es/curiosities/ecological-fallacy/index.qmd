@@ -1,21 +1,41 @@
 ---
 title: "Mascotas, ingreso y la falacia ecológica"
-subtitle: "Nota · ENBIARE 2025"
-description: "Entre entidades, las viviendas con más activos tienen menos mascotas. Dentro del país, tienen más. Los mismos datos en dos niveles de agregación dan signos opuestos, que es la forma que toma la falacia ecológica en la práctica."
+subtitle: "Curiosidad · ENBIARE 2025"
+description: "Una relación medida entre grupos puede invertirse para los individuos que están adentro. Ese error tiene nombre, falacia ecológica, y los datos de mascotas del INEGI son un ejemplo insólitamente limpio."
 date: 2026-09-02
 date-modified: last-modified
 author: "Alain Pineda"
 ---
 
 ::: {.eyebrow}
-Nota · INEGI, ENBIARE 2025 · Microdatos públicos
+Curiosidad · INEGI, ENBIARE 2025 · Microdatos públicos
 :::
+
+La estadística tiene un error viejo y con nombre. Aparece cuando una relación
+se mide entre grupos y luego se lee como si también valiera para los
+individuos que están dentro de esos grupos. Son dos cantidades distintas.
+Pueden diferir mucho, y pueden apuntar en direcciones opuestas.
+
+El ejemplo que le dio nombre es de 1950. Revisando el censo estadounidense de
+1930, el sociólogo W. S. Robinson encontró que los estados con más residentes
+nacidos en el extranjero tenían menos analfabetismo, con una correlación de
+−0.53 entre estados. Entre individuos la relación corría al revés: una persona
+nacida en el extranjero era más propensa a ser analfabeta, con una correlación
+de +0.12. Las dos cifras son correctas. Responden preguntas distintas, y solo
+la segunda es sobre personas. Robinson llamó correlación ecológica a la
+primera, y tratarla como si fuera la segunda se conoce desde entonces como
+**falacia ecológica**.
+
+La trampa es fácil de describir y difícil de ver en el mundo real, porque un
+dato agregado nunca avisa que está agregado. México ya tiene un ejemplo
+insólitamente limpio, y es de mascotas.
+
+## Qué publicó el INEGI
 
 En julio de 2026 el INEGI publicó los microdatos de su encuesta de bienestar
 2025. Por primera vez cuenta mascotas: 66.4% de las viviendas tiene al menos
 una, y la encuesta expande a 41.2 millones de perros y 19.2 millones de gatos.
-La cifra circuló, y con ella un orden de las entidades. Ese orden es donde
-empieza el problema interesante.
+La cifra circuló, y con ella un orden de las entidades.
 
 ## Dónde están las mascotas
 
@@ -27,7 +47,7 @@ debería verse al revés.
 ```{ojs}
 //| echo: false
 //| output: false
-pets = FileAttachment("../../../data/notes-pets-estados.csv").csv({ typed: true })
+pets = FileAttachment("../../../data/pets-estados.csv").csv({ typed: true })
 mx = FileAttachment("../../../data/mx-estados.json").json()
 
 // El mismo mapa de claves que usan las páginas de Mercado Laboral MX. Las
@@ -151,11 +171,10 @@ Entre entidades la relación es negativa. Dentro del país es positiva y casi
 monótona: sube 21.9 puntos entre la vivienda sin ningún activo y la que tiene
 los ocho. Los dos paneles describen las mismas 32,908 viviendas.
 
-Esto es la **falacia ecológica**: una relación medida entre grupos no tiene
-por qué sostenerse, ni siquiera conservar el signo, para los individuos que
-están dentro de esos grupos. La correlación estatal es un hecho sobre
-entidades. Leerla como un hecho sobre hogares es el error, y nada en los datos
-agregados avisa que está ocurriendo.
+Es la inversión de Robinson, con mascotas en lugar de alfabetización. El panel
+izquierdo es un hecho sobre entidades y está bien medido. Simplemente no es un
+hecho sobre hogares, y nada en él avisa que la versión por hogar corre al
+revés.
 
 ## Qué produce la inversión
 
@@ -178,7 +197,11 @@ agrupados. Una comparación entre países leída como afirmación sobre personas
 Un mapa estatal de pobreza junto a un mapa estatal de cualquier otra cosa.
 Cualquier regresión cuya unidad es una región cuando la afirmación es sobre
 individuos. La pregunta que lo detecta es corta: ¿qué es un renglón de esta
-tabla?
+tabla? Si la respuesta es una entidad y la afirmación es sobre hogares, las dos
+no tienen por qué coincidir.
+
+Robinson, W. S. (1950). Ecological Correlations and the Behavior of
+Individuals. *American Sociological Review* 15(3), 351–357.
 
 <details class="abstract">
 <summary>Resumen completo</summary>
@@ -195,7 +218,7 @@ el mismo estándar que las páginas de Mercado Laboral MX aplican a la ENOE. Las
 cifras nacionales reproducen exactamente el comunicado del INEGI. El script
 que baja los microdatos, calcula cada número de esta página y dibuja las dos
 figuras es
-[`scripts/08-notes-pets.R`](https://github.com/alainpin/alainpineda/blob/main/scripts/08-notes-pets.R)
+[`scripts/08-curiosities-pets.R`](https://github.com/alainpin/alainpineda/blob/main/scripts/08-curiosities-pets.R)
 en el repositorio público de este sitio.
 
 La encuesta registra si la vivienda tiene perro, gato u otra mascota, y
