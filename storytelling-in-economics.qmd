@@ -1,0 +1,429 @@
+---
+title: "Storytelling in Economics"
+description: "What the course covers, two exercises taken from the material, an index of the sessions with their slides, and the reading list."
+date-modified: last-modified
+---
+
+::: {.eyebrow}
+ITAM · Master in Applied Economics · Spring 2025
+:::
+
+## What it is
+
+The course is about how empirical work in economics gets communicated. It
+starts from a simple premise: data and models do not explain themselves, and
+the order in which they are presented decides how much a reader takes away.
+The sessions follow the arc of a research project, from the motivation to the
+figure, the paper, and the presentation. The work is done through exercises on
+real data and through readings discussed in class. The goal is to tell the same
+result to a technical audience, to someone making policy decisions, and to a
+reader with no training in economics.
+
+The anchor text is Robert Shiller's
+[*Narrative Economics*](https://press.princeton.edu/books/hardcover/9780691182292/narrative-economics).
+
+## The craft in two exercises
+
+Two lessons from the course, in the form the course uses them. The first is
+about what the eye resolves before it reads. The second takes one chart from a
+spreadsheet default to a finished figure, one decision at a time.
+
+### Preattentive attributes
+
+```{ojs}
+//| echo: false
+//| output: false
+// Four fixed rows of twelve digits, identical in both languages, with
+// exactly seven 3s. Muted by default; the toggle applies one preattentive
+// attribute (intensity) and changes nothing else.
+digitosFilas = ["805391643725", "472680359168", "936158270436", "258073496153"]
+
+// A display cell that is only a cell name renders Observable's inspector,
+// so every visual output here is a function called from its own cell
+// (CLAUDE.md section 13, bug 0).
+gridDigitos = (activo) => html`<div class="digit-grid">${
+  digitosFilas.map(fila => html`<div>${
+    Array.from(fila, caracter =>
+      activo && caracter === "3"
+        ? html`<span class="digit-hit">3</span>`
+        : html`<span>${caracter}</span>`)
+  }</div>`)
+}</div>`
+```
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+viewof resaltar = Inputs.toggle({ label: "Highlight", value: false })
+```
+
+```{ojs}
+//| echo: false
+gridDigitos(resaltar)
+```
+
+:::
+
+There are seven. One change makes them visible before you count.
+
+### The same chart, in six steps
+
+```{ojs}
+//| echo: false
+//| output: false
+indicadores = FileAttachment("data/labor-indicators.csv").csv({ typed: true })
+
+etiquetaSerie = ({ TIL1: "Informality", TOSI1: "Informal sector" })
+
+serieDe = codigo => indicadores
+  .filter(d => d.indicador === codigo)
+  .map(d => ({
+    serie: etiquetaSerie[codigo],
+    fecha: new Date(d.anio, (d.trimestre - 1) * 3, 1),
+    valor: d.valor,
+    anio: d.anio,
+    trimestre: d.trimestre
+  }))
+  .sort((a, b) => a.fecha - b.fecha)
+
+// 2020-Q2 is genuinely absent (the ETOE gap). Without an explicit
+// undefined point Plot bridges it with a straight diagonal, which reads a
+// change of method as a gradual transition.
+conHuecos = serie => {
+  const resultado = [];
+  for (let i = 0; i < serie.length; i++) {
+    resultado.push(serie[i]);
+    if (i < serie.length - 1) {
+      const actual = serie[i], siguiente = serie[i + 1];
+      const meses = (siguiente.fecha.getFullYear() - actual.fecha.getFullYear()) * 12
+        + (siguiente.fecha.getMonth() - actual.fecha.getMonth());
+      if (meses > 3) {
+        resultado.push({
+          ...actual,
+          fecha: new Date(actual.fecha.getFullYear(), actual.fecha.getMonth() + 3, 1),
+          valor: undefined
+        });
+      }
+    }
+  }
+  return resultado;
+}
+
+seriesPaso = [serieDe("TIL1"), serieDe("TOSI1")]
+puntosPaso = seriesPaso.flat()
+lineasPaso = seriesPaso.flatMap(conHuecos)
+finalesPaso = seriesPaso.map(s => s[s.length - 1])
+dominioPaso = [etiquetaSerie.TIL1, etiquetaSerie.TOSI1]
+
+textosPaso = [
+  "Straight out of a spreadsheet. A border, gridlines, a marker on every quarter, a legend set apart from the lines, and the software's default colors.",
+  "Remove the chart border.",
+  "Remove the gridlines.",
+  "Remove the data markers.",
+  "Clean up the axis labels and send them to the background.",
+  "Label the series directly, and drop the legend.",
+  "Give each label its series' color. The chart is now in the style the data pages of this site use: their palette, their type, and one faint grid."
+]
+
+lineaPaso = (paso) => html`<p>${textosPaso[paso]}</p>`
+
+graficaPasos = (paso) => {
+  const sucio = paso <= 3;
+  const casa = paso >= 6;
+  const trazo = casa ? "var(--rule)" : "var(--ink-soft)";
+  const marcas = [];
+
+  if (paso <= 1) {
+    marcas.push(Plot.gridY({ stroke: "var(--ink-soft)", strokeOpacity: 0.85, strokeWidth: 1 }));
+  } else if (casa) {
+    marcas.push(Plot.gridY({ stroke: "var(--rule)" }));
+  }
+
+  if (paso === 0) marcas.push(Plot.frame({ stroke: "var(--ink-soft)" }));
+
+  marcas.push(Plot.lineY(lineasPaso, {
+    x: "fecha", y: "valor", z: "serie", stroke: "serie",
+    strokeWidth: casa ? 2 : 1.5,
+    strokeLinejoin: "round", strokeLinecap: "round"
+  }));
+
+  if (paso <= 2) {
+    marcas.push(Plot.dot(puntosPaso, {
+      x: "fecha", y: "valor", z: "serie", fill: "serie", r: 2.8
+    }));
+  }
+
+  if (paso >= 5) {
+    marcas.push(Plot.text(finalesPaso, {
+      x: "fecha", y: "valor", text: "serie",
+      textAnchor: "start", dx: 10, fontSize: 13, fontWeight: 500,
+      fill: casa ? "serie" : "var(--ink)"
+    }));
+  }
+
+  if (casa) {
+    marcas.push(Plot.dot(finalesPaso, {
+      x: "fecha", y: "valor", z: "serie", fill: "serie",
+      r: 3.5, stroke: "var(--plot-background)", strokeWidth: 1.5
+    }));
+    // The tip's data is the union of every series the chart draws, and its
+    // title names the series it is describing (CLAUDE.md section 13).
+    marcas.push(Plot.tip(puntosPaso, Plot.pointerX({
+      x: "fecha", y: "valor",
+      title: d => `${d.serie}\n${d.anio}-Q${d.trimestre}\n${d.valor}%`
+    })));
+  }
+
+  marcas.push(Plot.axisX({
+    stroke: trazo,
+    tickSize: sucio ? 5 : 0,
+    ticks: sucio ? 21 : 5,
+    tickRotate: sucio ? -45 : 0,
+    fontSize: sucio ? 10 : 12
+  }));
+  marcas.push(Plot.axisY({
+    stroke: trazo,
+    tickSize: sucio ? 5 : 0,
+    ticks: sucio ? 14 : 5,
+    tickFormat: sucio ? (d => d.toFixed(2)) : undefined
+  }));
+
+  return Plot.plot({
+    width: 680,
+    height: 340,
+    marginTop: 30,
+    marginLeft: sucio ? 58 : 44,
+    marginBottom: sucio ? 58 : 30,
+    marginRight: paso >= 5 ? 132 : 24,
+    style: {
+      background: "transparent",
+      color: paso >= 4 ? "var(--ink-soft)" : "var(--ink)",
+      fontFamily: casa ? "IBM Plex Sans, sans-serif" : "Arial, Helvetica, sans-serif",
+      fontSize: "12px"
+    },
+    x: { label: null },
+    y: { label: sucio ? "Percent (%)" : "%", domain: [0, 65] },
+    color: casa
+      ? { domain: dominioPaso, range: ["var(--teal)", "var(--clay)"] }
+      : { domain: dominioPaso, scheme: "tableau10", legend: paso <= 4 },
+    marks: marcas
+  });
+}
+```
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+viewof pasoActivo = Inputs.radio([0, 1, 2, 3, 4, 5, 6], { label: "Step", value: 0 })
+```
+
+```{ojs}
+//| echo: false
+lineaPaso(pasoActivo)
+```
+
+```{ojs}
+//| echo: false
+graficaPasos(pasoActivo)
+```
+
+:::
+
+::: {.chart-note}
+Labor informality (TIL1) and informal-sector employment (TOSI1), share of
+the employed population. ENOE, INEGI, original series, without seasonal
+adjustment. 2020-Q2 was not surveyed.
+:::
+
+The two lines are worth reading for what they measure, not only for how they
+are drawn. Labor informality counts people who work without social security,
+wherever they work. Informal-sector employment counts people whose workplace is
+a business that never registered. Someone can be in one and not the other, and
+the distance between the lines is exactly that group: mostly salaried workers
+with no social security inside registered firms, along with paid domestic work
+and subsistence farming.
+
+The gap is where the change happened. Comparing the second quarter of each year
+— like with like, since the series carries no seasonal adjustment — labor
+informality fell from 59.4% in 2005 to 55.1% in 2026, while informal-sector
+employment rose from 28.2% to 30.2%. The informal sector did not shrink. What
+narrowed was the gap, from 31.2 points to 24.9: less unprotected work inside
+registered businesses, not less work for unregistered ones. A single
+"informality" number hides both movements, which is why the choice of series is
+already part of the story being told.
+
+## The sessions
+
+The course is taught in Spanish and the slides are in Spanish.
+
+- **1. The importance of stories.** Opening session. The origins of
+  storytelling and the evidence that folklore predicts present-day values and
+  economic choices. Readings: Shiller, *Narrative Economics: How Stories Go
+  Viral and Drive Major Economic Events* (Princeton University Press, 2019);
+  Michalopoulos and Xue, "Folklore" (*Quarterly Journal of Economics*, 2021);
+  Stephens, Silbert and Hasson, "Speaker-listener neural coupling underlies
+  successful communication" (2010).
+  [Slides (PDF, 0.48 MB)](files/storytelling/clase-01.pdf)
+
+- **2. Stories, statistics, and memory.** Chapter 2 of *Nexus*, a review of
+  randomization and Bayesian statistics, and an experiment on stories versus
+  statistics. Method: randomization and Bayesian statistics. Readings: Harari,
+  *Nexus*, chapter 2, "Stories: Unlimited Connections" (2024); Graeber, Roth
+  and Zimmermann, "Stories, Statistics, and Memory" (*Quarterly Journal of
+  Economics*, 2024).
+  [Slides (PDF, 0.20 MB)](files/storytelling/clase-02.pdf)
+
+- **3. The virality of narratives.** Narrative contagion in Shiller, models as
+  stories with structure, instrumental variables, and the Acemoglu and Albouy
+  exchange. Method: instrumental variables. Readings: Shiller, *Narrative
+  Economics*; Morgan, *The World in the Model: How Economists Work and Think*
+  (2012); Acemoglu, Johnson and Robinson, "The Colonial Origins of Comparative
+  Development: An Empirical Investigation" (*American Economic Review*, 2001),
+  with Albouy's Comment and the authors' Reply (both *American Economic
+  Review*, 2012); Angrist and Krueger (1991) as the worked instrument.
+  [Slides (PDF, 0.72 MB)](files/storytelling/clase-03.pdf)
+
+- **4. Minimum wages and difference-in-differences.** Minimum wage models and
+  the wage-price spiral narrative; difference-in-differences, with Card and
+  Krueger and the Mexican case. Method: difference-in-differences. Readings:
+  Card and Krueger, "Minimum Wages and Employment: A Case Study of the
+  Fast-Food Industry in New Jersey and Pennsylvania" (*American Economic
+  Review*, 1994) and *Myth and Measurement: The New Economics of the Minimum
+  Wage* (1995); Calderón, Cortés, Pérez Pérez and Salcedo, "Disentangling the
+  Effects of Large Minimum Wage and VAT Changes on Prices: Evidence from
+  Mexico" (*Labour Economics*, 2023); Campos-Vázquez and Esquivel, "The Effect
+  of Doubling the Minimum Wage and Decreasing Taxes on Inflation in Mexico"
+  (*Economics Letters*, 2020); on the labor-market models behind the debate,
+  Manning, *Monopsony in Motion* (2003), Diamond (1982), and Mortensen and
+  Pissarides (1994); and on the estimator, de Chaisemartin and D'Haultfœuille
+  (2020), Callaway and Sant'Anna (2021), Sun and Abraham (2021), and Roth,
+  Sant'Anna, Bilinski and Poe (2023).
+  [Slides (PDF, 0.82 MB)](files/storytelling/clase-04.pdf)
+
+- **5. Regression discontinuity and behavioral economics.** A regression
+  discontinuity review, with an application to upper-secondary admission, and
+  behavioral economics through the replication crisis. Method: regression
+  discontinuity. Readings: Ortega Hesles, "Just Making the Admission Cut-Off"
+  (2015); Kahneman and Tversky, "Prospect Theory: An Analysis of Decision under
+  Risk" (*Econometrica*, 1979); Simmons, Nelson and Simonsohn, "False-Positive
+  Psychology" (*Psychological Science*, 2011); Brodeur, Lé, Sangnier and
+  Zylberberg, "Star Wars: The Empirics Strike Back"
+  (*American Economic Journal: Applied Economics*, 2016);
+  on the method, Thistlethwaite and Campbell (1960), Angrist and Lavy (1999),
+  and Imbens and Lemieux (2008).
+  [Slides (PDF, 0.82 MB)](files/storytelling/clase-05.pdf)
+
+- **6. Job replacement and shift-share instruments.** Narratives about jobs
+  being replaced, and shift-share instruments applied to trade with China,
+  robots, and artificial intelligence. Method: shift-share instruments.
+  Readings: Autor, Dorn and Hanson, "The China Syndrome: Local Labor Market
+  Effects of Import Competition in the United States" (*American Economic
+  Review*, 2013); Acemoglu and Restrepo, "Robots and Jobs: Evidence from US
+  Labor Markets" (*Journal of Political Economy*, 2020); Acemoglu, Autor,
+  Hazell and Restrepo, "Artificial Intelligence and Jobs: Evidence from Online
+  Vacancies" (*Journal of Labor Economics*, 2022); Borusyak, Hull and Jaravel,
+  "A Practical Guide to Shift-Share Instruments" (*Journal of Economic
+  Perspectives*, 2025); on measuring exposure, Felten, Raj and Seamans (2019),
+  Webb (2020), and Brynjolfsson, Mitchell and Rock (2019).
+  [Slides (PDF, 1.22 MB)](files/storytelling/clase-06.pdf)
+
+- **8. Narratives and economic events: panic and confidence.** Shiller covers
+  two-way causality and the narratives of panic and confidence; Roos and
+  Reccius define the collective economic narrative. Readings: Shiller,
+  *Narrative Economics*; Roos and Reccius, "Narratives in economics"
+  (*Journal of Economic Surveys* 38(2), 2024, 303-341); Cass and Shell, "Do
+  Sunspots Matter?" (*Journal of Political Economy*, 1983); Vosoughi, Roy and
+  Aral, "The spread of true and false news online" (*Science*, 2018).
+  [Slides (PDF, 0.32 MB)](files/storytelling/clase-08.pdf)
+
+- **9. Storytelling with data I: context, charts, and clutter.** Covers
+  Knaflic's first three lessons: context, choosing the chart, and removing
+  clutter. Closes with McCloskey on economic writing. Method: data
+  visualization. Readings: Nussbaumer Knaflic, *Storytelling with Data*
+  (2015), lessons 1 to 3; McCloskey, "Economical Writing" (*Economic Inquiry*
+  23(2), 1985, 187-222).
+  [Slides (PDF, 2.12 MB)](files/storytelling/clase-09.pdf)
+
+- **10. Storytelling with data II: attention, design, and story.** Covers
+  Knaflic's last three lessons: attention, design, and narrative structure,
+  worked through one example. Closes with McCloskey on rhetoric. Method:
+  visual narrative. Readings: Nussbaumer Knaflic, *Storytelling with Data*,
+  lessons 4 to 6; McCloskey, "The Rhetoric of Economics" (*Journal of Economic
+  Literature* 21(2), 1983, 481-517); McKee, *Story: Style, Structure,
+  Substance, and the Principles of Screenwriting* (1997); Vonnegut, "How to
+  Write with Style" (1980).
+  [Slides (PDF, 1.94 MB)](files/storytelling/clase-10.pdf)
+
+- **11. Storytelling in public policy.** The Jones and McBeth Narrative Policy
+  Framework, applied to three development evaluations: school construction in
+  Indonesia, deworming, and antimalarial bed nets. Method: randomized trials
+  and difference-in-differences. Readings: Jones and McBeth, "A Narrative
+  Policy Framework: Clear Enough to Be Wrong?" (*Policy Studies Journal*,
+  2010); Duflo, "Schooling and Labor Market Consequences of School
+  Construction in Indonesia" (*American Economic Review*, 2001); Miguel and
+  Kremer, "Worms: Identifying Impacts on Education and Health in the Presence
+  of Treatment Externalities" (*Econometrica*, 2004); Cohen and Dupas, "Free
+  Distribution or Cost-Sharing? Evidence from a Randomized Malaria Prevention
+  Experiment" (*Quarterly Journal of Economics*, 2010); on the framework and
+  its critics, Stone, *Policy Paradox*, Roe, *Narrative Policy Analysis*
+  (1994), and Schlaufer, Kuenzler, Jones and Shanahan (2022).
+  [Slides (PDF, 0.67 MB)](files/storytelling/clase-11.pdf)
+
+- **13. Storytelling in business.** Narrative as brand, as investment pitch,
+  and as internal culture. Two papers measure its effect on advertisements and
+  on IPO prospectuses. Method: content coding and regression. Readings:
+  Quesenberry and Coolsen, "What Makes a Super Bowl Ad Super? Five-Act
+  Dramatic Form Affects Consumer Super Bowl Advertising Ratings" (*Journal of
+  Marketing Theory and Practice*, 2014); Martens, Jennings and Jennings, "Do
+  the Stories They Tell Get Them the Money They Want? The Role of
+  Entrepreneurial Narratives in Resource Acquisition" (*Academy of Management
+  Journal*, 2007); with Freytag's five-act dramatic pyramid as the scaffolding.
+  [Slides (PDF, 0.48 MB)](files/storytelling/clase-13.pdf)
+
+- **14. Storytelling in political processes.** Ideas, framing, and collective
+  memory in politics. The central case measures how an election campaign
+  reactivates a historical episode from centuries earlier. Method:
+  difference-in-differences and spatial regression discontinuity. Readings:
+  Ochsner and Roesel, "Activated History: The Case of the Turkish Sieges of
+  Vienna" (*American Economic Journal: Applied Economics*, 2024); Mukand and
+  Rodrik, "The Political Economy of Ideas" (NBER, 2018); Entman, "Framing:
+  Toward Clarification of a Fractured Paradigm" (*Journal of Communication*,
+  1993); Halbwachs, *Les cadres sociaux de la mémoire* (1925); on historical
+  persistence, Dell (2010, 2012) and Acemoglu, Johnson and Robinson (2001);
+  Chetty et al., "Social Capital I: Measurement and Associations with Economic
+  Mobility" (*Nature*, 2022).
+  [Slides (PDF, 0.50 MB)](files/storytelling/clase-14.pdf)
+
+Sessions 7 and 12 were given to student presentations of their paper
+proposals, so they have no slides.
+
+## How it is graded
+
+- Class participation, with three slides per assigned reading (summary,
+  strengths, and weaknesses), presented to the group by one student each
+  session.
+- Assignments: empirical exercises through the course.
+- A five to ten minute presentation of the paper proposal to the group, with
+  feedback from classmates.
+- A two-page written proposal: the story to be told, the motivation, the
+  elements that support it, and the plan of work.
+- Final paper.
+
+The syllabus allows AI tools for exploring ideas, drafting, and iterating,
+provided the submitted text is not copied from them and their claims are
+checked.
+
+## Readings
+
+Books and articles the course draws on throughout, beyond the readings listed
+by session.
+
+- Robert J. Shiller. *Narrative Economics: How Stories Go Viral and Drive Major Economic Events*. Princeton University Press, 2019.
+- Deirdre N. McCloskey. *The Rhetoric of Economics*. University of Wisconsin Press, 1985.
+- Mary S. Morgan and Thomas A. Stapleford. "Narrative in Economics: A New Turn on the Past". *History of Political Economy* 55(3), 2023, 395-421.
+- Mary S. Morgan. *The World in the Model: How Economists Work and Think*. Cambridge University Press, 2012.
+- Michael Roos and Matthias Reccius. "Narratives in Economics". *Journal of Economic Surveys* 38(2), 2024, 303-341.
+- Karla Borja and Suzanne Dieringer. "Telling My Story: Applying Storytelling to Complex Economic Data". *Eastern Economic Journal* 49(3), 2023, 328-348.
+- Edward E. Leamer. *Macroeconomic Patterns and Stories: A Guide for MBAs*. Springer, 2009.

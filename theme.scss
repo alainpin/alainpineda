@@ -1,6 +1,6 @@
 /*-- scss:defaults --*/
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 // ==========================================================================
 //  TOKENS. Esto es lo unico que se toca para cambiar la identidad visual.
@@ -458,6 +458,34 @@ g[aria-label="tip"] {
   color: $ink-soft;
   margin: 0.4rem 0;
 }
+
+// ---- Count-the-3s exercise (storytelling-in-economics.qmd) ----
+// Four rows of twelve digits the reader is asked to count, then a single
+// preattentive attribute applied to the 3s. The muted state derives from
+// $ink rather than taking its own token, so it composites over $paper and
+// follows the light/dark toggle with nothing to keep in sync in
+// theme-dark.scss. Alpha is set so the muted digits still clear 3:1
+// against $paper in both themes at this size, while staying far enough
+// from $ink that the highlighted 3s read as a different ink, not a
+// different weight of the same one.
+// Each row is nowrap so the grid never reflows mid-number; .data-panel's
+// overflow-x is what keeps that from widening the body on a phone.
+.digit-grid {
+  font-family: $font-family-monospace;
+  font-size: clamp(1.3rem, 5.8vw, 2.4rem);
+  line-height: 1.55;
+  letter-spacing: 0.16em;
+  color: rgba($ink, 0.52);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.digit-grid > div {
+  white-space: nowrap;
+}
+.digit-grid .digit-hit {
+  color: $ink;
+  font-weight: 600;
+}
 // Observable Inputs.select control (class is a content hash, always
 // prefixed "oi-").
 form[class^="oi-"] {
@@ -485,6 +513,16 @@ form[class^="oi-"] select {
   color: $ink;
   min-width: 280px;
   max-width: 100%;
+}
+// Inputs.toggle and Inputs.radio (storytelling-in-economics.qmd) are the only
+// controls here that are not a select. A checkbox or radio with no
+// accent-color paints itself Chrome's blue, the one saturated colour on a page
+// whose palette is $ink/$paper/$rule/$teal/$ochre — and it lands inside the
+// .data-panel that anchors the section. Both themes need it, so it is set on
+// the control rather than on a light/dark override.
+form[class^="oi-"] input[type="checkbox"],
+form[class^="oi-"] input[type="radio"] {
+  accent-color: $teal;
 }
 
 // ---- Data table (data-quarterly-update.qmd) ----

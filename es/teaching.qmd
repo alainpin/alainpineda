@@ -1,5 +1,6 @@
 ---
 title: "Docencia"
+description: "Cursos que he impartido en el ITAM, en la Maestría en Economía Aplicada."
 ---
 
 ## ITAM
@@ -10,22 +11,24 @@ title: "Docencia"
 Maestría en Economía Aplicada · Primavera 2025
 :::
 
-El curso gira en torno a dos preguntas: cómo se propagan las narrativas
-económicas y mueven resultados reales, y por qué ciertos argumentos se imponen
-dentro de la disciplina económica y otros no. El texto de referencia es
-*[Narrative Economics](https://press.princeton.edu/books/hardcover/9780691182292/narrative-economics)*
-de Robert Shiller. A partir de ahí, el oficio práctico: estructurar el
-argumento, decidir qué mostrar, diseñar cuadros y gráficas que carguen el
-punto, y escribir para audiencias diversas. Los materiales son públicos.
+El curso trata de cómo se le explica a alguien más un trabajo empírico. Los
+datos y los modelos no hablan por sí solos, y el orden en que se presentan
+decide cuánto entiende quien los lee. En clase se trabaja con ejemplos reales:
+qué mostrar, en qué orden y con qué palabras. El mismo resultado tiene que
+llegar a un público técnico, a quien toma una decisión y a un lector sin
+formación en economía.
 
 El [explicador](../files/social-insurance-without-a-job-slides-es.html) de mi
 job market paper es el mismo oficio aplicado a mi propio trabajo. Lleva a un
 lector general por la pregunta, el método, y lo que las estimaciones pueden y
 no pueden decir.
 
+[Mercado Laboral MX](/es/data.html) es el mismo oficio aplicado a datos
+públicos: las series de la ENOE, una página por tema, con las gráficas
+cargando el punto.
+
 ::: {.paper-links}
-- [Temario (PDF)](../files/storytelling-syllabus.pdf)
-- [Presentaciones (ZIP)](../files/storytelling-slides.zip)
+- [Página del curso](storytelling-in-economics.qmd)
 :::
 
 Una de las tareas pidió a los estudiantes sus historias favoritas contadas en

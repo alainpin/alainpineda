@@ -103,3 +103,21 @@
   to = "/es/research/other/breastfeeding-workplace-policy/:splat"
   status = 301
   force = true
+
+# Materiales de docencia (2026-09-02). El temario en PDF y el ZIP de laminas
+# ya no existen en files/: el temario esta en prosa en la pagina del curso y
+# las laminas viven sueltas, una por sesion, en files/storytelling/. Las dos
+# rutas viejas circularon publicamente, asi que apuntan a la pagina nueva.
+# Mismo criterio que arriba: force = true, para que la regla siga aplicando
+# aunque alguna vez vuelva a existir un archivo en esa ruta.
+[[redirects]]
+  from = "/files/storytelling-syllabus.pdf"
+  to = "/storytelling-in-economics.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/files/storytelling-slides.zip"
+  to = "/storytelling-in-economics.html"
+  status = 301
+  force = true

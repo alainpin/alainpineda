@@ -1,5 +1,6 @@
 ---
 title: "Teaching"
+description: "Courses I have taught at ITAM, in the Master in Applied Economics."
 ---
 
 ## ITAM
@@ -10,22 +11,23 @@ title: "Teaching"
 Master in Applied Economics · Spring 2025
 :::
 
-Two questions run through the course: how economic narratives spread and move
-real outcomes, and why some arguments take hold within economics itself while
-others don't. The anchor text is Robert Shiller's
-[*Narrative Economics*](https://press.princeton.edu/books/hardcover/9780691182292/narrative-economics).
-From there, the practical craft: structuring an argument, choosing what to show,
-designing tables and figures that carry the point, and writing for diverse
-audiences. Materials are public.
+The course is about how a piece of empirical research gets explained to someone
+else. Data and models do not speak for themselves, and the order in which they
+are presented decides how much a reader takes away. Students work through real
+examples: what to show, in what order, and in what words. The same result has
+to reach a technical audience, someone making a decision, and a reader with no
+training in economics.
 
 The [explainer](files/social-insurance-without-a-job-slides.html) for my job
 market paper is the same craft applied to my own work. It walks a general
 reader through the question, the method, and what the estimates can and
 cannot say.
 
+[Labor Market MX](/data.html) is the same craft applied to public data: the
+ENOE series, one page per theme, with the charts carrying the point.
+
 ::: {.paper-links}
-- [Syllabus (PDF)](files/storytelling-syllabus.pdf)
-- [Slides (ZIP)](files/storytelling-slides.zip)
+- [Course page](storytelling-in-economics.qmd)
 :::
 
 One assignment asked students for their favorite stories told in songs. This

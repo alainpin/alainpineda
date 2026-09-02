@@ -133,7 +133,14 @@ index.qmd              EN landing (Quarto `about: trestles`).
 research.qmd           EN research page. Three folder-driven listings
                        (working-papers, in-progress, health) plus two
                        hand-written lists (Banco de México, Other writing).
-teaching.qmd           EN teaching page. Hand-written, no listing.
+teaching.qmd           EN teaching page. Hand-written, no listing. Short cover
+                       for the two ITAM courses; one pill out to the course
+                       page below, plus the Spotify playlist.
+storytelling-in-economics.qmd
+                       EN page for the ITAM course: what it is, two Observable
+                       exercises, the session index linking files/storytelling/,
+                       how it is graded, and the bibliography. Same slug in ES
+                       (es/storytelling-in-economics.qmd). See §12.
 
 research/
   working-papers/<slug>/index.qmd
@@ -153,7 +160,11 @@ scripts/               R scripts that produce everything in data/ and images/.
                        Run by hand: `Rscript scripts/01-....R`,
                        `Rscript scripts/02-labor-indicators.R`
 data/                  CSVs produced by scripts/, consumed by OJS blocks.
-files/                 PDFs: CV, papers, slides, briefs.
+files/                 PDFs: CV, papers, briefs, and the two explainer HTML
+                       files.
+files/storytelling/    Per-session slide PDFs for the ITAM course,
+                       `clase-01.pdf`–`clase-14.pdf` with no 07 or 12. Linked
+                       one by one from the course page. See §12.
 images/                Photo and static figures.
 listing-templates/     Custom ejs template for the research.qmd listings
                        (the PDF-pill feature). See section 6.
@@ -757,6 +768,12 @@ visible — an economist whose distinguishing trait is caring about being
 understood — without stating it anywhere as a slogan. Keep it as a sentence
 with an inline link, not a pill: the pill row is for course materials.
 
+A second sentence, added 2026-09-02, does the same for Labor Market MX ("the
+same craft applied to public data"), with an absolute path — `/data.html` on
+the English page, `/es/data.html` on the Spanish one. Same rule: a sentence
+with an inline link, never a pill, and the throughline is never named. The
+pill row on these two pages is now a single pill out to the course page.
+
 ---
 
 ## 7. Editorial voice
@@ -954,13 +971,22 @@ incomplete, the same way an unrun `./build.sh` would be.
 Two tools each fail in a way that looks like a result, and both were caught
 the same day:
 
-- The Claude Code browser pane does **not** execute the OJS runtime, neither
-  in an iframe nor when navigated to the page directly under mobile
-  emulation: after 30+ seconds there are no chart SVGs and not even the
-  `Inputs.select` forms exist. Its "no overflow" answer covers the static
-  layout only. That part is still worth having — measure
-  `document.documentElement.scrollWidth` there at the mobile preset — but it
-  says nothing about charts or selectors.
+- The Claude Code browser pane executes the OJS runtime **only while the pane
+  is actually painting**. Observable's runtime advances on
+  `requestAnimationFrame`, which never fires in a hidden pane, so the page sits
+  at *zero* resolved variables and no chart SVGs indefinitely — not slowly,
+  never. **Take a screenshot first**: it forces a paint and the whole runtime
+  starts. (This entry previously claimed the pane cannot run OJS at all; that
+  was wrong, and on 2026-09-02 it cost an hour and a false alarm that the live
+  public site was down. It was not — it just needed a paint.) Two readings
+  that look like diagnoses and are not: the
+  `ojs-in-a-box-waiting-for-module-import` class stays in the DOM even after a
+  cell renders, so counting it means nothing — count `svg[class*="plot"]`
+  instead; and `FileAttachment` showing `_reachable: false` is just Quarto's
+  shadow variable, not a fault. Beware also that `await connector.value(name)`
+  on an unresolved variable never returns and kills the call with "renderer may
+  be frozen" — inspect `window._ojs.ojsConnector.mainModule._scope`
+  synchronously instead.
 - Headless Chrome **clamps the window to a 500px minimum and crops the
   screenshot**. A `--window-size=390` capture is pixel-identical to the left
   390px of a 500px render (verified: mean difference 0.00, while 500 vs 600
@@ -1002,41 +1028,105 @@ container rule the same way rather than trusting either screenshot method.
 
 ## 12. Known gaps and open TODOs
 
-**Teaching materials — done.** The Storytelling in Economics course materials
-are public: `files/storytelling-syllabus.pdf` and `files/storytelling-slides.zip`
-are both linked from `teaching.qmd` and `es/teaching.qmd`.
+**Teaching materials — done.** The Storytelling in Economics course has its own
+page, `storytelling-in-economics.qmd` and `es/storytelling-in-economics.qmd`,
+and `teaching.qmd` / `es/teaching.qmd` link to it with a single pill. The
+syllabus lives on that page as prose, not as a PDF. The slides are 12
+per-session PDFs sitting loose in `files/storytelling/`
+(`clase-01.pdf`–`clase-14.pdf`, skipping 07 and 12 — those sessions were
+student presentations and never had slides), one link per session on the
+course page. There is no syllabus PDF and no slides ZIP; `netlify.toml` 301s
+their old paths to the course page.
 
-The zip holds 12 per-class PDFs (`Clase 01.pdf`–`Clase 14.pdf`, skipping 07 and
-12 — those sessions never had slides), compiled from the owner's Overleaf
-source with MacTeX/`pdflatex` (two passes each, for correct bookmarks). Before
-compiling, three things were deliberately cut from the LaTeX source across all
-13 original decks, and should stay cut if this ever gets recompiled from a
-newer Overleaf export: every `\date{}` was blanked, every "next class"
-logistics frame was removed (assignment previews, presentation logistics,
-sometimes a specific due date), and two things were cut for reasons beyond
-just being logistics — Clase 1's grading-percentage frame, and Clase 2's
-personal thank-you frame that linked the owner's own Spotify playlist and a
-private Google Sheet. That cut still stands for the slide deck itself — don't
-reintroduce it there. Separately, on 2026-08-30 the owner asked to embed that
-same Spotify playlist (a different link surfaced from a different context: a
-class assignment asking students for their favorite stories told in songs,
-not the personal thank-you frame) directly on the public `teaching.qmd` /
-`es/teaching.qmd` page, under the Storytelling in Economics section, as a raw
-```{=html}<iframe>...``` block (Spotify's own embed code, `width="100%"`,
-`height="352"`). This is a deliberate, current decision, not a reversal of
-the slide-deck cut above — the two are different surfaces (the LaTeX deck vs.
-the site page) and different framings (a personal aside vs. a described class
-exercise). A few slides were also cut from individual decks at the owner's
-request. Those cuts are deliberate and already reviewed: if a deck is ever
-recompiled from a newer Overleaf export, carry them forward rather than
-restoring what the current published set leaves out, and ask the owner before
-changing what any deck includes. Clase 15 (grad-school-abroad advice,
-off-topic for a storytelling course) is excluded from the set entirely, never
-compiled and never zipped.
+The decks were compiled from the owner's Overleaf source with
+MacTeX/`pdflatex` (two passes each, for correct bookmarks). Two things are
+deliberately absent from the published set and must stay absent if any deck is
+ever recompiled from a newer Overleaf export: every `\date{}` is blank, and a
+number of individual frames were cut at the owner's request. Carry those cuts
+forward rather than restoring what the published set leaves out, and ask the
+owner before changing what any deck includes. Clase 15
+(grad-school-abroad advice, off-topic for a storytelling course) is excluded
+from the set entirely, never compiled and never published.
+
+**No published deck carries a logistics frame, of any kind.** The rule is the
+one the course-page conventions below state for the page, and it governs the
+PDFs just as strictly: no room, no schedule, no course code, no attendance
+rule, no incentive line, no office-hours frame, no assignment preview, no due
+date, no student name. "Next class" frames are one shape of this; a
+course-structure or housekeeping frame anywhere in a deck is another, and the
+rule covers both. A replacement deck is swept before it is published, not
+assumed clean.
+
+Sweep a deck with `pypdf`, normalising accents first: text extraction splits
+words at accented characters (`salón` comes out as `sal on`, `pequeños` as
+`peque nos`), so a naive substring search misses exactly the frames that
+matter. Strip combining marks and whitespace, then search. Vocabulary hits are
+normal — "incentivos" and "asistencia escolar" are subject matter in several
+decks — so read every hit rather than counting them.
+
+There is no LaTeX source in this repo, so a frame is removed from a published
+deck by dropping the page with `pypdf` (a fresh `PdfWriter` and
+`append(reader, pages=keep)`, which stays closest to the original file size)
+and rebuilding the `/PageLabels` `/Nums` ranges so each remaining page keeps
+the frame number its own footer prints. The printed footer sequence then skips
+the removed frame and its total no longer matches the count of frames present.
+That is expected and stays; do not recompile a deck to tidy it.
+
+On 2026-08-30 the owner asked to embed a Spotify playlist directly on
+`teaching.qmd` / `es/teaching.qmd`, under the Storytelling in Economics
+section, as a raw ```{=html}<iframe>...``` block (Spotify's own embed code,
+`width="100%"`, `height="352"`). The playlist comes out of a class assignment
+that asked students for their favorite stories told in songs, and the page
+says so in one sentence above it. It is a current decision of the owner's:
+keep it on the teaching page, exactly where it is, and do not repeat it on
+the course page.
 
 A Quarto `revealjs` conversion was prototyped on Clase 13 and rejected by the
 owner ("needs a lot more work") in favor of PDFs — don't revisit that path
 without being asked.
+
+**Conventions for the course page, fixed 2026-09-02.**
+
+- The slug is `storytelling-in-economics` in **both** languages, so the
+  switcher's default prepend/strip logic works and it needs no entry in
+  `js/lang-toggle.html`'s `MAPA_SLUGS_ESPECIALES` (section 4). It sits at the
+  repo root, not in a `teaching/` folder.
+- Section order, both languages: `.eyebrow` with the institutional metadata
+  (ITAM · programme · term), "What it is" / "De qué trata", "The craft in two
+  exercises" / "El oficio en dos ejercicios", "The sessions" / "Las sesiones",
+  "How it is graded" / "Cómo se evalúa", "Readings" / "Lecturas".
+- The session index is one entry per session: number and title, a one-sentence
+  description, a method label where the session teaches one, the readings, and
+  a link to that session's PDF with its size in MB. Sessions 7 and 12 are
+  covered by one line after the list.
+- **Never quote a slide count.** The decks are beamer with overlays, so a PDF
+  page is not a slide. Sizes in MB are safe; page counts are not.
+- **A reading is cited only as far as the source supports.** Give the venue,
+  volume, issue, or document type when the deck or the syllabus prints it, or
+  when it has been checked against the publisher's own record. Where the deck
+  gives only author, title, and year, the page gives only author, title, and
+  year — session 5's Ortega Hesles entry is the worked example. Naming an
+  institution or a document type that no source states is the failure mode to
+  avoid.
+- Nothing internal to the course reaches the page: no student names, no room,
+  no schedule, no course code, no attendance rule, no grading percentages, no
+  due dates.
+- The decks contain third-party figures, magazine and press material, and
+  charts carrying institutional branding. That is fine inside a PDF. The site
+  neither reproduces nor recreates any of it, and does not restate in its own
+  voice the political, historical, or personal material a deck cites as
+  evidence — the index says what a session covers and stops there.
+- Two Observable exercises, both inside `.data-panel`: the count-the-3s grid
+  (`.digit-grid` in `theme.scss`, which is also why the font `@import` asks for
+  IBM Plex Mono 600) and a chart rebuilt in six steps. The six steps are the
+  course's own decluttering order from Clase 09, not invented; the last step
+  additionally moves the chart into this site's data-page style, which is the
+  only part that is not from the course.
+- The Spanish page reads `FileAttachment("../data/labor-indicators.csv")` and
+  links slides as `../files/storytelling/...`. Both depend on the page sitting
+  directly in `es/` (section 4, invariant 5).
+
+**Everything else, current state and open gaps.**
 
 - `images/profile.jpg` and `files/CV_Alain_Pineda.pdf` are the owner's real
   files now, not placeholders.

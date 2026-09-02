@@ -63,7 +63,8 @@ index.qmd          Landing en inglés
 research.qmd       Tres listas automáticas + la subsección de policy
 data.qmd           Panorama del mercado laboral (Observable)
 data-*.qmd         Páginas por tema y la actualización trimestral
-teaching.qmd
+teaching.qmd       Portada de docencia: los dos cursos del ITAM
+storytelling-in-economics.qmd   Página del curso: sesiones, láminas y bibliografía
 research/working-papers/<slug>/index.qmd
 research/in-progress/<slug>/index.qmd
 research/published/<slug>/index.qmd
@@ -74,6 +75,7 @@ es/                Espejo completo en español
 scripts/           Scripts de R que generan lo que hay en data/ e images/
 data/              CSVs generados por scripts/
 files/             PDFs y explicadores en HTML
+files/storytelling/  Láminas del curso del ITAM, un PDF por sesión
 images/            Foto y figuras
 ```
 
