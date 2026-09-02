@@ -1097,12 +1097,12 @@ without being asked.
   `Replication` row on the job market paper page now points to a real Zenodo
   record (`https://zenodo.org/records/22168219`) in both languages — the
   earlier "no replication package" gap is closed.
-- **The repo (`alainpin/alainpineda`) is currently private.** When the Data
-  page comes back (see "Add an interactive chart" above), it will link to this
-  repo as the source of its CSVs, and that link 404s for a visitor until the
-  repo is public. The owner has said he'll make it public at launch. Confirm
-  that as part of the pre-launch checklist; don't flip visibility unprompted
-  since it's a one-way change on a shared GitHub resource.
+- **The repo (`alainpin/alainpineda`) is public.** Confirmed 2026-09-01 with
+  `gh repo view --json visibility`. This entry said "currently private" for
+  several days after that stopped being true, which is worse than saying
+  nothing: section 0's rule is only as urgent as this line makes it sound.
+  Verify visibility with that command rather than trusting this sentence, and
+  never flip it unprompted in either direction.
 - The policy brief PDF is linked but not yet in `files/`.
 - **Resolved 2026-09-01.** The `.finding` blocks on `domestic-workers` and
   `nafta-to-usmca` stated the question rather than a result, which rule 1 in
@@ -1366,6 +1366,17 @@ place), so the exported CSVs carry "15 a 19"; the page-side maps
 (`etiquetaEn`, the `edad` order arrays) and prose were updated to match. If
 "14 a 19" ever reappears in a CSV, the private export was run from a stale
 parquet — do not patch it on the page side.
+
+**A `Plot.tip` bound to one series silently answers for another.** The gap
+chart draws seven lines but its tip was bound only to `datosEdad`, the six
+age groups. Plot's pointer transform still resolves a hover anywhere in the
+frame to its nearest point *in that dataset*, so hovering the national line
+returned a nearby age group's numbers under that group's name — no error, a
+plausible tooltip, the wrong series. It survived a DOM check and a
+screenshot because a tip only exists while the pointer is over the figure.
+Caught on 2026-09-01, on the same day the page started promising an interval
+"for every series". Rule: a tip's data must be the union of every series the
+chart draws, and its title has to name the series it is describing.
 
 **The gap chart carries 95% intervals.** The gap (men − women) / men gets a
 standard error by the delta method from the two survey estimates, treating

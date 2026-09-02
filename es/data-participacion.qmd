@@ -443,8 +443,11 @@ graficaBrechaEdad = () => {
       Plot.text(etiquetas, { x: "fecha", y: "valorEtiqueta", text: d => d.grupo === "__total__" ? "Todas las edades" : d.grupo,
         dx: 10, textAnchor: "start", fontSize: 11, fill: d => colorEdad(d.grupo),
         fontWeight: d => d.grupo === "__total__" ? 600 : 400 }),
-      Plot.tip(datosEdad.filter(d => d.valor != null), Plot.pointer({ x: "fecha", y: "valor",
-        title: d => `${d.anio}-T${d.trimestre} · ${d.grupo}\nbrecha ${d.valor.toFixed(3)} ± ${(1.96 * d.ee).toFixed(3)}\nhombres ${d.H}% · mujeres ${d.M}%` })),
+      // La línea nacional también va en el tooltip. El texto de abajo promete
+      // un intervalo para cada serie, y un pointer atado sólo a datosEdad
+      // resuelve el hover sobre la línea de tinta al grupo de edad más cercano.
+      Plot.tip([...datosEdad, ...total].filter(d => d.valor != null), Plot.pointer({ x: "fecha", y: "valor",
+        title: d => `${d.anio}-T${d.trimestre} · ${d.grupo === "__total__" ? "Todas las edades" : d.grupo}\nbrecha ${d.valor.toFixed(3)} ± ${(1.96 * d.ee).toFixed(3)}\nhombres ${d.H}% · mujeres ${d.M}%` })),
       Plot.axisX({ stroke: "var(--rule)", tickSize: 0 }),
       Plot.axisY({ stroke: "var(--rule)", tickSize: 0 })
     ]

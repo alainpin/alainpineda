@@ -468,8 +468,11 @@ graficaBrechaEdad = () => {
       Plot.text(etiquetas, { x: "fecha", y: "valorEtiqueta", text: d => d.grupo === "__total__" ? "All ages" : (etiquetaEn[d.grupo] ?? d.grupo),
         dx: 10, textAnchor: "start", fontSize: 11, fill: d => colorEdad(d.grupo),
         fontWeight: d => d.grupo === "__total__" ? 600 : 400 }),
-      Plot.tip(datosEdad.filter(d => d.valor != null), Plot.pointer({ x: "fecha", y: "valor",
-        title: d => `${d.anio}-Q${d.trimestre} · ${etiquetaEn[d.grupo] ?? d.grupo}\ngap ${d.valor.toFixed(3)} ± ${(1.96 * d.ee).toFixed(3)}\nmen ${d.H}% · women ${d.M}%` })),
+      // The national line belongs in the tip as well. The text below promises
+      // an interval for every series, and a pointer bound to datosEdad alone
+      // resolves a hover over the ink line to the nearest age group instead.
+      Plot.tip([...datosEdad, ...total].filter(d => d.valor != null), Plot.pointer({ x: "fecha", y: "valor",
+        title: d => `${d.anio}-Q${d.trimestre} · ${d.grupo === "__total__" ? "All ages" : (etiquetaEn[d.grupo] ?? d.grupo)}\ngap ${d.valor.toFixed(3)} ± ${(1.96 * d.ee).toFixed(3)}\nmen ${d.H}% · women ${d.M}%` })),
       Plot.axisX({ stroke: "var(--rule)", tickSize: 0 }),
       Plot.axisY({ stroke: "var(--rule)", tickSize: 0 })
     ]
