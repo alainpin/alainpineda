@@ -152,6 +152,12 @@ research/
                                   when an economics paper is published. See §5.
 policy/<slug>/index.qmd           Mini-pages for the Banxico box and the thesis.
 
+curiosities.qmd        EN landing for the Curiosities section: one folder-driven
+                       listing, same custom template as research.qmd. Same slug
+                       in ES (es/curiosities.qmd). See §14.
+curiosities/<slug>/index.qmd      One curiosity each, with its ES mirror at
+                       es/curiosities/<slug>/index.qmd. Same slug both languages.
+
 data.qmd               EN interactive figures (Observable). In the navbar.
 es/                    Full Spanish mirror: index, research, data, teaching,
                        and es/research/** with the same slugs.
@@ -1510,3 +1516,108 @@ failure mode the "not validated" rows exist to prevent.
 The "Changes this quarter" table on the same page is deliberately left alone:
 the reader sorts it by clicking a column header, so its order is UI state
 rather than an editorial choice.
+---
+
+## 14. Curiosities — the section that is explicitly not research
+
+`curiosities.qmd` / `es/curiosities.qmd` ("Curiosities" / "Curiosidades") is a
+folder-driven listing over `curiosities/<slug>/index.qmd`, added 2026-09-02. It
+reuses `listing-templates/research-listing.ejs.md` rather than a new template,
+per the note in §6: a listing that wants the same card shape points at the same
+file. Neither page sets `pdf:` or `explainer:`, and the template renders no
+pills when both are absent.
+
+**What the section is for.** Short pieces built from public microdata, each one
+using a dataset that happens to be in circulation to explain one idea in
+statistics or economics. The dataset is the occasion; the idea is the point.
+The blurb on both landing pages says outright that none of it is research, that
+it is descriptive and exploratory, and that it has nothing to do with the
+owner's work at Banco de México — and then claims the one thing it does share
+with the rest of the site: every number goes through the survey's own design.
+
+**It was called "Notes" for about an hour.** The owner renamed it because
+"Notas" reads too close to the Bank's *Notas Técnicas*, and because the section
+should say plainly that it is for fun. Do not rename it back toward anything
+that reads like a publication series. The same instinct is already recorded for
+his deliverables generally.
+
+**The topic boundary is the real institutional constraint here, not the tone.**
+Public microdata on pets is safe. A "fun" piece on the labor market or on
+inflation expectations is not, because that is the owner's actual portfolio in
+the Real Sector Research Division and it would blur the line the footer
+disclaimer cannot repair on its own. The test to apply before starting a new
+curiosity: *could this topic appear in a report from his area?* If yes, it does
+not go here. §8 still governs everything else.
+
+**Same slug in both languages, and keep it that way.** `curiosities` is the
+folder in both trees, so the switcher's default prepend/strip logic works and
+no `MAPA_SLUGS_ESPECIALES` entry is needed (§4). This is a deliberate departure
+from the Labor Market MX precedent of translated slugs: that section is four
+flat pages, so four map entries are a fixed cost, while this one grows, and a
+diverging folder would need a new entry for *every* note forever — with the
+documented failure mode that a missing or stale key 404s the switcher silently.
+English slugs under `/es/` are the site's norm everywhere except those four
+pages anyway.
+
+**No `.finding`.** A curiosity has a public result, so the §6 rule would allow
+one, and it still does not get one — same reasoning as the melanoma page: the
+device is the signature of the economics and policy work, and using it here
+would undo the weight distinction the section exists to make. Open with a plain
+paragraph instead.
+
+**One note, one concept, and name the concept early.** The first version of the
+ecological-fallacy page demonstrated the idea for three sections and only then
+named it, which asks a reader who has never met it to hold a pattern in their
+head with no label for it. It now opens with the idea in plain language before
+any Mexican data, uses Robinson's 1930-census example as the illustration, and
+closes with the full citation. The page's own figures then read as recognition
+rather than introduction. Two other findings from the same microdata (a null on
+subjective wellbeing, a rural/urban gap) were cut or demoted to one sentence
+for the same reason: a second lesson dilutes the first.
+
+**Voice is §7, not the explainer's.** The explainer under `files/` is a
+standalone HTML file outside the Quarto render, and it narrates. These are
+Quarto pages and the site's editorial voice governs them. Didactic does not
+mean chatty: short declarative sentences still apply.
+
+### `curiosities/ecological-fallacy/` — the first one
+
+- **Data.** INEGI's ENBIARE 2025, whose housing section carries six pet items
+  (P1.8.1.1–P1.8.3.2) between the household assets and the resident count.
+  `scripts/08-curiosities-pets.R` downloads the open-microdata zip to a temp
+  directory on every run and versions none of it: 6 MB of CSV that INEGI
+  already publishes at a stable URL. Everything goes through `svydesign` with
+  the declared `upm_dis` / `est_dis` / `fac_viv`, the same standard §9 imposes
+  on ENOE. The national figures reproduce INEGI's own release exactly, which is
+  the cheapest available check that the pipeline is right.
+- **Outputs.** `data/pets-{nacional,estados,gradiente}.csv` and two figures in
+  four variants each (`pets-aggregation-*`, `pets-ranking-*`). Data files are
+  named by content, not by section, like the rest of `data/` — if the section is
+  ever renamed again the filenames do not move.
+- **The map is Observable, everything else is static.** The interactive form is
+  earned here: the reader switches between any pet, dog and cat, and the tooltip
+  carries the confidence interval. It reuses `data/mx-estados.json` and the
+  choropleth conventions already settled in §13, including coercing both sides
+  of the state-code join to numbers.
+- **Each measure gets its own colour ramp** (`BuGn` for any pet, `OrRd` for
+  dog, `Purples` for cat), set from an `esquema` field on the `medidas` object
+  and threaded through a named `esquemaMapa` cell. The owner asked for this:
+  with one shared ramp, switching measures only changed the shading and the
+  change was easy to miss. Each ramp is single-hue light-to-dark, as a
+  sequential scale should be; the three hues are far apart, and two of them sit
+  in the site's own `$teal` and `$ochre` families while purple already exists
+  in the age ramp.
+- **The chart function must not read the selector.** `graficaMapa` takes rows,
+  a label and a scheme; the selector feeds named cells (`filasMapa`,
+  `etiquetaMapa`, `esquemaMapa`) that the display cell passes in. This mirrors
+  `data-informality.qmd` and is the shape to copy for the next interactive
+  curiosity.
+
+**A verification gap worth knowing about.** The Claude Code browser pane cannot
+drive a native `<select>`: a synthetic `input` event, the `form_input` tool and
+a real keypress all fail to move the Observable variable. The same test fails
+on `data-informality.html`, which is shipped and works, so this is a limitation
+of the tooling and not evidence of a bug — but it does mean the reactivity of
+any `Inputs.select` on this site has to be confirmed by a human click. Do not
+report a selector as verified from an automated check; say which check you
+could not run, as §11 expects.

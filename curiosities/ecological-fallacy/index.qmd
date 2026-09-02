@@ -1,5 +1,5 @@
 ---
-title: "Pets, income, and the ecological fallacy"
+title: "Pets, wellbeing, and the ecological fallacy"
 subtitle: "Curiosity · ENBIARE 2025"
 description: "A relationship measured between groups can reverse for the individuals inside them. That mistake has a name, the ecological fallacy, and INEGI's new pet data is an unusually clean example of it."
 date: 2026-09-02
@@ -63,15 +63,22 @@ entidadPorCodigo = ({
   "30": "Veracruz", "31": "Yucatán", "32": "Zacatecas"
 })
 
+// Una rampa por medida, para que al cambiar el selector el mapa se vea
+// distinto de inmediato y no solo cambie de tonos. Cada una es de un solo
+// tono, claro a oscuro, como pide una escala secuencial: verde azulado para
+// el total (el extremo oscuro cae cerca del $teal del sitio), naranja rojizo
+// para perro (la familia del $ochre, y lo que ya usan los mapas de Mercado
+// Laboral MX) y morado para gato, que es el tercer tono que el sitio ya usa
+// en la rampa de edad. Tres tonos bien separados en el circulo cromatico.
 medidas = ({
-  mascota: { nombre: "Any pet", etiqueta: "Homes with a pet (%)" },
-  perro:   { nombre: "Dog", etiqueta: "Homes with a dog (%)" },
-  gato:    { nombre: "Cat", etiqueta: "Homes with a cat (%)" }
+  mascota: { nombre: "Any pet", etiqueta: "Homes with a pet (%)", esquema: "BuGn" },
+  perro:   { nombre: "Dog", etiqueta: "Homes with a dog (%)", esquema: "OrRd" },
+  gato:    { nombre: "Cat", etiqueta: "Homes with a cat (%)", esquema: "Purples" }
 })
 
 mxFeatures = topojson.feature(mx, mx.objects.state).features
 
-graficaMapa = (filas, etiqueta, { width = 640, height = 430 } = {}) => {
+graficaMapa = (filas, etiqueta, esquema, { width = 640, height = 430 } = {}) => {
   const porCodigo = new Map(filas.map(d => [d.cve_ent, d]));
   const features = mxFeatures.map(f => {
     const fila = porCodigo.get(+f.properties.id);
@@ -86,7 +93,7 @@ graficaMapa = (filas, etiqueta, { width = 640, height = 430 } = {}) => {
     width, height,
     style: { background: "transparent", fontFamily: "IBM Plex Sans, sans-serif", fontSize: "12px", color: "var(--ink)" },
     projection: { type: "mercator", domain: { type: "FeatureCollection", features } },
-    color: { type: "linear", scheme: "OrRd", label: etiqueta, legend: true },
+    color: { type: "linear", scheme: esquema, label: etiqueta, legend: true },
     marks: [
       Plot.geo(features, {
         fill: d => d.valor,
@@ -113,13 +120,14 @@ viewof medida_sel = Inputs.select(Object.keys(medidas), {
 //| output: false
 filasMapa = pets.map(d => ({ cve_ent: d.cve_ent, valor: d[medida_sel], ee: d[medida_sel + "_ee"] }))
 etiquetaMapa = medidas[medida_sel].etiqueta
+esquemaMapa = medidas[medida_sel].esquema
 ```
 
 ::: {.data-panel}
 
 ```{ojs}
 //| echo: false
-graficaMapa(filasMapa, etiquetaMapa)
+graficaMapa(filasMapa, etiquetaMapa, esquemaMapa)
 ```
 
 :::
