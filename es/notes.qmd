@@ -1,0 +1,26 @@
+---
+title: "Notas"
+listing:
+  - id: notas
+    contents:
+      - "notes/*/index.qmd"
+    type: default
+    template: ../listing-templates/research-listing.ejs.md
+    sort: "date desc"
+    fields: [title, subtitle, description]
+    date-format: "YYYY"
+    categories: false
+    feed: false
+---
+
+Notas cortas construidas con microdatos públicos. Cada una toma una base que
+ya está en circulación y la usa para explicar una idea de estadística o de
+economía. La base es el pretexto; la idea es lo que importa.
+
+Son descriptivas y exploratorias. Dicen qué muestran los datos y ahí se
+detienen. Cada cifra viene de una fuente pública y se calcula con el diseño
+muestral de la encuesta, el mismo estándar que siguen las páginas de
+[Mercado Laboral MX](data.qmd).
+
+::: {#notas}
+:::

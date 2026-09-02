@@ -4,6 +4,7 @@ project:
     - "*.qmd"
     - "research/"
     - "policy/"
+    - "notes/"
 
 lang: en
 
@@ -29,6 +30,8 @@ website:
             text: Unemployment
           - href: data-quarterly-update.qmd
             text: Quarterly Update
+      - href: notes.qmd
+        text: Notes
       - href: teaching.qmd
         text: Teaching
       - text: CV
