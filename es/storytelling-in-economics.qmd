@@ -1,6 +1,6 @@
 ---
 title: "Storytelling in Economics"
-description: "De qué trata el curso, dos ejercicios tomados del material, un índice de las sesiones con sus láminas y la bibliografía."
+description: "Por qué importan las narrativas en economía y cómo se cuenta bien un resultado: un modelo de contagio interactivo, dos ejercicios tomados del material, el índice de las sesiones y la bibliografía."
 date-modified: last-modified
 ---
 
@@ -10,24 +10,273 @@ ITAM · Maestría en Economía Aplicada · Primavera 2025
 
 ## De qué trata
 
-El curso trata de cómo se comunica un trabajo empírico en economía. Parte de
-una idea simple: los datos y los modelos no se explican solos, y el orden en
-que se presentan decide cuánto entiende quien los lee. Las sesiones siguen el
-recorrido de una investigación, desde la motivación hasta la gráfica, el
-artículo y la presentación. Se trabaja con ejercicios sobre datos reales y con
-lecturas que se discuten en clase. La meta es contar el mismo hallazgo a un
+El curso tiene dos mitades.
+
+Una es
+*[Narrative Economics](https://press.princeton.edu/books/hardcover/9780691182292/narrative-economics)*
+de Robert Shiller, el texto de referencia y el lado académico del argumento. La
+tesis de Shiller es que las historias económicas se propagan en una población
+como se propaga una enfermedad, y que actúan como choques sobre los resultados
+reales mientras lo hacen: consumo, inversión, pánicos. Shiller sostiene que la
+tesis debe estudiarse cuantitativamente, y el curso la trata así.
+
+La otra mitad es el oficio. Un resultado empírico no se explica solo, y el
+orden en que llega la evidencia decide cuánto se lleva quien la lee. Las
+sesiones siguen el recorrido de una investigación, desde la motivación hasta la
+gráfica, el artículo y la presentación, con lecturas que se discuten en clase y
+ejercicios sobre datos reales.
+
+Las dos mitades responden a la misma prueba: contar un mismo hallazgo a un
 público técnico, a quien toma decisiones de política pública y a un lector sin
 formación en economía.
 
-El texto de referencia es
-*[Narrative Economics](https://press.princeton.edu/books/hardcover/9780691182292/narrative-economics)*
-de Robert Shiller.
+## Cómo se propaga una narrativa
+
+*Narrative Economics* toma su mecanismo central de la epidemiología. Kermack y
+McKendrick (1927) parten una población en tres grupos: quienes no han contraído
+una enfermedad, quienes la tienen y la transmiten, y quienes ya dejaron de
+transmitirla. Shiller aplica esos mismos tres grupos a una historia. Hay quien no
+la ha oído, quien la está contando y quien la oyó y ya no la repite.
+
+Dos tasas mueven a la gente entre los grupos. La tasa de contagio *c* fija qué
+tan rápido quienes cuentan la historia se la pasan a quienes no la han oído. La
+tasa de olvido *r* fija qué tan rápido pierden el interés y dejan de contarla. Su
+cociente es el número reproductivo básico, R0 = *c* / *r*: cuántos narradores
+nuevos produce cada uno mientras casi toda la población sigue siendo susceptible.
+Por encima de uno la historia se vuelve epidemia. Por debajo de uno se apaga.
+
+```{ojs}
+//| echo: false
+//| output: false
+// Contagio de narrativas: el modelo SIR de Kermack y McKendrick en la forma
+// en que Narrative Economics lo aplica a una historia. Los nombres de celda
+// son globales por página, así que todo lleva el prefijo sir* para no chocar
+// con los dos ejercicios de abajo.
+sirSemilla = 0.001
+sirDias = 200
+sirPaso = 0.05
+
+// Euler explícito. S + I + R se conserva en 1 hasta 1e-14 en toda la rejilla
+// de los deslizadores. Integrado hasta converger, un paso de 0.05 queda a
+// menos de 0.07 pp del tamaño final analítico, que para una corrida con
+// semilla es S_inf = S_0 exp(-R0 (1 - S_inf)) con S_0 = 1 - sirSemilla, y no
+// la forma con S_0 = 1: en R0 = 1 las dos difieren unos 4 pp, así que
+// comparar contra la equivocada inventa un error de integración que no está.
+// Lo que la corrida NO hace es alcanzar esa asíntota en todos los ajustes.
+// Apenas por encima de R0 = 1 la epidemia sigue en curso el día sirDias y el
+// estado final queda lejos de S_inf. Eso es la ventana fija, no el paso, y
+// refinar el paso no lo mueve. Por eso la lectura dice "sigue subiendo" en vez
+// de nombrar un pico ahí, y por eso siempre dice "al día sirDias" en lugar de
+// reportar un total.
+// El día se registra como k / porDia y no como k * sirPaso para que el eje
+// lleve enteros exactos.
+sirSimular = (c, r) => {
+  const porDia = Math.round(1 / sirPaso);
+  let S = 1 - sirSemilla, I = sirSemilla, R = 0;
+  const filas = [{ dia: 0, S, I, R }];
+  for (let k = 1; k <= sirDias * porDia; k++) {
+    const nuevos = c * S * I * sirPaso;
+    const salen = r * I * sirPaso;
+    S -= nuevos;
+    I += nuevos - salen;
+    R += salen;
+    if (k % porDia === 0) filas.push({ dia: k / porDia, S, I, R });
+  }
+  return filas;
+}
+
+sirEtiqueta = ({
+  S: "No la han oído",
+  I: "La cuentan",
+  R: "Ya no la cuentan"
+})
+sirDominio = [sirEtiqueta.S, sirEtiqueta.I, sirEtiqueta.R]
+sirColores = ["var(--teal)", "var(--clay)", "var(--ink-soft)"]
+
+sirLargo = traza => traza.flatMap(d => [
+  { dia: d.dia, grupo: sirEtiqueta.S, valor: d.S },
+  { dia: d.dia, grupo: sirEtiqueta.I, valor: d.I },
+  { dia: d.dia, grupo: sirEtiqueta.R, valor: d.R }
+])
+
+sirResumen = (c, r) => {
+  const traza = sirSimular(c, r);
+  let pico = traza[0];
+  for (const d of traza) if (d.I > pico.I) pico = d;
+  const fin = traza[traza.length - 1];
+  return { traza, R0: c / r, pico, alcance: 1 - fin.S, fin };
+}
+
+// Cada serie se etiqueta al final de su propia línea, así que dos etiquetas se
+// enciman cuando dos curvas terminan juntas: I y R quedan las dos en cero si
+// R0 < 1, y S y R se juntan cuando la mitad de la población oyó la historia.
+// Esto las separa un mínimo en unidades de dato. Sólo mueve etiquetas hacia
+// arriba, y la de más arriba sube cuando mucho dos separaciones, así que no
+// puede salirse del marco.
+sirSeparar = (puntos, minimo) => {
+  const orden = puntos.map(d => ({ ...d })).sort((a, b) => a.valor - b.valor);
+  for (let i = 1; i < orden.length; i++) {
+    if (orden[i].valor - orden[i - 1].valor < minimo) {
+      orden[i].valor = orden[i - 1].valor + minimo;
+    }
+  }
+  return orden;
+}
+
+sirPorciento = v => (v * 100).toFixed(1) + "%"
+
+// El máximo de I en la traza no siempre es el pico de la curva. La ventana
+// está fija en sirDias, y en los seis ajustes alcanzables apenas por encima
+// de R0 = 1 (c/r de 0.11/0.10, 0.12/0.10, 0.12/0.11, 0.13/0.12, 0.14/0.13,
+// 0.15/0.14) la historia sigue propagándose cuando la ventana termina, así
+// que el máximo cae en el último día. Llamarle pico a eso sería nombrar el
+// borde del marco como un suceso que la gráfica no muestra: la curva sale
+// del cuadro todavía subiendo. Por debajo de R0 = 1 tampoco hay pico, sólo
+// la semilla decayendo desde el día 0. Por eso la lectura reporta un pico
+// únicamente donde la curva ya dio la vuelta.
+sirLectura = (c, r) => {
+  const x = sirResumen(c, r);
+  const partes = [
+    `R0 = ${x.R0.toFixed(2)}`,
+    x.R0 > 1 ? "se propaga" : "se apaga"
+  ];
+  if (x.R0 > 1) {
+    partes.push(x.pico.dia === sirDias
+      ? `sigue subiendo el día ${sirDias}`
+      : `pico ${sirPorciento(x.pico.I)} el día ${x.pico.dia}`);
+  }
+  partes.push(`${sirPorciento(x.alcance)} la ha oído al día ${sirDias}`);
+  return html`<div class="data-meta">${partes.join(" · ")}</div>`;
+}
+
+// Una celda de despliegue que sólo lleva el nombre de otra celda muestra el
+// inspector de Observable, así que toda salida visual aquí es una función
+// llamada desde su propia celda (CLAUDE.md sección 13, bug 0).
+sirGrafica = (c, r) => {
+  const x = sirResumen(c, r);
+  const largo = sirLargo(x.traza);
+  const etiquetas = sirSeparar([
+    { grupo: sirEtiqueta.S, valor: x.fin.S },
+    { grupo: sirEtiqueta.I, valor: x.fin.I },
+    { grupo: sirEtiqueta.R, valor: x.fin.R }
+  ], 0.065).map(d => ({ ...d, dia: sirDias }));
+
+  return Plot.plot({
+    width: 680,
+    height: 320,
+    marginTop: 24,
+    marginLeft: 46,
+    marginBottom: 32,
+    marginRight: 150,
+    style: {
+      background: "transparent",
+      color: "var(--ink-soft)",
+      fontFamily: "IBM Plex Sans, sans-serif",
+      fontSize: "12px"
+    },
+    x: { label: null, domain: [0, sirDias] },
+    y: { label: null, domain: [0, 1] },
+    color: { domain: sirDominio, range: sirColores },
+    marks: [
+      Plot.gridY({ stroke: "var(--rule)" }),
+      Plot.lineY(largo, {
+        x: "dia", y: "valor", z: "grupo", stroke: "grupo",
+        strokeWidth: 2, strokeLinejoin: "round", strokeLinecap: "round"
+      }),
+      Plot.text(etiquetas, {
+        x: "dia", y: "valor", text: "grupo", fill: "grupo",
+        textAnchor: "start", dx: 8, fontSize: 13, fontWeight: 500
+      }),
+      // Los datos del tip son la unión de todas las series que dibuja la
+      // gráfica, y su título nombra la serie que describe (CLAUDE.md sec. 13).
+      Plot.tip(largo, Plot.pointerX({
+        x: "dia", y: "valor",
+        title: d => `${d.grupo}\ndía ${d.dia}\n${sirPorciento(d.valor)}`
+      })),
+      Plot.axisX({ stroke: "var(--rule)", tickSize: 0, ticks: 5 }),
+      Plot.axisY({
+        stroke: "var(--rule)", tickSize: 0, ticks: 5,
+        tickFormat: d => (d * 100).toFixed(0) + "%"
+      })
+    ]
+  });
+}
+```
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+viewof sirContagio = Inputs.range([0.10, 0.50], { label: "Contagio", step: 0.01, value: 0.30 })
+```
+
+```{ojs}
+//| echo: false
+viewof sirOlvido = Inputs.range([0.10, 0.50], { label: "Olvido", step: 0.01, value: 0.15 })
+```
+
+```{ojs}
+//| echo: false
+sirLectura(sirContagio, sirOlvido)
+```
+
+```{ojs}
+//| echo: false
+sirGrafica(sirContagio, sirOlvido)
+```
+
+:::
+
+::: {.chart-note}
+Simulación del modelo SIR de Kermack y McKendrick en la forma en que *Narrative
+Economics* lo aplica a una historia. La población está normalizada a uno y
+arranca con una persona de cada mil contando la historia. Las dos tasas son por
+día, y el día es una convención del ejercicio. Nada de esto está estimado con
+datos.
+:::
+
+Del perfil de la curva de en medio se siguen dos cosas.
+
+La primera es que baja sola. Nadie tiene que desmentir la historia. Conforme se
+propaga, el grupo que no la ha oído se encoge, y en cuanto ese grupo cae por
+debajo de *r* / *c* cada persona que la cuenta recluta a menos de un relevo. El
+pico llega y empieza la caída con la tasa de contagio en el mismo lugar donde
+estaba. Una narrativa puede desaparecer sin que nadie la haya contradicho.
+
+La segunda es que el contagio por sí solo no decide nada. Una historia que se
+abandona más rápido de lo que se propaga no llega a ningún lado. Una que se
+propaga despacio contra un olvido más lento sí prende. El nivel de *c* fija qué
+tan rápido ocurre el episodio; que haya episodio lo decide *c* contra *r*.
+
+<details class="abstract">
+<summary>El modelo en tres líneas</summary>
+
+Sean *S*, *I* y *R* las proporciones de la población que no ha oído la historia,
+que la está contando, y que ya la oyó y dejó de contarla, con *S* + *I* + *R* =
+1. En cada periodo *c* · *S* · *I* de la población empieza a contarla y *r* · *I*
+de quienes la cuentan se detienen. Entonces *S* baja en *c* · *S* · *I*; *I* sube
+en *c* · *S* · *I* y baja en *r* · *I*; *R* sube en *r* · *I*.
+
+*I* crece sólo mientras *c* · *S* > *r*. Al inicio casi nadie ha oído la
+historia, *S* está cerca de 1 y la condición se reduce a *c* / *r* > 1. Ese
+cociente es el número reproductivo básico R0: cuántos narradores nuevos produce
+uno antes de detenerse, con la población todavía susceptible. *I* llega a su
+máximo justo cuando *S* bajó a *r* / *c*, y de ahí cae con *c* sin cambiar.
+
+La figura integra esas tres líneas hacia adelante en veinte pasos por día, desde
+una persona de cada mil contando la historia.
+
+El planteamiento original del modelo es W. O. Kermack y A. G. McKendrick, "A
+Contribution to the Mathematical Theory of Epidemics", *Proceedings of the Royal
+Society A* 115(772), 1927, 700-721.
+
+</details>
 
 ## El oficio en dos ejercicios
 
-Dos lecciones del curso, en la forma en que el curso las usa. La primera trata
-de lo que el ojo resuelve antes de leer. La segunda lleva una misma gráfica de
-como sale de una hoja de cálculo a una figura terminada, una decisión a la vez.
+La mitad del oficio, en dos ejercicios. El primero trata de lo que el ojo
+resuelve antes de leer. El segundo lleva una misma gráfica de como sale de una
+hoja de cálculo a una figura terminada, una decisión a la vez.
 
 ### Atributos preatentivos
 
@@ -78,6 +327,18 @@ indicadores = FileAttachment("../data/labor-indicators.csv").csv({ typed: true }
 
 etiquetaSerie = ({ TIL1: "Informalidad", TOSI1: "Sector informal" })
 
+// La columna regimen guarda los códigos internos de INEGI. La nota bajo la
+// gráfica promete que el tooltip nombra el marco, así que va con nombre
+// legible y no con el código: "tradicional" es la ENOE regular, "enoen" la
+// Nueva Edición que corrió mientras el levantamiento se recuperaba de la
+// interrupción de 2020, y "enoe_2023" el regreso a la ENOE estándar sobre el
+// marco de 2023.
+etiquetaMarco = ({
+  tradicional: "ENOE",
+  enoen: "ENOEN",
+  enoe_2023: "ENOE, marco 2023"
+})
+
 serieDe = codigo => indicadores
   .filter(d => d.indicador === codigo)
   .map(d => ({
@@ -85,7 +346,8 @@ serieDe = codigo => indicadores
     fecha: new Date(d.anio, (d.trimestre - 1) * 3, 1),
     valor: d.valor,
     anio: d.anio,
-    trimestre: d.trimestre
+    trimestre: d.trimestre,
+    regimen: d.regimen
   }))
   .sort((a, b) => a.fecha - b.fecha)
 
@@ -173,7 +435,7 @@ graficaPasos = (paso) => {
     // gráfica, y su título nombra la serie que describe (CLAUDE.md sec. 13).
     marcas.push(Plot.tip(puntosPaso, Plot.pointerX({
       x: "fecha", y: "valor",
-      title: d => `${d.serie}\n${d.anio}-T${d.trimestre}\n${d.valor}%`
+      title: d => `${d.serie}\n${d.anio}-T${d.trimestre} (${etiquetaMarco[d.regimen] ?? d.regimen})\n${d.valor}%`
     })));
   }
 
@@ -236,7 +498,10 @@ graficaPasos(pasoActivo)
 ::: {.chart-note}
 Informalidad laboral (TIL1) y ocupación en el sector informal (TOSI1), como
 proporción de la población ocupada. ENOE, INEGI, series originales, sin
-ajuste estacional. En 2020-T2 no hubo levantamiento.
+ajuste estacional. En 2020-T2 no hubo levantamiento. La ENOE operó bajo tres
+marcos sucesivos en este periodo, con cambios en 2020-T3 y en 2023-T1. La
+línea se traza continua a través de los dos, y el tooltip indica el marco de
+cada punto.
 :::
 
 Las dos líneas valen por lo que miden, no sólo por cómo están dibujadas. La
@@ -247,16 +512,26 @@ distancia entre las líneas es justo ese grupo: sobre todo asalariados sin
 seguridad social dentro de empresas registradas, más el trabajo del hogar
 remunerado y el campo de autoconsumo.
 
-En esa brecha está el cambio. Comparando el segundo trimestre de cada año
-—iguales con iguales, porque la serie no trae ajuste estacional— la
-informalidad laboral bajó de 59.4% en 2005 a 55.1% en 2026, mientras que la
-ocupación en el sector informal subió de 28.2% a 30.2%. El sector informal no
-se encogió. Lo que se cerró fue la brecha, de 31.2 puntos a 24.9: menos trabajo
-desprotegido dentro de empresas registradas, no menos trabajo para las no
-registradas. Una sola cifra de "informalidad" esconde los dos movimientos, y
-por eso la elección de la serie ya es parte de la historia que se cuenta.
+En esa brecha está el cambio. La serie no trae ajuste estacional, así que la
+comparación va de segundo trimestre a segundo trimestre. La informalidad
+laboral bajó de 59.4% en 2005 a 55.1% en 2026, mientras que la ocupación en el
+sector informal subió de 28.2% a 30.2%. El sector informal no se encogió. Lo
+que se cerró fue la brecha, de 31.2 puntos a 24.9. El terreno que cedió fue el
+trabajo desprotegido dentro de empresas registradas, y una sola cifra de
+"informalidad" esconde los dos movimientos a la vez, que es por lo que la
+elección de la serie ya es parte de la historia que se cuenta.
 
 ## Las sesiones
+
+Doce sesiones, cada una anclada en un artículo y, cuando la sesión enseña uno,
+en un método: salarios mínimos y diferencias en diferencias, el choque de China
+e instrumentos shift-share, el folclor como predictor de decisiones económicas
+actuales, una campaña electoral que reactiva un episodio histórico de hace
+siglos. Dos de ellas, sobre storytelling con datos, son de donde salen los
+ejercicios de arriba.
+
+<details class="abstract">
+<summary>Las doce sesiones, con láminas</summary>
 
 - **1. La importancia de las historias.** Apertura del curso. El origen de la
   narración y la evidencia de que el folclor predice valores y decisiones
@@ -399,7 +674,10 @@ por eso la elección de la serie ya es parte de la historia que se cuenta.
 Las sesiones 7 y 12 se dedicaron a las presentaciones de las propuestas de
 artículo de los estudiantes, así que no tienen láminas.
 
-## Cómo se evalúa
+</details>
+
+<details class="abstract">
+<summary>Cómo se evalúa</summary>
 
 - Participación en clase, con tres láminas por lectura asignada (resumen,
   aciertos y áreas de oportunidad) que alguien comenta ante el grupo en cada
@@ -414,6 +692,8 @@ artículo de los estudiantes, así que no tienen láminas.
 El temario permite usar herramientas de inteligencia artificial para explorar
 ideas, redactar borradores e iterar, siempre que el texto entregado no sea
 copiado de ellas y que sus afirmaciones se verifiquen.
+
+</details>
 
 ## Lecturas
 

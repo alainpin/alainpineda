@@ -993,6 +993,20 @@ the same day:
   on an unresolved variable never returns and kills the call with "renderer may
   be frozen" — inspect `window._ojs.ojsConnector.mainModule._scope`
   synchronously instead.
+- The same rule governs **interaction**, and this is the trap that actually
+  costs time. Setting an `Inputs` value and dispatching its `input` event does
+  reach the control, but the dataflow does not recompute while the pane is
+  hidden: the readout and the chart keep their old values, so a working control
+  looks broken. Read `document.hidden` before believing any such result — it is
+  `true` far more often than expected, including right after a screenshot.
+  **Interleave a paint with every change**: set the value, take a screenshot,
+  then read. Verified on 2026-09-03 by driving the SIR sliders on this page —
+  four settings in one batch all reported the same stale readout, and each
+  produced the correct one once a screenshot was placed between the change and
+  the read. A reviewing subagent that does not know this stalls: one burned six
+  attempts of three minutes each, twice, before the check was done by hand.
+  When a control refuses to respond, use a second interactive on the page as a
+  positive control before concluding the first one is broken.
 - Headless Chrome **clamps the window to a 500px minimum and crops the
   screenshot**. A `--window-size=390` capture is pixel-identical to the left
   390px of a 500px render (verified: mean difference 0.00, while 500 vs 600
@@ -1097,14 +1111,36 @@ without being asked.
   switcher's default prepend/strip logic works and it needs no entry in
   `js/lang-toggle.html`'s `MAPA_SLUGS_ESPECIALES` (section 4). It sits at the
   repo root, not in a `teaching/` folder.
-- Section order, both languages: `.eyebrow` with the institutional metadata
-  (ITAM · programme · term), "What it is" / "De qué trata", "The craft in two
-  exercises" / "El oficio en dos ejercicios", "The sessions" / "Las sesiones",
-  "How it is graded" / "Cómo se evalúa", "Readings" / "Lecturas".
+- Section order, both languages, restructured 2026-09-02: `.eyebrow` with the
+  institutional metadata (ITAM · programme · term), "What it is" / "De qué
+  trata", "How a narrative spreads" / "Cómo se propaga una narrativa", "The
+  craft in two exercises" / "El oficio en dos ejercicios", "The sessions" /
+  "Las sesiones", "Readings" / "Lecturas".
+- **The page is a teaser, not a syllabus.** The owner's framing: the course has
+  two halves, and the visible page has to carry both. The first is Shiller's —
+  narratives matter in economics and propagate — and it is the academic one;
+  the second is the craft of telling a result well. The intro states the two
+  halves in that order and puts *Narrative Economics* first, since the earlier
+  intro read as craft only. Everything the page shows above the fold is one of
+  the two: the contagion figure is the Shiller half, the two exercises are the
+  craft half.
 - The session index is one entry per session: number and title, a one-sentence
   description, a method label where the session teaches one, the readings, and
   a link to that session's PDF with its size in MB. Sessions 7 and 12 are
-  covered by one line after the list.
+  covered by one line after the list. Since 2026-09-02 the whole index sits
+  **inside a `<details class="abstract">`**, under a short teaser naming a few
+  of the papers and methods; "How it is graded" / "Cómo se evalúa" lost its own
+  heading and became a second `<details>` next to it. The entries themselves
+  were verified slide by slide against the decks over three review rounds —
+  move them, never rewrite or summarise them.
+- **The contagion figure is a simulation, and says so.** "How a narrative
+  spreads" is the Kermack-McKendrick SIR model in the form *Narrative
+  Economics* applies it to a story: two sliders (contagion, forgetting), a
+  reading line with R0, and three curves. Nothing in it is estimated from data
+  and its `.chart-note` states that. Cell names are global per page, so every
+  cell there carries a `sir*` prefix to stay clear of the two exercises below.
+  `Inputs.range` is the only control on the site that renders a slider plus a
+  number box; `theme.scss` styles both under `form[class^="oi-"]`.
 - **Never quote a slide count.** The decks are beamer with overlays, so a PDF
   page is not a slide. Sizes in MB are safe; page counts are not.
 - **A reading is cited only as far as the source supports.** Give the venue,
@@ -1516,6 +1552,7 @@ failure mode the "not validated" rows exist to prevent.
 The "Changes this quarter" table on the same page is deliberately left alone:
 the reader sorts it by clicking a column header, so its order is UI state
 rather than an editorial choice.
+
 ---
 
 ## 14. Curiosities — the section that is explicitly not research

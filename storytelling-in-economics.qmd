@@ -1,6 +1,6 @@
 ---
 title: "Storytelling in Economics"
-description: "What the course covers, two exercises taken from the material, an index of the sessions with their slides, and the reading list."
+description: "Why narratives matter in economics and how a result gets told well: an interactive contagion model, two exercises from the material, the session index, and the reading list."
 date-modified: last-modified
 ---
 
@@ -10,23 +10,272 @@ ITAM · Master in Applied Economics · Spring 2025
 
 ## What it is
 
-The course is about how empirical work in economics gets communicated. It
-starts from a simple premise: data and models do not explain themselves, and
-the order in which they are presented decides how much a reader takes away.
-The sessions follow the arc of a research project, from the motivation to the
-figure, the paper, and the presentation. The work is done through exercises on
-real data and through readings discussed in class. The goal is to tell the same
-result to a technical audience, to someone making policy decisions, and to a
-reader with no training in economics.
+The course has two halves.
 
-The anchor text is Robert Shiller's
-[*Narrative Economics*](https://press.princeton.edu/books/hardcover/9780691182292/narrative-economics).
+One is Robert Shiller's
+[*Narrative Economics*](https://press.princeton.edu/books/hardcover/9780691182292/narrative-economics),
+the anchor text and the academic side of the argument. Shiller's claim is that
+economic stories spread through a population the way a disease spreads, and
+that they act as shocks to real outcomes while they do it: consumption,
+investment, panics. Shiller argues the claim should be studied quantitatively,
+and the course treats it as such.
+
+The other half is the craft. An empirical result does not explain itself, and
+the order in which the evidence arrives decides how much of it a reader takes
+away. The sessions follow the arc of a research project, from the motivation to
+the figure, the paper and the presentation, through readings discussed in class
+and exercises on real data.
+
+Both halves answer to the same test: tell one result to a technical audience,
+to someone making policy decisions, and to a reader with no training in
+economics.
+
+## How a narrative spreads
+
+*Narrative Economics* takes its central mechanism from epidemiology. Kermack and
+McKendrick (1927) split a population into three groups: those who have not caught
+a disease, those who have it and pass it on, and those who have stopped
+transmitting. Shiller applies the same three groups to a story. Some people have
+not heard it, some are telling it, and some heard it and no longer repeat it.
+
+Two rates move people between the groups. The contagion rate *c* sets how fast
+tellers pass the story to people who have not heard it. The forgetting rate *r*
+sets how fast tellers lose interest and stop. Their ratio is the basic
+reproduction number, R0 = *c* / *r*: the number of new tellers one teller
+produces while almost everyone is still susceptible. Above one the story becomes
+an epidemic. Below one it dies out.
+
+```{ojs}
+//| echo: false
+//| output: false
+// Narrative contagion: the Kermack-McKendrick SIR model in the form
+// Narrative Economics applies it to a story. Cell names are global per page,
+// so everything here carries a sir* prefix to stay clear of the two exercises
+// below.
+sirSemilla = 0.001
+sirDias = 200
+sirPaso = 0.05
+
+// Explicit Euler. S + I + R holds at 1 to within 1e-14 everywhere on the
+// slider grid. Integrated to convergence, a step of 0.05 lands within 0.07 pp
+// of the analytic final size, which for a seeded run is
+// S_inf = S_0 exp(-R0 (1 - S_inf)) with S_0 = 1 - sirSemilla, not the
+// S_0 = 1 form: at R0 = 1 the two differ by about 4 pp, so checking against
+// the wrong one invents an integrator error that is not there.
+// What the run does NOT do is reach that asymptote in every setting. Just
+// above R0 = 1 the epidemic is still under way on day sirDias and the final
+// state sits far from S_inf. That is the fixed window, not the step size, and
+// refining the step does not move it. It is why the reading says "still
+// rising" instead of naming a peak there, and why it always says "by day
+// sirDias" rather than reporting a total.
+// Days are recorded as k / porDia rather than k * sirPaso so the axis carries
+// exact integers.
+sirSimular = (c, r) => {
+  const porDia = Math.round(1 / sirPaso);
+  let S = 1 - sirSemilla, I = sirSemilla, R = 0;
+  const filas = [{ dia: 0, S, I, R }];
+  for (let k = 1; k <= sirDias * porDia; k++) {
+    const nuevos = c * S * I * sirPaso;
+    const salen = r * I * sirPaso;
+    S -= nuevos;
+    I += nuevos - salen;
+    R += salen;
+    if (k % porDia === 0) filas.push({ dia: k / porDia, S, I, R });
+  }
+  return filas;
+}
+
+sirEtiqueta = ({
+  S: "Have not heard it",
+  I: "Telling it",
+  R: "Stopped telling"
+})
+sirDominio = [sirEtiqueta.S, sirEtiqueta.I, sirEtiqueta.R]
+sirColores = ["var(--teal)", "var(--clay)", "var(--ink-soft)"]
+
+sirLargo = traza => traza.flatMap(d => [
+  { dia: d.dia, grupo: sirEtiqueta.S, valor: d.S },
+  { dia: d.dia, grupo: sirEtiqueta.I, valor: d.I },
+  { dia: d.dia, grupo: sirEtiqueta.R, valor: d.R }
+])
+
+sirResumen = (c, r) => {
+  const traza = sirSimular(c, r);
+  let pico = traza[0];
+  for (const d of traza) if (d.I > pico.I) pico = d;
+  const fin = traza[traza.length - 1];
+  return { traza, R0: c / r, pico, alcance: 1 - fin.S, fin };
+}
+
+// The three series are labelled at the end of their own line, so two labels
+// collide whenever two curves finish together: I and R both sit at zero when
+// R0 < 1, and S and R meet when half the population has heard the story. This
+// pushes them apart by a minimum gap in data units. It only ever moves labels
+// up, and the top one can rise by at most two gaps, so it cannot leave the
+// frame.
+sirSeparar = (puntos, minimo) => {
+  const orden = puntos.map(d => ({ ...d })).sort((a, b) => a.valor - b.valor);
+  for (let i = 1; i < orden.length; i++) {
+    if (orden[i].valor - orden[i - 1].valor < minimo) {
+      orden[i].valor = orden[i - 1].valor + minimo;
+    }
+  }
+  return orden;
+}
+
+sirPorciento = v => (v * 100).toFixed(1) + "%"
+
+// The largest I in the trace is not always the peak of the curve. The window
+// is fixed at sirDias, and for the six reachable settings just above R0 = 1
+// (c/r of 0.11/0.10, 0.12/0.10, 0.12/0.11, 0.13/0.12, 0.14/0.13, 0.15/0.14)
+// the story is still spreading when the window ends, so the maximum falls on
+// the last day. Calling that a peak would name the edge of the frame as an
+// event the chart does not show: the curve leaves the plot still climbing.
+// Below R0 = 1 there is no peak either, only the seed decaying from day 0.
+// So the reading reports a peak only where the curve has actually turned.
+sirLectura = (c, r) => {
+  const x = sirResumen(c, r);
+  const partes = [
+    `R0 = ${x.R0.toFixed(2)}`,
+    x.R0 > 1 ? "it spreads" : "it dies out"
+  ];
+  if (x.R0 > 1) {
+    partes.push(x.pico.dia === sirDias
+      ? `still rising on day ${sirDias}`
+      : `peak ${sirPorciento(x.pico.I)} on day ${x.pico.dia}`);
+  }
+  partes.push(`${sirPorciento(x.alcance)} have heard it by day ${sirDias}`);
+  return html`<div class="data-meta">${partes.join(" · ")}</div>`;
+}
+
+// A display cell that is only a cell name renders Observable's inspector, so
+// every visual output here is a function called from its own cell (CLAUDE.md
+// section 13, bug 0).
+sirGrafica = (c, r) => {
+  const x = sirResumen(c, r);
+  const largo = sirLargo(x.traza);
+  const etiquetas = sirSeparar([
+    { grupo: sirEtiqueta.S, valor: x.fin.S },
+    { grupo: sirEtiqueta.I, valor: x.fin.I },
+    { grupo: sirEtiqueta.R, valor: x.fin.R }
+  ], 0.065).map(d => ({ ...d, dia: sirDias }));
+
+  return Plot.plot({
+    width: 680,
+    height: 320,
+    marginTop: 24,
+    marginLeft: 46,
+    marginBottom: 32,
+    marginRight: 150,
+    style: {
+      background: "transparent",
+      color: "var(--ink-soft)",
+      fontFamily: "IBM Plex Sans, sans-serif",
+      fontSize: "12px"
+    },
+    x: { label: null, domain: [0, sirDias] },
+    y: { label: null, domain: [0, 1] },
+    color: { domain: sirDominio, range: sirColores },
+    marks: [
+      Plot.gridY({ stroke: "var(--rule)" }),
+      Plot.lineY(largo, {
+        x: "dia", y: "valor", z: "grupo", stroke: "grupo",
+        strokeWidth: 2, strokeLinejoin: "round", strokeLinecap: "round"
+      }),
+      Plot.text(etiquetas, {
+        x: "dia", y: "valor", text: "grupo", fill: "grupo",
+        textAnchor: "start", dx: 8, fontSize: 13, fontWeight: 500
+      }),
+      // The tip's data is the union of every series the chart draws, and its
+      // title names the series it is describing (CLAUDE.md section 13).
+      Plot.tip(largo, Plot.pointerX({
+        x: "dia", y: "valor",
+        title: d => `${d.grupo}\nday ${d.dia}\n${sirPorciento(d.valor)}`
+      })),
+      Plot.axisX({ stroke: "var(--rule)", tickSize: 0, ticks: 5 }),
+      Plot.axisY({
+        stroke: "var(--rule)", tickSize: 0, ticks: 5,
+        tickFormat: d => (d * 100).toFixed(0) + "%"
+      })
+    ]
+  });
+}
+```
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+viewof sirContagio = Inputs.range([0.10, 0.50], { label: "Contagion", step: 0.01, value: 0.30 })
+```
+
+```{ojs}
+//| echo: false
+viewof sirOlvido = Inputs.range([0.10, 0.50], { label: "Forgetting", step: 0.01, value: 0.15 })
+```
+
+```{ojs}
+//| echo: false
+sirLectura(sirContagio, sirOlvido)
+```
+
+```{ojs}
+//| echo: false
+sirGrafica(sirContagio, sirOlvido)
+```
+
+:::
+
+::: {.chart-note}
+Simulation of the Kermack-McKendrick SIR model in the form *Narrative Economics*
+applies it to a story. The population is normalized to one and starts with one
+teller in a thousand. Both rates are per day, and the day is a convention of the
+exercise. Nothing here is estimated from data.
+:::
+
+Two things follow from the shape of the middle curve.
+
+The first is that it comes down on its own. Nobody has to refute the story. As
+it spreads, the group that has not heard it shrinks, and once that group falls
+below *r* / *c* each teller recruits less than one replacement. The peak arrives
+and the decline begins with the contagion rate exactly where it was. A narrative
+can disappear without ever having been contradicted.
+
+The second is that contagion on its own settles nothing. A story dropped faster
+than it spreads goes nowhere. A story that spreads slowly against slower
+forgetting takes hold. The level of *c* sets how quickly the episode plays out;
+whether there is an episode at all is decided by *c* against *r*.
+
+<details class="abstract">
+<summary>The model in three lines</summary>
+
+Write *S*, *I* and *R* for the shares of the population that have not heard the
+story, are telling it, and have heard it and stopped, with *S* + *I* + *R* = 1.
+In each period *c* · *S* · *I* of the population starts telling it and *r* · *I*
+of the tellers stop. So *S* falls by *c* · *S* · *I*; *I* rises by *c* · *S* ·
+*I* and falls by *r* · *I*; *R* rises by *r* · *I*.
+
+*I* grows only while *c* · *S* > *r*. At the start almost nobody has heard the
+story, *S* is close to 1, and the condition reduces to *c* / *r* > 1. That ratio
+is the basic reproduction number R0: the number of new tellers one teller
+produces before stopping, with the population still susceptible. *I* reaches its
+maximum exactly when *S* has fallen to *r* / *c*, and declines from there with
+*c* unchanged.
+
+The figure integrates those three lines forward in twenty steps per day, from a
+start of one teller in a thousand.
+
+The original statement of the model is W. O. Kermack and A. G. McKendrick, "A
+Contribution to the Mathematical Theory of Epidemics", *Proceedings of the Royal
+Society A* 115(772), 1927, 700-721.
+
+</details>
 
 ## The craft in two exercises
 
-Two lessons from the course, in the form the course uses them. The first is
-about what the eye resolves before it reads. The second takes one chart from a
-spreadsheet default to a finished figure, one decision at a time.
+The craft half, in two exercises. The first is about what the eye resolves
+before it reads. The second takes one chart from a spreadsheet export to a
+finished figure, one decision at a time.
 
 ### Preattentive attributes
 
@@ -65,7 +314,7 @@ gridDigitos(resaltar)
 
 :::
 
-There are seven. One change makes them visible before you count.
+There are seven. One change makes them visible before counting them.
 
 ### The same chart, in six steps
 
@@ -76,6 +325,17 @@ indicadores = FileAttachment("data/labor-indicators.csv").csv({ typed: true })
 
 etiquetaSerie = ({ TIL1: "Informality", TOSI1: "Informal sector" })
 
+// The regimen column stores INEGI's own internal codes. The note under the
+// chart promises the tooltip names the framework, so it gets a readable name
+// rather than the code: "tradicional" is the regular ENOE, "enoen" the Nueva
+// Edicion that ran while fieldwork recovered from the 2020 interruption, and
+// "enoe_2023" the return to the standard ENOE on the 2023 framework.
+etiquetaMarco = ({
+  tradicional: "ENOE",
+  enoen: "ENOEN",
+  enoe_2023: "ENOE, 2023 framework"
+})
+
 serieDe = codigo => indicadores
   .filter(d => d.indicador === codigo)
   .map(d => ({
@@ -83,7 +343,8 @@ serieDe = codigo => indicadores
     fecha: new Date(d.anio, (d.trimestre - 1) * 3, 1),
     valor: d.valor,
     anio: d.anio,
-    trimestre: d.trimestre
+    trimestre: d.trimestre,
+    regimen: d.regimen
   }))
   .sort((a, b) => a.fecha - b.fecha)
 
@@ -118,12 +379,12 @@ dominioPaso = [etiquetaSerie.TIL1, etiquetaSerie.TOSI1]
 
 textosPaso = [
   "Straight out of a spreadsheet. A border, gridlines, a marker on every quarter, a legend set apart from the lines, and the software's default colors.",
-  "Remove the chart border.",
-  "Remove the gridlines.",
-  "Remove the data markers.",
-  "Clean up the axis labels and send them to the background.",
-  "Label the series directly, and drop the legend.",
-  "Give each label its series' color. The chart is now in the style the data pages of this site use: their palette, their type, and one faint grid."
+  "Chart border removed.",
+  "Gridlines removed.",
+  "Data markers removed.",
+  "Axis labels cleaned up and sent to the background.",
+  "Series labeled directly, legend dropped.",
+  "Each label in its series' color. The chart is now in the style the data pages of this site use: their palette, their type, and one faint grid."
 ]
 
 lineaPaso = (paso) => html`<p>${textosPaso[paso]}</p>`
@@ -171,7 +432,7 @@ graficaPasos = (paso) => {
     // title names the series it is describing (CLAUDE.md section 13).
     marcas.push(Plot.tip(puntosPaso, Plot.pointerX({
       x: "fecha", y: "valor",
-      title: d => `${d.serie}\n${d.anio}-Q${d.trimestre}\n${d.valor}%`
+      title: d => `${d.serie}\n${d.anio}-Q${d.trimestre} (${etiquetaMarco[d.regimen] ?? d.regimen})\n${d.valor}%`
     })));
   }
 
@@ -234,7 +495,10 @@ graficaPasos(pasoActivo)
 ::: {.chart-note}
 Labor informality (TIL1) and informal-sector employment (TOSI1), share of
 the employed population. ENOE, INEGI, original series, without seasonal
-adjustment. 2020-Q2 was not surveyed.
+adjustment. 2020-Q2 was not surveyed. The ENOE ran under three successive
+frameworks over this period, changing in 2020-Q3 and again in 2023-Q1. The
+line is drawn continuous across both, and the tooltip names the framework
+behind each point.
 :::
 
 The two lines are worth reading for what they measure, not only for how they
@@ -245,18 +509,27 @@ the distance between the lines is exactly that group: mostly salaried workers
 with no social security inside registered firms, along with paid domestic work
 and subsistence farming.
 
-The gap is where the change happened. Comparing the second quarter of each year
-— like with like, since the series carries no seasonal adjustment — labor
-informality fell from 59.4% in 2005 to 55.1% in 2026, while informal-sector
-employment rose from 28.2% to 30.2%. The informal sector did not shrink. What
-narrowed was the gap, from 31.2 points to 24.9: less unprotected work inside
-registered businesses, not less work for unregistered ones. A single
-"informality" number hides both movements, which is why the choice of series is
-already part of the story being told.
+The gap is where the change happened. The series carries no seasonal
+adjustment, so the comparison runs second quarter against second quarter.
+Labor informality fell from 59.4% in 2005 to 55.1% in 2026, while
+informal-sector employment rose from 28.2% to 30.2%. The informal sector did
+not shrink. What narrowed was the gap, from 31.2 points to 24.9. The ground it
+gave up was unprotected work inside registered businesses, and a single
+"informality" number hides both movements at once, which is why the choice of
+series is already part of the story being told.
 
 ## The sessions
 
-The course is taught in Spanish and the slides are in Spanish.
+Twelve sessions, each anchored in a paper and, where the session teaches one, a
+method: minimum wages and difference-in-differences, the China shock and
+shift-share instruments, folklore as a predictor of present-day economic
+choices, an election campaign that reactivates a historical episode from
+centuries earlier. Two of them, on storytelling with data, are where the
+exercises above come from. The course is taught in Spanish and the slides are
+in Spanish.
+
+<details class="abstract">
+<summary>The twelve sessions, with slides</summary>
 
 - **1. The importance of stories.** Opening session. The origins of
   storytelling and the evidence that folklore predicts present-day values and
@@ -399,7 +672,10 @@ The course is taught in Spanish and the slides are in Spanish.
 Sessions 7 and 12 were given to student presentations of their paper
 proposals, so they have no slides.
 
-## How it is graded
+</details>
+
+<details class="abstract">
+<summary>How it is graded</summary>
 
 - Class participation, with three slides per assigned reading (summary,
   strengths, and weaknesses), presented to the group by one student each
@@ -415,10 +691,12 @@ The syllabus allows AI tools for exploring ideas, drafting, and iterating,
 provided the submitted text is not copied from them and their claims are
 checked.
 
+</details>
+
 ## Readings
 
 Books and articles the course draws on throughout, beyond the readings listed
-by session.
+with each session.
 
 - Robert J. Shiller. *Narrative Economics: How Stories Go Viral and Drive Major Economic Events*. Princeton University Press, 2019.
 - Deirdre N. McCloskey. *The Rhetoric of Economics*. University of Wisconsin Press, 1985.

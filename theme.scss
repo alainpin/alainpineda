@@ -524,6 +524,29 @@ form[class^="oi-"] input[type="checkbox"],
 form[class^="oi-"] input[type="radio"] {
   accent-color: $teal;
 }
+// Inputs.range (the narrative-contagion piece on storytelling-in-economics.qmd)
+// renders a slider and a number box inside one wrapper. The slider needs the
+// same accent-color treatment as the controls above, for the same reason: with
+// no accent-color it paints its filled track and thumb Chrome's blue. The
+// number box gets no default styling at all from Quarto, so it is matched to
+// the select rule above -- mono, since it holds a rate the reader reads as a
+// number, and narrow enough that label, slider and box still fit one line on a
+// phone. max-width keeps the pair inside .data-panel instead of forcing the
+// panel to scroll.
+form[class^="oi-"] input[type="range"] {
+  accent-color: $teal;
+  max-width: 100%;
+}
+form[class^="oi-"] input[type="number"] {
+  font-family: $font-family-monospace;
+  font-size: 0.82rem;
+  padding: 3px 6px;
+  border: 1px solid $rule;
+  border-radius: 3px;
+  background: $paper;
+  color: $ink;
+  max-width: 6.5em;
+}
 
 // ---- Data table (data-quarterly-update.qmd) ----
 .data-table {
