@@ -37,3 +37,10 @@ jobs:
           publish_dir: ./_site
           publish_branch: gh-pages
           cname: www.alainpineda.com
+          # gh-pages carries build output, and its history has no value: every
+          # deploy is a full copy of the site, so the branch grew to 162 MB
+          # across 77 commits by 2026-09-04, several times the size of the
+          # source it is built from. force_orphan replaces the branch with a
+          # single commit on each deploy, so it stays the size of one site.
+          # Nothing depends on that history — Netlify serves the branch tip.
+          force_orphan: true
