@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Why narratives matter in economics and how a result gets told well: an interactive contagion model, two exercises from the material, the session index, and the reading list.">
+
+<title>Storytelling in Economics – Alain Pineda</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-176b1e44b272a30ec08500e73512b2cc.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2e366b5af1927b8352462c4a9d1c03d0.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-176b1e44b272a30ec08500e73512b2cc.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d0fa2de4139e685d8f6522967b27cec3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-65ff752de34fc37aedeed47795cf774d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d0fa2de4139e685d8f6522967b27cec3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="icon" type="image/png" sizes="512x512" href="./images/favicon-512.png">
+<link rel="alternate icon" href="./images/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+<meta property="og:title" content="Storytelling in Economics – Alain Pineda">
+<meta property="og:description" content="Why narratives matter in economics and how a result gets told well: an interactive contagion model, two exercises from the material, the session index, and the reading list.">
+<meta property="og:site_name" content="Alain Pineda">
+<meta name="twitter:title" content="Storytelling in Economics – Alain Pineda">
+<meta name="twitter:description" content="Why narratives matter in economics and how a result gets told well: an interactive contagion model, two exercises from the material, the session index, and the reading list.">
+<meta name="twitter:creator" content="@alainpin2">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Alain Pineda</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./research.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labor-market-mx" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Labor Market MX</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labor-market-mx">    
+        <li>
+    <a class="dropdown-item" href="./data.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-participation.html">
+ <span class="dropdown-text">Participation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-informality.html">
+ <span class="dropdown-text">Informality</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-unemployment.html">
+ <span class="dropdown-text">Unemployment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-quarterly-update.html">
+ <span class="dropdown-text">Quarterly Update</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./curiosities.html"> 
+<span class="menu-text">Curiosities</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./files/CV_Alain_Pineda.pdf" target="_blank"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./es/"> 
+<span class="menu-text">ES</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:alain.pineda@banxico.org.mx"> <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=wSY8lKgAAAAJ&amp;hl=en&amp;oi=ao"> <i class="bi bi-mortarboard-fill" role="img" aria-label="Google Scholar">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/alain-pineda-429b10a0/"> <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Storytelling in Economics</h1>
+</div>
+
+<div>
+  <div class="description">
+    Why narratives matter in economics and how a result gets told well: an interactive contagion model, two exercises from the material, the session index, and the reading list.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">September 4, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="eyebrow">
+<p>ITAM · Master in Applied Economics · Spring 2025</p>
+</div>
+<section id="what-it-is" class="level2">
+<h2 data-anchor-id="what-it-is">What it is</h2>
+<p>The course has two halves.</p>
+<p>One is Robert Shiller’s <a href="https://press.princeton.edu/books/hardcover/9780691182292/narrative-economics"><em>Narrative Economics</em></a>, the anchor text and the academic side of the argument. Shiller’s claim is that economic stories spread through a population the way a disease spreads, and that they act as shocks to real outcomes while they do it: consumption, investment, panics. Shiller argues the claim should be studied quantitatively, and the course treats it as such.</p>
+<p>The other half is the craft. An empirical result does not explain itself, and the order in which the evidence arrives decides how much of it a reader takes away. The sessions follow the arc of a research project, from the motivation to the figure, the paper and the presentation, through readings discussed in class and exercises on real data.</p>
+<p>Both halves answer to the same test: tell one result to a technical audience, to someone making policy decisions, and to a reader with no training in economics.</p>
+</section>
+<section id="how-a-narrative-spreads" class="level2">
+<h2 data-anchor-id="how-a-narrative-spreads">How a narrative spreads</h2>
+<p><em>Narrative Economics</em> takes its central mechanism from epidemiology. Kermack and McKendrick (1927) split a population into three groups: those who have not caught a disease, those who have it and pass it on, and those who have stopped transmitting. Shiller applies the same three groups to a story. Some people have not heard it, some are telling it, and some heard it and no longer repeat it.</p>
+<p>Two rates move people between the groups. The contagion rate <em>c</em> sets how fast tellers pass the story to people who have not heard it. The forgetting rate <em>r</em> sets how fast tellers lose interest and stop. Their ratio is the basic reproduction number, R0 = <em>c</em> / <em>r</em>: the number of new tellers one teller produces while almost everyone is still susceptible. Above one the story becomes an epidemic. Below one it dies out.</p>
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="55" data-source-offset="-236"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 54;"><span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>sirSemilla <span class="op">=</span> <span class="fl">0.001</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>sirDias <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>sirPaso <span class="op">=</span> <span class="fl">0.05</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="co">// Explicit Euler. S + I + R holds at 1 to within 1e-14 everywhere on the</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="co">// slider grid. Integrated to convergence, a step of 0.05 lands within 0.07 pp</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co">// of the analytic final size, which for a seeded run is</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="co">// S_inf = S_0 exp(-R0 (1 - S_inf)) with S_0 = 1 - sirSemilla, not the</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="co">// S_0 = 1 form: at R0 = 1 the two differ by about 4 pp, so checking against</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="co">// the wrong one invents an integrator error that is not there.</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="co">// What the run does NOT do is reach that asymptote in every setting. Just</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="co">// above R0 = 1 the epidemic is still under way on day sirDias and the final</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="co">// state sits far from S_inf. That is the fixed window, not the step size, and</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="co">// refining the step does not move it. It is why the reading says "still</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="co">// rising" instead of naming a peak there, and why it always says "by day</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="co">// sirDias" rather than reporting a total.</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="co">// Days are recorded as k / porDia rather than k * sirPaso so the axis carries</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="co">// exact integers.</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>sirSimular <span class="op">=</span> (c<span class="op">,</span> r) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> porDia <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(<span class="dv">1</span> <span class="op">/</span> sirPaso)<span class="op">;</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> S <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> sirSemilla<span class="op">,</span> I <span class="op">=</span> sirSemilla<span class="op">,</span> R <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> filas <span class="op">=</span> [{ <span class="dt">dia</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> S<span class="op">,</span> I<span class="op">,</span> R }]<span class="op">;</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> k <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> k <span class="op">&lt;=</span> sirDias <span class="op">*</span> porDia<span class="op">;</span> k<span class="op">++</span>) {</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> nuevos <span class="op">=</span> c <span class="op">*</span> S <span class="op">*</span> I <span class="op">*</span> sirPaso<span class="op">;</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> salen <span class="op">=</span> r <span class="op">*</span> I <span class="op">*</span> sirPaso<span class="op">;</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>    S <span class="op">-=</span> nuevos<span class="op">;</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>    I <span class="op">+=</span> nuevos <span class="op">-</span> salen<span class="op">;</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>    R <span class="op">+=</span> salen<span class="op">;</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (k <span class="op">%</span> porDia <span class="op">===</span> <span class="dv">0</span>) filas<span class="op">.</span><span class="fu">push</span>({ <span class="dt">dia</span><span class="op">:</span> k <span class="op">/</span> porDia<span class="op">,</span> S<span class="op">,</span> I<span class="op">,</span> R })<span class="op">;</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> filas<span class="op">;</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>sirEtiqueta <span class="op">=</span> ({</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>  <span class="dt">S</span><span class="op">:</span> <span class="st">"Have not heard it"</span><span class="op">,</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>  <span class="dt">I</span><span class="op">:</span> <span class="st">"Telling it"</span><span class="op">,</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>  <span class="dt">R</span><span class="op">:</span> <span class="st">"Stopped telling"</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>sirDominio <span class="op">=</span> [sirEtiqueta<span class="op">.</span><span class="at">S</span><span class="op">,</span> sirEtiqueta<span class="op">.</span><span class="at">I</span><span class="op">,</span> sirEtiqueta<span class="op">.</span><span class="at">R</span>]</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>sirColores <span class="op">=</span> [<span class="st">"var(--teal)"</span><span class="op">,</span> <span class="st">"var(--clay)"</span><span class="op">,</span> <span class="st">"var(--ink-soft)"</span>]</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>sirLargo <span class="op">=</span> traza <span class="kw">=&gt;</span> traza<span class="op">.</span><span class="fu">flatMap</span>(d <span class="kw">=&gt;</span> [</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">dia</span><span class="op">:</span> d<span class="op">.</span><span class="at">dia</span><span class="op">,</span> <span class="dt">grupo</span><span class="op">:</span> sirEtiqueta<span class="op">.</span><span class="at">S</span><span class="op">,</span> <span class="dt">valor</span><span class="op">:</span> d<span class="op">.</span><span class="at">S</span> }<span class="op">,</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">dia</span><span class="op">:</span> d<span class="op">.</span><span class="at">dia</span><span class="op">,</span> <span class="dt">grupo</span><span class="op">:</span> sirEtiqueta<span class="op">.</span><span class="at">I</span><span class="op">,</span> <span class="dt">valor</span><span class="op">:</span> d<span class="op">.</span><span class="at">I</span> }<span class="op">,</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">dia</span><span class="op">:</span> d<span class="op">.</span><span class="at">dia</span><span class="op">,</span> <span class="dt">grupo</span><span class="op">:</span> sirEtiqueta<span class="op">.</span><span class="at">R</span><span class="op">,</span> <span class="dt">valor</span><span class="op">:</span> d<span class="op">.</span><span class="at">R</span> }</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>sirResumen <span class="op">=</span> (c<span class="op">,</span> r) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> traza <span class="op">=</span> <span class="fu">sirSimular</span>(c<span class="op">,</span> r)<span class="op">;</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> pico <span class="op">=</span> traza[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> d <span class="kw">of</span> traza) <span class="cf">if</span> (d<span class="op">.</span><span class="at">I</span> <span class="op">&gt;</span> pico<span class="op">.</span><span class="at">I</span>) pico <span class="op">=</span> d<span class="op">;</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> fin <span class="op">=</span> traza[traza<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> { traza<span class="op">,</span> <span class="dt">R0</span><span class="op">:</span> c <span class="op">/</span> r<span class="op">,</span> pico<span class="op">,</span> <span class="dt">alcance</span><span class="op">:</span> <span class="dv">1</span> <span class="op">-</span> fin<span class="op">.</span><span class="at">S</span><span class="op">,</span> fin }<span class="op">;</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="co">// The three series are labelled at the end of their own line, so two labels</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="co">// collide whenever two curves finish together: I and R both sit at zero when</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="co">// R0 &lt; 1, and S and R meet when half the population has heard the story. This</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="co">// pushes them apart by a minimum gap in data units. It only ever moves labels</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="co">// up, and the top one can rise by at most two gaps, so it cannot leave the</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="co">// frame.</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>sirSeparar <span class="op">=</span> (puntos<span class="op">,</span> minimo) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> orden <span class="op">=</span> puntos<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({ <span class="op">...</span>d }))<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">valor</span> <span class="op">-</span> b<span class="op">.</span><span class="at">valor</span>)<span class="op">;</span></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> orden<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (orden[i]<span class="op">.</span><span class="at">valor</span> <span class="op">-</span> orden[i <span class="op">-</span> <span class="dv">1</span>]<span class="op">.</span><span class="at">valor</span> <span class="op">&lt;</span> minimo) {</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>      orden[i]<span class="op">.</span><span class="at">valor</span> <span class="op">=</span> orden[i <span class="op">-</span> <span class="dv">1</span>]<span class="op">.</span><span class="at">valor</span> <span class="op">+</span> minimo<span class="op">;</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> orden<span class="op">;</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>sirPorciento <span class="op">=</span> v <span class="kw">=&gt;</span> (v <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>) <span class="op">+</span> <span class="st">"%"</span></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="co">// The largest I in the trace is not always the peak of the curve. The window</span></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="co">// is fixed at sirDias, and for the six reachable settings just above R0 = 1</span></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="co">// (c/r of 0.11/0.10, 0.12/0.10, 0.12/0.11, 0.13/0.12, 0.14/0.13, 0.15/0.14)</span></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="co">// the story is still spreading when the window ends, so the maximum falls on</span></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="co">// the last day. Calling that a peak would name the edge of the frame as an</span></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="co">// event the chart does not show: the curve leaves the plot still climbing.</span></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="co">// Below R0 = 1 there is no peak either, only the seed decaying from day 0.</span></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="co">// So the reading reports a peak only where the curve has actually turned.</span></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>sirLectura <span class="op">=</span> (c<span class="op">,</span> r) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> x <span class="op">=</span> <span class="fu">sirResumen</span>(c<span class="op">,</span> r)<span class="op">;</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> partes <span class="op">=</span> [</span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>    <span class="vs">`R0 = </span><span class="sc">${</span>x<span class="op">.</span><span class="at">R0</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">`</span><span class="op">,</span></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>    x<span class="op">.</span><span class="at">R0</span> <span class="op">&gt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">"it spreads"</span> <span class="op">:</span> <span class="st">"it dies out"</span></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x<span class="op">.</span><span class="at">R0</span> <span class="op">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a>    partes<span class="op">.</span><span class="fu">push</span>(x<span class="op">.</span><span class="at">pico</span><span class="op">.</span><span class="at">dia</span> <span class="op">===</span> sirDias</span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> <span class="vs">`still rising on day </span><span class="sc">${</span>sirDias<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> <span class="vs">`peak </span><span class="sc">${</span><span class="fu">sirPorciento</span>(x<span class="op">.</span><span class="at">pico</span><span class="op">.</span><span class="at">I</span>)<span class="sc">}</span><span class="vs"> on day </span><span class="sc">${</span>x<span class="op">.</span><span class="at">pico</span><span class="op">.</span><span class="at">dia</span><span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>  partes<span class="op">.</span><span class="fu">push</span>(<span class="vs">`</span><span class="sc">${</span><span class="fu">sirPorciento</span>(x<span class="op">.</span><span class="at">alcance</span>)<span class="sc">}</span><span class="vs"> have heard it by day </span><span class="sc">${</span>sirDias<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="data-meta"&gt;</span><span class="sc">${</span>partes<span class="op">.</span><span class="fu">join</span>(<span class="st">" · "</span>)<span class="sc">}</span><span class="vs">&lt;/div&gt;`</span><span class="op">;</span></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="co">// A display cell that is only a cell name renders Observable's inspector, so</span></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a><span class="co">// every visual output here is a function called from its own cell (CLAUDE.md</span></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="co">// section 13, bug 0).</span></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>sirGrafica <span class="op">=</span> (c<span class="op">,</span> r) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> x <span class="op">=</span> <span class="fu">sirResumen</span>(c<span class="op">,</span> r)<span class="op">;</span></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> largo <span class="op">=</span> <span class="fu">sirLargo</span>(x<span class="op">.</span><span class="at">traza</span>)<span class="op">;</span></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> etiquetas <span class="op">=</span> <span class="fu">sirSeparar</span>([</span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">grupo</span><span class="op">:</span> sirEtiqueta<span class="op">.</span><span class="at">S</span><span class="op">,</span> <span class="dt">valor</span><span class="op">:</span> x<span class="op">.</span><span class="at">fin</span><span class="op">.</span><span class="at">S</span> }<span class="op">,</span></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">grupo</span><span class="op">:</span> sirEtiqueta<span class="op">.</span><span class="at">I</span><span class="op">,</span> <span class="dt">valor</span><span class="op">:</span> x<span class="op">.</span><span class="at">fin</span><span class="op">.</span><span class="at">I</span> }<span class="op">,</span></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>    { <span class="dt">grupo</span><span class="op">:</span> sirEtiqueta<span class="op">.</span><span class="at">R</span><span class="op">,</span> <span class="dt">valor</span><span class="op">:</span> x<span class="op">.</span><span class="at">fin</span><span class="op">.</span><span class="at">R</span> }</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span> <span class="fl">0.065</span>)<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({ <span class="op">...</span>d<span class="op">,</span> <span class="dt">dia</span><span class="op">:</span> sirDias }))<span class="op">;</span></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span> <span class="dv">680</span><span class="op">,</span></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">320</span><span class="op">,</span></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">24</span><span class="op">,</span></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">46</span><span class="op">,</span></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">32</span><span class="op">,</span></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">150</span><span class="op">,</span></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>    <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>      <span class="dt">background</span><span class="op">:</span> <span class="st">"transparent"</span><span class="op">,</span></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> <span class="st">"var(--ink-soft)"</span><span class="op">,</span></span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"IBM Plex Sans, sans-serif"</span><span class="op">,</span></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fontSize</span><span class="op">:</span> <span class="st">"12px"</span></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> sirDias] }<span class="op">,</span></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>] }<span class="op">,</span></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>    <span class="dt">color</span><span class="op">:</span> { <span class="dt">domain</span><span class="op">:</span> sirDominio<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> sirColores }<span class="op">,</span></span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">gridY</span>({ <span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--rule)"</span> })<span class="op">,</span></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">lineY</span>(largo<span class="op">,</span> {</span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"dia"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"valor"</span><span class="op">,</span> <span class="dt">z</span><span class="op">:</span> <span class="st">"grupo"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"grupo"</span><span class="op">,</span></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">strokeLinejoin</span><span class="op">:</span> <span class="st">"round"</span><span class="op">,</span> <span class="dt">strokeLinecap</span><span class="op">:</span> <span class="st">"round"</span></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">text</span>(etiquetas<span class="op">,</span> {</span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"dia"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"valor"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"grupo"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"grupo"</span><span class="op">,</span></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>        <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"start"</span><span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="dv">8</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">13</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="dv">500</span></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>      <span class="co">// The tip's data is the union of every series the chart draws, and its</span></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>      <span class="co">// title names the series it is describing (CLAUDE.md section 13).</span></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">tip</span>(largo<span class="op">,</span> Plot<span class="op">.</span><span class="fu">pointerX</span>({</span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"dia"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"valor"</span><span class="op">,</span></span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>        <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">grupo</span><span class="sc">}\n</span><span class="vs">day </span><span class="sc">${</span>d<span class="op">.</span><span class="at">dia</span><span class="sc">}\n${</span><span class="fu">sirPorciento</span>(d<span class="op">.</span><span class="at">valor</span>)<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>      }))<span class="op">,</span></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">axisX</span>({ <span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--rule)"</span><span class="op">,</span> <span class="dt">tickSize</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">ticks</span><span class="op">:</span> <span class="dv">5</span> })<span class="op">,</span></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">axisY</span>({</span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--rule)"</span><span class="op">,</span> <span class="dt">tickSize</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">ticks</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tickFormat</span><span class="op">:</span> d <span class="kw">=&gt;</span> (d <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>) <span class="op">+</span> <span class="st">"%"</span></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>      })</span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-10" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-11" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-12" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-13" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="data-panel">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="208" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 207;"><span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a>viewof sirContagio <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.10</span><span class="op">,</span> <span class="fl">0.50</span>]<span class="op">,</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"Contagion"</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="fl">0.30</span> })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="213" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 212;"><span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a>viewof sirOlvido <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.10</span><span class="op">,</span> <span class="fl">0.50</span>]<span class="op">,</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"Forgetting"</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="fl">0.15</span> })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="218" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 217;"><span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a><span class="fu">sirLectura</span>(sirContagio<span class="op">,</span> sirOlvido)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="223" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 222;"><span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a><span class="fu">sirGrafica</span>(sirContagio<span class="op">,</span> sirOlvido)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="chart-note">
+<p>Simulation of the Kermack-McKendrick SIR model in the form <em>Narrative Economics</em> applies it to a story. The population is normalized to one and starts with one teller in a thousand. Both rates are per day, and the day is a convention of the exercise. Nothing here is estimated from data.</p>
+</div>
+<p>Two things follow from the shape of the middle curve.</p>
+<p>The first is that it comes down on its own. Nobody has to refute the story. As it spreads, the group that has not heard it shrinks, and once that group falls below <em>r</em> / <em>c</em> each teller recruits less than one replacement. The peak arrives and the decline begins with the contagion rate exactly where it was. A narrative can disappear without ever having been contradicted.</p>
+<p>The second is that contagion on its own settles nothing. A story dropped faster than it spreads goes nowhere. A story that spreads slowly against slower forgetting takes hold. The level of <em>c</em> sets how quickly the episode plays out; whether there is an episode at all is decided by <em>c</em> against <em>r</em>.</p>
+<details class="abstract">
+<summary>
+The model in three lines
+</summary>
+<p>Write <em>S</em>, <em>I</em> and <em>R</em> for the shares of the population that have not heard the story, are telling it, and have heard it and stopped, with <em>S</em> + <em>I</em> + <em>R</em> = 1. In each period <em>c</em> · <em>S</em> · <em>I</em> of the population starts telling it and <em>r</em> · <em>I</em> of the tellers stop. So <em>S</em> falls by <em>c</em> · <em>S</em> · <em>I</em>; <em>I</em> rises by <em>c</em> · <em>S</em> · <em>I</em> and falls by <em>r</em> · <em>I</em>; <em>R</em> rises by <em>r</em> · <em>I</em>.</p>
+<p><em>I</em> grows only while <em>c</em> · <em>S</em> &gt; <em>r</em>. At the start almost nobody has heard the story, <em>S</em> is close to 1, and the condition reduces to <em>c</em> / <em>r</em> &gt; 1. That ratio is the basic reproduction number R0: the number of new tellers one teller produces before stopping, with the population still susceptible. <em>I</em> reaches its maximum exactly when <em>S</em> has fallen to <em>r</em> / <em>c</em>, and declines from there with <em>c</em> unchanged.</p>
+<p>The figure integrates those three lines forward in twenty steps per day, from a start of one teller in a thousand.</p>
+<p>The original statement of the model is W. O. Kermack and A. G. McKendrick, “A Contribution to the Mathematical Theory of Epidemics”, <em>Proceedings of the Royal Society A</em> 115(772), 1927, 700-721.</p>
+</details>
+</section>
+<section id="the-craft-in-two-exercises" class="level2">
+<h2 data-anchor-id="the-craft-in-two-exercises">The craft in two exercises</h2>
+<p>The craft half, in two exercises. The first is about what the eye resolves before it reads. The second takes one chart from a spreadsheet export to a finished figure, one decision at a time.</p>
+<section id="preattentive-attributes" class="level3">
+<h3 data-anchor-id="preattentive-attributes">Preattentive attributes</h3>
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="288" data-source-offset="-197"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 287;"><span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a>digitosFilas <span class="op">=</span> [<span class="st">"805391643725"</span><span class="op">,</span> <span class="st">"472680359168"</span><span class="op">,</span> <span class="st">"936158270436"</span><span class="op">,</span> <span class="st">"258073496153"</span>]</span>
+<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a><span class="co">// A display cell that is only a cell name renders Observable's inspector,</span></span>
+<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a><span class="co">// so every visual output here is a function called from its own cell</span></span>
+<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a><span class="co">// (CLAUDE.md section 13, bug 0).</span></span>
+<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a>gridDigitos <span class="op">=</span> (activo) <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;div class="digit-grid"&gt;</span><span class="sc">${</span></span>
+<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a>  digitosFilas<span class="op">.</span><span class="fu">map</span>(fila <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;div&gt;</span><span class="sc">${</span></span>
+<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a>    <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>(fila<span class="op">,</span> caracter <span class="kw">=&gt;</span></span>
+<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a>      activo <span class="op">&amp;&amp;</span> caracter <span class="op">===</span> <span class="st">"3"</span></span>
+<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a>        <span class="op">?</span> <span class="fu">html</span><span class="vs">`&lt;span class="digit-hit"&gt;3&lt;/span&gt;`</span></span>
+<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> <span class="fu">html</span><span class="vs">`&lt;span&gt;</span><span class="sc">${</span>caracter<span class="sc">}</span><span class="vs">&lt;/span&gt;`</span>)</span>
+<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a>  <span class="sc">}</span><span class="vs">&lt;/div&gt;`</span>)</span>
+<span id="cb6-300"><a href="#cb6-300" aria-hidden="true" tabindex="-1"></a><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span>
+<span id="cb6-301"><a href="#cb6-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-302"><a href="#cb6-302" aria-hidden="true" tabindex="-1"></a><span class="co">// The answer has to wait for the toggle. Printed under the grid from the</span></span>
+<span id="cb6-303"><a href="#cb6-303" aria-hidden="true" tabindex="-1"></a><span class="co">// start, it is read before anyone tries to count, and the exercise stops</span></span>
+<span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a><span class="co">// working: the point is the difference between counting and seeing.</span></span>
+<span id="cb6-305"><a href="#cb6-305" aria-hidden="true" tabindex="-1"></a>lineaDigitos <span class="op">=</span> (activo) <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;p&gt;</span><span class="sc">${</span>activo</span>
+<span id="cb6-306"><a href="#cb6-306" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> <span class="st">"Seven. One change makes them visible before counting them."</span></span>
+<span id="cb6-307"><a href="#cb6-307" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span> <span class="st">"Counting them takes a moment."</span></span>
+<span id="cb6-308"><a href="#cb6-308" aria-hidden="true" tabindex="-1"></a><span class="sc">}</span><span class="vs">&lt;/p&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-6-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-6-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-6-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p>How many 3s are in the grid?</p>
+<div class="data-panel">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="316" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 315;"><span id="cb7-316"><a href="#cb7-316" aria-hidden="true" tabindex="-1"></a><span class="fu">gridDigitos</span>(resaltar)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="321" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 320;"><span id="cb8-321"><a href="#cb8-321" aria-hidden="true" tabindex="-1"></a>viewof resaltar <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">toggle</span>({ <span class="dt">label</span><span class="op">:</span> <span class="st">"Highlight"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="kw">false</span> })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb9" data-startfrom="328" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 327;"><span id="cb9-328"><a href="#cb9-328" aria-hidden="true" tabindex="-1"></a><span class="fu">lineaDigitos</span>(resaltar)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-9" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</section>
+<section id="the-same-chart-in-six-steps" class="level3">
+<h3 data-anchor-id="the-same-chart-in-six-steps">The same chart, in six steps</h3>
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb10" data-startfrom="337" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 336;"><span id="cb10-337"><a href="#cb10-337" aria-hidden="true" tabindex="-1"></a>indicadores <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/labor-indicators.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
+<span id="cb10-338"><a href="#cb10-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-339"><a href="#cb10-339" aria-hidden="true" tabindex="-1"></a>etiquetaSerie <span class="op">=</span> ({ <span class="dt">TIL1</span><span class="op">:</span> <span class="st">"Informality"</span><span class="op">,</span> <span class="dt">TOSI1</span><span class="op">:</span> <span class="st">"Informal sector"</span> })</span>
+<span id="cb10-340"><a href="#cb10-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-341"><a href="#cb10-341" aria-hidden="true" tabindex="-1"></a><span class="co">// The regimen column stores INEGI's own internal codes. The note under the</span></span>
+<span id="cb10-342"><a href="#cb10-342" aria-hidden="true" tabindex="-1"></a><span class="co">// chart promises the tooltip names the framework, so it gets a readable name</span></span>
+<span id="cb10-343"><a href="#cb10-343" aria-hidden="true" tabindex="-1"></a><span class="co">// rather than the code: "tradicional" is the regular ENOE, "enoen" the Nueva</span></span>
+<span id="cb10-344"><a href="#cb10-344" aria-hidden="true" tabindex="-1"></a><span class="co">// Edicion that ran while fieldwork recovered from the 2020 interruption, and</span></span>
+<span id="cb10-345"><a href="#cb10-345" aria-hidden="true" tabindex="-1"></a><span class="co">// "enoe_2023" the return to the standard ENOE on the 2023 framework.</span></span>
+<span id="cb10-346"><a href="#cb10-346" aria-hidden="true" tabindex="-1"></a>etiquetaMarco <span class="op">=</span> ({</span>
+<span id="cb10-347"><a href="#cb10-347" aria-hidden="true" tabindex="-1"></a>  <span class="dt">tradicional</span><span class="op">:</span> <span class="st">"ENOE"</span><span class="op">,</span></span>
+<span id="cb10-348"><a href="#cb10-348" aria-hidden="true" tabindex="-1"></a>  <span class="dt">enoen</span><span class="op">:</span> <span class="st">"ENOEN"</span><span class="op">,</span></span>
+<span id="cb10-349"><a href="#cb10-349" aria-hidden="true" tabindex="-1"></a>  <span class="dt">enoe_2023</span><span class="op">:</span> <span class="st">"ENOE, 2023 framework"</span></span>
+<span id="cb10-350"><a href="#cb10-350" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-351"><a href="#cb10-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-352"><a href="#cb10-352" aria-hidden="true" tabindex="-1"></a>serieDe <span class="op">=</span> codigo <span class="kw">=&gt;</span> indicadores</span>
+<span id="cb10-353"><a href="#cb10-353" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">indicador</span> <span class="op">===</span> codigo)</span>
+<span id="cb10-354"><a href="#cb10-354" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
+<span id="cb10-355"><a href="#cb10-355" aria-hidden="true" tabindex="-1"></a>    <span class="dt">serie</span><span class="op">:</span> etiquetaSerie[codigo]<span class="op">,</span></span>
+<span id="cb10-356"><a href="#cb10-356" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fecha</span><span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(d<span class="op">.</span><span class="at">anio</span><span class="op">,</span> (d<span class="op">.</span><span class="at">trimestre</span> <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">,</span></span>
+<span id="cb10-357"><a href="#cb10-357" aria-hidden="true" tabindex="-1"></a>    <span class="dt">valor</span><span class="op">:</span> d<span class="op">.</span><span class="at">valor</span><span class="op">,</span></span>
+<span id="cb10-358"><a href="#cb10-358" aria-hidden="true" tabindex="-1"></a>    <span class="dt">anio</span><span class="op">:</span> d<span class="op">.</span><span class="at">anio</span><span class="op">,</span></span>
+<span id="cb10-359"><a href="#cb10-359" aria-hidden="true" tabindex="-1"></a>    <span class="dt">trimestre</span><span class="op">:</span> d<span class="op">.</span><span class="at">trimestre</span><span class="op">,</span></span>
+<span id="cb10-360"><a href="#cb10-360" aria-hidden="true" tabindex="-1"></a>    <span class="dt">regimen</span><span class="op">:</span> d<span class="op">.</span><span class="at">regimen</span></span>
+<span id="cb10-361"><a href="#cb10-361" aria-hidden="true" tabindex="-1"></a>  }))</span>
+<span id="cb10-362"><a href="#cb10-362" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">fecha</span> <span class="op">-</span> b<span class="op">.</span><span class="at">fecha</span>)</span>
+<span id="cb10-363"><a href="#cb10-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-364"><a href="#cb10-364" aria-hidden="true" tabindex="-1"></a><span class="co">// 2020-Q2 is genuinely absent (the ETOE gap). Without an explicit</span></span>
+<span id="cb10-365"><a href="#cb10-365" aria-hidden="true" tabindex="-1"></a><span class="co">// undefined point Plot bridges it with a straight diagonal, which reads a</span></span>
+<span id="cb10-366"><a href="#cb10-366" aria-hidden="true" tabindex="-1"></a><span class="co">// change of method as a gradual transition.</span></span>
+<span id="cb10-367"><a href="#cb10-367" aria-hidden="true" tabindex="-1"></a>conHuecos <span class="op">=</span> serie <span class="kw">=&gt;</span> {</span>
+<span id="cb10-368"><a href="#cb10-368" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> resultado <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb10-369"><a href="#cb10-369" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> serie<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb10-370"><a href="#cb10-370" aria-hidden="true" tabindex="-1"></a>    resultado<span class="op">.</span><span class="fu">push</span>(serie[i])<span class="op">;</span></span>
+<span id="cb10-371"><a href="#cb10-371" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="op">&lt;</span> serie<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>) {</span>
+<span id="cb10-372"><a href="#cb10-372" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> actual <span class="op">=</span> serie[i]<span class="op">,</span> siguiente <span class="op">=</span> serie[i <span class="op">+</span> <span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb10-373"><a href="#cb10-373" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> meses <span class="op">=</span> (siguiente<span class="op">.</span><span class="at">fecha</span><span class="op">.</span><span class="fu">getFullYear</span>() <span class="op">-</span> actual<span class="op">.</span><span class="at">fecha</span><span class="op">.</span><span class="fu">getFullYear</span>()) <span class="op">*</span> <span class="dv">12</span></span>
+<span id="cb10-374"><a href="#cb10-374" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> (siguiente<span class="op">.</span><span class="at">fecha</span><span class="op">.</span><span class="fu">getMonth</span>() <span class="op">-</span> actual<span class="op">.</span><span class="at">fecha</span><span class="op">.</span><span class="fu">getMonth</span>())<span class="op">;</span></span>
+<span id="cb10-375"><a href="#cb10-375" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (meses <span class="op">&gt;</span> <span class="dv">3</span>) {</span>
+<span id="cb10-376"><a href="#cb10-376" aria-hidden="true" tabindex="-1"></a>        resultado<span class="op">.</span><span class="fu">push</span>({</span>
+<span id="cb10-377"><a href="#cb10-377" aria-hidden="true" tabindex="-1"></a>          <span class="op">...</span>actual<span class="op">,</span></span>
+<span id="cb10-378"><a href="#cb10-378" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fecha</span><span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(actual<span class="op">.</span><span class="at">fecha</span><span class="op">.</span><span class="fu">getFullYear</span>()<span class="op">,</span> actual<span class="op">.</span><span class="at">fecha</span><span class="op">.</span><span class="fu">getMonth</span>() <span class="op">+</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">,</span></span>
+<span id="cb10-379"><a href="#cb10-379" aria-hidden="true" tabindex="-1"></a>          <span class="dt">valor</span><span class="op">:</span> <span class="kw">undefined</span></span>
+<span id="cb10-380"><a href="#cb10-380" aria-hidden="true" tabindex="-1"></a>        })<span class="op">;</span></span>
+<span id="cb10-381"><a href="#cb10-381" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb10-382"><a href="#cb10-382" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-383"><a href="#cb10-383" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-384"><a href="#cb10-384" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> resultado<span class="op">;</span></span>
+<span id="cb10-385"><a href="#cb10-385" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-386"><a href="#cb10-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-387"><a href="#cb10-387" aria-hidden="true" tabindex="-1"></a>seriesPaso <span class="op">=</span> [<span class="fu">serieDe</span>(<span class="st">"TIL1"</span>)<span class="op">,</span> <span class="fu">serieDe</span>(<span class="st">"TOSI1"</span>)]</span>
+<span id="cb10-388"><a href="#cb10-388" aria-hidden="true" tabindex="-1"></a>puntosPaso <span class="op">=</span> seriesPaso<span class="op">.</span><span class="fu">flat</span>()</span>
+<span id="cb10-389"><a href="#cb10-389" aria-hidden="true" tabindex="-1"></a>lineasPaso <span class="op">=</span> seriesPaso<span class="op">.</span><span class="fu">flatMap</span>(conHuecos)</span>
+<span id="cb10-390"><a href="#cb10-390" aria-hidden="true" tabindex="-1"></a>finalesPaso <span class="op">=</span> seriesPaso<span class="op">.</span><span class="fu">map</span>(s <span class="kw">=&gt;</span> s[s<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>])</span>
+<span id="cb10-391"><a href="#cb10-391" aria-hidden="true" tabindex="-1"></a>dominioPaso <span class="op">=</span> [etiquetaSerie<span class="op">.</span><span class="at">TIL1</span><span class="op">,</span> etiquetaSerie<span class="op">.</span><span class="at">TOSI1</span>]</span>
+<span id="cb10-392"><a href="#cb10-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-393"><a href="#cb10-393" aria-hidden="true" tabindex="-1"></a><span class="co">// The axis was fixed at [0, 65] while the two series live between 27 and 60,</span></span>
+<span id="cb10-394"><a href="#cb10-394" aria-hidden="true" tabindex="-1"></a><span class="co">// so about half the frame was empty and both lines were squeezed into the top</span></span>
+<span id="cb10-395"><a href="#cb10-395" aria-hidden="true" tabindex="-1"></a><span class="co">// half. Fit it to the data instead, the same idea as dominioAjustadoSerie on</span></span>
+<span id="cb10-396"><a href="#cb10-396" aria-hidden="true" tabindex="-1"></a><span class="co">// the Labor Market MX pages, but with a tighter margin: that helper pads 15%</span></span>
+<span id="cb10-397"><a href="#cb10-397" aria-hidden="true" tabindex="-1"></a><span class="co">// of the range, which over a span this wide would leave several points of</span></span>
+<span id="cb10-398"><a href="#cb10-398" aria-hidden="true" tabindex="-1"></a><span class="co">// empty axis back. Computed rather than hardcoded so it still fits when the</span></span>
+<span id="cb10-399"><a href="#cb10-399" aria-hidden="true" tabindex="-1"></a><span class="co">// quarterly data moves.</span></span>
+<span id="cb10-400"><a href="#cb10-400" aria-hidden="true" tabindex="-1"></a>dominioPasoY <span class="op">=</span> {</span>
+<span id="cb10-401"><a href="#cb10-401" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> valores <span class="op">=</span> puntosPaso<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">valor</span>)<span class="op">;</span></span>
+<span id="cb10-402"><a href="#cb10-402" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> min <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="op">...</span>valores)<span class="op">,</span> max <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>valores)<span class="op">;</span></span>
+<span id="cb10-403"><a href="#cb10-403" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> margen <span class="op">=</span> (max <span class="op">-</span> min) <span class="op">*</span> <span class="fl">0.06</span><span class="op">;</span></span>
+<span id="cb10-404"><a href="#cb10-404" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> [min <span class="op">-</span> margen<span class="op">,</span> max <span class="op">+</span> margen]<span class="op">;</span></span>
+<span id="cb10-405"><a href="#cb10-405" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-406"><a href="#cb10-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-407"><a href="#cb10-407" aria-hidden="true" tabindex="-1"></a>textosPaso <span class="op">=</span> [</span>
+<span id="cb10-408"><a href="#cb10-408" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Straight out of a spreadsheet. A border, gridlines, a marker on every quarter, a legend set apart from the lines, and the software's default colors."</span><span class="op">,</span></span>
+<span id="cb10-409"><a href="#cb10-409" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Chart border removed."</span><span class="op">,</span></span>
+<span id="cb10-410"><a href="#cb10-410" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Gridlines removed."</span><span class="op">,</span></span>
+<span id="cb10-411"><a href="#cb10-411" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Data markers removed."</span><span class="op">,</span></span>
+<span id="cb10-412"><a href="#cb10-412" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Axis labels cleaned up and sent to the background."</span><span class="op">,</span></span>
+<span id="cb10-413"><a href="#cb10-413" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Series labeled directly, legend dropped."</span><span class="op">,</span></span>
+<span id="cb10-414"><a href="#cb10-414" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Each label in its series' color. The chart is now in the style the data pages of this site use: their palette, their type, and one faint grid."</span></span>
+<span id="cb10-415"><a href="#cb10-415" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb10-416"><a href="#cb10-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-417"><a href="#cb10-417" aria-hidden="true" tabindex="-1"></a>lineaPaso <span class="op">=</span> (paso) <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;p&gt;</span><span class="sc">${</span>textosPaso[paso]<span class="sc">}</span><span class="vs">&lt;/p&gt;`</span></span>
+<span id="cb10-418"><a href="#cb10-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-419"><a href="#cb10-419" aria-hidden="true" tabindex="-1"></a>graficaPasos <span class="op">=</span> (paso) <span class="kw">=&gt;</span> {</span>
+<span id="cb10-420"><a href="#cb10-420" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> sucio <span class="op">=</span> paso <span class="op">&lt;=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb10-421"><a href="#cb10-421" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> casa <span class="op">=</span> paso <span class="op">&gt;=</span> <span class="dv">6</span><span class="op">;</span></span>
+<span id="cb10-422"><a href="#cb10-422" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> trazo <span class="op">=</span> casa <span class="op">?</span> <span class="st">"var(--rule)"</span> <span class="op">:</span> <span class="st">"var(--ink-soft)"</span><span class="op">;</span></span>
+<span id="cb10-423"><a href="#cb10-423" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> marcas <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb10-424"><a href="#cb10-424" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-425"><a href="#cb10-425" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (paso <span class="op">&lt;=</span> <span class="dv">1</span>) {</span>
+<span id="cb10-426"><a href="#cb10-426" aria-hidden="true" tabindex="-1"></a>    marcas<span class="op">.</span><span class="fu">push</span>(Plot<span class="op">.</span><span class="fu">gridY</span>({ <span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--ink-soft)"</span><span class="op">,</span> <span class="dt">strokeOpacity</span><span class="op">:</span> <span class="fl">0.85</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span> }))<span class="op">;</span></span>
+<span id="cb10-427"><a href="#cb10-427" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (casa) {</span>
+<span id="cb10-428"><a href="#cb10-428" aria-hidden="true" tabindex="-1"></a>    marcas<span class="op">.</span><span class="fu">push</span>(Plot<span class="op">.</span><span class="fu">gridY</span>({ <span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--rule)"</span> }))<span class="op">;</span></span>
+<span id="cb10-429"><a href="#cb10-429" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-430"><a href="#cb10-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-431"><a href="#cb10-431" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (paso <span class="op">===</span> <span class="dv">0</span>) marcas<span class="op">.</span><span class="fu">push</span>(Plot<span class="op">.</span><span class="fu">frame</span>({ <span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--ink-soft)"</span> }))<span class="op">;</span></span>
+<span id="cb10-432"><a href="#cb10-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-433"><a href="#cb10-433" aria-hidden="true" tabindex="-1"></a>  marcas<span class="op">.</span><span class="fu">push</span>(Plot<span class="op">.</span><span class="fu">lineY</span>(lineasPaso<span class="op">,</span> {</span>
+<span id="cb10-434"><a href="#cb10-434" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> <span class="st">"fecha"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"valor"</span><span class="op">,</span> <span class="dt">z</span><span class="op">:</span> <span class="st">"serie"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"serie"</span><span class="op">,</span></span>
+<span id="cb10-435"><a href="#cb10-435" aria-hidden="true" tabindex="-1"></a>    <span class="dt">strokeWidth</span><span class="op">:</span> casa <span class="op">?</span> <span class="dv">2</span> <span class="op">:</span> <span class="fl">1.5</span><span class="op">,</span></span>
+<span id="cb10-436"><a href="#cb10-436" aria-hidden="true" tabindex="-1"></a>    <span class="dt">strokeLinejoin</span><span class="op">:</span> <span class="st">"round"</span><span class="op">,</span> <span class="dt">strokeLinecap</span><span class="op">:</span> <span class="st">"round"</span></span>
+<span id="cb10-437"><a href="#cb10-437" aria-hidden="true" tabindex="-1"></a>  }))<span class="op">;</span></span>
+<span id="cb10-438"><a href="#cb10-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-439"><a href="#cb10-439" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (paso <span class="op">&lt;=</span> <span class="dv">2</span>) {</span>
+<span id="cb10-440"><a href="#cb10-440" aria-hidden="true" tabindex="-1"></a>    marcas<span class="op">.</span><span class="fu">push</span>(Plot<span class="op">.</span><span class="fu">dot</span>(puntosPaso<span class="op">,</span> {</span>
+<span id="cb10-441"><a href="#cb10-441" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"fecha"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"valor"</span><span class="op">,</span> <span class="dt">z</span><span class="op">:</span> <span class="st">"serie"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"serie"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="fl">2.8</span></span>
+<span id="cb10-442"><a href="#cb10-442" aria-hidden="true" tabindex="-1"></a>    }))<span class="op">;</span></span>
+<span id="cb10-443"><a href="#cb10-443" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-444"><a href="#cb10-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-445"><a href="#cb10-445" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (paso <span class="op">&gt;=</span> <span class="dv">5</span>) {</span>
+<span id="cb10-446"><a href="#cb10-446" aria-hidden="true" tabindex="-1"></a>    marcas<span class="op">.</span><span class="fu">push</span>(Plot<span class="op">.</span><span class="fu">text</span>(finalesPaso<span class="op">,</span> {</span>
+<span id="cb10-447"><a href="#cb10-447" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"fecha"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"valor"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"serie"</span><span class="op">,</span></span>
+<span id="cb10-448"><a href="#cb10-448" aria-hidden="true" tabindex="-1"></a>      <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"start"</span><span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">13</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span></span>
+<span id="cb10-449"><a href="#cb10-449" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> casa <span class="op">?</span> <span class="st">"serie"</span> <span class="op">:</span> <span class="st">"var(--ink)"</span></span>
+<span id="cb10-450"><a href="#cb10-450" aria-hidden="true" tabindex="-1"></a>    }))<span class="op">;</span></span>
+<span id="cb10-451"><a href="#cb10-451" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-452"><a href="#cb10-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-453"><a href="#cb10-453" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (casa) {</span>
+<span id="cb10-454"><a href="#cb10-454" aria-hidden="true" tabindex="-1"></a>    marcas<span class="op">.</span><span class="fu">push</span>(Plot<span class="op">.</span><span class="fu">dot</span>(finalesPaso<span class="op">,</span> {</span>
+<span id="cb10-455"><a href="#cb10-455" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"fecha"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"valor"</span><span class="op">,</span> <span class="dt">z</span><span class="op">:</span> <span class="st">"serie"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"serie"</span><span class="op">,</span></span>
+<span id="cb10-456"><a href="#cb10-456" aria-hidden="true" tabindex="-1"></a>      <span class="dt">r</span><span class="op">:</span> <span class="fl">3.5</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"var(--plot-background)"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
+<span id="cb10-457"><a href="#cb10-457" aria-hidden="true" tabindex="-1"></a>    }))<span class="op">;</span></span>
+<span id="cb10-458"><a href="#cb10-458" aria-hidden="true" tabindex="-1"></a>    <span class="co">// The tip's data is the union of every series the chart draws, and its</span></span>
+<span id="cb10-459"><a href="#cb10-459" aria-hidden="true" tabindex="-1"></a>    <span class="co">// title names the series it is describing (CLAUDE.md section 13).</span></span>
+<span id="cb10-460"><a href="#cb10-460" aria-hidden="true" tabindex="-1"></a>    marcas<span class="op">.</span><span class="fu">push</span>(Plot<span class="op">.</span><span class="fu">tip</span>(puntosPaso<span class="op">,</span> Plot<span class="op">.</span><span class="fu">pointerX</span>({</span>
+<span id="cb10-461"><a href="#cb10-461" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"fecha"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"valor"</span><span class="op">,</span></span>
+<span id="cb10-462"><a href="#cb10-462" aria-hidden="true" tabindex="-1"></a>      <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">serie</span><span class="sc">}\n${</span>d<span class="op">.</span><span class="at">anio</span><span class="sc">}</span><span class="vs">-Q</span><span class="sc">${</span>d<span class="op">.</span><span class="at">trimestre</span><span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>etiquetaMarco[d<span class="op">.</span><span class="at">regimen</span>] <span class="op">??</span> d<span class="op">.</span><span class="at">regimen</span><span class="sc">}</span><span class="vs">)</span><span class="sc">\n${</span>d<span class="op">.</span><span class="at">valor</span><span class="sc">}</span><span class="vs">%`</span></span>
+<span id="cb10-463"><a href="#cb10-463" aria-hidden="true" tabindex="-1"></a>    })))<span class="op">;</span></span>
+<span id="cb10-464"><a href="#cb10-464" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-465"><a href="#cb10-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-466"><a href="#cb10-466" aria-hidden="true" tabindex="-1"></a>  marcas<span class="op">.</span><span class="fu">push</span>(Plot<span class="op">.</span><span class="fu">axisX</span>({</span>
+<span id="cb10-467"><a href="#cb10-467" aria-hidden="true" tabindex="-1"></a>    <span class="dt">stroke</span><span class="op">:</span> trazo<span class="op">,</span></span>
+<span id="cb10-468"><a href="#cb10-468" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickSize</span><span class="op">:</span> sucio <span class="op">?</span> <span class="dv">5</span> <span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb10-469"><a href="#cb10-469" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ticks</span><span class="op">:</span> sucio <span class="op">?</span> <span class="dv">21</span> <span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb10-470"><a href="#cb10-470" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickRotate</span><span class="op">:</span> sucio <span class="op">?</span> <span class="op">-</span><span class="dv">45</span> <span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb10-471"><a href="#cb10-471" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontSize</span><span class="op">:</span> sucio <span class="op">?</span> <span class="dv">10</span> <span class="op">:</span> <span class="dv">12</span></span>
+<span id="cb10-472"><a href="#cb10-472" aria-hidden="true" tabindex="-1"></a>  }))<span class="op">;</span></span>
+<span id="cb10-473"><a href="#cb10-473" aria-hidden="true" tabindex="-1"></a>  marcas<span class="op">.</span><span class="fu">push</span>(Plot<span class="op">.</span><span class="fu">axisY</span>({</span>
+<span id="cb10-474"><a href="#cb10-474" aria-hidden="true" tabindex="-1"></a>    <span class="dt">stroke</span><span class="op">:</span> trazo<span class="op">,</span></span>
+<span id="cb10-475"><a href="#cb10-475" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickSize</span><span class="op">:</span> sucio <span class="op">?</span> <span class="dv">5</span> <span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb10-476"><a href="#cb10-476" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ticks</span><span class="op">:</span> sucio <span class="op">?</span> <span class="dv">14</span> <span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb10-477"><a href="#cb10-477" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> sucio <span class="op">?</span> (d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)) <span class="op">:</span> <span class="kw">undefined</span></span>
+<span id="cb10-478"><a href="#cb10-478" aria-hidden="true" tabindex="-1"></a>  }))<span class="op">;</span></span>
+<span id="cb10-479"><a href="#cb10-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-480"><a href="#cb10-480" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb10-481"><a href="#cb10-481" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span> <span class="dv">680</span><span class="op">,</span></span>
+<span id="cb10-482"><a href="#cb10-482" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">340</span><span class="op">,</span></span>
+<span id="cb10-483"><a href="#cb10-483" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span></span>
+<span id="cb10-484"><a href="#cb10-484" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span> sucio <span class="op">?</span> <span class="dv">58</span> <span class="op">:</span> <span class="dv">44</span><span class="op">,</span></span>
+<span id="cb10-485"><a href="#cb10-485" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> sucio <span class="op">?</span> <span class="dv">58</span> <span class="op">:</span> <span class="dv">30</span><span class="op">,</span></span>
+<span id="cb10-486"><a href="#cb10-486" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginRight</span><span class="op">:</span> paso <span class="op">&gt;=</span> <span class="dv">5</span> <span class="op">?</span> <span class="dv">132</span> <span class="op">:</span> <span class="dv">24</span><span class="op">,</span></span>
+<span id="cb10-487"><a href="#cb10-487" aria-hidden="true" tabindex="-1"></a>    <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb10-488"><a href="#cb10-488" aria-hidden="true" tabindex="-1"></a>      <span class="dt">background</span><span class="op">:</span> <span class="st">"transparent"</span><span class="op">,</span></span>
+<span id="cb10-489"><a href="#cb10-489" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> paso <span class="op">&gt;=</span> <span class="dv">4</span> <span class="op">?</span> <span class="st">"var(--ink-soft)"</span> <span class="op">:</span> <span class="st">"var(--ink)"</span><span class="op">,</span></span>
+<span id="cb10-490"><a href="#cb10-490" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fontFamily</span><span class="op">:</span> casa <span class="op">?</span> <span class="st">"IBM Plex Sans, sans-serif"</span> <span class="op">:</span> <span class="st">"Arial, Helvetica, sans-serif"</span><span class="op">,</span></span>
+<span id="cb10-491"><a href="#cb10-491" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fontSize</span><span class="op">:</span> <span class="st">"12px"</span></span>
+<span id="cb10-492"><a href="#cb10-492" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb10-493"><a href="#cb10-493" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="kw">null</span> }<span class="op">,</span></span>
+<span id="cb10-494"><a href="#cb10-494" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> sucio <span class="op">?</span> <span class="st">"Percent (%)"</span> <span class="op">:</span> <span class="st">"%"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> dominioPasoY }<span class="op">,</span></span>
+<span id="cb10-495"><a href="#cb10-495" aria-hidden="true" tabindex="-1"></a>    <span class="dt">color</span><span class="op">:</span> casa</span>
+<span id="cb10-496"><a href="#cb10-496" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> { <span class="dt">domain</span><span class="op">:</span> dominioPaso<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"var(--teal)"</span><span class="op">,</span> <span class="st">"var(--clay)"</span>] }</span>
+<span id="cb10-497"><a href="#cb10-497" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> { <span class="dt">domain</span><span class="op">:</span> dominioPaso<span class="op">,</span> <span class="dt">scheme</span><span class="op">:</span> <span class="st">"tableau10"</span><span class="op">,</span> <span class="dt">legend</span><span class="op">:</span> paso <span class="op">&lt;=</span> <span class="dv">4</span> }<span class="op">,</span></span>
+<span id="cb10-498"><a href="#cb10-498" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> marcas</span>
+<span id="cb10-499"><a href="#cb10-499" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb10-500"><a href="#cb10-500" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-10-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-10-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-10-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-10-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-10-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-10-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-10-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-10-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-10-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-10-10" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-10-11" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-10-12" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-10-13" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-10-14" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="data-panel">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb11" data-startfrom="506" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 505;"><span id="cb11-506"><a href="#cb11-506" aria-hidden="true" tabindex="-1"></a>viewof pasoActivo <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span>]<span class="op">,</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"Step"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">0</span> })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-11" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb12" data-startfrom="511" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 510;"><span id="cb12-511"><a href="#cb12-511" aria-hidden="true" tabindex="-1"></a><span class="fu">lineaPaso</span>(pasoActivo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-12" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb13" data-startfrom="516" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 515;"><span id="cb13-516"><a href="#cb13-516" aria-hidden="true" tabindex="-1"></a><span class="fu">graficaPasos</span>(pasoActivo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-13" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="chart-note">
+<p>Labor informality (TIL1) and informal-sector employment (TOSI1), share of the employed population. ENOE, INEGI, original series, without seasonal adjustment. 2020-Q2 was not surveyed. The ENOE ran under three successive frameworks over this period, changing in 2020-Q3 and again in 2023-Q1. The line is drawn continuous across both, and the tooltip names the framework behind each point. The vertical axis is fitted to the two series and does not start at zero.</p>
+</div>
+<p>The two lines are worth reading for what they measure, not only for how they are drawn. Labor informality counts people who work without social security, wherever they work. Informal-sector employment counts people whose workplace is a business that never registered. Someone can be in one and not the other, and the distance between the lines is exactly that group: mostly salaried workers with no social security inside registered firms, along with paid domestic work and subsistence farming.</p>
+<p>The gap is where the change happened. The series carries no seasonal adjustment, so the comparison runs second quarter against second quarter. Labor informality fell from 59.4% in 2005 to 55.1% in 2026, while informal-sector employment rose from 28.2% to 30.2%. The informal sector did not shrink. What narrowed was the gap, from 31.2 points to 24.9. The ground it gave up was unprotected work inside registered businesses, and a single “informality” number hides both movements at once, which is why the choice of series is already part of the story being told.</p>
+</section>
+</section>
+<section id="the-sessions" class="level2">
+<h2 data-anchor-id="the-sessions">The sessions</h2>
+<p>Twelve sessions, each anchored in a paper and, where the session teaches one, a method: minimum wages and difference-in-differences, the China shock and shift-share instruments, folklore as a predictor of present-day economic choices, an election campaign that reactivates a historical episode from centuries earlier. Two of them, on storytelling with data, are where the exercises above come from. The course is taught in Spanish and the slides are in Spanish.</p>
+<details class="abstract">
+<summary>
+The twelve sessions, with slides
+</summary>
+<ul>
+<li><p><strong>1. The importance of stories.</strong> Opening session. The origins of storytelling and the evidence that folklore predicts present-day values and economic choices. Readings: Shiller, <em>Narrative Economics: How Stories Go Viral and Drive Major Economic Events</em> (Princeton University Press, 2019); Michalopoulos and Xue, “Folklore” (<em>Quarterly Journal of Economics</em>, 2021); Stephens, Silbert and Hasson, “Speaker-listener neural coupling underlies successful communication” (2010). <a href="files/storytelling/clase-01.pdf">Slides (PDF, 0.48 MB)</a></p></li>
+<li><p><strong>2. Stories, statistics, and memory.</strong> Chapter 2 of <em>Nexus</em>, a review of randomization and Bayesian statistics, and an experiment on stories versus statistics. Method: randomization and Bayesian statistics. Readings: Harari, <em>Nexus</em>, chapter 2, “Stories: Unlimited Connections” (2024); Graeber, Roth and Zimmermann, “Stories, Statistics, and Memory” (<em>Quarterly Journal of Economics</em>, 2024). <a href="files/storytelling/clase-02.pdf">Slides (PDF, 0.20 MB)</a></p></li>
+<li><p><strong>3. The virality of narratives.</strong> Narrative contagion in Shiller, models as stories with structure, instrumental variables, and the Acemoglu and Albouy exchange. Method: instrumental variables. Readings: Shiller, <em>Narrative Economics</em>; Morgan, <em>The World in the Model: How Economists Work and Think</em> (2012); Acemoglu, Johnson and Robinson, “The Colonial Origins of Comparative Development: An Empirical Investigation” (<em>American Economic Review</em>, 2001), with Albouy’s Comment and the authors’ Reply (both <em>American Economic Review</em>, 2012); Angrist and Krueger (1991) as the worked instrument. <a href="files/storytelling/clase-03.pdf">Slides (PDF, 0.72 MB)</a></p></li>
+<li><p><strong>4. Minimum wages and difference-in-differences.</strong> Minimum wage models and the wage-price spiral narrative; difference-in-differences, with Card and Krueger and the Mexican case. Method: difference-in-differences. Readings: Card and Krueger, “Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania” (<em>American Economic Review</em>, 1994) and <em>Myth and Measurement: The New Economics of the Minimum Wage</em> (1995); Calderón, Cortés, Pérez Pérez and Salcedo, “Disentangling the Effects of Large Minimum Wage and VAT Changes on Prices: Evidence from Mexico” (<em>Labour Economics</em>, 2023); Campos-Vázquez and Esquivel, “The Effect of Doubling the Minimum Wage and Decreasing Taxes on Inflation in Mexico” (<em>Economics Letters</em>, 2020); on the labor-market models behind the debate, Manning, <em>Monopsony in Motion</em> (2003), Diamond (1982), and Mortensen and Pissarides (1994); and on the estimator, de Chaisemartin and D’Haultfœuille (2020), Callaway and Sant’Anna (2021), Sun and Abraham (2021), and Roth, Sant’Anna, Bilinski and Poe (2023). <a href="files/storytelling/clase-04.pdf">Slides (PDF, 0.82 MB)</a></p></li>
+<li><p><strong>5. Regression discontinuity and behavioral economics.</strong> A regression discontinuity review, with an application to upper-secondary admission, and behavioral economics through the replication crisis. Method: regression discontinuity. Readings: Ortega Hesles, “Just Making the Admission Cut-Off” (2015); Kahneman and Tversky, “Prospect Theory: An Analysis of Decision under Risk” (<em>Econometrica</em>, 1979); Simmons, Nelson and Simonsohn, “False-Positive Psychology” (<em>Psychological Science</em>, 2011); Brodeur, Lé, Sangnier and Zylberberg, “Star Wars: The Empirics Strike Back” (<em>American Economic Journal: Applied Economics</em>, 2016); on the method, Thistlethwaite and Campbell (1960), Angrist and Lavy (1999), and Imbens and Lemieux (2008). <a href="files/storytelling/clase-05.pdf">Slides (PDF, 0.82 MB)</a></p></li>
+<li><p><strong>6. Job replacement and shift-share instruments.</strong> Narratives about jobs being replaced, and shift-share instruments applied to trade with China, robots, and artificial intelligence. Method: shift-share instruments. Readings: Autor, Dorn and Hanson, “The China Syndrome: Local Labor Market Effects of Import Competition in the United States” (<em>American Economic Review</em>, 2013); Acemoglu and Restrepo, “Robots and Jobs: Evidence from US Labor Markets” (<em>Journal of Political Economy</em>, 2020); Acemoglu, Autor, Hazell and Restrepo, “Artificial Intelligence and Jobs: Evidence from Online Vacancies” (<em>Journal of Labor Economics</em>, 2022); Borusyak, Hull and Jaravel, “A Practical Guide to Shift-Share Instruments” (<em>Journal of Economic Perspectives</em>, 2025); on measuring exposure, Felten, Raj and Seamans (2019), Webb (2020), and Brynjolfsson, Mitchell and Rock (2019). <a href="files/storytelling/clase-06.pdf">Slides (PDF, 1.22 MB)</a></p></li>
+<li><p><strong>8. Narratives and economic events: panic and confidence.</strong> Shiller covers two-way causality and the narratives of panic and confidence; Roos and Reccius define the collective economic narrative. Readings: Shiller, <em>Narrative Economics</em>; Roos and Reccius, “Narratives in economics” (<em>Journal of Economic Surveys</em> 38(2), 2024, 303-341); Cass and Shell, “Do Sunspots Matter?” (<em>Journal of Political Economy</em>, 1983); Vosoughi, Roy and Aral, “The spread of true and false news online” (<em>Science</em>, 2018). <a href="files/storytelling/clase-08.pdf">Slides (PDF, 0.32 MB)</a></p></li>
+<li><p><strong>9. Storytelling with data I: context, charts, and clutter.</strong> Covers Knaflic’s first three lessons: context, choosing the chart, and removing clutter. Closes with McCloskey on economic writing. Method: data visualization. Readings: Nussbaumer Knaflic, <em>Storytelling with Data</em> (2015), lessons 1 to 3; McCloskey, “Economical Writing” (<em>Economic Inquiry</em> 23(2), 1985, 187-222). <a href="files/storytelling/clase-09.pdf">Slides (PDF, 2.12 MB)</a></p></li>
+<li><p><strong>10. Storytelling with data II: attention, design, and story.</strong> Covers Knaflic’s last three lessons: attention, design, and narrative structure, worked through one example. Closes with McCloskey on rhetoric. Method: visual narrative. Readings: Nussbaumer Knaflic, <em>Storytelling with Data</em>, lessons 4 to 6; McCloskey, “The Rhetoric of Economics” (<em>Journal of Economic Literature</em> 21(2), 1983, 481-517); McKee, <em>Story: Style, Structure, Substance, and the Principles of Screenwriting</em> (1997); Vonnegut, “How to Write with Style” (1980). <a href="files/storytelling/clase-10.pdf">Slides (PDF, 1.94 MB)</a></p></li>
+<li><p><strong>11. Storytelling in public policy.</strong> The Jones and McBeth Narrative Policy Framework, applied to three development evaluations: school construction in Indonesia, deworming, and antimalarial bed nets. Method: randomized trials and difference-in-differences. Readings: Jones and McBeth, “A Narrative Policy Framework: Clear Enough to Be Wrong?” (<em>Policy Studies Journal</em>, 2010); Duflo, “Schooling and Labor Market Consequences of School Construction in Indonesia” (<em>American Economic Review</em>, 2001); Miguel and Kremer, “Worms: Identifying Impacts on Education and Health in the Presence of Treatment Externalities” (<em>Econometrica</em>, 2004); Cohen and Dupas, “Free Distribution or Cost-Sharing? Evidence from a Randomized Malaria Prevention Experiment” (<em>Quarterly Journal of Economics</em>, 2010); on the framework and its critics, Stone, <em>Policy Paradox</em>, Roe, <em>Narrative Policy Analysis</em> (1994), and Schlaufer, Kuenzler, Jones and Shanahan (2022). <a href="files/storytelling/clase-11.pdf">Slides (PDF, 0.67 MB)</a></p></li>
+<li><p><strong>13. Storytelling in business.</strong> Narrative as brand, as investment pitch, and as internal culture. Two papers measure its effect on advertisements and on IPO prospectuses. Method: content coding and regression. Readings: Quesenberry and Coolsen, “What Makes a Super Bowl Ad Super? Five-Act Dramatic Form Affects Consumer Super Bowl Advertising Ratings” (<em>Journal of Marketing Theory and Practice</em>, 2014); Martens, Jennings and Jennings, “Do the Stories They Tell Get Them the Money They Want? The Role of Entrepreneurial Narratives in Resource Acquisition” (<em>Academy of Management Journal</em>, 2007); with Freytag’s five-act dramatic pyramid as the scaffolding. <a href="files/storytelling/clase-13.pdf">Slides (PDF, 0.48 MB)</a></p></li>
+<li><p><strong>14. Storytelling in political processes.</strong> Ideas, framing, and collective memory in politics. The central case measures how an election campaign reactivates a historical episode from centuries earlier. Method: difference-in-differences and spatial regression discontinuity. Readings: Ochsner and Roesel, “Activated History: The Case of the Turkish Sieges of Vienna” (<em>American Economic Journal: Applied Economics</em>, 2024); Mukand and Rodrik, “The Political Economy of Ideas” (NBER, 2018); Entman, “Framing: Toward Clarification of a Fractured Paradigm” (<em>Journal of Communication</em>, 1993); Halbwachs, <em>Les cadres sociaux de la mémoire</em> (1925); on historical persistence, Dell (2010, 2012) and Acemoglu, Johnson and Robinson (2001); Chetty et al., “Social Capital I: Measurement and Associations with Economic Mobility” (<em>Nature</em>, 2022). <a href="files/storytelling/clase-14.pdf">Slides (PDF, 0.50 MB)</a></p></li>
+</ul>
+<p>Sessions 7 and 12 were given to student presentations of their paper proposals, so they have no slides.</p>
+</details>
+<details class="abstract">
+<summary>
+How it is graded
+</summary>
+<ul>
+<li>Class participation, with three slides per assigned reading (summary, strengths, and weaknesses), presented to the group by one student each session.</li>
+<li>Assignments: empirical exercises through the course.</li>
+<li>A five to ten minute presentation of the paper proposal to the group, with feedback from classmates.</li>
+<li>A two-page written proposal: the story to be told, the motivation, the elements that support it, and the plan of work.</li>
+<li>Final paper.</li>
+</ul>
+<p>The syllabus allows AI tools for exploring ideas, drafting, and iterating, provided the submitted text is not copied from them and their claims are checked.</p>
+</details>
+</section>
+<section id="readings" class="level2">
+<h2 data-anchor-id="readings">Readings</h2>
+<p>Books and articles the course draws on throughout, beyond the readings listed with each session.</p>
+<ul>
+<li>Robert J. Shiller. <em>Narrative Economics: How Stories Go Viral and Drive Major Economic Events</em>. Princeton University Press, 2019.</li>
+<li>Deirdre N. McCloskey. <em>The Rhetoric of Economics</em>. University of Wisconsin Press, 1985.</li>
+<li>Mary S. Morgan and Thomas A. Stapleford. “Narrative in Economics: A New Turn on the Past”. <em>History of Political Economy</em> 55(3), 2023, 395-421.</li>
+<li>Mary S. Morgan. <em>The World in the Model: How Economists Work and Think</em>. Cambridge University Press, 2012.</li>
+<li>Michael Roos and Matthias Reccius. “Narratives in Economics”. <em>Journal of Economic Surveys</em> 38(2), 2024, 303-341.</li>
+<li>Karla Borja and Suzanne Dieringer. “Telling My Story: Applying Storytelling to Complex Economic Data”. <em>Eastern Economic Journal</em> 49(3), 2023, 328-348.</li>
+<li>Edward E. Leamer. <em>Macroeconomic Patterns and Stories: A Guide for MBAs</em>. Springer, 2009.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+// The navbar's ES/EN switcher is defined once per profile in _quarto-en.yml
+// and _quarto-es.yml, always pointing at the other language's homepage
+// (href: "/es/" or "/"). Since most pages share an identical slug across
+// languages (see CLAUDE.md section 4), rewrite that link at load time to the
+// equivalent page instead: strip or add the leading "/es" path segment.
+//
+// The Labor Market MX data pages are a deliberate exception: their Spanish
+// slugs are real Spanish words (data-participacion, not data-participation),
+// which reads far better for the Spanish audience than an English word under
+// /es/ -- but that breaks the same-slug assumption above. MAPA_SLUGS_ESPECIALES
+// is the fix: any page whose EN and ES slugs differ needs one entry here (in
+// either direction, matched automatically both ways), or a reader on that
+// page hits a 404 when they switch languages -- exactly what happened on
+// the Quarterly Update page (data-quarterly-update.qmd <->
+// es/data-actualizacion-trimestral.qmd, formerly data-findings <->
+// data-hallazgos) -- and, it turned out, on
+// data-participation/informality/unemployment too -- before this map existed.
+// Keys here are the CURRENT slugs. The old ones still resolve because each
+// page carries an `aliases:` entry that renders a redirect stub, but a stub
+// is not a page the switcher ever runs on, so it needs no entry.
+var MAPA_SLUGS_ESPECIALES = {
+  "/data-participation": "/es/data-participacion",
+  "/data-informality": "/es/data-informalidad",
+  "/data-unemployment": "/es/data-desocupacion",
+  "/data-quarterly-update": "/es/data-actualizacion-trimestral"
+};
+var MAPA_INVERSO = {};
+for (var clave in MAPA_SLUGS_ESPECIALES) {
+  MAPA_INVERSO[MAPA_SLUGS_ESPECIALES[clave]] = clave;
+}
+
+// Matched by visible text ("ES"/"EN"), not aria-label: the navbar YAML sets
+// `aria-label:` on that item, but Quarto's navbar renderer doesn't emit it
+// on right-side text nav-links -- the attribute never reaches the HTML, so a
+// querySelector keyed on it silently matches nothing and the link falls
+// back to its configured default (always the other language's homepage).
+(function () {
+  var path = window.location.pathname;
+  var tieneHtml = /\.html$/.test(path);
+  var pathBase = path.replace(/\.html$/, "");
+
+  var targetBase = MAPA_SLUGS_ESPECIALES[pathBase] || MAPA_INVERSO[pathBase];
+  if (!targetBase) {
+    if (pathBase === "/es" || pathBase.indexOf("/es/") === 0) {
+      targetBase = pathBase.replace(/^\/es/, "") || "/";
+    } else {
+      targetBase = pathBase === "/" ? "/es/" : "/es" + pathBase;
+    }
+  }
+  var target = (tieneHtml && targetBase.slice(-1) !== "/") ? targetBase + ".html" : targetBase;
+
+  var spans = document.querySelectorAll(".menu-text");
+  for (var i = 0; i < spans.length; i++) {
+    var t = spans[i].textContent.trim();
+    if (t === "ES" || t === "EN") {
+      var a = spans[i].closest("a");
+      if (a) a.setAttribute("href", target);
+      break;
+    }
+  }
+})();
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIE5hcnJhdGl2ZSBjb250YWdpb246IHRoZSBLZXJtYWNrLU1jS2VuZHJpY2sgU0lSIG1vZGVsIGluIHRoZSBmb3JtXG4vLyBOYXJyYXRpdmUgRWNvbm9taWNzIGFwcGxpZXMgaXQgdG8gYSBzdG9yeS4gQ2VsbCBuYW1lcyBhcmUgZ2xvYmFsIHBlciBwYWdlLFxuLy8gc28gZXZlcnl0aGluZyBoZXJlIGNhcnJpZXMgYSBzaXIqIHByZWZpeCB0byBzdGF5IGNsZWFyIG9mIHRoZSB0d28gZXhlcmNpc2VzXG4vLyBiZWxvdy5cbnNpclNlbWlsbGEgPSAwLjAwMVxuc2lyRGlhcyA9IDIwMFxuc2lyUGFzbyA9IDAuMDVcblxuLy8gRXhwbGljaXQgRXVsZXIuIFMgKyBJICsgUiBob2xkcyBhdCAxIHRvIHdpdGhpbiAxZS0xNCBldmVyeXdoZXJlIG9uIHRoZVxuLy8gc2xpZGVyIGdyaWQuIEludGVncmF0ZWQgdG8gY29udmVyZ2VuY2UsIGEgc3RlcCBvZiAwLjA1IGxhbmRzIHdpdGhpbiAwLjA3IHBwXG4vLyBvZiB0aGUgYW5hbHl0aWMgZmluYWwgc2l6ZSwgd2hpY2ggZm9yIGEgc2VlZGVkIHJ1biBpc1xuLy8gU19pbmYgPSBTXzAgZXhwKC1SMCAoMSAtIFNfaW5mKSkgd2l0aCBTXzAgPSAxIC0gc2lyU2VtaWxsYSwgbm90IHRoZVxuLy8gU18wID0gMSBmb3JtOiBhdCBSMCA9IDEgdGhlIHR3byBkaWZmZXIgYnkgYWJvdXQgNCBwcCwgc28gY2hlY2tpbmcgYWdhaW5zdFxuLy8gdGhlIHdyb25nIG9uZSBpbnZlbnRzIGFuIGludGVncmF0b3IgZXJyb3IgdGhhdCBpcyBub3QgdGhlcmUuXG4vLyBXaGF0IHRoZSBydW4gZG9lcyBOT1QgZG8gaXMgcmVhY2ggdGhhdCBhc3ltcHRvdGUgaW4gZXZlcnkgc2V0dGluZy4gSnVzdFxuLy8gYWJvdmUgUjAgPSAxIHRoZSBlcGlkZW1pYyBpcyBzdGlsbCB1bmRlciB3YXkgb24gZGF5IHNpckRpYXMgYW5kIHRoZSBmaW5hbFxuLy8gc3RhdGUgc2l0cyBmYXIgZnJvbSBTX2luZi4gVGhhdCBpcyB0aGUgZml4ZWQgd2luZG93LCBub3QgdGhlIHN0ZXAgc2l6ZSwgYW5kXG4vLyByZWZpbmluZyB0aGUgc3RlcCBkb2VzIG5vdCBtb3ZlIGl0LiBJdCBpcyB3aHkgdGhlIHJlYWRpbmcgc2F5cyBcInN0aWxsXG4vLyByaXNpbmdcIiBpbnN0ZWFkIG9mIG5hbWluZyBhIHBlYWsgdGhlcmUsIGFuZCB3aHkgaXQgYWx3YXlzIHNheXMgXCJieSBkYXlcbi8vIHNpckRpYXNcIiByYXRoZXIgdGhhbiByZXBvcnRpbmcgYSB0b3RhbC5cbi8vIERheXMgYXJlIHJlY29yZGVkIGFzIGsgLyBwb3JEaWEgcmF0aGVyIHRoYW4gayAqIHNpclBhc28gc28gdGhlIGF4aXMgY2Fycmllc1xuLy8gZXhhY3QgaW50ZWdlcnMuXG5zaXJTaW11bGFyID0gKGMsIHIpID0+IHtcbiAgY29uc3QgcG9yRGlhID0gTWF0aC5yb3VuZCgxIC8gc2lyUGFzbyk7XG4gIGxldCBTID0gMSAtIHNpclNlbWlsbGEsIEkgPSBzaXJTZW1pbGxhLCBSID0gMDtcbiAgY29uc3QgZmlsYXMgPSBbeyBkaWE6IDAsIFMsIEksIFIgfV07XG4gIGZvciAobGV0IGsgPSAxOyBrIDw9IHNpckRpYXMgKiBwb3JEaWE7IGsrKykge1xuICAgIGNvbnN0IG51ZXZvcyA9IGMgKiBTICogSSAqIHNpclBhc287XG4gICAgY29uc3Qgc2FsZW4gPSByICogSSAqIHNpclBhc287XG4gICAgUyAtPSBudWV2b3M7XG4gICAgSSArPSBudWV2b3MgLSBzYWxlbjtcbiAgICBSICs9IHNhbGVuO1xuICAgIGlmIChrICUgcG9yRGlhID09PSAwKSBmaWxhcy5wdXNoKHsgZGlhOiBrIC8gcG9yRGlhLCBTLCBJLCBSIH0pO1xuICB9XG4gIHJldHVybiBmaWxhcztcbn1cblxuc2lyRXRpcXVldGEgPSAoe1xuICBTOiBcIkhhdmUgbm90IGhlYXJkIGl0XCIsXG4gIEk6IFwiVGVsbGluZyBpdFwiLFxuICBSOiBcIlN0b3BwZWQgdGVsbGluZ1wiXG59KVxuc2lyRG9taW5pbyA9IFtzaXJFdGlxdWV0YS5TLCBzaXJFdGlxdWV0YS5JLCBzaXJFdGlxdWV0YS5SXVxuc2lyQ29sb3JlcyA9IFtcInZhcigtLXRlYWwpXCIsIFwidmFyKC0tY2xheSlcIiwgXCJ2YXIoLS1pbmstc29mdClcIl1cblxuc2lyTGFyZ28gPSB0cmF6YSA9PiB0cmF6YS5mbGF0TWFwKGQgPT4gW1xuICB7IGRpYTogZC5kaWEsIGdydXBvOiBzaXJFdGlxdWV0YS5TLCB2YWxvcjogZC5TIH0sXG4gIHsgZGlhOiBkLmRpYSwgZ3J1cG86IHNpckV0aXF1ZXRhLkksIHZhbG9yOiBkLkkgfSxcbiAgeyBkaWE6IGQuZGlhLCBncnVwbzogc2lyRXRpcXVldGEuUiwgdmFsb3I6IGQuUiB9XG5dKVxuXG5zaXJSZXN1bWVuID0gKGMsIHIpID0+IHtcbiAgY29uc3QgdHJhemEgPSBzaXJTaW11bGFyKGMsIHIpO1xuICBsZXQgcGljbyA9IHRyYXphWzBdO1xuICBmb3IgKGNvbnN0IGQgb2YgdHJhemEpIGlmIChkLkkgPiBwaWNvLkkpIHBpY28gPSBkO1xuICBjb25zdCBmaW4gPSB0cmF6YVt0cmF6YS5sZW5ndGggLSAxXTtcbiAgcmV0dXJuIHsgdHJhemEsIFIwOiBjIC8gciwgcGljbywgYWxjYW5jZTogMSAtIGZpbi5TLCBmaW4gfTtcbn1cblxuLy8gVGhlIHRocmVlIHNlcmllcyBhcmUgbGFiZWxsZWQgYXQgdGhlIGVuZCBvZiB0aGVpciBvd24gbGluZSwgc28gdHdvIGxhYmVsc1xuLy8gY29sbGlkZSB3aGVuZXZlciB0d28gY3VydmVzIGZpbmlzaCB0b2dldGhlcjogSSBhbmQgUiBib3RoIHNpdCBhdCB6ZXJvIHdoZW5cbi8vIFIwIDwgMSwgYW5kIFMgYW5kIFIgbWVldCB3aGVuIGhhbGYgdGhlIHBvcHVsYXRpb24gaGFzIGhlYXJkIHRoZSBzdG9yeS4gVGhpc1xuLy8gcHVzaGVzIHRoZW0gYXBhcnQgYnkgYSBtaW5pbXVtIGdhcCBpbiBkYXRhIHVuaXRzLiBJdCBvbmx5IGV2ZXIgbW92ZXMgbGFiZWxzXG4vLyB1cCwgYW5kIHRoZSB0b3Agb25lIGNhbiByaXNlIGJ5IGF0IG1vc3QgdHdvIGdhcHMsIHNvIGl0IGNhbm5vdCBsZWF2ZSB0aGVcbi8vIGZyYW1lLlxuc2lyU2VwYXJhciA9IChwdW50b3MsIG1pbmltbykgPT4ge1xuICBjb25zdCBvcmRlbiA9IHB1bnRvcy5tYXAoZCA9PiAoeyAuLi5kIH0pKS5zb3J0KChhLCBiKSA9PiBhLnZhbG9yIC0gYi52YWxvcik7XG4gIGZvciAobGV0IGkgPSAxOyBpIDwgb3JkZW4ubGVuZ3RoOyBpKyspIHtcbiAgICBpZiAob3JkZW5baV0udmFsb3IgLSBvcmRlbltpIC0gMV0udmFsb3IgPCBtaW5pbW8pIHtcbiAgICAgIG9yZGVuW2ldLnZhbG9yID0gb3JkZW5baSAtIDFdLnZhbG9yICsgbWluaW1vO1xuICAgIH1cbiAgfVxuICByZXR1cm4gb3JkZW47XG59XG5cbnNpclBvcmNpZW50byA9IHYgPT4gKHYgKiAxMDApLnRvRml4ZWQoMSkgKyBcIiVcIlxuXG4vLyBUaGUgbGFyZ2VzdCBJIGluIHRoZSB0cmFjZSBpcyBub3QgYWx3YXlzIHRoZSBwZWFrIG9mIHRoZSBjdXJ2ZS4gVGhlIHdpbmRvd1xuLy8gaXMgZml4ZWQgYXQgc2lyRGlhcywgYW5kIGZvciB0aGUgc2l4IHJlYWNoYWJsZSBzZXR0aW5ncyBqdXN0IGFib3ZlIFIwID0gMVxuLy8gKGMvciBvZiAwLjExLzAuMTAsIDAuMTIvMC4xMCwgMC4xMi8wLjExLCAwLjEzLzAuMTIsIDAuMTQvMC4xMywgMC4xNS8wLjE0KVxuLy8gdGhlIHN0b3J5IGlzIHN0aWxsIHNwcmVhZGluZyB3aGVuIHRoZSB3aW5kb3cgZW5kcywgc28gdGhlIG1heGltdW0gZmFsbHMgb25cbi8vIHRoZSBsYXN0IGRheS4gQ2FsbGluZyB0aGF0IGEgcGVhayB3b3VsZCBuYW1lIHRoZSBlZGdlIG9mIHRoZSBmcmFtZSBhcyBhblxuLy8gZXZlbnQgdGhlIGNoYXJ0IGRvZXMgbm90IHNob3c6IHRoZSBjdXJ2ZSBsZWF2ZXMgdGhlIHBsb3Qgc3RpbGwgY2xpbWJpbmcuXG4vLyBCZWxvdyBSMCA9IDEgdGhlcmUgaXMgbm8gcGVhayBlaXRoZXIsIG9ubHkgdGhlIHNlZWQgZGVjYXlpbmcgZnJvbSBkYXkgMC5cbi8vIFNvIHRoZSByZWFkaW5nIHJlcG9ydHMgYSBwZWFrIG9ubHkgd2hlcmUgdGhlIGN1cnZlIGhhcyBhY3R1YWxseSB0dXJuZWQuXG5zaXJMZWN0dXJhID0gKGMsIHIpID0+IHtcbiAgY29uc3QgeCA9IHNpclJlc3VtZW4oYywgcik7XG4gIGNvbnN0IHBhcnRlcyA9IFtcbiAgICBgUjAgPSAke3guUjAudG9GaXhlZCgyKX1gLFxuICAgIHguUjAgPiAxID8gXCJpdCBzcHJlYWRzXCIgOiBcIml0IGRpZXMgb3V0XCJcbiAgXTtcbiAgaWYgKHguUjAgPiAxKSB7XG4gICAgcGFydGVzLnB1c2goeC5waWNvLmRpYSA9PT0gc2lyRGlhc1xuICAgICAgPyBgc3RpbGwgcmlzaW5nIG9uIGRheSAke3NpckRpYXN9YFxuICAgICAgOiBgcGVhayAke3NpclBvcmNpZW50byh4LnBpY28uSSl9IG9uIGRheSAke3gucGljby5kaWF9YCk7XG4gIH1cbiAgcGFydGVzLnB1c2goYCR7c2lyUG9yY2llbnRvKHguYWxjYW5jZSl9IGhhdmUgaGVhcmQgaXQgYnkgZGF5ICR7c2lyRGlhc31gKTtcbiAgcmV0dXJuIGh0bWxgPGRpdiBjbGFzcz1cImRhdGEtbWV0YVwiPiR7cGFydGVzLmpvaW4oXCIgwrcgXCIpfTwvZGl2PmA7XG59XG5cbi8vIEEgZGlzcGxheSBjZWxsIHRoYXQgaXMgb25seSBhIGNlbGwgbmFtZSByZW5kZXJzIE9ic2VydmFibGUncyBpbnNwZWN0b3IsIHNvXG4vLyBldmVyeSB2aXN1YWwgb3V0cHV0IGhlcmUgaXMgYSBmdW5jdGlvbiBjYWxsZWQgZnJvbSBpdHMgb3duIGNlbGwgKENMQVVERS5tZFxuLy8gc2VjdGlvbiAxMywgYnVnIDApLlxuc2lyR3JhZmljYSA9IChjLCByKSA9PiB7XG4gIGNvbnN0IHggPSBzaXJSZXN1bWVuKGMsIHIpO1xuICBjb25zdCBsYXJnbyA9IHNpckxhcmdvKHgudHJhemEpO1xuICBjb25zdCBldGlxdWV0YXMgPSBzaXJTZXBhcmFyKFtcbiAgICB7IGdydXBvOiBzaXJFdGlxdWV0YS5TLCB2YWxvcjogeC5maW4uUyB9LFxuICAgIHsgZ3J1cG86IHNpckV0aXF1ZXRhLkksIHZhbG9yOiB4LmZpbi5JIH0sXG4gICAgeyBncnVwbzogc2lyRXRpcXVldGEuUiwgdmFsb3I6IHguZmluLlIgfVxuICBdLCAwLjA2NSkubWFwKGQgPT4gKHsgLi4uZCwgZGlhOiBzaXJEaWFzIH0pKTtcblxuICByZXR1cm4gUGxvdC5wbG90KHtcbiAgICB3aWR0aDogNjgwLFxuICAgIGhlaWdodDogMzIwLFxuICAgIG1hcmdpblRvcDogMjQsXG4gICAgbWFyZ2luTGVmdDogNDYsXG4gICAgbWFyZ2luQm90dG9tOiAzMixcbiAgICBtYXJnaW5SaWdodDogMTUwLFxuICAgIHN0eWxlOiB7XG4gICAgICBiYWNrZ3JvdW5kOiBcInRyYW5zcGFyZW50XCIsXG4gICAgICBjb2xvcjogXCJ2YXIoLS1pbmstc29mdClcIixcbiAgICAgIGZvbnRGYW1pbHk6IFwiSUJNIFBsZXggU2Fucywgc2Fucy1zZXJpZlwiLFxuICAgICAgZm9udFNpemU6IFwiMTJweFwiXG4gICAgfSxcbiAgICB4OiB7IGxhYmVsOiBudWxsLCBkb21haW46IFswLCBzaXJEaWFzXSB9LFxuICAgIHk6IHsgbGFiZWw6IG51bGwsIGRvbWFpbjogWzAsIDFdIH0sXG4gICAgY29sb3I6IHsgZG9tYWluOiBzaXJEb21pbmlvLCByYW5nZTogc2lyQ29sb3JlcyB9LFxuICAgIG1hcmtzOiBbXG4gICAgICBQbG90LmdyaWRZKHsgc3Ryb2tlOiBcInZhcigtLXJ1bGUpXCIgfSksXG4gICAgICBQbG90LmxpbmVZKGxhcmdvLCB7XG4gICAgICAgIHg6IFwiZGlhXCIsIHk6IFwidmFsb3JcIiwgejogXCJncnVwb1wiLCBzdHJva2U6IFwiZ3J1cG9cIixcbiAgICAgICAgc3Ryb2tlV2lkdGg6IDIsIHN0cm9rZUxpbmVqb2luOiBcInJvdW5kXCIsIHN0cm9rZUxpbmVjYXA6IFwicm91bmRcIlxuICAgICAgfSksXG4gICAgICBQbG90LnRleHQoZXRpcXVldGFzLCB7XG4gICAgICAgIHg6IFwiZGlhXCIsIHk6IFwidmFsb3JcIiwgdGV4dDogXCJncnVwb1wiLCBmaWxsOiBcImdydXBvXCIsXG4gICAgICAgIHRleHRBbmNob3I6IFwic3RhcnRcIiwgZHg6IDgsIGZvbnRTaXplOiAxMywgZm9udFdlaWdodDogNTAwXG4gICAgICB9KSxcbiAgICAgIC8vIFRoZSB0aXAncyBkYXRhIGlzIHRoZSB1bmlvbiBvZiBldmVyeSBzZXJpZXMgdGhlIGNoYXJ0IGRyYXdzLCBhbmQgaXRzXG4gICAgICAvLyB0aXRsZSBuYW1lcyB0aGUgc2VyaWVzIGl0IGlzIGRlc2NyaWJpbmcgKENMQVVERS5tZCBzZWN0aW9uIDEzKS5cbiAgICAgIFBsb3QudGlwKGxhcmdvLCBQbG90LnBvaW50ZXJYKHtcbiAgICAgICAgeDogXCJkaWFcIiwgeTogXCJ2YWxvclwiLFxuICAgICAgICB0aXRsZTogZCA9PiBgJHtkLmdydXBvfVxcbmRheSAke2QuZGlhfVxcbiR7c2lyUG9yY2llbnRvKGQudmFsb3IpfWBcbiAgICAgIH0pKSxcbiAgICAgIFBsb3QuYXhpc1goeyBzdHJva2U6IFwidmFyKC0tcnVsZSlcIiwgdGlja1NpemU6IDAsIHRpY2tzOiA1IH0pLFxuICAgICAgUGxvdC5heGlzWSh7XG4gICAgICAgIHN0cm9rZTogXCJ2YXIoLS1ydWxlKVwiLCB0aWNrU2l6ZTogMCwgdGlja3M6IDUsXG4gICAgICAgIHRpY2tGb3JtYXQ6IGQgPT4gKGQgKiAxMDApLnRvRml4ZWQoMCkgKyBcIiVcIlxuICAgICAgfSlcbiAgICBdXG4gIH0pO1xufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoidmlld29mIHNpckNvbnRhZ2lvID0gSW5wdXRzLnJhbmdlKFswLjEwLCAwLjUwXSwgeyBsYWJlbDogXCJDb250YWdpb25cIiwgc3RlcDogMC4wMSwgdmFsdWU6IDAuMzAgfSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBzaXJPbHZpZG8gPSBJbnB1dHMucmFuZ2UoWzAuMTAsIDAuNTBdLCB7IGxhYmVsOiBcIkZvcmdldHRpbmdcIiwgc3RlcDogMC4wMSwgdmFsdWU6IDAuMTUgfSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InNpckxlY3R1cmEoc2lyQ29udGFnaW8sIHNpck9sdmlkbylcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InNpckdyYWZpY2Eoc2lyQ29udGFnaW8sIHNpck9sdmlkbylcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIEZvdXIgZml4ZWQgcm93cyBvZiB0d2VsdmUgZGlnaXRzLCBpZGVudGljYWwgaW4gYm90aCBsYW5ndWFnZXMsIHdpdGhcbi8vIGV4YWN0bHkgc2V2ZW4gM3MuIE11dGVkIGJ5IGRlZmF1bHQ7IHRoZSB0b2dnbGUgYXBwbGllcyBvbmUgcHJlYXR0ZW50aXZlXG4vLyBhdHRyaWJ1dGUgKGludGVuc2l0eSkgYW5kIGNoYW5nZXMgbm90aGluZyBlbHNlLlxuZGlnaXRvc0ZpbGFzID0gW1wiODA1MzkxNjQzNzI1XCIsIFwiNDcyNjgwMzU5MTY4XCIsIFwiOTM2MTU4MjcwNDM2XCIsIFwiMjU4MDczNDk2MTUzXCJdXG5cbi8vIEEgZGlzcGxheSBjZWxsIHRoYXQgaXMgb25seSBhIGNlbGwgbmFtZSByZW5kZXJzIE9ic2VydmFibGUncyBpbnNwZWN0b3IsXG4vLyBzbyBldmVyeSB2aXN1YWwgb3V0cHV0IGhlcmUgaXMgYSBmdW5jdGlvbiBjYWxsZWQgZnJvbSBpdHMgb3duIGNlbGxcbi8vIChDTEFVREUubWQgc2VjdGlvbiAxMywgYnVnIDApLlxuZ3JpZERpZ2l0b3MgPSAoYWN0aXZvKSA9PiBodG1sYDxkaXYgY2xhc3M9XCJkaWdpdC1ncmlkXCI+JHtcbiAgZGlnaXRvc0ZpbGFzLm1hcChmaWxhID0+IGh0bWxgPGRpdj4ke1xuICAgIEFycmF5LmZyb20oZmlsYSwgY2FyYWN0ZXIgPT5cbiAgICAgIGFjdGl2byAmJiBjYXJhY3RlciA9PT0gXCIzXCJcbiAgICAgICAgPyBodG1sYDxzcGFuIGNsYXNzPVwiZGlnaXQtaGl0XCI+Mzwvc3Bhbj5gXG4gICAgICAgIDogaHRtbGA8c3Bhbj4ke2NhcmFjdGVyfTwvc3Bhbj5gKVxuICB9PC9kaXY+YClcbn08L2Rpdj5gXG5cbi8vIFRoZSBhbnN3ZXIgaGFzIHRvIHdhaXQgZm9yIHRoZSB0b2dnbGUuIFByaW50ZWQgdW5kZXIgdGhlIGdyaWQgZnJvbSB0aGVcbi8vIHN0YXJ0LCBpdCBpcyByZWFkIGJlZm9yZSBhbnlvbmUgdHJpZXMgdG8gY291bnQsIGFuZCB0aGUgZXhlcmNpc2Ugc3RvcHNcbi8vIHdvcmtpbmc6IHRoZSBwb2ludCBpcyB0aGUgZGlmZmVyZW5jZSBiZXR3ZWVuIGNvdW50aW5nIGFuZCBzZWVpbmcuXG5saW5lYURpZ2l0b3MgPSAoYWN0aXZvKSA9PiBodG1sYDxwPiR7YWN0aXZvXG4gID8gXCJTZXZlbi4gT25lIGNoYW5nZSBtYWtlcyB0aGVtIHZpc2libGUgYmVmb3JlIGNvdW50aW5nIHRoZW0uXCJcbiAgOiBcIkNvdW50aW5nIHRoZW0gdGFrZXMgYSBtb21lbnQuXCJcbn08L3A+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC03IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiZ3JpZERpZ2l0b3MocmVzYWx0YXIpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTgiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2YgcmVzYWx0YXIgPSBJbnB1dHMudG9nZ2xlKHsgbGFiZWw6IFwiSGlnaGxpZ2h0XCIsIHZhbHVlOiBmYWxzZSB9KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC05IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoibGluZWFEaWdpdG9zKHJlc2FsdGFyKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0xMCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImluZGljYWRvcmVzID0gRmlsZUF0dGFjaG1lbnQoXCJkYXRhL2xhYm9yLWluZGljYXRvcnMuY3N2XCIpLmNzdih7IHR5cGVkOiB0cnVlIH0pXG5cbmV0aXF1ZXRhU2VyaWUgPSAoeyBUSUwxOiBcIkluZm9ybWFsaXR5XCIsIFRPU0kxOiBcIkluZm9ybWFsIHNlY3RvclwiIH0pXG5cbi8vIFRoZSByZWdpbWVuIGNvbHVtbiBzdG9yZXMgSU5FR0kncyBvd24gaW50ZXJuYWwgY29kZXMuIFRoZSBub3RlIHVuZGVyIHRoZVxuLy8gY2hhcnQgcHJvbWlzZXMgdGhlIHRvb2x0aXAgbmFtZXMgdGhlIGZyYW1ld29yaywgc28gaXQgZ2V0cyBhIHJlYWRhYmxlIG5hbWVcbi8vIHJhdGhlciB0aGFuIHRoZSBjb2RlOiBcInRyYWRpY2lvbmFsXCIgaXMgdGhlIHJlZ3VsYXIgRU5PRSwgXCJlbm9lblwiIHRoZSBOdWV2YVxuLy8gRWRpY2lvbiB0aGF0IHJhbiB3aGlsZSBmaWVsZHdvcmsgcmVjb3ZlcmVkIGZyb20gdGhlIDIwMjAgaW50ZXJydXB0aW9uLCBhbmRcbi8vIFwiZW5vZV8yMDIzXCIgdGhlIHJldHVybiB0byB0aGUgc3RhbmRhcmQgRU5PRSBvbiB0aGUgMjAyMyBmcmFtZXdvcmsuXG5ldGlxdWV0YU1hcmNvID0gKHtcbiAgdHJhZGljaW9uYWw6IFwiRU5PRVwiLFxuICBlbm9lbjogXCJFTk9FTlwiLFxuICBlbm9lXzIwMjM6IFwiRU5PRSwgMjAyMyBmcmFtZXdvcmtcIlxufSlcblxuc2VyaWVEZSA9IGNvZGlnbyA9PiBpbmRpY2Fkb3Jlc1xuICAuZmlsdGVyKGQgPT4gZC5pbmRpY2Fkb3IgPT09IGNvZGlnbylcbiAgLm1hcChkID0+ICh7XG4gICAgc2VyaWU6IGV0aXF1ZXRhU2VyaWVbY29kaWdvXSxcbiAgICBmZWNoYTogbmV3IERhdGUoZC5hbmlvLCAoZC50cmltZXN0cmUgLSAxKSAqIDMsIDEpLFxuICAgIHZhbG9yOiBkLnZhbG9yLFxuICAgIGFuaW86IGQuYW5pbyxcbiAgICB0cmltZXN0cmU6IGQudHJpbWVzdHJlLFxuICAgIHJlZ2ltZW46IGQucmVnaW1lblxuICB9KSlcbiAgLnNvcnQoKGEsIGIpID0+IGEuZmVjaGEgLSBiLmZlY2hhKVxuXG4vLyAyMDIwLVEyIGlzIGdlbnVpbmVseSBhYnNlbnQgKHRoZSBFVE9FIGdhcCkuIFdpdGhvdXQgYW4gZXhwbGljaXRcbi8vIHVuZGVmaW5lZCBwb2ludCBQbG90IGJyaWRnZXMgaXQgd2l0aCBhIHN0cmFpZ2h0IGRpYWdvbmFsLCB3aGljaCByZWFkcyBhXG4vLyBjaGFuZ2Ugb2YgbWV0aG9kIGFzIGEgZ3JhZHVhbCB0cmFuc2l0aW9uLlxuY29uSHVlY29zID0gc2VyaWUgPT4ge1xuICBjb25zdCByZXN1bHRhZG8gPSBbXTtcbiAgZm9yIChsZXQgaSA9IDA7IGkgPCBzZXJpZS5sZW5ndGg7IGkrKykge1xuICAgIHJlc3VsdGFkby5wdXNoKHNlcmllW2ldKTtcbiAgICBpZiAoaSA8IHNlcmllLmxlbmd0aCAtIDEpIHtcbiAgICAgIGNvbnN0IGFjdHVhbCA9IHNlcmllW2ldLCBzaWd1aWVudGUgPSBzZXJpZVtpICsgMV07XG4gICAgICBjb25zdCBtZXNlcyA9IChzaWd1aWVudGUuZmVjaGEuZ2V0RnVsbFllYXIoKSAtIGFjdHVhbC5mZWNoYS5nZXRGdWxsWWVhcigpKSAqIDEyXG4gICAgICAgICsgKHNpZ3VpZW50ZS5mZWNoYS5nZXRNb250aCgpIC0gYWN0dWFsLmZlY2hhLmdldE1vbnRoKCkpO1xuICAgICAgaWYgKG1lc2VzID4gMykge1xuICAgICAgICByZXN1bHRhZG8ucHVzaCh7XG4gICAgICAgICAgLi4uYWN0dWFsLFxuICAgICAgICAgIGZlY2hhOiBuZXcgRGF0ZShhY3R1YWwuZmVjaGEuZ2V0RnVsbFllYXIoKSwgYWN0dWFsLmZlY2hhLmdldE1vbnRoKCkgKyAzLCAxKSxcbiAgICAgICAgICB2YWxvcjogdW5kZWZpbmVkXG4gICAgICAgIH0pO1xuICAgICAgfVxuICAgIH1cbiAgfVxuICByZXR1cm4gcmVzdWx0YWRvO1xufVxuXG5zZXJpZXNQYXNvID0gW3NlcmllRGUoXCJUSUwxXCIpLCBzZXJpZURlKFwiVE9TSTFcIildXG5wdW50b3NQYXNvID0gc2VyaWVzUGFzby5mbGF0KClcbmxpbmVhc1Bhc28gPSBzZXJpZXNQYXNvLmZsYXRNYXAoY29uSHVlY29zKVxuZmluYWxlc1Bhc28gPSBzZXJpZXNQYXNvLm1hcChzID0+IHNbcy5sZW5ndGggLSAxXSlcbmRvbWluaW9QYXNvID0gW2V0aXF1ZXRhU2VyaWUuVElMMSwgZXRpcXVldGFTZXJpZS5UT1NJMV1cblxuLy8gVGhlIGF4aXMgd2FzIGZpeGVkIGF0IFswLCA2NV0gd2hpbGUgdGhlIHR3byBzZXJpZXMgbGl2ZSBiZXR3ZWVuIDI3IGFuZCA2MCxcbi8vIHNvIGFib3V0IGhhbGYgdGhlIGZyYW1lIHdhcyBlbXB0eSBhbmQgYm90aCBsaW5lcyB3ZXJlIHNxdWVlemVkIGludG8gdGhlIHRvcFxuLy8gaGFsZi4gRml0IGl0IHRvIHRoZSBkYXRhIGluc3RlYWQsIHRoZSBzYW1lIGlkZWEgYXMgZG9taW5pb0FqdXN0YWRvU2VyaWUgb25cbi8vIHRoZSBMYWJvciBNYXJrZXQgTVggcGFnZXMsIGJ1dCB3aXRoIGEgdGlnaHRlciBtYXJnaW46IHRoYXQgaGVscGVyIHBhZHMgMTUlXG4vLyBvZiB0aGUgcmFuZ2UsIHdoaWNoIG92ZXIgYSBzcGFuIHRoaXMgd2lkZSB3b3VsZCBsZWF2ZSBzZXZlcmFsIHBvaW50cyBvZlxuLy8gZW1wdHkgYXhpcyBiYWNrLiBDb21wdXRlZCByYXRoZXIgdGhhbiBoYXJkY29kZWQgc28gaXQgc3RpbGwgZml0cyB3aGVuIHRoZVxuLy8gcXVhcnRlcmx5IGRhdGEgbW92ZXMuXG5kb21pbmlvUGFzb1kgPSB7XG4gIGNvbnN0IHZhbG9yZXMgPSBwdW50b3NQYXNvLm1hcChkID0+IGQudmFsb3IpO1xuICBjb25zdCBtaW4gPSBNYXRoLm1pbiguLi52YWxvcmVzKSwgbWF4ID0gTWF0aC5tYXgoLi4udmFsb3Jlcyk7XG4gIGNvbnN0IG1hcmdlbiA9IChtYXggLSBtaW4pICogMC4wNjtcbiAgcmV0dXJuIFttaW4gLSBtYXJnZW4sIG1heCArIG1hcmdlbl07XG59XG5cbnRleHRvc1Bhc28gPSBbXG4gIFwiU3RyYWlnaHQgb3V0IG9mIGEgc3ByZWFkc2hlZXQuIEEgYm9yZGVyLCBncmlkbGluZXMsIGEgbWFya2VyIG9uIGV2ZXJ5IHF1YXJ0ZXIsIGEgbGVnZW5kIHNldCBhcGFydCBmcm9tIHRoZSBsaW5lcywgYW5kIHRoZSBzb2Z0d2FyZSdzIGRlZmF1bHQgY29sb3JzLlwiLFxuICBcIkNoYXJ0IGJvcmRlciByZW1vdmVkLlwiLFxuICBcIkdyaWRsaW5lcyByZW1vdmVkLlwiLFxuICBcIkRhdGEgbWFya2VycyByZW1vdmVkLlwiLFxuICBcIkF4aXMgbGFiZWxzIGNsZWFuZWQgdXAgYW5kIHNlbnQgdG8gdGhlIGJhY2tncm91bmQuXCIsXG4gIFwiU2VyaWVzIGxhYmVsZWQgZGlyZWN0bHksIGxlZ2VuZCBkcm9wcGVkLlwiLFxuICBcIkVhY2ggbGFiZWwgaW4gaXRzIHNlcmllcycgY29sb3IuIFRoZSBjaGFydCBpcyBub3cgaW4gdGhlIHN0eWxlIHRoZSBkYXRhIHBhZ2VzIG9mIHRoaXMgc2l0ZSB1c2U6IHRoZWlyIHBhbGV0dGUsIHRoZWlyIHR5cGUsIGFuZCBvbmUgZmFpbnQgZ3JpZC5cIlxuXVxuXG5saW5lYVBhc28gPSAocGFzbykgPT4gaHRtbGA8cD4ke3RleHRvc1Bhc29bcGFzb119PC9wPmBcblxuZ3JhZmljYVBhc29zID0gKHBhc28pID0+IHtcbiAgY29uc3Qgc3VjaW8gPSBwYXNvIDw9IDM7XG4gIGNvbnN0IGNhc2EgPSBwYXNvID49IDY7XG4gIGNvbnN0IHRyYXpvID0gY2FzYSA/IFwidmFyKC0tcnVsZSlcIiA6IFwidmFyKC0taW5rLXNvZnQpXCI7XG4gIGNvbnN0IG1hcmNhcyA9IFtdO1xuXG4gIGlmIChwYXNvIDw9IDEpIHtcbiAgICBtYXJjYXMucHVzaChQbG90LmdyaWRZKHsgc3Ryb2tlOiBcInZhcigtLWluay1zb2Z0KVwiLCBzdHJva2VPcGFjaXR5OiAwLjg1LCBzdHJva2VXaWR0aDogMSB9KSk7XG4gIH0gZWxzZSBpZiAoY2FzYSkge1xuICAgIG1hcmNhcy5wdXNoKFBsb3QuZ3JpZFkoeyBzdHJva2U6IFwidmFyKC0tcnVsZSlcIiB9KSk7XG4gIH1cblxuICBpZiAocGFzbyA9PT0gMCkgbWFyY2FzLnB1c2goUGxvdC5mcmFtZSh7IHN0cm9rZTogXCJ2YXIoLS1pbmstc29mdClcIiB9KSk7XG5cbiAgbWFyY2FzLnB1c2goUGxvdC5saW5lWShsaW5lYXNQYXNvLCB7XG4gICAgeDogXCJmZWNoYVwiLCB5OiBcInZhbG9yXCIsIHo6IFwic2VyaWVcIiwgc3Ryb2tlOiBcInNlcmllXCIsXG4gICAgc3Ryb2tlV2lkdGg6IGNhc2EgPyAyIDogMS41LFxuICAgIHN0cm9rZUxpbmVqb2luOiBcInJvdW5kXCIsIHN0cm9rZUxpbmVjYXA6IFwicm91bmRcIlxuICB9KSk7XG5cbiAgaWYgKHBhc28gPD0gMikge1xuICAgIG1hcmNhcy5wdXNoKFBsb3QuZG90KHB1bnRvc1Bhc28sIHtcbiAgICAgIHg6IFwiZmVjaGFcIiwgeTogXCJ2YWxvclwiLCB6OiBcInNlcmllXCIsIGZpbGw6IFwic2VyaWVcIiwgcjogMi44XG4gICAgfSkpO1xuICB9XG5cbiAgaWYgKHBhc28gPj0gNSkge1xuICAgIG1hcmNhcy5wdXNoKFBsb3QudGV4dChmaW5hbGVzUGFzbywge1xuICAgICAgeDogXCJmZWNoYVwiLCB5OiBcInZhbG9yXCIsIHRleHQ6IFwic2VyaWVcIixcbiAgICAgIHRleHRBbmNob3I6IFwic3RhcnRcIiwgZHg6IDEwLCBmb250U2l6ZTogMTMsIGZvbnRXZWlnaHQ6IDUwMCxcbiAgICAgIGZpbGw6IGNhc2EgPyBcInNlcmllXCIgOiBcInZhcigtLWluaylcIlxuICAgIH0pKTtcbiAgfVxuXG4gIGlmIChjYXNhKSB7XG4gICAgbWFyY2FzLnB1c2goUGxvdC5kb3QoZmluYWxlc1Bhc28sIHtcbiAgICAgIHg6IFwiZmVjaGFcIiwgeTogXCJ2YWxvclwiLCB6OiBcInNlcmllXCIsIGZpbGw6IFwic2VyaWVcIixcbiAgICAgIHI6IDMuNSwgc3Ryb2tlOiBcInZhcigtLXBsb3QtYmFja2dyb3VuZClcIiwgc3Ryb2tlV2lkdGg6IDEuNVxuICAgIH0pKTtcbiAgICAvLyBUaGUgdGlwJ3MgZGF0YSBpcyB0aGUgdW5pb24gb2YgZXZlcnkgc2VyaWVzIHRoZSBjaGFydCBkcmF3cywgYW5kIGl0c1xuICAgIC8vIHRpdGxlIG5hbWVzIHRoZSBzZXJpZXMgaXQgaXMgZGVzY3JpYmluZyAoQ0xBVURFLm1kIHNlY3Rpb24gMTMpLlxuICAgIG1hcmNhcy5wdXNoKFBsb3QudGlwKHB1bnRvc1Bhc28sIFBsb3QucG9pbnRlclgoe1xuICAgICAgeDogXCJmZWNoYVwiLCB5OiBcInZhbG9yXCIsXG4gICAgICB0aXRsZTogZCA9PiBgJHtkLnNlcmllfVxcbiR7ZC5hbmlvfS1RJHtkLnRyaW1lc3RyZX0gKCR7ZXRpcXVldGFNYXJjb1tkLnJlZ2ltZW5dID8/IGQucmVnaW1lbn0pXFxuJHtkLnZhbG9yfSVgXG4gICAgfSkpKTtcbiAgfVxuXG4gIG1hcmNhcy5wdXNoKFBsb3QuYXhpc1goe1xuICAgIHN0cm9rZTogdHJhem8sXG4gICAgdGlja1NpemU6IHN1Y2lvID8gNSA6IDAsXG4gICAgdGlja3M6IHN1Y2lvID8gMjEgOiA1LFxuICAgIHRpY2tSb3RhdGU6IHN1Y2lvID8gLTQ1IDogMCxcbiAgICBmb250U2l6ZTogc3VjaW8gPyAxMCA6IDEyXG4gIH0pKTtcbiAgbWFyY2FzLnB1c2goUGxvdC5heGlzWSh7XG4gICAgc3Ryb2tlOiB0cmF6byxcbiAgICB0aWNrU2l6ZTogc3VjaW8gPyA1IDogMCxcbiAgICB0aWNrczogc3VjaW8gPyAxNCA6IDUsXG4gICAgdGlja0Zvcm1hdDogc3VjaW8gPyAoZCA9PiBkLnRvRml4ZWQoMikpIDogdW5kZWZpbmVkXG4gIH0pKTtcblxuICByZXR1cm4gUGxvdC5wbG90KHtcbiAgICB3aWR0aDogNjgwLFxuICAgIGhlaWdodDogMzQwLFxuICAgIG1hcmdpblRvcDogMzAsXG4gICAgbWFyZ2luTGVmdDogc3VjaW8gPyA1OCA6IDQ0LFxuICAgIG1hcmdpbkJvdHRvbTogc3VjaW8gPyA1OCA6IDMwLFxuICAgIG1hcmdpblJpZ2h0OiBwYXNvID49IDUgPyAxMzIgOiAyNCxcbiAgICBzdHlsZToge1xuICAgICAgYmFja2dyb3VuZDogXCJ0cmFuc3BhcmVudFwiLFxuICAgICAgY29sb3I6IHBhc28gPj0gNCA/IFwidmFyKC0taW5rLXNvZnQpXCIgOiBcInZhcigtLWluaylcIixcbiAgICAgIGZvbnRGYW1pbHk6IGNhc2EgPyBcIklCTSBQbGV4IFNhbnMsIHNhbnMtc2VyaWZcIiA6IFwiQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZlwiLFxuICAgICAgZm9udFNpemU6IFwiMTJweFwiXG4gICAgfSxcbiAgICB4OiB7IGxhYmVsOiBudWxsIH0sXG4gICAgeTogeyBsYWJlbDogc3VjaW8gPyBcIlBlcmNlbnQgKCUpXCIgOiBcIiVcIiwgZG9tYWluOiBkb21pbmlvUGFzb1kgfSxcbiAgICBjb2xvcjogY2FzYVxuICAgICAgPyB7IGRvbWFpbjogZG9taW5pb1Bhc28sIHJhbmdlOiBbXCJ2YXIoLS10ZWFsKVwiLCBcInZhcigtLWNsYXkpXCJdIH1cbiAgICAgIDogeyBkb21haW46IGRvbWluaW9QYXNvLCBzY2hlbWU6IFwidGFibGVhdTEwXCIsIGxlZ2VuZDogcGFzbyA8PSA0IH0sXG4gICAgbWFya3M6IG1hcmNhc1xuICB9KTtcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMTEiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2YgcGFzb0FjdGl2byA9IElucHV0cy5yYWRpbyhbMCwgMSwgMiwgMywgNCwgNSwgNl0sIHsgbGFiZWw6IFwiU3RlcFwiLCB2YWx1ZTogMCB9KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0xMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImxpbmVhUGFzbyhwYXNvQWN0aXZvKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0xMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImdyYWZpY2FQYXNvcyhwYXNvQWN0aXZvKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdzaXJDb250YWdpbycpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdzaXJPbHZpZG8nKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgncmVzYWx0YXInKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgncGFzb0FjdGl2bycpIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/www\.alainpineda\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Views expressed on this site are my own and do not necessarily reflect those of Banco de México.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

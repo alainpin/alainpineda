@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Labor Market MX – Alain Pineda</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-176b1e44b272a30ec08500e73512b2cc.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2e366b5af1927b8352462c4a9d1c03d0.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-176b1e44b272a30ec08500e73512b2cc.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d0fa2de4139e685d8f6522967b27cec3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-65ff752de34fc37aedeed47795cf774d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d0fa2de4139e685d8f6522967b27cec3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="icon" type="image/png" sizes="512x512" href="./images/favicon-512.png">
+<link rel="alternate icon" href="./images/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+<meta property="og:title" content="Labor Market MX – Alain Pineda">
+<meta property="og:description" content="Research Economist at Banco de México. Labor markets, informality, and social insurance.">
+<meta property="og:site_name" content="Alain Pineda">
+<meta name="twitter:title" content="Labor Market MX – Alain Pineda">
+<meta name="twitter:description" content="Research Economist at Banco de México. Labor markets, informality, and social insurance.">
+<meta name="twitter:creator" content="@alainpin2">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Alain Pineda</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./research.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labor-market-mx" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Labor Market MX</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labor-market-mx">    
+        <li>
+    <a class="dropdown-item" href="./data.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-participation.html">
+ <span class="dropdown-text">Participation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-informality.html">
+ <span class="dropdown-text">Informality</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-unemployment.html">
+ <span class="dropdown-text">Unemployment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./data-quarterly-update.html">
+ <span class="dropdown-text">Quarterly Update</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./curiosities.html"> 
+<span class="menu-text">Curiosities</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./files/CV_Alain_Pineda.pdf" target="_blank"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./es/"> 
+<span class="menu-text">ES</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:alain.pineda@banxico.org.mx"> <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=wSY8lKgAAAAJ&amp;hl=en&amp;oi=ao"> <i class="bi bi-mortarboard-fill" role="img" aria-label="Google Scholar">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/alain-pineda-429b10a0/"> <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Labor Market MX</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">September 4, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="eyebrow">
+<p>ENOE, INEGI · Quarterly, 2005–2026 · National</p>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="11" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 10;"><span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="indicator-meta"&gt;Latest available data: ENOE </span><span class="sc">${</span>ultimoPeriodoGlobal<span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>Official statistics from Mexico’s National Survey of Occupation and Employment (ENOE), public data from INEGI. Recomputed here from microdata using the institute’s own methodology (survey design, strata, and expansion factors, not a simple average) and checked against the original series INEGI publishes in its Banco de Información Económica. That check runs over every quarter back to 2005, not only the most recent one: the median gap is 0.013 percentage points and the largest is 0.216. Not an original finding: these are public figures, presented here for quick reference.</p>
+<p>Start from a question:</p>
+<ul>
+<li>Who takes part in the labor market, by sex, age, schooling, and state? <a href="./data-participation.html">Participation</a>.</li>
+<li>How many people work without the protections of a formal job? <a href="./data-informality.html">Informality</a>.</li>
+<li>How much of the workforce is unemployed, discouraged, or working fewer hours than it wants? <a href="./data-unemployment.html">Unemployment</a>.</li>
+<li>What changed this quarter? <a href="./data-quarterly-update.html">Quarterly Update</a>.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="36" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 35;"><span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/labor-indicators.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>ajustadaRaw <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/labor-seasonal.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> raw<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({ <span class="op">...</span>d<span class="op">,</span> <span class="dt">fecha</span><span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(d<span class="op">.</span><span class="at">anio</span><span class="op">,</span> (d<span class="op">.</span><span class="at">trimestre</span> <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">1</span>) }))</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co">// Latest quarter present in the CSV, regardless of indicator -- they all</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co">// share the same latest period since they come from the same export.</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>ultimoPeriodoGlobal <span class="op">=</span> {</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ordenado <span class="op">=</span> [<span class="op">...</span>datos]<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">fecha</span> <span class="op">-</span> b<span class="op">.</span><span class="at">fecha</span>)<span class="op">;</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> u <span class="op">=</span> ordenado[ordenado<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`</span><span class="sc">${</span>u<span class="op">.</span><span class="at">anio</span><span class="sc">}</span><span class="vs">-Q</span><span class="sc">${</span>u<span class="op">.</span><span class="at">trimestre</span><span class="sc">}</span><span class="vs">`</span><span class="op">;</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>definiciones <span class="op">=</span> ({</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>  <span class="dt">TPEA</span><span class="op">:</span> {</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="dt">nombre</span><span class="op">:</span> <span class="st">"Labor force participation"</span><span class="op">,</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="dt">texto</span><span class="op">:</span> <span class="st">"Share of the population 15 and older that is working or actively looking for work."</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>  <span class="dt">TD</span><span class="op">:</span> {</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="dt">nombre</span><span class="op">:</span> <span class="st">"Unemployment"</span><span class="op">,</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="dt">texto</span><span class="op">:</span> <span class="st">"Share of the labor force that is not working but is actively looking for work."</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="dt">TIL1</span><span class="op">:</span> {</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="dt">nombre</span><span class="op">:</span> <span class="st">"Labor informality"</span><span class="op">,</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    <span class="dt">texto</span><span class="op">:</span> <span class="st">"Share of employed people working without the legal and social protections of a formal job (social security, benefits), regardless of whether the business itself is registered."</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>  <span class="dt">TIL2</span><span class="op">:</span> {</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="dt">nombre</span><span class="op">:</span> <span class="st">"Labor informality, excl. agriculture"</span><span class="op">,</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="dt">texto</span><span class="op">:</span> <span class="st">"Same as labor informality, excluding agriculture — a sector where informality is structurally high and can obscure the trend in the rest of the economy."</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  <span class="dt">TOSI1</span><span class="op">:</span> {</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    <span class="dt">nombre</span><span class="op">:</span> <span class="st">"Employment in the informal sector"</span><span class="op">,</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    <span class="dt">texto</span><span class="op">:</span> <span class="st">"Share of employed people working for a business that operates without registering with the authorities. Measures the type of business, not whether the individual has social security."</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>  <span class="dt">TOSI2</span><span class="op">:</span> {</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    <span class="dt">nombre</span><span class="op">:</span> <span class="st">"Informal-sector employment, excl. agriculture"</span><span class="op">,</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    <span class="dt">texto</span><span class="op">:</span> <span class="st">"Same as employment in the informal sector, excluding agriculture."</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>  <span class="dt">TSUB</span><span class="op">:</span> {</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    <span class="dt">nombre</span><span class="op">:</span> <span class="st">"Underemployment"</span><span class="op">,</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>    <span class="dt">texto</span><span class="op">:</span> <span class="st">"Share of employed people who want, and are able, to work more hours than their current job gives them."</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>  <span class="dt">TCCO</span><span class="op">:</span> {</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>    <span class="dt">nombre</span><span class="op">:</span> <span class="st">"Critical employment conditions"</span><span class="op">,</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    <span class="dt">texto</span><span class="op">:</span> <span class="st">"Share of employed people in precarious conditions: too few hours involuntarily, or long hours at below the legal minimum wage. Sensitive to minimum-wage changes — treat level shifts with caution, trend direction is more reliable."</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>  <span class="dt">TDAMPL</span><span class="op">:</span> {</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>    <span class="dt">nombre</span><span class="op">:</span> <span class="st">"Broader unemployment"</span><span class="op">,</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>    <span class="dt">texto</span><span class="op">:</span> <span class="st">"The unemployment rate, widened in both numerator and denominator to include people available to work who aren't actively searching (discouraged workers). Not a custom definition: it only combines categories ENOE already reports separately."</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>  <span class="dt">SUBUTIL</span><span class="op">:</span> {</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    <span class="dt">nombre</span><span class="op">:</span> <span class="st">"Labor underutilization"</span><span class="op">,</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    <span class="dt">texto</span><span class="op">:</span> <span class="st">"Same as broader unemployment, adding people who already have a job but work fewer hours than they'd like (underemployed). The broadest measure here of how much available labor is going unused."</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>indicadoresPrincipales <span class="op">=</span> [<span class="st">"TPEA"</span><span class="op">,</span> <span class="st">"TIL1"</span><span class="op">,</span> <span class="st">"TD"</span>]</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>indicadoresEscalera <span class="op">=</span> [<span class="st">"TDAMPL"</span><span class="op">,</span> <span class="st">"SUBUTIL"</span>]</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>indicadoresSecundarios <span class="op">=</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(definiciones)</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(k <span class="kw">=&gt;</span> <span class="op">!</span>indicadoresPrincipales<span class="op">.</span><span class="fu">includes</span>(k) <span class="op">&amp;&amp;</span> <span class="op">!</span>indicadoresEscalera<span class="op">.</span><span class="fu">includes</span>(k))</span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">sort</span>()</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>serieDe <span class="op">=</span> codigo <span class="kw">=&gt;</span> datos</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">indicador</span> <span class="op">===</span> codigo)</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">fecha</span> <span class="op">-</span> b<span class="op">.</span><span class="at">fecha</span>)</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>valorEnPeriodo <span class="op">=</span> (serie<span class="op">,</span> anio<span class="op">,</span> trimestre) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> fila <span class="op">=</span> serie<span class="op">.</span><span class="fu">find</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">anio</span> <span class="op">===</span> anio <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">trimestre</span> <span class="op">===</span> trimestre)<span class="op">;</span></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> fila <span class="op">?</span> fila<span class="op">.</span><span class="at">valor</span> <span class="op">:</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>calcularDeltas <span class="op">=</span> serie <span class="kw">=&gt;</span> {</span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ultimo <span class="op">=</span> serie[serie<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> trimAnt <span class="op">=</span> ultimo<span class="op">.</span><span class="at">trimestre</span> <span class="op">===</span> <span class="dv">1</span></span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> { <span class="dt">anio</span><span class="op">:</span> ultimo<span class="op">.</span><span class="at">anio</span> <span class="op">-</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">trimestre</span><span class="op">:</span> <span class="dv">4</span> }</span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> { <span class="dt">anio</span><span class="op">:</span> ultimo<span class="op">.</span><span class="at">anio</span><span class="op">,</span> <span class="dt">trimestre</span><span class="op">:</span> ultimo<span class="op">.</span><span class="at">trimestre</span> <span class="op">-</span> <span class="dv">1</span> }<span class="op">;</span></span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> valorTrimAnt <span class="op">=</span> <span class="fu">valorEnPeriodo</span>(serie<span class="op">,</span> trimAnt<span class="op">.</span><span class="at">anio</span><span class="op">,</span> trimAnt<span class="op">.</span><span class="at">trimestre</span>)<span class="op">;</span></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> valorAnioAnt <span class="op">=</span> <span class="fu">valorEnPeriodo</span>(serie<span class="op">,</span> ultimo<span class="op">.</span><span class="at">anio</span> <span class="op">-</span> <span class="dv">1</span><span class="op">,</span> ultimo<span class="op">.</span><span class="at">trimestre</span>)<span class="op">;</span></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {</span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>    <span class="dt">deltaTrim</span><span class="op">:</span> valorTrimAnt <span class="op">!=</span> <span class="kw">null</span> <span class="op">?</span> ultimo<span class="op">.</span><span class="at">valor</span> <span class="op">-</span> valorTrimAnt <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>    <span class="dt">deltaAnual</span><span class="op">:</span> valorAnioAnt <span class="op">!=</span> <span class="kw">null</span> <span class="op">?</span> ultimo<span class="op">.</span><span class="at">valor</span> <span class="op">-</span> valorAnioAnt <span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="co">// Neutral on purpose: arrows and numbers, no red/green "good or bad" coding.</span></span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>formatoDelta <span class="op">=</span> delta <span class="kw">=&gt;</span> {</span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (delta <span class="op">==</span> <span class="kw">null</span>) <span class="cf">return</span> <span class="st">"n/a"</span><span class="op">;</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(delta) <span class="op">&lt;</span> <span class="fl">0.005</span>) <span class="cf">return</span> <span class="st">"no change"</span><span class="op">;</span></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> signo <span class="op">=</span> delta <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"▲"</span> <span class="op">:</span> <span class="st">"▼"</span><span class="op">;</span></span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`</span><span class="sc">${</span>signo<span class="sc">}</span><span class="vs"> </span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(delta)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> pp`</span><span class="op">;</span></span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a><span class="co">// nice:true rounds the domain to "nice" numbers, which can pad it well past</span></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a><span class="co">// the series' actual range and flatten a series with little variation (e.g.</span></span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a><span class="co">// TOSI1/TOSI2, which move within ~3 points). Fit the domain to each series'</span></span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a><span class="co">// own min/max plus a fixed margin instead, so every mini chart uses its own</span></span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a><span class="co">// scale without exaggerating or flattening.</span></span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>dominioAjustado <span class="op">=</span> (serie<span class="op">,</span> margenMinimo <span class="op">=</span> <span class="fl">0.4</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> valores <span class="op">=</span> serie<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">valor</span>)<span class="op">;</span></span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> min <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="op">...</span>valores)<span class="op">,</span> max <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>valores)<span class="op">;</span></span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> margen <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>((max <span class="op">-</span> min) <span class="op">*</span> <span class="fl">0.15</span><span class="op">,</span> margenMinimo)<span class="op">;</span></span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> [min <span class="op">-</span> margen<span class="op">,</span> max <span class="op">+</span> margen]<span class="op">;</span></span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a><span class="co">// 2020-Q2 does not exist in the source. ENOE was suspended and replaced by</span></span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a><span class="co">// the ETOE telephone survey, which INEGI does not publish as a comparable</span></span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a><span class="co">// estimate. Joining the two sides with a straight line reads a change of</span></span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a><span class="co">// method as a gradual transition, so a point with an undefined value is</span></span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a><span class="co">// inserted in the gap and Plot breaks the line there instead.</span></span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a>conHuecos <span class="op">=</span> serie <span class="kw">=&gt;</span> {</span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> salida <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> serie<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a>    salida<span class="op">.</span><span class="fu">push</span>(serie[i])<span class="op">;</span></span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="op">&lt;</span> serie<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>) {</span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> a <span class="op">=</span> serie[i]<span class="op">,</span> b <span class="op">=</span> serie[i <span class="op">+</span> <span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> meses <span class="op">=</span> (b<span class="op">.</span><span class="at">fecha</span><span class="op">.</span><span class="fu">getFullYear</span>() <span class="op">-</span> a<span class="op">.</span><span class="at">fecha</span><span class="op">.</span><span class="fu">getFullYear</span>()) <span class="op">*</span> <span class="dv">12</span> <span class="op">+</span></span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a>                    (b<span class="op">.</span><span class="at">fecha</span><span class="op">.</span><span class="fu">getMonth</span>() <span class="op">-</span> a<span class="op">.</span><span class="at">fecha</span><span class="op">.</span><span class="fu">getMonth</span>())<span class="op">;</span></span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (meses <span class="op">&gt;</span> <span class="dv">3</span>) {</span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a>        salida<span class="op">.</span><span class="fu">push</span>({ <span class="op">...</span>a<span class="op">,</span></span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fecha</span><span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(a<span class="op">.</span><span class="at">fecha</span><span class="op">.</span><span class="fu">getFullYear</span>()<span class="op">,</span> a<span class="op">.</span><span class="at">fecha</span><span class="op">.</span><span class="fu">getMonth</span>() <span class="op">+</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">,</span></span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a>          <span class="dt">valor</span><span class="op">:</span> <span class="kw">undefined</span><span class="op">,</span> <span class="dt">ee</span><span class="op">:</span> <span class="kw">undefined</span> })<span class="op">;</span></span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> salida<span class="op">;</span></span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a><span class="co">// Trend-cycle series, published by INEGI itself in its Banco de Informacion</span></span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a><span class="co">// Economica. Quarterly ones come as percentages, unlike the monthly ones,</span></span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a><span class="co">// which are index numbers, so they sit directly on the same axis as the</span></span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a><span class="co">// original series with no rescaling. Six indicators have one; the rest return</span></span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a><span class="co">// an empty array and simply get no background line.</span></span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a>serieAjustada <span class="op">=</span> (codigo<span class="op">,</span> tipo <span class="op">=</span> <span class="st">"tendencia_ciclo"</span>) <span class="kw">=&gt;</span> ajustadaRaw</span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">indicador</span> <span class="op">===</span> codigo <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">tipo</span> <span class="op">===</span> tipo)</span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({ <span class="op">...</span>d<span class="op">,</span> <span class="dt">fecha</span><span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(d<span class="op">.</span><span class="at">anio</span><span class="op">,</span> (d<span class="op">.</span><span class="at">trimestre</span> <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">1</span>) }))</span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">fecha</span> <span class="op">-</span> b<span class="op">.</span><span class="at">fecha</span>)</span>
+<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>graficaSerie <span class="op">=</span> (serie<span class="op">,</span> { width <span class="op">=</span> <span class="dv">780</span><span class="op">,</span> height <span class="op">=</span> <span class="dv">340</span><span class="op">,</span> marginLeft <span class="op">=</span> <span class="dv">42</span><span class="op">,</span> color <span class="op">=</span> <span class="st">"var(--teal)"</span><span class="op">,</span> ajustada <span class="op">=</span> <span class="kw">null</span> } <span class="op">=</span> {}) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ultimo <span class="op">=</span> serie[serie<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> serieRota <span class="op">=</span> <span class="fu">conHuecos</span>(serie)<span class="op">;</span></span>
+<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ajustadaRota <span class="op">=</span> ajustada <span class="op">&amp;&amp;</span> ajustada<span class="op">.</span><span class="at">length</span> <span class="op">?</span> <span class="fu">conHuecos</span>(ajustada) <span class="op">:</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span> height<span class="op">,</span> marginLeft<span class="op">,</span></span>
+<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span></span>
+<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a>    <span class="dt">style</span><span class="op">:</span> { <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"IBM Plex Sans, sans-serif"</span><span class="op">,</span></span>
+<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>             <span class="dt">fontSize</span><span class="op">:</span> width <span class="op">&lt;</span> <span class="dv">400</span> <span class="op">?</span> <span class="st">"11px"</span> <span class="op">:</span> <span class="st">"13px"</span><span class="op">,</span></span>
+<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a>             <span class="dt">color</span><span class="op">:</span> <span class="st">"currentColor"</span><span class="op">,</span> <span class="dt">background</span><span class="op">:</span> <span class="st">"transparent"</span> }<span class="op">,</span></span>
+<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="st">"%"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> <span class="fu">dominioAjustado</span>(serie)<span class="op">,</span> <span class="dt">ticks</span><span class="op">:</span> <span class="dv">4</span> }<span class="op">,</span></span>
+<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> { <span class="dt">label</span><span class="op">:</span> <span class="kw">null</span> }<span class="op">,</span></span>
+<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">areaY</span>(serieRota<span class="op">,</span> {</span>
+<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"fecha"</span><span class="op">,</span></span>
+<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">valor</span> <span class="op">==</span> <span class="kw">null</span> <span class="op">?</span> <span class="kw">undefined</span> <span class="op">:</span> d<span class="op">.</span><span class="at">valor</span> <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> d<span class="op">.</span><span class="at">ee</span><span class="op">,</span></span>
+<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">valor</span> <span class="op">==</span> <span class="kw">null</span> <span class="op">?</span> <span class="kw">undefined</span> <span class="op">:</span> d<span class="op">.</span><span class="at">valor</span> <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> d<span class="op">.</span><span class="at">ee</span><span class="op">,</span></span>
+<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> color<span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.12</span></span>
+<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a>      <span class="co">// The trend-cycle line is thinner and faded on purpose. It is reading</span></span>
+<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a>      <span class="co">// context for the original series, not a second indicator, and the</span></span>
+<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a>      <span class="co">// number quoted on the card always comes from the original.</span></span>
+<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span>(ajustadaRota <span class="op">?</span> [Plot<span class="op">.</span><span class="fu">lineY</span>(ajustadaRota<span class="op">,</span> {</span>
+<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"fecha"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"valor"</span><span class="op">,</span></span>
+<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span> color<span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.4</span><span class="op">,</span> <span class="dt">strokeOpacity</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeLinejoin</span><span class="op">:</span> <span class="st">"round"</span><span class="op">,</span> <span class="dt">strokeLinecap</span><span class="op">:</span> <span class="st">"round"</span></span>
+<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a>      })] <span class="op">:</span> [])<span class="op">,</span></span>
+<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">lineY</span>(serieRota<span class="op">,</span> {</span>
+<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"fecha"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"valor"</span><span class="op">,</span></span>
+<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span> color<span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeLinejoin</span><span class="op">:</span> <span class="st">"round"</span><span class="op">,</span> <span class="dt">strokeLinecap</span><span class="op">:</span> <span class="st">"round"</span></span>
+<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">dot</span>(serie<span class="op">,</span> {</span>
+<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"fecha"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"valor"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="fl">3.5</span><span class="op">,</span></span>
+<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> color<span class="op">,</span> <span class="dt">filter</span><span class="op">:</span> d <span class="kw">=&gt;</span> d <span class="op">===</span> ultimo</span>
+<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> { <span class="dt">stroke</span><span class="op">:</span> <span class="st">"currentColor"</span><span class="op">,</span> <span class="dt">strokeOpacity</span><span class="op">:</span> <span class="fl">0.15</span> })<span class="op">,</span></span>
+<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">tip</span>(serie<span class="op">,</span> Plot<span class="op">.</span><span class="fu">pointerX</span>({</span>
+<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"fecha"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"valor"</span><span class="op">,</span></span>
+<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a>        <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">anio</span><span class="sc">}</span><span class="vs">-Q</span><span class="sc">${</span>d<span class="op">.</span><span class="at">trimestre</span><span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>d<span class="op">.</span><span class="at">regimen</span><span class="sc">}</span><span class="vs">)</span><span class="sc">\n${</span>d<span class="op">.</span><span class="at">valor</span><span class="sc">}</span><span class="vs">% ± </span><span class="sc">${</span>(<span class="fl">1.96</span> <span class="op">*</span> d<span class="op">.</span><span class="at">ee</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> pp</span><span class="sc">\n</span><span class="vs">n = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">n_obs</span><span class="op">.</span><span class="fu">toLocaleString</span>(<span class="st">"en-US"</span>)<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a>      }))</span>
+<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a>coloresPrincipales <span class="op">=</span> ({</span>
+<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a>  <span class="dt">TPEA</span><span class="op">:</span> <span class="st">"var(--teal)"</span><span class="op">,</span></span>
+<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a>  <span class="dt">TIL1</span><span class="op">:</span> <span class="st">"var(--clay)"</span><span class="op">,</span></span>
+<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a>  <span class="dt">TD</span><span class="op">:</span> <span class="st">"var(--ink-soft)"</span></span>
+<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a><span class="co">// A light/deep pair of the same neutral (not --teal or --clay, already used</span></span>
+<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a><span class="co">// by TPEA/TIL1) so both cards read as the same theme -- broader unemployment</span></span>
+<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a><span class="co">// -- without duplicating TD's color or each other's.</span></span>
+<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a>coloresEscalera <span class="op">=</span> ({</span>
+<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a>  <span class="dt">TDAMPL</span><span class="op">:</span> <span class="st">"var(--ink-soft-light)"</span><span class="op">,</span></span>
+<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a>  <span class="dt">SUBUTIL</span><span class="op">:</span> <span class="st">"var(--ink-soft-deep)"</span></span>
+<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-10" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-11" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-12" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-13" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-14" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-15" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-16" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-17" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-18" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="234" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 233;"><span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="indicator-grid"&gt;</span><span class="sc">${</span>indicadoresPrincipales<span class="op">.</span><span class="fu">map</span>(codigo <span class="kw">=&gt;</span> {</span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> serie <span class="op">=</span> <span class="fu">serieDe</span>(codigo)<span class="op">;</span></span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ultimo <span class="op">=</span> serie[serie<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> def <span class="op">=</span> definiciones[codigo]<span class="op">;</span></span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> { deltaTrim<span class="op">,</span> deltaAnual } <span class="op">=</span> <span class="fu">calcularDeltas</span>(serie)<span class="op">;</span></span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> div <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a>  div<span class="op">.</span><span class="at">className</span> <span class="op">=</span> <span class="st">"indicator-card"</span><span class="op">;</span></span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> head <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;div class="indicator-name"&gt;</span><span class="sc">${</span>def<span class="op">.</span><span class="at">nombre</span><span class="sc">}</span></span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;span class="indicator-value"&gt;</span><span class="sc">${</span>ultimo<span class="op">.</span><span class="at">valor</span><span class="sc">}</span><span class="vs">%&lt;/span&gt;</span></span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="indicator-meta"&gt;± </span><span class="sc">${</span>(<span class="fl">1.96</span> <span class="op">*</span> ultimo<span class="op">.</span><span class="at">ee</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> pp · </span><span class="sc">${</span>ultimo<span class="op">.</span><span class="at">anio</span><span class="sc">}</span><span class="vs">-Q</span><span class="sc">${</span>ultimo<span class="op">.</span><span class="at">trimestre</span><span class="sc">}</span><span class="vs">&lt;/div&gt;</span></span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="indicator-delta"&gt;</span><span class="sc">${</span><span class="fu">formatoDelta</span>(deltaTrim)<span class="sc">}</span><span class="vs"> q/q · </span><span class="sc">${</span><span class="fu">formatoDelta</span>(deltaAnual)<span class="sc">}</span><span class="vs"> y/y&lt;/div&gt;</span></span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="indicator-desc"&gt;</span><span class="sc">${</span>def<span class="op">.</span><span class="at">texto</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span><span class="op">;</span></span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a>  div<span class="op">.</span><span class="fu">append</span>(head<span class="op">,</span> <span class="fu">graficaSerie</span>(serie<span class="op">,</span> { <span class="dt">width</span><span class="op">:</span> <span class="dv">250</span><span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">190</span><span class="op">,</span> <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">32</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> coloresPrincipales[codigo]<span class="op">,</span> <span class="dt">ajustada</span><span class="op">:</span> <span class="fu">serieAjustada</span>(codigo) }))<span class="op">;</span></span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a>})<span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<section id="the-subutilization-ladder" class="level3">
+<h3 data-anchor-id="the-subutilization-ladder">The subutilization ladder</h3>
+<p>Unemployment above is the first step. These two widen the definition, one step at a time: first adding people available to work who aren’t actively searching, then people who already have a job but with fewer hours than they’d like.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="261" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 260;"><span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="indicator-grid indicator-grid-2"&gt;</span><span class="sc">${</span>indicadoresEscalera<span class="op">.</span><span class="fu">map</span>(codigo <span class="kw">=&gt;</span> {</span>
+<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> serie <span class="op">=</span> <span class="fu">serieDe</span>(codigo)<span class="op">;</span></span>
+<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ultimo <span class="op">=</span> serie[serie<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb4-264"><a href="#cb4-264" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> def <span class="op">=</span> definiciones[codigo]<span class="op">;</span></span>
+<span id="cb4-265"><a href="#cb4-265" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> { deltaTrim<span class="op">,</span> deltaAnual } <span class="op">=</span> <span class="fu">calcularDeltas</span>(serie)<span class="op">;</span></span>
+<span id="cb4-266"><a href="#cb4-266" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> div <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
+<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a>  div<span class="op">.</span><span class="at">className</span> <span class="op">=</span> <span class="st">"indicator-card"</span><span class="op">;</span></span>
+<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> head <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;div class="indicator-name"&gt;</span><span class="sc">${</span>def<span class="op">.</span><span class="at">nombre</span><span class="sc">}</span></span>
+<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;span class="indicator-value"&gt;</span><span class="sc">${</span>ultimo<span class="op">.</span><span class="at">valor</span><span class="sc">}</span><span class="vs">%&lt;/span&gt;</span></span>
+<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
+<span id="cb4-271"><a href="#cb4-271" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="indicator-meta"&gt;± </span><span class="sc">${</span>(<span class="fl">1.96</span> <span class="op">*</span> ultimo<span class="op">.</span><span class="at">ee</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> pp · </span><span class="sc">${</span>ultimo<span class="op">.</span><span class="at">anio</span><span class="sc">}</span><span class="vs">-Q</span><span class="sc">${</span>ultimo<span class="op">.</span><span class="at">trimestre</span><span class="sc">}</span><span class="vs">&lt;/div&gt;</span></span>
+<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="indicator-delta"&gt;</span><span class="sc">${</span><span class="fu">formatoDelta</span>(deltaTrim)<span class="sc">}</span><span class="vs"> q/q · </span><span class="sc">${</span><span class="fu">formatoDelta</span>(deltaAnual)<span class="sc">}</span><span class="vs"> y/y&lt;/div&gt;</span></span>
+<span id="cb4-273"><a href="#cb4-273" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="indicator-desc"&gt;</span><span class="sc">${</span>def<span class="op">.</span><span class="at">texto</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span><span class="op">;</span></span>
+<span id="cb4-274"><a href="#cb4-274" aria-hidden="true" tabindex="-1"></a>  div<span class="op">.</span><span class="fu">append</span>(head<span class="op">,</span> <span class="fu">graficaSerie</span>(serie<span class="op">,</span> { <span class="dt">width</span><span class="op">:</span> <span class="dv">380</span><span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">190</span><span class="op">,</span> <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">32</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> coloresEscalera[codigo]<span class="op">,</span> <span class="dt">ajustada</span><span class="op">:</span> <span class="fu">serieAjustada</span>(codigo) }))<span class="op">;</span></span>
+<span id="cb4-275"><a href="#cb4-275" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb4-276"><a href="#cb4-276" aria-hidden="true" tabindex="-1"></a>})<span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</section>
+<section id="other-indicators" class="level3">
+<h3 data-anchor-id="other-indicators">Other indicators</h3>
+<p>Five more series, including the informality and informal-sector rates excluding agriculture.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="286" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 285;"><span id="cb5-286"><a href="#cb5-286" aria-hidden="true" tabindex="-1"></a>viewof indicador_sel <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(indicadoresSecundarios<span class="op">,</span> {</span>
+<span id="cb5-287"><a href="#cb5-287" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="st">"TIL2"</span><span class="op">,</span></span>
+<span id="cb5-288"><a href="#cb5-288" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Indicator"</span><span class="op">,</span></span>
+<span id="cb5-289"><a href="#cb5-289" aria-hidden="true" tabindex="-1"></a>  <span class="dt">format</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>d<span class="sc">}</span><span class="vs"> — </span><span class="sc">${</span>definiciones[d]<span class="op">.</span><span class="at">nombre</span><span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb5-290"><a href="#cb5-290" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="296" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 295;"><span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a>serieSec <span class="op">=</span> <span class="fu">serieDe</span>(indicador_sel)</span>
+<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a>ultimoSec <span class="op">=</span> serieSec[serieSec<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]</span>
+<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a>defSec <span class="op">=</span> definiciones[indicador_sel]</span>
+<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a>deltasSec <span class="op">=</span> <span class="fu">calcularDeltas</span>(serieSec)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="303" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 302;"><span id="cb7-303"><a href="#cb7-303" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="indicator-headline"&gt;</span><span class="sc">${</span>defSec<span class="op">.</span><span class="at">nombre</span><span class="sc">}</span><span class="vs">: </span><span class="sc">${</span>ultimoSec<span class="op">.</span><span class="at">valor</span><span class="sc">}</span><span class="vs">%&lt;/div&gt;</span></span>
+<span id="cb7-304"><a href="#cb7-304" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div class="indicator-meta"&gt;± </span><span class="sc">${</span>(<span class="fl">1.96</span> <span class="op">*</span> ultimoSec<span class="op">.</span><span class="at">ee</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> pp · </span><span class="sc">${</span>ultimoSec<span class="op">.</span><span class="at">anio</span><span class="sc">}</span><span class="vs">-Q</span><span class="sc">${</span>ultimoSec<span class="op">.</span><span class="at">trimestre</span><span class="sc">}</span><span class="vs"> · n = </span><span class="sc">${</span>ultimoSec<span class="op">.</span><span class="at">n_obs</span><span class="op">.</span><span class="fu">toLocaleString</span>(<span class="st">"en-US"</span>)<span class="sc">}</span><span class="vs">&lt;/div&gt;</span></span>
+<span id="cb7-305"><a href="#cb7-305" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div class="indicator-delta"&gt;</span><span class="sc">${</span><span class="fu">formatoDelta</span>(deltasSec<span class="op">.</span><span class="at">deltaTrim</span>)<span class="sc">}</span><span class="vs"> vs. prior quarter · </span><span class="sc">${</span><span class="fu">formatoDelta</span>(deltasSec<span class="op">.</span><span class="at">deltaAnual</span>)<span class="sc">}</span><span class="vs"> vs. same quarter last year&lt;/div&gt;</span></span>
+<span id="cb7-306"><a href="#cb7-306" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p class="indicator-desc"&gt;</span><span class="sc">${</span>defSec<span class="op">.</span><span class="at">texto</span><span class="sc">}</span><span class="vs">&lt;/p&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="311" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 310;"><span id="cb8-311"><a href="#cb8-311" aria-hidden="true" tabindex="-1"></a><span class="fu">graficaSerie</span>(serieSec<span class="op">,</span> { <span class="dt">ajustada</span><span class="op">:</span> <span class="fu">serieAjustada</span>(indicador_sel) })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-8" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="chart-note">
+<p>All series above are <strong>original</strong>, without seasonal adjustment. The faint line behind each one is INEGI’s own <strong>trend-cycle</strong> series, shown as reading context; it is revised backward as new quarters arrive, so the figure quoted on each card always comes from the original series. Broader unemployment and labor underutilization have no quarterly trend-cycle series published by INEGI and appear without one.</p>
+</div>
+<details class="abstract">
+<summary>
+How this is built
+</summary>
+<p><strong>1. A validated pipeline, not a one-off script.</strong> The full computation — downloading each quarter directly from INEGI, harmonizing field names and weights across the ENOE/ENOE-N/ENOE regime changes since 2005, and applying the survey’s complex design (<code>survey::svydesign</code>, <code>ids = upm, strata = est_d_tri, weights = fac_tri</code>) — lives in a separate private R project, not in this site’s repository. The shaded band on each chart, and the ± figure next to each headline number, is a 95% confidence interval (±1.96 standard errors) from that same design, not a simple margin of error. Every rate above is checked against the original series INEGI publishes in its Banco de Información Económica, over the full history rather than only the latest quarter: the median gap is 0.013 percentage points and the largest is 0.216. Broader unemployment and labor underutilization have no matching series there and are reported as unvalidated on the <a href="./data-quarterly-update.html">quarterly update</a> page.</p>
+<p><strong>2. This site only reads a public CSV.</strong> <code>scripts/02-labor-indicators.R</code> exports the national-level rates from that pipeline into <code>data/labor-indicators.csv</code> — nothing else. Re-run it with <code>Rscript scripts/02-labor-indicators.R</code> after the source pipeline updates, which happens once per quarter as INEGI publishes new microdata. All the code on this page — that script and the <code>{ojs}</code> that builds the charts — lives in the <a href="https://github.com/alainpin/alainpineda">site’s repository</a>.</p>
+<p><strong>3. The chart reads the CSV client-side.</strong> Plain <code>FileAttachment(...).csv()</code> and Observable Plot — no database engine, so nothing depends on a CDN beyond what Quarto already loads for Observable itself.</p>
+</details>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+// The navbar's ES/EN switcher is defined once per profile in _quarto-en.yml
+// and _quarto-es.yml, always pointing at the other language's homepage
+// (href: "/es/" or "/"). Since most pages share an identical slug across
+// languages (see CLAUDE.md section 4), rewrite that link at load time to the
+// equivalent page instead: strip or add the leading "/es" path segment.
+//
+// The Labor Market MX data pages are a deliberate exception: their Spanish
+// slugs are real Spanish words (data-participacion, not data-participation),
+// which reads far better for the Spanish audience than an English word under
+// /es/ -- but that breaks the same-slug assumption above. MAPA_SLUGS_ESPECIALES
+// is the fix: any page whose EN and ES slugs differ needs one entry here (in
+// either direction, matched automatically both ways), or a reader on that
+// page hits a 404 when they switch languages -- exactly what happened on
+// the Quarterly Update page (data-quarterly-update.qmd <->
+// es/data-actualizacion-trimestral.qmd, formerly data-findings <->
+// data-hallazgos) -- and, it turned out, on
+// data-participation/informality/unemployment too -- before this map existed.
+// Keys here are the CURRENT slugs. The old ones still resolve because each
+// page carries an `aliases:` entry that renders a redirect stub, but a stub
+// is not a page the switcher ever runs on, so it needs no entry.
+var MAPA_SLUGS_ESPECIALES = {
+  "/data-participation": "/es/data-participacion",
+  "/data-informality": "/es/data-informalidad",
+  "/data-unemployment": "/es/data-desocupacion",
+  "/data-quarterly-update": "/es/data-actualizacion-trimestral"
+};
+var MAPA_INVERSO = {};
+for (var clave in MAPA_SLUGS_ESPECIALES) {
+  MAPA_INVERSO[MAPA_SLUGS_ESPECIALES[clave]] = clave;
+}
+
+// Matched by visible text ("ES"/"EN"), not aria-label: the navbar YAML sets
+// `aria-label:` on that item, but Quarto's navbar renderer doesn't emit it
+// on right-side text nav-links -- the attribute never reaches the HTML, so a
+// querySelector keyed on it silently matches nothing and the link falls
+// back to its configured default (always the other language's homepage).
+(function () {
+  var path = window.location.pathname;
+  var tieneHtml = /\.html$/.test(path);
+  var pathBase = path.replace(/\.html$/, "");
+
+  var targetBase = MAPA_SLUGS_ESPECIALES[pathBase] || MAPA_INVERSO[pathBase];
+  if (!targetBase) {
+    if (pathBase === "/es" || pathBase.indexOf("/es/") === 0) {
+      targetBase = pathBase.replace(/^\/es/, "") || "/";
+    } else {
+      targetBase = pathBase === "/" ? "/es/" : "/es" + pathBase;
+    }
+  }
+  var target = (tieneHtml && targetBase.slice(-1) !== "/") ? targetBase + ".html" : targetBase;
+
+  var spans = document.querySelectorAll(".menu-text");
+  for (var i = 0; i < spans.length; i++) {
+    var t = spans[i].textContent.trim();
+    if (t === "ES" || t === "EN") {
+      var a = spans[i].closest("a");
+      if (a) a.setAttribute("href", target);
+      break;
+    }
+  }
+})();
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imh0bWxgPGRpdiBjbGFzcz1cImluZGljYXRvci1tZXRhXCI+TGF0ZXN0IGF2YWlsYWJsZSBkYXRhOiBFTk9FICR7dWx0aW1vUGVyaW9kb0dsb2JhbH08L2Rpdj5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJyYXcgPSBGaWxlQXR0YWNobWVudChcImRhdGEvbGFib3ItaW5kaWNhdG9ycy5jc3ZcIikuY3N2KHsgdHlwZWQ6IHRydWUgfSlcbmFqdXN0YWRhUmF3ID0gRmlsZUF0dGFjaG1lbnQoXCJkYXRhL2xhYm9yLXNlYXNvbmFsLmNzdlwiKS5jc3YoeyB0eXBlZDogdHJ1ZSB9KVxuXG5kYXRvcyA9IHJhdy5tYXAoZCA9PiAoeyAuLi5kLCBmZWNoYTogbmV3IERhdGUoZC5hbmlvLCAoZC50cmltZXN0cmUgLSAxKSAqIDMsIDEpIH0pKVxuXG4vLyBMYXRlc3QgcXVhcnRlciBwcmVzZW50IGluIHRoZSBDU1YsIHJlZ2FyZGxlc3Mgb2YgaW5kaWNhdG9yIC0tIHRoZXkgYWxsXG4vLyBzaGFyZSB0aGUgc2FtZSBsYXRlc3QgcGVyaW9kIHNpbmNlIHRoZXkgY29tZSBmcm9tIHRoZSBzYW1lIGV4cG9ydC5cbnVsdGltb1BlcmlvZG9HbG9iYWwgPSB7XG4gIGNvbnN0IG9yZGVuYWRvID0gWy4uLmRhdG9zXS5zb3J0KChhLCBiKSA9PiBhLmZlY2hhIC0gYi5mZWNoYSk7XG4gIGNvbnN0IHUgPSBvcmRlbmFkb1tvcmRlbmFkby5sZW5ndGggLSAxXTtcbiAgcmV0dXJuIGAke3UuYW5pb30tUSR7dS50cmltZXN0cmV9YDtcbn1cblxuZGVmaW5pY2lvbmVzID0gKHtcbiAgVFBFQToge1xuICAgIG5vbWJyZTogXCJMYWJvciBmb3JjZSBwYXJ0aWNpcGF0aW9uXCIsXG4gICAgdGV4dG86IFwiU2hhcmUgb2YgdGhlIHBvcHVsYXRpb24gMTUgYW5kIG9sZGVyIHRoYXQgaXMgd29ya2luZyBvciBhY3RpdmVseSBsb29raW5nIGZvciB3b3JrLlwiXG4gIH0sXG4gIFREOiB7XG4gICAgbm9tYnJlOiBcIlVuZW1wbG95bWVudFwiLFxuICAgIHRleHRvOiBcIlNoYXJlIG9mIHRoZSBsYWJvciBmb3JjZSB0aGF0IGlzIG5vdCB3b3JraW5nIGJ1dCBpcyBhY3RpdmVseSBsb29raW5nIGZvciB3b3JrLlwiXG4gIH0sXG4gIFRJTDE6IHtcbiAgICBub21icmU6IFwiTGFib3IgaW5mb3JtYWxpdHlcIixcbiAgICB0ZXh0bzogXCJTaGFyZSBvZiBlbXBsb3llZCBwZW9wbGUgd29ya2luZyB3aXRob3V0IHRoZSBsZWdhbCBhbmQgc29jaWFsIHByb3RlY3Rpb25zIG9mIGEgZm9ybWFsIGpvYiAoc29jaWFsIHNlY3VyaXR5LCBiZW5lZml0cyksIHJlZ2FyZGxlc3Mgb2Ygd2hldGhlciB0aGUgYnVzaW5lc3MgaXRzZWxmIGlzIHJlZ2lzdGVyZWQuXCJcbiAgfSxcbiAgVElMMjoge1xuICAgIG5vbWJyZTogXCJMYWJvciBpbmZvcm1hbGl0eSwgZXhjbC4gYWdyaWN1bHR1cmVcIixcbiAgICB0ZXh0bzogXCJTYW1lIGFzIGxhYm9yIGluZm9ybWFsaXR5LCBleGNsdWRpbmcgYWdyaWN1bHR1cmUg4oCUIGEgc2VjdG9yIHdoZXJlIGluZm9ybWFsaXR5IGlzIHN0cnVjdHVyYWxseSBoaWdoIGFuZCBjYW4gb2JzY3VyZSB0aGUgdHJlbmQgaW4gdGhlIHJlc3Qgb2YgdGhlIGVjb25vbXkuXCJcbiAgfSxcbiAgVE9TSTE6IHtcbiAgICBub21icmU6IFwiRW1wbG95bWVudCBpbiB0aGUgaW5mb3JtYWwgc2VjdG9yXCIsXG4gICAgdGV4dG86IFwiU2hhcmUgb2YgZW1wbG95ZWQgcGVvcGxlIHdvcmtpbmcgZm9yIGEgYnVzaW5lc3MgdGhhdCBvcGVyYXRlcyB3aXRob3V0IHJlZ2lzdGVyaW5nIHdpdGggdGhlIGF1dGhvcml0aWVzLiBNZWFzdXJlcyB0aGUgdHlwZSBvZiBidXNpbmVzcywgbm90IHdoZXRoZXIgdGhlIGluZGl2aWR1YWwgaGFzIHNvY2lhbCBzZWN1cml0eS5cIlxuICB9LFxuICBUT1NJMjoge1xuICAgIG5vbWJyZTogXCJJbmZvcm1hbC1zZWN0b3IgZW1wbG95bWVudCwgZXhjbC4gYWdyaWN1bHR1cmVcIixcbiAgICB0ZXh0bzogXCJTYW1lIGFzIGVtcGxveW1lbnQgaW4gdGhlIGluZm9ybWFsIHNlY3RvciwgZXhjbHVkaW5nIGFncmljdWx0dXJlLlwiXG4gIH0sXG4gIFRTVUI6IHtcbiAgICBub21icmU6IFwiVW5kZXJlbXBsb3ltZW50XCIsXG4gICAgdGV4dG86IFwiU2hhcmUgb2YgZW1wbG95ZWQgcGVvcGxlIHdobyB3YW50LCBhbmQgYXJlIGFibGUsIHRvIHdvcmsgbW9yZSBob3VycyB0aGFuIHRoZWlyIGN1cnJlbnQgam9iIGdpdmVzIHRoZW0uXCJcbiAgfSxcbiAgVENDTzoge1xuICAgIG5vbWJyZTogXCJDcml0aWNhbCBlbXBsb3ltZW50IGNvbmRpdGlvbnNcIixcbiAgICB0ZXh0bzogXCJTaGFyZSBvZiBlbXBsb3llZCBwZW9wbGUgaW4gcHJlY2FyaW91cyBjb25kaXRpb25zOiB0b28gZmV3IGhvdXJzIGludm9sdW50YXJpbHksIG9yIGxvbmcgaG91cnMgYXQgYmVsb3cgdGhlIGxlZ2FsIG1pbmltdW0gd2FnZS4gU2Vuc2l0aXZlIHRvIG1pbmltdW0td2FnZSBjaGFuZ2VzIOKAlCB0cmVhdCBsZXZlbCBzaGlmdHMgd2l0aCBjYXV0aW9uLCB0cmVuZCBkaXJlY3Rpb24gaXMgbW9yZSByZWxpYWJsZS5cIlxuICB9LFxuICBUREFNUEw6IHtcbiAgICBub21icmU6IFwiQnJvYWRlciB1bmVtcGxveW1lbnRcIixcbiAgICB0ZXh0bzogXCJUaGUgdW5lbXBsb3ltZW50IHJhdGUsIHdpZGVuZWQgaW4gYm90aCBudW1lcmF0b3IgYW5kIGRlbm9taW5hdG9yIHRvIGluY2x1ZGUgcGVvcGxlIGF2YWlsYWJsZSB0byB3b3JrIHdobyBhcmVuJ3QgYWN0aXZlbHkgc2VhcmNoaW5nIChkaXNjb3VyYWdlZCB3b3JrZXJzKS4gTm90IGEgY3VzdG9tIGRlZmluaXRpb246IGl0IG9ubHkgY29tYmluZXMgY2F0ZWdvcmllcyBFTk9FIGFscmVhZHkgcmVwb3J0cyBzZXBhcmF0ZWx5LlwiXG4gIH0sXG4gIFNVQlVUSUw6IHtcbiAgICBub21icmU6IFwiTGFib3IgdW5kZXJ1dGlsaXphdGlvblwiLFxuICAgIHRleHRvOiBcIlNhbWUgYXMgYnJvYWRlciB1bmVtcGxveW1lbnQsIGFkZGluZyBwZW9wbGUgd2hvIGFscmVhZHkgaGF2ZSBhIGpvYiBidXQgd29yayBmZXdlciBob3VycyB0aGFuIHRoZXknZCBsaWtlICh1bmRlcmVtcGxveWVkKS4gVGhlIGJyb2FkZXN0IG1lYXN1cmUgaGVyZSBvZiBob3cgbXVjaCBhdmFpbGFibGUgbGFib3IgaXMgZ29pbmcgdW51c2VkLlwiXG4gIH1cbn0pXG5cbmluZGljYWRvcmVzUHJpbmNpcGFsZXMgPSBbXCJUUEVBXCIsIFwiVElMMVwiLCBcIlREXCJdXG5pbmRpY2Fkb3Jlc0VzY2FsZXJhID0gW1wiVERBTVBMXCIsIFwiU1VCVVRJTFwiXVxuaW5kaWNhZG9yZXNTZWN1bmRhcmlvcyA9IE9iamVjdC5rZXlzKGRlZmluaWNpb25lcylcbiAgLmZpbHRlcihrID0+ICFpbmRpY2Fkb3Jlc1ByaW5jaXBhbGVzLmluY2x1ZGVzKGspICYmICFpbmRpY2Fkb3Jlc0VzY2FsZXJhLmluY2x1ZGVzKGspKVxuICAuc29ydCgpXG5cbnNlcmllRGUgPSBjb2RpZ28gPT4gZGF0b3NcbiAgLmZpbHRlcihkID0+IGQuaW5kaWNhZG9yID09PSBjb2RpZ28pXG4gIC5zb3J0KChhLCBiKSA9PiBhLmZlY2hhIC0gYi5mZWNoYSlcblxudmFsb3JFblBlcmlvZG8gPSAoc2VyaWUsIGFuaW8sIHRyaW1lc3RyZSkgPT4ge1xuICBjb25zdCBmaWxhID0gc2VyaWUuZmluZChkID0+IGQuYW5pbyA9PT0gYW5pbyAmJiBkLnRyaW1lc3RyZSA9PT0gdHJpbWVzdHJlKTtcbiAgcmV0dXJuIGZpbGEgPyBmaWxhLnZhbG9yIDogbnVsbDtcbn1cblxuY2FsY3VsYXJEZWx0YXMgPSBzZXJpZSA9PiB7XG4gIGNvbnN0IHVsdGltbyA9IHNlcmllW3NlcmllLmxlbmd0aCAtIDFdO1xuICBjb25zdCB0cmltQW50ID0gdWx0aW1vLnRyaW1lc3RyZSA9PT0gMVxuICAgID8geyBhbmlvOiB1bHRpbW8uYW5pbyAtIDEsIHRyaW1lc3RyZTogNCB9XG4gICAgOiB7IGFuaW86IHVsdGltby5hbmlvLCB0cmltZXN0cmU6IHVsdGltby50cmltZXN0cmUgLSAxIH07XG4gIGNvbnN0IHZhbG9yVHJpbUFudCA9IHZhbG9yRW5QZXJpb2RvKHNlcmllLCB0cmltQW50LmFuaW8sIHRyaW1BbnQudHJpbWVzdHJlKTtcbiAgY29uc3QgdmFsb3JBbmlvQW50ID0gdmFsb3JFblBlcmlvZG8oc2VyaWUsIHVsdGltby5hbmlvIC0gMSwgdWx0aW1vLnRyaW1lc3RyZSk7XG4gIHJldHVybiB7XG4gICAgZGVsdGFUcmltOiB2YWxvclRyaW1BbnQgIT0gbnVsbCA/IHVsdGltby52YWxvciAtIHZhbG9yVHJpbUFudCA6IG51bGwsXG4gICAgZGVsdGFBbnVhbDogdmFsb3JBbmlvQW50ICE9IG51bGwgPyB1bHRpbW8udmFsb3IgLSB2YWxvckFuaW9BbnQgOiBudWxsXG4gIH07XG59XG5cbi8vIE5ldXRyYWwgb24gcHVycG9zZTogYXJyb3dzIGFuZCBudW1iZXJzLCBubyByZWQvZ3JlZW4gXCJnb29kIG9yIGJhZFwiIGNvZGluZy5cbmZvcm1hdG9EZWx0YSA9IGRlbHRhID0+IHtcbiAgaWYgKGRlbHRhID09IG51bGwpIHJldHVybiBcIm4vYVwiO1xuICBpZiAoTWF0aC5hYnMoZGVsdGEpIDwgMC4wMDUpIHJldHVybiBcIm5vIGNoYW5nZVwiO1xuICBjb25zdCBzaWdubyA9IGRlbHRhID4gMCA/IFwi4payXCIgOiBcIuKWvFwiO1xuICByZXR1cm4gYCR7c2lnbm99ICR7TWF0aC5hYnMoZGVsdGEpLnRvRml4ZWQoMil9IHBwYDtcbn1cblxuLy8gbmljZTp0cnVlIHJvdW5kcyB0aGUgZG9tYWluIHRvIFwibmljZVwiIG51bWJlcnMsIHdoaWNoIGNhbiBwYWQgaXQgd2VsbCBwYXN0XG4vLyB0aGUgc2VyaWVzJyBhY3R1YWwgcmFuZ2UgYW5kIGZsYXR0ZW4gYSBzZXJpZXMgd2l0aCBsaXR0bGUgdmFyaWF0aW9uIChlLmcuXG4vLyBUT1NJMS9UT1NJMiwgd2hpY2ggbW92ZSB3aXRoaW4gfjMgcG9pbnRzKS4gRml0IHRoZSBkb21haW4gdG8gZWFjaCBzZXJpZXMnXG4vLyBvd24gbWluL21heCBwbHVzIGEgZml4ZWQgbWFyZ2luIGluc3RlYWQsIHNvIGV2ZXJ5IG1pbmkgY2hhcnQgdXNlcyBpdHMgb3duXG4vLyBzY2FsZSB3aXRob3V0IGV4YWdnZXJhdGluZyBvciBmbGF0dGVuaW5nLlxuZG9taW5pb0FqdXN0YWRvID0gKHNlcmllLCBtYXJnZW5NaW5pbW8gPSAwLjQpID0+IHtcbiAgY29uc3QgdmFsb3JlcyA9IHNlcmllLm1hcChkID0+IGQudmFsb3IpO1xuICBjb25zdCBtaW4gPSBNYXRoLm1pbiguLi52YWxvcmVzKSwgbWF4ID0gTWF0aC5tYXgoLi4udmFsb3Jlcyk7XG4gIGNvbnN0IG1hcmdlbiA9IE1hdGgubWF4KChtYXggLSBtaW4pICogMC4xNSwgbWFyZ2VuTWluaW1vKTtcbiAgcmV0dXJuIFttaW4gLSBtYXJnZW4sIG1heCArIG1hcmdlbl07XG59XG5cbi8vIDIwMjAtUTIgZG9lcyBub3QgZXhpc3QgaW4gdGhlIHNvdXJjZS4gRU5PRSB3YXMgc3VzcGVuZGVkIGFuZCByZXBsYWNlZCBieVxuLy8gdGhlIEVUT0UgdGVsZXBob25lIHN1cnZleSwgd2hpY2ggSU5FR0kgZG9lcyBub3QgcHVibGlzaCBhcyBhIGNvbXBhcmFibGVcbi8vIGVzdGltYXRlLiBKb2luaW5nIHRoZSB0d28gc2lkZXMgd2l0aCBhIHN0cmFpZ2h0IGxpbmUgcmVhZHMgYSBjaGFuZ2Ugb2Zcbi8vIG1ldGhvZCBhcyBhIGdyYWR1YWwgdHJhbnNpdGlvbiwgc28gYSBwb2ludCB3aXRoIGFuIHVuZGVmaW5lZCB2YWx1ZSBpc1xuLy8gaW5zZXJ0ZWQgaW4gdGhlIGdhcCBhbmQgUGxvdCBicmVha3MgdGhlIGxpbmUgdGhlcmUgaW5zdGVhZC5cbmNvbkh1ZWNvcyA9IHNlcmllID0+IHtcbiAgY29uc3Qgc2FsaWRhID0gW107XG4gIGZvciAobGV0IGkgPSAwOyBpIDwgc2VyaWUubGVuZ3RoOyBpKyspIHtcbiAgICBzYWxpZGEucHVzaChzZXJpZVtpXSk7XG4gICAgaWYgKGkgPCBzZXJpZS5sZW5ndGggLSAxKSB7XG4gICAgICBjb25zdCBhID0gc2VyaWVbaV0sIGIgPSBzZXJpZVtpICsgMV07XG4gICAgICBjb25zdCBtZXNlcyA9IChiLmZlY2hhLmdldEZ1bGxZZWFyKCkgLSBhLmZlY2hhLmdldEZ1bGxZZWFyKCkpICogMTIgK1xuICAgICAgICAgICAgICAgICAgICAoYi5mZWNoYS5nZXRNb250aCgpIC0gYS5mZWNoYS5nZXRNb250aCgpKTtcbiAgICAgIGlmIChtZXNlcyA+IDMpIHtcbiAgICAgICAgc2FsaWRhLnB1c2goeyAuLi5hLFxuICAgICAgICAgIGZlY2hhOiBuZXcgRGF0ZShhLmZlY2hhLmdldEZ1bGxZZWFyKCksIGEuZmVjaGEuZ2V0TW9udGgoKSArIDMsIDEpLFxuICAgICAgICAgIHZhbG9yOiB1bmRlZmluZWQsIGVlOiB1bmRlZmluZWQgfSk7XG4gICAgICB9XG4gICAgfVxuICB9XG4gIHJldHVybiBzYWxpZGE7XG59XG5cbi8vIFRyZW5kLWN5Y2xlIHNlcmllcywgcHVibGlzaGVkIGJ5IElORUdJIGl0c2VsZiBpbiBpdHMgQmFuY28gZGUgSW5mb3JtYWNpb25cbi8vIEVjb25vbWljYS4gUXVhcnRlcmx5IG9uZXMgY29tZSBhcyBwZXJjZW50YWdlcywgdW5saWtlIHRoZSBtb250aGx5IG9uZXMsXG4vLyB3aGljaCBhcmUgaW5kZXggbnVtYmVycywgc28gdGhleSBzaXQgZGlyZWN0bHkgb24gdGhlIHNhbWUgYXhpcyBhcyB0aGVcbi8vIG9yaWdpbmFsIHNlcmllcyB3aXRoIG5vIHJlc2NhbGluZy4gU2l4IGluZGljYXRvcnMgaGF2ZSBvbmU7IHRoZSByZXN0IHJldHVyblxuLy8gYW4gZW1wdHkgYXJyYXkgYW5kIHNpbXBseSBnZXQgbm8gYmFja2dyb3VuZCBsaW5lLlxuc2VyaWVBanVzdGFkYSA9IChjb2RpZ28sIHRpcG8gPSBcInRlbmRlbmNpYV9jaWNsb1wiKSA9PiBhanVzdGFkYVJhd1xuICAuZmlsdGVyKGQgPT4gZC5pbmRpY2Fkb3IgPT09IGNvZGlnbyAmJiBkLnRpcG8gPT09IHRpcG8pXG4gIC5tYXAoZCA9PiAoeyAuLi5kLCBmZWNoYTogbmV3IERhdGUoZC5hbmlvLCAoZC50cmltZXN0cmUgLSAxKSAqIDMsIDEpIH0pKVxuICAuc29ydCgoYSwgYikgPT4gYS5mZWNoYSAtIGIuZmVjaGEpXG5cbmdyYWZpY2FTZXJpZSA9IChzZXJpZSwgeyB3aWR0aCA9IDc4MCwgaGVpZ2h0ID0gMzQwLCBtYXJnaW5MZWZ0ID0gNDIsIGNvbG9yID0gXCJ2YXIoLS10ZWFsKVwiLCBhanVzdGFkYSA9IG51bGwgfSA9IHt9KSA9PiB7XG4gIGNvbnN0IHVsdGltbyA9IHNlcmllW3NlcmllLmxlbmd0aCAtIDFdO1xuICBjb25zdCBzZXJpZVJvdGEgPSBjb25IdWVjb3Moc2VyaWUpO1xuICBjb25zdCBhanVzdGFkYVJvdGEgPSBhanVzdGFkYSAmJiBhanVzdGFkYS5sZW5ndGggPyBjb25IdWVjb3MoYWp1c3RhZGEpIDogbnVsbDtcbiAgcmV0dXJuIFBsb3QucGxvdCh7XG4gICAgd2lkdGgsIGhlaWdodCwgbWFyZ2luTGVmdCxcbiAgICBtYXJnaW5Cb3R0b206IDMwLFxuICAgIHN0eWxlOiB7IGZvbnRGYW1pbHk6IFwiSUJNIFBsZXggU2Fucywgc2Fucy1zZXJpZlwiLFxuICAgICAgICAgICAgIGZvbnRTaXplOiB3aWR0aCA8IDQwMCA/IFwiMTFweFwiIDogXCIxM3B4XCIsXG4gICAgICAgICAgICAgY29sb3I6IFwiY3VycmVudENvbG9yXCIsIGJhY2tncm91bmQ6IFwidHJhbnNwYXJlbnRcIiB9LFxuICAgIHk6IHsgbGFiZWw6IFwiJVwiLCBncmlkOiB0cnVlLCBkb21haW46IGRvbWluaW9BanVzdGFkbyhzZXJpZSksIHRpY2tzOiA0IH0sXG4gICAgeDogeyBsYWJlbDogbnVsbCB9LFxuICAgIG1hcmtzOiBbXG4gICAgICBQbG90LmFyZWFZKHNlcmllUm90YSwge1xuICAgICAgICB4OiBcImZlY2hhXCIsXG4gICAgICAgIHkxOiBkID0+IGQudmFsb3IgPT0gbnVsbCA/IHVuZGVmaW5lZCA6IGQudmFsb3IgLSAxLjk2ICogZC5lZSxcbiAgICAgICAgeTI6IGQgPT4gZC52YWxvciA9PSBudWxsID8gdW5kZWZpbmVkIDogZC52YWxvciArIDEuOTYgKiBkLmVlLFxuICAgICAgICBmaWxsOiBjb2xvciwgZmlsbE9wYWNpdHk6IDAuMTJcbiAgICAgIH0pLFxuICAgICAgLy8gVGhlIHRyZW5kLWN5Y2xlIGxpbmUgaXMgdGhpbm5lciBhbmQgZmFkZWQgb24gcHVycG9zZS4gSXQgaXMgcmVhZGluZ1xuICAgICAgLy8gY29udGV4dCBmb3IgdGhlIG9yaWdpbmFsIHNlcmllcywgbm90IGEgc2Vjb25kIGluZGljYXRvciwgYW5kIHRoZVxuICAgICAgLy8gbnVtYmVyIHF1b3RlZCBvbiB0aGUgY2FyZCBhbHdheXMgY29tZXMgZnJvbSB0aGUgb3JpZ2luYWwuXG4gICAgICAuLi4oYWp1c3RhZGFSb3RhID8gW1Bsb3QubGluZVkoYWp1c3RhZGFSb3RhLCB7XG4gICAgICAgIHg6IFwiZmVjaGFcIiwgeTogXCJ2YWxvclwiLFxuICAgICAgICBzdHJva2U6IGNvbG9yLCBzdHJva2VXaWR0aDogMS40LCBzdHJva2VPcGFjaXR5OiAwLjUsXG4gICAgICAgIHN0cm9rZUxpbmVqb2luOiBcInJvdW5kXCIsIHN0cm9rZUxpbmVjYXA6IFwicm91bmRcIlxuICAgICAgfSldIDogW10pLFxuICAgICAgUGxvdC5saW5lWShzZXJpZVJvdGEsIHtcbiAgICAgICAgeDogXCJmZWNoYVwiLCB5OiBcInZhbG9yXCIsXG4gICAgICAgIHN0cm9rZTogY29sb3IsIHN0cm9rZVdpZHRoOiAyLFxuICAgICAgICBzdHJva2VMaW5lam9pbjogXCJyb3VuZFwiLCBzdHJva2VMaW5lY2FwOiBcInJvdW5kXCJcbiAgICAgIH0pLFxuICAgICAgUGxvdC5kb3Qoc2VyaWUsIHtcbiAgICAgICAgeDogXCJmZWNoYVwiLCB5OiBcInZhbG9yXCIsIHI6IDMuNSxcbiAgICAgICAgZmlsbDogY29sb3IsIGZpbHRlcjogZCA9PiBkID09PSB1bHRpbW9cbiAgICAgIH0pLFxuICAgICAgUGxvdC5ydWxlWShbMF0sIHsgc3Ryb2tlOiBcImN1cnJlbnRDb2xvclwiLCBzdHJva2VPcGFjaXR5OiAwLjE1IH0pLFxuICAgICAgUGxvdC50aXAoc2VyaWUsIFBsb3QucG9pbnRlclgoe1xuICAgICAgICB4OiBcImZlY2hhXCIsIHk6IFwidmFsb3JcIixcbiAgICAgICAgdGl0bGU6IGQgPT4gYCR7ZC5hbmlvfS1RJHtkLnRyaW1lc3RyZX0gKCR7ZC5yZWdpbWVufSlcXG4ke2QudmFsb3J9JSDCsSAkeygxLjk2ICogZC5lZSkudG9GaXhlZCgyKX0gcHBcXG5uID0gJHtkLm5fb2JzLnRvTG9jYWxlU3RyaW5nKFwiZW4tVVNcIil9YFxuICAgICAgfSkpXG4gICAgXVxuICB9KTtcbn1cblxuY29sb3Jlc1ByaW5jaXBhbGVzID0gKHtcbiAgVFBFQTogXCJ2YXIoLS10ZWFsKVwiLFxuICBUSUwxOiBcInZhcigtLWNsYXkpXCIsXG4gIFREOiBcInZhcigtLWluay1zb2Z0KVwiXG59KVxuXG4vLyBBIGxpZ2h0L2RlZXAgcGFpciBvZiB0aGUgc2FtZSBuZXV0cmFsIChub3QgLS10ZWFsIG9yIC0tY2xheSwgYWxyZWFkeSB1c2VkXG4vLyBieSBUUEVBL1RJTDEpIHNvIGJvdGggY2FyZHMgcmVhZCBhcyB0aGUgc2FtZSB0aGVtZSAtLSBicm9hZGVyIHVuZW1wbG95bWVudFxuLy8gLS0gd2l0aG91dCBkdXBsaWNhdGluZyBURCdzIGNvbG9yIG9yIGVhY2ggb3RoZXIncy5cbmNvbG9yZXNFc2NhbGVyYSA9ICh7XG4gIFREQU1QTDogXCJ2YXIoLS1pbmstc29mdC1saWdodClcIixcbiAgU1VCVVRJTDogXCJ2YXIoLS1pbmstc29mdC1kZWVwKVwiXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiaHRtbGA8ZGl2IGNsYXNzPVwiaW5kaWNhdG9yLWdyaWRcIj4ke2luZGljYWRvcmVzUHJpbmNpcGFsZXMubWFwKGNvZGlnbyA9PiB7XG4gIGNvbnN0IHNlcmllID0gc2VyaWVEZShjb2RpZ28pO1xuICBjb25zdCB1bHRpbW8gPSBzZXJpZVtzZXJpZS5sZW5ndGggLSAxXTtcbiAgY29uc3QgZGVmID0gZGVmaW5pY2lvbmVzW2NvZGlnb107XG4gIGNvbnN0IHsgZGVsdGFUcmltLCBkZWx0YUFudWFsIH0gPSBjYWxjdWxhckRlbHRhcyhzZXJpZSk7XG4gIGNvbnN0IGRpdiA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG4gIGRpdi5jbGFzc05hbWUgPSBcImluZGljYXRvci1jYXJkXCI7XG4gIGNvbnN0IGhlYWQgPSBodG1sYDxkaXYgY2xhc3M9XCJpbmRpY2F0b3ItbmFtZVwiPiR7ZGVmLm5vbWJyZX1cbiAgICA8c3BhbiBjbGFzcz1cImluZGljYXRvci12YWx1ZVwiPiR7dWx0aW1vLnZhbG9yfSU8L3NwYW4+XG4gIDwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiaW5kaWNhdG9yLW1ldGFcIj7CsSAkeygxLjk2ICogdWx0aW1vLmVlKS50b0ZpeGVkKDIpfSBwcCDCtyAke3VsdGltby5hbmlvfS1RJHt1bHRpbW8udHJpbWVzdHJlfTwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiaW5kaWNhdG9yLWRlbHRhXCI+JHtmb3JtYXRvRGVsdGEoZGVsdGFUcmltKX0gcS9xIMK3ICR7Zm9ybWF0b0RlbHRhKGRlbHRhQW51YWwpfSB5L3k8L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImluZGljYXRvci1kZXNjXCI+JHtkZWYudGV4dG99PC9kaXY+YDtcbiAgZGl2LmFwcGVuZChoZWFkLCBncmFmaWNhU2VyaWUoc2VyaWUsIHsgd2lkdGg6IDI1MCwgaGVpZ2h0OiAxOTAsIG1hcmdpbkxlZnQ6IDMyLCBjb2xvcjogY29sb3Jlc1ByaW5jaXBhbGVzW2NvZGlnb10sIGFqdXN0YWRhOiBzZXJpZUFqdXN0YWRhKGNvZGlnbykgfSkpO1xuICByZXR1cm4gZGl2O1xufSl9PC9kaXY+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiaHRtbGA8ZGl2IGNsYXNzPVwiaW5kaWNhdG9yLWdyaWQgaW5kaWNhdG9yLWdyaWQtMlwiPiR7aW5kaWNhZG9yZXNFc2NhbGVyYS5tYXAoY29kaWdvID0+IHtcbiAgY29uc3Qgc2VyaWUgPSBzZXJpZURlKGNvZGlnbyk7XG4gIGNvbnN0IHVsdGltbyA9IHNlcmllW3NlcmllLmxlbmd0aCAtIDFdO1xuICBjb25zdCBkZWYgPSBkZWZpbmljaW9uZXNbY29kaWdvXTtcbiAgY29uc3QgeyBkZWx0YVRyaW0sIGRlbHRhQW51YWwgfSA9IGNhbGN1bGFyRGVsdGFzKHNlcmllKTtcbiAgY29uc3QgZGl2ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcbiAgZGl2LmNsYXNzTmFtZSA9IFwiaW5kaWNhdG9yLWNhcmRcIjtcbiAgY29uc3QgaGVhZCA9IGh0bWxgPGRpdiBjbGFzcz1cImluZGljYXRvci1uYW1lXCI+JHtkZWYubm9tYnJlfVxuICAgIDxzcGFuIGNsYXNzPVwiaW5kaWNhdG9yLXZhbHVlXCI+JHt1bHRpbW8udmFsb3J9JTwvc3Bhbj5cbiAgPC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJpbmRpY2F0b3ItbWV0YVwiPsKxICR7KDEuOTYgKiB1bHRpbW8uZWUpLnRvRml4ZWQoMil9IHBwIMK3ICR7dWx0aW1vLmFuaW99LVEke3VsdGltby50cmltZXN0cmV9PC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJpbmRpY2F0b3ItZGVsdGFcIj4ke2Zvcm1hdG9EZWx0YShkZWx0YVRyaW0pfSBxL3EgwrcgJHtmb3JtYXRvRGVsdGEoZGVsdGFBbnVhbCl9IHkveTwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiaW5kaWNhdG9yLWRlc2NcIj4ke2RlZi50ZXh0b308L2Rpdj5gO1xuICBkaXYuYXBwZW5kKGhlYWQsIGdyYWZpY2FTZXJpZShzZXJpZSwgeyB3aWR0aDogMzgwLCBoZWlnaHQ6IDE5MCwgbWFyZ2luTGVmdDogMzIsIGNvbG9yOiBjb2xvcmVzRXNjYWxlcmFbY29kaWdvXSwgYWp1c3RhZGE6IHNlcmllQWp1c3RhZGEoY29kaWdvKSB9KSk7XG4gIHJldHVybiBkaXY7XG59KX08L2Rpdj5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTUiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2YgaW5kaWNhZG9yX3NlbCA9IElucHV0cy5zZWxlY3QoaW5kaWNhZG9yZXNTZWN1bmRhcmlvcywge1xuICB2YWx1ZTogXCJUSUwyXCIsXG4gIGxhYmVsOiBcIkluZGljYXRvclwiLFxuICBmb3JtYXQ6IGQgPT4gYCR7ZH0g4oCUICR7ZGVmaW5pY2lvbmVzW2RdLm5vbWJyZX1gXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC02IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoic2VyaWVTZWMgPSBzZXJpZURlKGluZGljYWRvcl9zZWwpXG51bHRpbW9TZWMgPSBzZXJpZVNlY1tzZXJpZVNlYy5sZW5ndGggLSAxXVxuZGVmU2VjID0gZGVmaW5pY2lvbmVzW2luZGljYWRvcl9zZWxdXG5kZWx0YXNTZWMgPSBjYWxjdWxhckRlbHRhcyhzZXJpZVNlYylcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imh0bWxgPGRpdiBjbGFzcz1cImluZGljYXRvci1oZWFkbGluZVwiPiR7ZGVmU2VjLm5vbWJyZX06ICR7dWx0aW1vU2VjLnZhbG9yfSU8L2Rpdj5cbjxkaXYgY2xhc3M9XCJpbmRpY2F0b3ItbWV0YVwiPsKxICR7KDEuOTYgKiB1bHRpbW9TZWMuZWUpLnRvRml4ZWQoMil9IHBwIMK3ICR7dWx0aW1vU2VjLmFuaW99LVEke3VsdGltb1NlYy50cmltZXN0cmV9IMK3IG4gPSAke3VsdGltb1NlYy5uX29icy50b0xvY2FsZVN0cmluZyhcImVuLVVTXCIpfTwvZGl2PlxuPGRpdiBjbGFzcz1cImluZGljYXRvci1kZWx0YVwiPiR7Zm9ybWF0b0RlbHRhKGRlbHRhc1NlYy5kZWx0YVRyaW0pfSB2cy4gcHJpb3IgcXVhcnRlciDCtyAke2Zvcm1hdG9EZWx0YShkZWx0YXNTZWMuZGVsdGFBbnVhbCl9IHZzLiBzYW1lIHF1YXJ0ZXIgbGFzdCB5ZWFyPC9kaXY+XG48cCBjbGFzcz1cImluZGljYXRvci1kZXNjXCI+JHtkZWZTZWMudGV4dG99PC9wPmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtOCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImdyYWZpY2FTZXJpZShzZXJpZVNlYywgeyBhanVzdGFkYTogc2VyaWVBanVzdGFkYShpbmRpY2Fkb3Jfc2VsKSB9KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdpbmRpY2Fkb3Jfc2VsJykifV19
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/www\.alainpineda\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Views expressed on this site are my own and do not necessarily reflect those of Banco de México.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

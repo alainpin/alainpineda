@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='475.20pt' height='187.20pt' viewBox='0 0 475.20 187.20'>
+<g class='svglite'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+    .svglite g.glyphgroup path {
+      fill: inherit;
+      stroke: none;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<defs>
+  <clipPath id='cpMC4wMHw0NzUuMjB8MC4wMHwxODcuMjA='>
+    <rect x='0.00' y='0.00' width='475.20' height='187.20' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw0NzUuMjB8MC4wMHwxODcuMjA=)'>
+<rect x='105.70' y='36.71' width='66.27' height='23.11' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #63B0B0;' />
+<rect x='105.70' y='73.99' width='81.68' height='23.11' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #63B0B0;' />
+<rect x='105.70' y='111.27' width='85.91' height='23.11' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #63B0B0;' />
+<rect x='105.70' y='148.55' width='228.08' height='23.11' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #63B0B0;' />
+<rect x='171.96' y='36.71' width='31.59' height='23.11' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #9A948B;' />
+<rect x='187.37' y='73.99' width='35.83' height='23.11' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #9A948B;' />
+<rect x='191.61' y='111.27' width='39.30' height='23.11' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #9A948B;' />
+<rect x='333.77' y='148.55' width='58.95' height='23.11' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #9A948B;' />
+<text x='208.34' y='51.42' style='font-size: 8.82px;fill: #E3DDD0; font-family: "Arial";' textLength='59.83px' lengthAdjust='spacingAndGlyphs'>$25.4K / month</text>
+<text x='227.99' y='88.70' style='font-size: 8.82px;fill: #E3DDD0; font-family: "Arial";' textLength='59.83px' lengthAdjust='spacingAndGlyphs'>$30.5K / month</text>
+<text x='235.69' y='125.98' style='font-size: 8.82px;fill: #E3DDD0; font-family: "Arial";' textLength='59.83px' lengthAdjust='spacingAndGlyphs'>$32.5K / month</text>
+<text x='397.51' y='163.25' style='font-size: 8.82px;fill: #E3DDD0; font-family: "Arial";' textLength='59.83px' lengthAdjust='spacingAndGlyphs'>$74.5K / month</text>
+<text x='100.77' y='163.39' text-anchor='end' style='font-size: 9.20px;fill: #E3DDD0; font-family: "Arial";' textLength='96.78px' lengthAdjust='spacingAndGlyphs'>Ipilimumab + nivolumab</text>
+<text x='100.77' y='126.11' text-anchor='end' style='font-size: 9.20px;fill: #E3DDD0; font-family: "Arial";' textLength='94.19px' lengthAdjust='spacingAndGlyphs'>BRAF + MEK inhibitors</text>
+<text x='100.77' y='88.84' text-anchor='end' style='font-size: 9.20px;fill: #E3DDD0; font-family: "Arial";' textLength='63.84px' lengthAdjust='spacingAndGlyphs'>Pembrolizumab</text>
+<text x='100.77' y='51.56' text-anchor='end' style='font-size: 9.20px;fill: #E3DDD0; font-family: "Arial";' textLength='43.42px' lengthAdjust='spacingAndGlyphs'>Nivolumab</text>
+<rect x='106.41' y='2.70' width='7.55' height='7.55' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #63B0B0;' />
+<rect x='163.11' y='2.70' width='7.55' height='7.55' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #9A948B;' />
+<text x='120.14' y='9.55' style='font-size: 8.60px;fill: #9A948B; font-family: "Arial";' textLength='36.78px' lengthAdjust='spacingAndGlyphs'>Drug cost</text>
+<text x='176.85' y='9.55' style='font-size: 8.60px;fill: #9A948B; font-family: "Arial";' textLength='66.42px' lengthAdjust='spacingAndGlyphs'>Other health care</text>
+</g>
+</g>
+</svg>
