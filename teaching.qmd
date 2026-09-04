@@ -11,12 +11,14 @@ description: "Courses I have taught at ITAM, in the Master in Applied Economics.
 Master in Applied Economics · Spring 2025
 :::
 
-The course is about how a piece of empirical research gets explained to someone
-else. Data and models do not speak for themselves, and the order in which they
-are presented decides how much a reader takes away. Students work through real
-examples: what to show, in what order, and in what words. The same result has
-to reach a technical audience, someone making a decision, and a reader with no
-training in economics.
+The course has two halves. One is the argument in Robert Shiller's
+[*Narrative Economics*](https://press.princeton.edu/books/hardcover/9780691182292/narrative-economics):
+economic stories spread through a population the way a disease does, and act as
+shocks to real outcomes while they do. The other is the craft of explaining a
+piece of empirical research to someone else, worked through real examples: what
+to show, in what order, and in what words. Both halves answer to the same test.
+The same result has to reach a technical audience, someone making a decision,
+and a reader with no training in economics.
 
 The [explainer](files/social-insurance-without-a-job-slides.html) for my job
 market paper is the same craft applied to my own work. It walks a general

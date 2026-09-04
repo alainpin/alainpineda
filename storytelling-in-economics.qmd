@@ -298,23 +298,36 @@ gridDigitos = (activo) => html`<div class="digit-grid">${
         : html`<span>${caracter}</span>`)
   }</div>`)
 }</div>`
+
+// The answer has to wait for the toggle. Printed under the grid from the
+// start, it is read before anyone tries to count, and the exercise stops
+// working: the point is the difference between counting and seeing.
+lineaDigitos = (activo) => html`<p>${activo
+  ? "Seven. One change makes them visible before counting them."
+  : "Counting them takes a moment."
+}</p>`
 ```
+
+How many 3s are in the grid?
 
 ::: {.data-panel}
-
-```{ojs}
-//| echo: false
-viewof resaltar = Inputs.toggle({ label: "Highlight", value: false })
-```
 
 ```{ojs}
 //| echo: false
 gridDigitos(resaltar)
 ```
 
+```{ojs}
+//| echo: false
+viewof resaltar = Inputs.toggle({ label: "Highlight", value: false })
+```
+
 :::
 
-There are seven. One change makes them visible before counting them.
+```{ojs}
+//| echo: false
+lineaDigitos(resaltar)
+```
 
 ### The same chart, in six steps
 

@@ -11,11 +11,14 @@ description: "Cursos que he impartido en el ITAM, en la Maestría en Economía A
 Maestría en Economía Aplicada · Primavera 2025
 :::
 
-El curso trata de cómo se le explica a alguien más un trabajo empírico. Los
-datos y los modelos no hablan por sí solos, y el orden en que se presentan
-decide cuánto entiende quien los lee. En clase se trabaja con ejemplos reales:
-qué mostrar, en qué orden y con qué palabras. El mismo resultado tiene que
-llegar a un público técnico, a quien toma una decisión y a un lector sin
+El curso tiene dos mitades. Una es el argumento de
+*[Narrative Economics](https://press.princeton.edu/books/hardcover/9780691182292/narrative-economics)*
+de Robert Shiller: las historias económicas se propagan en una población como se
+propaga una enfermedad, y actúan como choques sobre los resultados reales
+mientras lo hacen. La otra es el oficio de explicarle a alguien más un trabajo
+empírico, trabajado con ejemplos reales: qué mostrar, en qué orden y con qué
+palabras. Las dos mitades responden a la misma prueba. El mismo resultado tiene
+que llegar a un público técnico, a quien toma una decisión y a un lector sin
 formación en economía.
 
 El [explicador](../files/social-insurance-without-a-job-slides-es.html) de mi

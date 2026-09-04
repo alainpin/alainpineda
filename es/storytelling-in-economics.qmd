@@ -299,23 +299,36 @@ gridDigitos = (activo) => html`<div class="digit-grid">${
         : html`<span>${caracter}</span>`)
   }</div>`)
 }</div>`
+
+// La respuesta tiene que esperar al interruptor. Impresa bajo la cuadrícula
+// desde el principio, se lee antes de que nadie intente contar y el ejercicio
+// deja de funcionar: el punto es la diferencia entre contar y ver.
+lineaDigitos = (activo) => html`<p>${activo
+  ? "Siete. Con un solo cambio se ven antes de contarlos."
+  : "Contarlos toma un momento."
+}</p>`
 ```
+
+¿Cuántos treses hay en la cuadrícula?
 
 ::: {.data-panel}
-
-```{ojs}
-//| echo: false
-viewof resaltar = Inputs.toggle({ label: "Resaltar", value: false })
-```
 
 ```{ojs}
 //| echo: false
 gridDigitos(resaltar)
 ```
 
+```{ojs}
+//| echo: false
+viewof resaltar = Inputs.toggle({ label: "Resaltar", value: false })
+```
+
 :::
 
-Hay siete. Con un solo cambio se ven antes de contarlos.
+```{ojs}
+//| echo: false
+lineaDigitos(resaltar)
+```
 
 ### La misma gráfica, en seis pasos
 
