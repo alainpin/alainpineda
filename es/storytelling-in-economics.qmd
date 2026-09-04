@@ -393,6 +393,20 @@ lineasPaso = seriesPaso.flatMap(conHuecos)
 finalesPaso = seriesPaso.map(s => s[s.length - 1])
 dominioPaso = [etiquetaSerie.TIL1, etiquetaSerie.TOSI1]
 
+// El eje estaba fijo en [0, 65] mientras las dos series viven entre 27 y 60,
+// así que la mitad del marco quedaba vacía y las dos líneas apretadas en la
+// mitad de arriba. Se ajusta a los datos, la misma idea que
+// dominioAjustadoSerie en las páginas de Mercado Laboral MX, pero con un
+// margen más chico: ese ayudante deja 15% del rango, que sobre un tramo tan
+// ancho devolvería varios puntos de eje vacío. Se calcula en vez de fijarse
+// para que siga ajustando cuando cambien los datos trimestrales.
+dominioPasoY = {
+  const valores = puntosPaso.map(d => d.valor);
+  const min = Math.min(...valores), max = Math.max(...valores);
+  const margen = (max - min) * 0.06;
+  return [min - margen, max + margen];
+}
+
 textosPaso = [
   "Como sale de una hoja de cálculo. Borde, cuadrícula, un marcador en cada trimestre, una leyenda separada de las líneas y los colores que el programa trae de fábrica.",
   "Quitar el borde de la gráfica.",
@@ -480,7 +494,7 @@ graficaPasos = (paso) => {
       fontSize: "12px"
     },
     x: { label: null },
-    y: { label: sucio ? "Porcentaje (%)" : "%", domain: [0, 65] },
+    y: { label: sucio ? "Porcentaje (%)" : "%", domain: dominioPasoY },
     color: casa
       ? { domain: dominioPaso, range: ["var(--teal)", "var(--clay)"] }
       : { domain: dominioPaso, scheme: "tableau10", legend: paso <= 4 },
@@ -514,7 +528,7 @@ proporción de la población ocupada. ENOE, INEGI, series originales, sin
 ajuste estacional. En 2020-T2 no hubo levantamiento. La ENOE operó bajo tres
 marcos sucesivos en este periodo, con cambios en 2020-T3 y en 2023-T1. La
 línea se traza continua a través de los dos, y el tooltip indica el marco de
-cada punto.
+cada punto. El eje vertical se ajusta a las dos series y no arranca en cero.
 :::
 
 Las dos líneas valen por lo que miden, no sólo por cómo están dibujadas. La

@@ -390,6 +390,20 @@ lineasPaso = seriesPaso.flatMap(conHuecos)
 finalesPaso = seriesPaso.map(s => s[s.length - 1])
 dominioPaso = [etiquetaSerie.TIL1, etiquetaSerie.TOSI1]
 
+// The axis was fixed at [0, 65] while the two series live between 27 and 60,
+// so about half the frame was empty and both lines were squeezed into the top
+// half. Fit it to the data instead, the same idea as dominioAjustadoSerie on
+// the Labor Market MX pages, but with a tighter margin: that helper pads 15%
+// of the range, which over a span this wide would leave several points of
+// empty axis back. Computed rather than hardcoded so it still fits when the
+// quarterly data moves.
+dominioPasoY = {
+  const valores = puntosPaso.map(d => d.valor);
+  const min = Math.min(...valores), max = Math.max(...valores);
+  const margen = (max - min) * 0.06;
+  return [min - margen, max + margen];
+}
+
 textosPaso = [
   "Straight out of a spreadsheet. A border, gridlines, a marker on every quarter, a legend set apart from the lines, and the software's default colors.",
   "Chart border removed.",
@@ -477,7 +491,7 @@ graficaPasos = (paso) => {
       fontSize: "12px"
     },
     x: { label: null },
-    y: { label: sucio ? "Percent (%)" : "%", domain: [0, 65] },
+    y: { label: sucio ? "Percent (%)" : "%", domain: dominioPasoY },
     color: casa
       ? { domain: dominioPaso, range: ["var(--teal)", "var(--clay)"] }
       : { domain: dominioPaso, scheme: "tableau10", legend: paso <= 4 },
@@ -511,7 +525,8 @@ the employed population. ENOE, INEGI, original series, without seasonal
 adjustment. 2020-Q2 was not surveyed. The ENOE ran under three successive
 frameworks over this period, changing in 2020-Q3 and again in 2023-Q1. The
 line is drawn continuous across both, and the tooltip names the framework
-behind each point.
+behind each point. The vertical axis is fitted to the two series and does not
+start at zero.
 :::
 
 The two lines are worth reading for what they measure, not only for how they
