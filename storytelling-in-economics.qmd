@@ -347,7 +347,7 @@ etiquetaSerie = ({ TIL1: "Informality", TOSI1: "Informal sector" })
 etiquetaMarco = ({
   tradicional: "ENOE",
   enoen: "ENOEN",
-  enoe_2023: "ENOE (from 2023)"
+  enoe_2023: "ENOE 2023+"
 })
 
 serieDe = codigo => indicadores

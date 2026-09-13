@@ -25,7 +25,7 @@ datos = raw.map(d => ({ ...d, fecha: new Date(d.anio, (d.trimestre - 1) * 3, 1) 
 etiquetaMarco = ({
   tradicional: "ENOE",
   enoen: "ENOEN",
-  enoe_2023: "ENOE (from 2023)"
+  enoe_2023: "ENOE 2023+"
 })
 
 definiciones = ({

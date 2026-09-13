@@ -28,7 +28,7 @@ ultimoNacional = nacional[nacional.length - 1]
 etiquetaMarco = ({
   tradicional: "ENOE",
   enoen: "ENOEN",
-  enoe_2023: "ENOE (from 2023)"
+  enoe_2023: "ENOE 2023+"
 })
 
 entidadPorCodigo = ({
