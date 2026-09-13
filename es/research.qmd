@@ -48,15 +48,15 @@ entrada enlaza al original.
 
 ## Otros trabajos
 
-- **Uso y costos de servicios de salud en terapias sistémicas para melanoma
-  metastásico, 2016–2020.** Colaboración con dermatólogos y oncólogos de
-  Stanford que nació en Knight-Hennessy. *The Oncologist*, 2022.
-  [Artículo](https://academic.oup.com/oncolo/advance-article/doi/10.1093/oncolo/oyac219/6776043) · [Resumen](/es/research/other/melanoma-utilization/)
+- **Health Care Utilization and Costs in Systemic Therapies for Metastatic
+  Melanoma from 2016 to 2020.** Colaboración con dermatólogos y oncólogos de
+  Stanford que nació en Knight-Hennessy. *The Oncologist* 28(3), 2023, 268–275.
+  [Artículo](https://doi.org/10.1093/oncolo/oyac219) · [Resumen](/es/research/other/melanoma-utilization/)
 
 - **¿Por qué apoyar la lactancia en el trabajo?** Banco Interamericano de
   Desarrollo, blog de Género y Diversidad, agosto de 2022.
   [Entrada](https://www.iadb.org/es/blog/genero-y-diversidad/lactancia-es-desarrollo-por-que-impulsar-la-lactancia-materna-en-el-trabajo) · [Resumen](/es/research/other/breastfeeding-workplace-policy/)
 
-- **¿Cuánto dura un empleo informal en México?** Tesis de licenciatura, ITAM,
-  2017. Premio Citibanamex de Economía 2017 y Premio Ex-ITAM 2018.
+- **Duración de la informalidad laboral en México.** Tesis de licenciatura,
+  ITAM, 2017. Premio Citibanamex de Economía 2017 y Premio Ex-ITAM 2018.
   [Tesis (PDF)](../files/tesis-duracion-informalidad-laboral.pdf) · [Resumen](/es/policy/thesis-informality-duration/)

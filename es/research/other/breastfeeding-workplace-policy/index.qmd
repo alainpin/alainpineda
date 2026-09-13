@@ -13,11 +13,12 @@ Blog de Género y Diversidad del BID · Agosto de 2022
 :::
 
 ::: {.finding}
-Solo el 37% de los bebés en América Latina y el Caribe reciben lactancia
-exclusiva a los seis meses, por debajo del promedio global de 44%. Las
-políticas laborales que podrían extenderla, permisos remunerados y salas de
-lactancia, existen en el papel en la mayoría de los países, pero se cumplen
-de manera desigual y rara vez llegan a las trabajadoras informales.
+En 2022, solo el 37% de los bebés en América Latina y el Caribe recibían
+lactancia exclusiva durante sus primeros seis meses, por debajo del promedio
+global de 44%. Las políticas laborales que podrían extenderla, permisos
+remunerados y salas de lactancia, existen en el papel en la mayoría de los
+países, pero se cumplen de manera desigual y rara vez llegan a las
+trabajadoras informales.
 :::
 
 ### Qué cubre el texto
@@ -68,11 +69,11 @@ dejaría fuera.
 La Organización Mundial de la Salud recomienda la lactancia exclusiva
 durante los primeros seis meses de vida, y de manera complementaria con
 otros alimentos hasta los dos años o más. América Latina y el Caribe se
-quedan cortos frente a ese estándar: solo el 37% de los bebés reciben
-lactancia exclusiva a los seis meses, frente a 44% a nivel global. Una de
-las razones más reportadas para dejar la lactancia antes de tiempo es la
-necesidad de las madres de regresar al trabajo, lo que convierte a la
-política laboral en una palanca central para cerrar esa brecha. Dos
+quedan cortos frente a ese estándar: solo el 37% de los bebés recibían
+lactancia exclusiva durante sus primeros seis meses, frente a 44% a nivel
+global. Una de las razones más reportadas para dejar la lactancia antes de
+tiempo es la necesidad de las madres de regresar al trabajo, lo que convierte
+a la política laboral en una palanca central para cerrar esa brecha. Dos
 políticas importan más: los descansos diarios remunerados para amamantar o
 extraer leche, y las salas de lactancia dedicadas. Según una revisión de
 UNICEF sobre el marco regulatorio de 24 países de la región, la mayoría ya

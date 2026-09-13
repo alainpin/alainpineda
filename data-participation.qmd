@@ -341,10 +341,10 @@ corte_sel === "entidad"
 
 ### The gap between women and men, by age
 
-Participation differs by sex more than by any other breakdown on this page.
-The gap is shown here as (men − women) / men, so it has no units and the age
-groups can share one chart. The line in ink is the national gap without the
-age split.
+Participation differs by sex within every age group, though age spreads it
+more widely than sex does. The gap is shown here as (men − women) / men, so
+it has no units and the age groups can share one chart. The line in ink is
+the national gap without the age split.
 
 ```{ojs}
 //| echo: false

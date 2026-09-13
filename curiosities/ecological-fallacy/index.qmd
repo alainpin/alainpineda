@@ -31,10 +31,10 @@ example, and it is about pets.
 
 ## What INEGI published
 
-In July 2026 INEGI released the microdata of its 2025 wellbeing survey. For
-the first time it counts pets: 66.4% of homes have at least one, and the
-survey expands to 41.2 million dogs and 19.2 million cats. The headline
-travelled, and so did a ranking of states.
+In July 2026 INEGI released the microdata of its 2025 wellbeing survey. It
+counts pets for the second time, after the 2021 edition: 66.4% of homes have
+at least one, and the survey expands to 41.2 million dogs and 19.2 million
+cats. The headline travelled, and so did a ranking of states.
 
 ## Where the pets are
 
@@ -207,8 +207,7 @@ Individuals. *American Sociological Review* 15(3), 351–357.
 Source: INEGI, Encuesta Nacional de Bienestar Autorreportado 2025, open
 microdata, housing table. Pets are questions P1.8.1.1 through P1.8.3.2, six
 items inside the housing section. The survey covers 32,908 homes and expands to
-38.9 million, with estimates representative nationally, by state, and by
-locality size.
+38.9 million, with estimates representative nationally and by state.
 
 All estimates use the survey's declared design (primary sampling units,
 strata and expansion factors) through R's `survey` package, the same standard

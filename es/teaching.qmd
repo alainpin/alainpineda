@@ -41,7 +41,7 @@ canciones. Esta playlist está armada con lo que compartieron.
 <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7aOPLpFKZtEEstCjodY4uk?utm_source=generator&theme=0&si=97af1c8c6b6e4f01" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 ```
 
-### Seminario de investigación
+### Seminario de investigación aplicada
 
 ::: {.eyebrow}
 Maestría en Economía Aplicada · Primavera 2022

@@ -17,8 +17,8 @@ Employment (ENOE), public data from INEGI. Recomputed here from microdata
 using the institute's own methodology (survey design, strata, and expansion
 factors, not a simple average) and checked against the original series INEGI
 publishes in its Banco de Información Económica. That check runs over every
-quarter back to 2005, not only the most recent one: the median gap is 0.013
-percentage points and the largest is 0.216. Not an original finding: these are
+quarter back to 2005, not only the most recent one: the median gap is 0.010
+percentage points and the largest is 0.180. Not an original finding: these are
 public figures, presented here for quick reference.
 
 Start from a question:
@@ -69,7 +69,7 @@ definiciones = ({
   },
   TOSI2: {
     nombre: "Informal-sector employment, excl. agriculture",
-    texto: "Same as employment in the informal sector, excluding agriculture."
+    texto: "Same as employment in the informal sector, but measured against non-agricultural employment only. The informal sector is already defined over non-agricultural units, so only the base changes."
   },
   TSUB: {
     nombre: "Underemployment",
@@ -77,7 +77,7 @@ definiciones = ({
   },
   TCCO: {
     nombre: "Critical employment conditions",
-    texto: "Share of employed people in precarious conditions: too few hours involuntarily, or long hours at below the legal minimum wage. Sensitive to minimum-wage changes — treat level shifts with caution, trend direction is more reliable."
+    texto: "Share of employed people in critical conditions of hours and pay: under 35 hours a week for market reasons, more than 35 hours a week with monthly income below one minimum wage, or more than 48 hours a week for up to two minimum wages. The thresholds are set in minimum wages and this series uses nominal ones, so the rate rises on its own when the minimum wage does. INEGI publishes a separate series in equivalent minimum wages for comparison across years."
   },
   TDAMPL: {
     nombre: "Broader unemployment",
@@ -314,11 +314,12 @@ graficaSerie(serieSec, { ajustada: serieAjustada(indicador_sel) })
 
 ::: {.chart-note}
 All series above are **original**, without seasonal adjustment. The faint line
-behind each one is INEGI's own **trend-cycle** series, shown as reading
+behind most of them is INEGI's own **trend-cycle** series, shown as reading
 context; it is revised backward as new quarters arrive, so the figure quoted
-on each card always comes from the original series. Broader unemployment and
-labor underutilization have no quarterly trend-cycle series published by INEGI
-and appear without one.
+on each card always comes from the original series. Four cards carry no such
+line. INEGI publishes the two rates excluding agriculture as original series
+only. Broader unemployment and labor underutilization are built here from
+categories the ENOE already reports, so INEGI publishes no version of them.
 :::
 
 <details class="abstract">
@@ -334,7 +335,7 @@ next to each headline number, is a 95% confidence interval (±1.96 standard
 errors) from that same design, not a simple margin of error. Every rate
 above is checked against the original series INEGI publishes in its Banco de
 Información Económica, over the full history rather than only the latest
-quarter: the median gap is 0.013 percentage points and the largest is 0.216.
+quarter: the median gap is 0.010 percentage points and the largest is 0.180.
 Broader unemployment and labor underutilization have no matching series there
 and are reported as unvalidated on the
 [quarterly update](data-quarterly-update.qmd) page.

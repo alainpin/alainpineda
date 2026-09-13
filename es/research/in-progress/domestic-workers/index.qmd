@@ -1,7 +1,7 @@
 ---
 title: "Trabajadoras del hogar y seguridad social"
 subtitle: "En proceso"
-description: "La reforma de 2019 abrió la afiliación al Instituto Mexicano del Seguro Social (IMSS) a dos millones de trabajadoras del hogar, en su enorme mayoría mujeres, mediante un piloto voluntario pensado como puente hacia un régimen obligatorio. Este proyecto mide cuánto de la brecha de cobertura cerró en realidad la afiliación voluntaria."
+description: "En 2019 México abrió la afiliación al Instituto Mexicano del Seguro Social (IMSS) a 2.3 millones de personas trabajadoras del hogar, en su enorme mayoría mujeres. El IMSS arrancó primero un piloto de incorporación voluntaria y una reforma posterior lo encaminó hacia un régimen obligatorio. Este proyecto mide cuánto de la brecha de cobertura cerró en realidad la afiliación voluntaria."
 date: 2025-09-01
 author: "Alain Pineda"
 ---
@@ -26,14 +26,14 @@ Personas trabajadoras del hogar en México y proporción con seguridad social, 2
 Las personas trabajadoras del hogar prestan servicios esenciales para los hogares
 privados, y sin embargo rara vez tienen acceso a derechos y protecciones
 laborales, con una de las tasas de informalidad más altas de la economía. En
-México hay alrededor de dos millones, con una segregación ocupacional marcada por
+México hay alrededor de 2.3 millones, con una segregación ocupacional marcada por
 género: más del 90% son mujeres.
 
 Estudio el cambio de 2019 en la Ley Federal del Trabajo que amplió el acceso a
-prestaciones de seguridad social para este grupo. La reforma vino acompañada de un
-programa piloto de incorporación voluntaria pensado como transición hacia un
-régimen obligatorio. Uso la ENOE para rastrear su efecto sobre los resultados
-laborales observados.
+prestaciones de seguridad social para este grupo. El IMSS ya había arrancado en
+abril un programa piloto de incorporación voluntaria, y la reforma lo encaminó
+hacia un régimen obligatorio. Uso la ENOE para rastrear su efecto sobre los
+resultados laborales observados.
 
 ### Por qué importa para política pública
 

@@ -361,8 +361,8 @@ Todas las series de arriba son **originales**, sin ajuste estacional.
 
 Mismo pipeline y mismo [repositorio del sitio](https://github.com/alainpin/alainpineda)
 que la [página de panorama](data.qmd). TD, TDAMPL y SUBUTIL son la misma
-escalera de subutilización que se muestra ahí, desglosada además por los
-cortes que INEGI no publica. La banda sombreada y las líneas de error son
+escalera de subutilización que se muestra ahí, desglosada además. La banda
+sombreada y las líneas de error son
 un intervalo de 95% de confianza (±1.96 errores estándar) del diseño
 muestral complejo de la ENOE. El corte por entidad usa las 32 estimaciones
 estatales que la ENOE trimestral sí soporta (a diferencia de la mensual).

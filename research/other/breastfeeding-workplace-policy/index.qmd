@@ -13,11 +13,11 @@ IDB Gender and Diversity Blog · August 2022
 :::
 
 ::: {.finding}
-Only 37% of babies in Latin America and the Caribbean are exclusively
-breastfed at six months, below the global average of 44%. The workplace
-policies that could extend it, paid breastfeeding breaks and lactation rooms,
-exist on paper in most countries but are inconsistently enforced and rarely
-reach informal workers.
+As of 2022, only 37% of babies in Latin America and the Caribbean were
+exclusively breastfed during their first six months, below the global
+average of 44%. The workplace policies that could extend it, paid
+breastfeeding breaks and lactation rooms, exist on paper in most countries
+but are inconsistently enforced and rarely reach informal workers.
 :::
 
 ### What the post covers
@@ -63,8 +63,8 @@ benefit to workers a strictly employer-funded mandate would leave out.
 The World Health Organization recommends exclusive breastfeeding for the
 first six months of life, continued alongside other foods for up to two
 years or more. Latin America and the Caribbean fall short of that standard:
-only 37% of babies are exclusively breastfed at six months, against 44%
-globally. One of the most common reasons mothers report stopping
+only 37% of babies were exclusively breastfed during their first six months,
+against 44% globally. One of the most common reasons mothers report stopping
 breastfeeding early is the need to return to work, which makes workplace
 policy a central lever for closing that gap. Two policies matter most: paid
 daily breaks to breastfeed or express milk, and dedicated lactation rooms.

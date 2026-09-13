@@ -36,7 +36,7 @@ definiciones = ({
   },
   TOSI2: {
     nombre: "Informal-sector employment, excluding agriculture",
-    texto: "Same as informal-sector employment, excluding farming."
+    texto: "The same informal-sector count, taken as a share of the non-agricultural employed rather than of all employed. The informal sector is already non-agricultural, so this rate runs above the previous one."
   }
 })
 
@@ -383,7 +383,8 @@ All series above are **original**, without seasonal adjustment.
 Same pipeline and same public [repository](https://github.com/alainpin/alainpineda)
 as the [overview page](data.qmd) — see its "How this is built" section for
 the full description. All four informality definitions are validated against
-INEGI's own Banco de Indicadores before they reach this page. The shaded band
+the original series INEGI publishes in its Banco de Información Económica
+(BIE) before they reach this page. The shaded band
 and error bars are a 95% confidence interval (±1.96 standard errors) from the
 ENOE's complex survey design. The state breakdown uses the 32 state-level
 estimates the quarterly ENOE supports (unlike the monthly release). 2020-Q2

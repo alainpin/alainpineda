@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Seguridad social sin empleo</title>
+<title>Seguridad Social sin Empleo</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
@@ -297,7 +297,7 @@
     <div class="eyebrow">Documento de trabajo · Alain Pineda · Banco de México / Doctorado, Stanford 2024</div>
     <h1 class="statement" style="font-size:clamp(2.4rem,6vw,4.6rem);">Seguridad social,<br>sin empleo<span style="color:var(--teal)">.</span></h1>
     <p class="lede" style="margin-top:1.4rem; font-size:clamp(1.05rem,1.9vw,1.35rem);">
-      En 2016 México dio a seis millones de adolescentes de escuela pública un número de
+      En 2016 México dio a 6.6 millones de estudiantes de escuela pública un número de
       seguridad social permanente antes de su primer empleo. Desde hace tiempo, los economistas
       temen que este tipo de beneficios <em style="color:var(--ochre); font-style:italic;">incentiven</em>
       la informalidad. Este hizo lo contrario.
@@ -419,7 +419,7 @@
   <details class="explainer reveal r4">
     <summary>Cómo se construye la comparación, formalmente</summary>
     <div class="body">
-      <p>Diferencia de largo plazo, por estado <em>s</em>: &nbsp; <span class="mono">Y<sub>s,post</sub> − Y<sub>s,pre</sub> = β·I<sub>s,pre</sub> + X<sub>s,pre</sub>Γ + α + ε<sub>s</sub></span>, donde <span class="mono">I<sub>s,pre</sub></span> es la tasa de informalidad del estado en 2013&ndash;15 y <span class="mono">Y</span> es un resultado del mercado laboral para la brecha expuesta-menos-no-expuesta entre cohortes. Esta comparación limpia entre dos grupos es la razón por la que la diferencia de largo plazo excluye a las dos cohortes parcialmente expuestas (1999&ndash;2000, con uno y dos años de exposición en bachillerato, respectivamente). Una versión de panel agrupado sí las conserva: añade efectos fijos de cohorte, estado y trimestre, e interactúa la informalidad previa con una función de exposición <em>continua</em> a nivel cohorte, 2016&ndash;2019, de modo que la exposición parcial entra con un peso parcial en vez de excluirse. Las ponderaciones usan la raíz cuadrada de la población muestreada en cada celda; los errores estándar usan bootstrap wild-cluster por estado (32 clústeres).</p>
+      <p>Diferencia de largo plazo, por estado <em>s</em>: &nbsp; <span class="mono">Y<sub>s,post</sub> − Y<sub>s,pre</sub> = β·I<sub>s,pre</sub> + X<sub>s,pre</sub>Γ + α + ε<sub>s</sub></span>, donde <span class="mono">I<sub>s,pre</sub></span> es la tasa de informalidad del estado en 2013&ndash;15 y <span class="mono">Y</span> es un resultado del mercado laboral para la brecha expuesta-menos-no-expuesta entre cohortes. Esta comparación limpia entre dos grupos es la razón por la que la diferencia de largo plazo excluye a las dos cohortes parcialmente expuestas (1999&ndash;2000, con uno y dos años de exposición en bachillerato, respectivamente). Una versión de panel agrupado sí las conserva: añade efectos fijos de cohorte, estado y trimestre, e interactúa la informalidad previa con una función de exposición <em>continua</em> a nivel cohorte, 2016&ndash;2019, de modo que la exposición parcial entra con un peso parcial en vez de excluirse. Las ponderaciones usan la raíz cuadrada de la población muestreada en cada celda; los errores estándar están clusterizados por estado (32 clústeres), y la inferencia sobre el coeficiente de interés se basa en valores p de bootstrap wild-cluster (pesos de Webb, 9,999 repeticiones).</p>
     </div>
   </details>
 </section>
@@ -576,7 +576,8 @@
           wild-cluster habitual del paper no proporciona — en su lugar se usan errores estándar
           cluster-jackknife (CV3), la opción natural con 32 clústeres. Usar CRV1 en su lugar da
           M̄ = 1.38 para formalidad; normalizar en la siguiente cohorte en vez de la última no
-          expuesta da 0.78. Ambas alternativas apuntan en la misma dirección.</p>
+          expuesta da 0.78. La formalidad sigue siendo mucho más robusta que la participación en
+          ambos casos, aunque con esa normalización alternativa ya no supera el valor focal de 1.</p>
         </div>
       </details>
     </div>
@@ -668,12 +669,12 @@
 <section class="slide" id="s-close" data-label="Leer más">
   <div class="reveal r1" style="max-width:70ch;">
     <div class="eyebrow">Gracias</div>
-    <h2 class="statement" style="font-size:clamp(2rem,4.5vw,3.4rem);">Seguridad social sin empleo</h2>
+    <h2 class="statement" style="font-size:clamp(2rem,4.5vw,3.4rem);">Seguridad Social sin Empleo</h2>
     <p class="lede" style="margin-top:0.6rem;">Beneficios ligados a la escuela y formalización temprana en México</p>
     <div style="margin-top:2rem; display:flex; flex-direction:column; gap:0.9rem; font-size:1rem;">
       <div><span class="pill" style="margin-right:0.6em;">Autor</span>Alain Pineda &middot; Banco de México, Dirección General de Investigación Económica</div>
       <div><span class="pill" style="margin-right:0.6em;">Contacto</span><a href="mailto:alain.pineda@banxico.org.mx">alain.pineda@banxico.org.mx</a></div>
-      <div><span class="pill" style="margin-right:0.6em;">Método</span>Rambachan, A. &amp; Roth, J. (2023). “An Honest Approach to Parallel Trends.” <em>Review of Economic Studies.</em></div>
+      <div><span class="pill" style="margin-right:0.6em;">Método</span>Rambachan, A. &amp; Roth, J. (2023). “A More Credible Approach to Parallel Trends.” <em>Review of Economic Studies</em>, 90(5), 2555–2591.</div>
     </div>
     <p style="margin-top:2.2rem; color:var(--ink-soft); font-size:0.85rem;">Las opiniones expresadas son responsabilidad exclusiva del autor y no reflejan necesariamente las de Banco de México ni las de su Junta de Gobierno.</p>
   </div>

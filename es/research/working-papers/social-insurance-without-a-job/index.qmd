@@ -1,5 +1,5 @@
 ---
-title: "Seguridad social sin empleo: beneficios ligados a la escuela y formalización temprana en México"
+title: "Seguridad Social sin Empleo: beneficios ligados a la escuela y formalización temprana en México"
 subtitle: "Documento de trabajo, 2026"
 description: "En 2016, México dio cobertura médica a seis millones de estudiantes sin relación con tener un empleo. Una preocupación común es que los beneficios no ligados a un empleo formal desincentiven buscarlo, pero aquí el empleo formal subió más justo donde la informalidad ya era más alta, y el efecto se concentró por completo en el empleo asalariado, no en el trabajo por cuenta propia."
 date: 2026-08-20
@@ -34,7 +34,8 @@ un promedio nacional.
 ::: {.site-figure}
 ![](../../../../images/jmp-informality-pre-map.svg)
 
-Tasa de informalidad previa a la política, por estado.
+Tasa de informalidad previa a la política, por estado; promedio 2013–2015.
+Cálculo propio con microdatos de la ENOE (INEGI).
 :::
 
 ::: {.site-figure}
@@ -56,9 +57,9 @@ entrega un beneficio puede importar más que si es contributivo o no.
 
 Existe un [explicador](../../../../files/social-insurance-without-a-job-slides-es.html)
 de este documento que recorre el mismo resultado para un público general, con
-una explicación en lenguaje accesible de la prueba de sensibilidad de
-Rambachan y Roth (2023) usada para poner a prueba el supuesto de
-identificación.
+una explicación en lenguaje accesible del análisis de sensibilidad de
+Rambachan y Roth (2023), que mide cuánto tendría que fallar el supuesto de
+identificación antes de que el resultado desaparezca.
 
 ::: {.paper-links}
 - [Documento (PDF)](../../../../files/social-insurance-without-a-job.pdf)

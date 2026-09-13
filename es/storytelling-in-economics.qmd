@@ -341,15 +341,15 @@ indicadores = FileAttachment("../data/labor-indicators.csv").csv({ typed: true }
 etiquetaSerie = ({ TIL1: "Informalidad", TOSI1: "Sector informal" })
 
 // La columna regimen guarda los códigos internos de INEGI. La nota bajo la
-// gráfica promete que el tooltip nombra el marco, así que va con nombre
+// gráfica promete que el tooltip nombra la encuesta, así que va con nombre
 // legible y no con el código: "tradicional" es la ENOE regular, "enoen" la
 // Nueva Edición que corrió mientras el levantamiento se recuperaba de la
-// interrupción de 2020, y "enoe_2023" el regreso a la ENOE estándar sobre el
-// marco de 2023.
+// interrupción de 2020, y "enoe_2023" el regreso a la ENOE regular desde 2023.
+// El marco muestral no cambió en 2023, así que ninguna etiqueta lo nombra.
 etiquetaMarco = ({
   tradicional: "ENOE",
   enoen: "ENOEN",
-  enoe_2023: "ENOE, marco 2023"
+  enoe_2023: "ENOE (desde 2023)"
 })
 
 serieDe = codigo => indicadores
@@ -525,36 +525,39 @@ graficaPasos(pasoActivo)
 ::: {.chart-note}
 Informalidad laboral (TIL1) y ocupación en el sector informal (TOSI1), como
 proporción de la población ocupada. ENOE, INEGI, series originales, sin
-ajuste estacional. En 2020-T2 no hubo levantamiento. La ENOE operó bajo tres
-marcos sucesivos en este periodo, con cambios en 2020-T3 y en 2023-T1. La
-línea se traza continua a través de los dos, y el tooltip indica el marco de
-cada punto. El eje vertical se ajusta a las dos series y no arranca en cero.
+ajuste estacional. En 2020-T2 no hubo levantamiento. La propia encuesta cambió
+dos veces en este periodo: a la Nueva Edición (ENOEN) en 2020-T3 y de regreso a
+la ENOE regular en 2023-T1. La línea se traza continua a través de los dos
+cambios, y el tooltip indica qué encuesta está detrás de cada punto. El eje
+vertical se ajusta a las dos series y no arranca en cero.
 :::
 
 Las dos líneas valen por lo que miden, no sólo por cómo están dibujadas. La
 informalidad laboral cuenta a quienes trabajan sin seguridad social, trabajen
 donde trabajen. La ocupación en el sector informal cuenta a quienes trabajan en
 un negocio que nunca se registró. Se puede estar en una y no en la otra, y la
-distancia entre las líneas es justo ese grupo: sobre todo asalariados sin
-seguridad social dentro de empresas registradas, más el trabajo del hogar
-remunerado y el campo de autoconsumo.
+distancia entre las líneas es justo ese grupo: sobre todo quienes trabajan sin
+seguridad social en empresas, gobierno e instituciones, más el trabajo del hogar
+remunerado y el ámbito agropecuario fuera del sector informal.
 
 En esa brecha está el cambio. La serie no trae ajuste estacional, así que la
 comparación va de segundo trimestre a segundo trimestre. La informalidad
 laboral bajó de 59.4% en 2005 a 55.1% en 2026, mientras que la ocupación en el
 sector informal subió de 28.2% a 30.2%. El sector informal no se encogió. Lo
-que se cerró fue la brecha, de 31.2 puntos a 24.9. El terreno que cedió fue el
-trabajo desprotegido dentro de empresas registradas, y una sola cifra de
-"informalidad" esconde los dos movimientos a la vez, que es por lo que la
-elección de la serie ya es parte de la historia que se cuenta.
+que se cerró fue la brecha, de 31.2 puntos a 24.9. La mayor parte del terreno
+que cedió fue trabajo agropecuario, conforme el campo perdió peso en el empleo.
+Medida sin el sector agropecuario, esa misma brecha se cerró apenas 3.0 puntos,
+menos de la mitad. Una sola cifra de "informalidad" esconde los dos movimientos
+a la vez, que es por lo que la elección de la serie ya es parte de la historia
+que se cuenta.
 
 ## Las sesiones
 
-Doce sesiones, cada una anclada en un artículo y, cuando la sesión enseña uno,
-en un método: salarios mínimos y diferencias en diferencias, el choque de China
-e instrumentos shift-share, el folclor como predictor de decisiones económicas
-actuales, una campaña electoral que reactiva un episodio histórico de hace
-siglos. Dos de ellas, sobre storytelling con datos, son de donde salen los
+Doce de las sesiones están ancladas en un artículo y, cuando la sesión enseña
+uno, en un método: salarios mínimos y diferencias en diferencias, el choque de
+China e instrumentos shift-share, el folclor como predictor de decisiones
+económicas actuales, una campaña electoral que reactiva un episodio histórico de
+hace siglos. Dos de ellas, sobre storytelling con datos, son de donde salen los
 ejercicios de arriba.
 
 <details class="abstract">
@@ -654,7 +657,7 @@ ejercicios de arriba.
   ejemplo completo. Cierra con McCloskey y la retórica. Método: narrativa
   visual. Lecturas: Nussbaumer Knaflic, *Storytelling with Data*, lecciones 4 a
   6; McCloskey, "The Rhetoric of Economics" (*Journal of Economic Literature*
-  21(2), 1983, 481-517); McKee, *Story: Style, Structure, Substance, and the
+  21(2), 1983, 481-517); McKee, *Story: Substance, Structure, Style, and the
   Principles of Screenwriting* (1997); Vonnegut, "How to Write with Style"
   (1980).
   [Láminas (PDF, 1.94 MB)](../files/storytelling/clase-10.pdf)
@@ -680,7 +683,7 @@ ejercicios de arriba.
   Lecturas: Quesenberry y Coolsen, "What Makes a Super Bowl Ad Super? Five-Act
   Dramatic Form Affects Consumer Super Bowl Advertising Ratings" (*Journal of
   Marketing Theory and Practice*, 2014); Martens, Jennings y Jennings, "Do the
-  Stories They Tell Get Them the Money They Want? The Role of Entrepreneurial
+  Stories They Tell Get Them the Money They Need? The Role of Entrepreneurial
   Narratives in Resource Acquisition" (*Academy of Management Journal*, 2007);
   con la pirámide dramática de cinco actos de Freytag como andamiaje.
   [Láminas (PDF, 0.48 MB)](../files/storytelling/clase-13.pdf)

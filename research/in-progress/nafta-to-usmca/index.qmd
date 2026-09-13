@@ -1,7 +1,7 @@
 ---
 title: "From NAFTA to USMCA: Labor Market Effects in Mexico"
 subtitle: "Work in progress"
-description: "In 2020, the trade agreement that replaced NAFTA wrote a minimum wage for autoworkers and a requirement for genuine union representation directly into its text, an unusual move for a trade deal. This project traces whether those provisions actually changed employment and pay in Mexico, using detailed records that link workers to their employers."
+description: "In 2020, the trade agreement that replaced NAFTA made tariff-free access for cars conditional on a share of each vehicle being built by workers earning at least US$16 an hour, and wrote a requirement for genuine union representation directly into its text, an unusual move for a trade deal. This project traces whether those provisions actually changed employment and pay in Mexico, using detailed records that link workers to their employers."
 date: 2025-06-01
 author: "Alain Pineda"
 ---
@@ -11,32 +11,32 @@ Work in progress
 :::
 
 USMCA wrote labor standards directly into a trade agreement. This project measures
-whether the wage and bargaining provisions moved employment and pay, or only
-paperwork.
+whether those provisions moved employment and pay, or only paperwork.
 
 ::: {.chart-figure}
 ![](../../../images/usmca-rules-en-light.svg){.chart-img-light}
 ![](../../../images/usmca-rules-en-dark.svg){.chart-img-dark}
 
-Automotive rules of origin, as written. Source: Congressional Research Service, *USMCA: Automotive Rules of Origin* (IF12082, December 2023), Table 1, based on NAFTA and USMCA text. The labor value content requirement is 40% for passenger vehicles and 45% for light trucks.
+Automotive rules of origin, as written. Source: Congressional Research Service, *USMCA: Automotive Rules of Origin* (IF12082, December 2023), Table 1, based on NAFTA and USMCA text. The regional content shares apply to passenger vehicles, light trucks and core auto parts. The labor value content requirement is 40% for passenger vehicles and 45% for light trucks.
 :::
 
 ### What the project does
 
 The United States-Mexico-Canada Agreement replaced NAFTA in 2020, updating trade
 rules for one of the world's largest free trade zones. Key changes include
-stricter rules of origin, a labor value content requirement that sets a wage
-floor in the automotive industry, and a requirement for genuine worker
-representation in collective bargaining in Mexico. I estimate the effect of these
-provisions on employment and wages using administrative employer-employee matched
-data.
+stricter rules of origin, a labor value content requirement that ties tariff
+preference to a share of each vehicle being built by workers earning at least
+US$16 an hour, and a requirement for genuine worker representation in collective
+bargaining in Mexico. I estimate the effect of these provisions on employment and
+wages using administrative employer-employee matched data.
 
 ### Why it matters for policy
 
-The labor chapter was the most contested part of the renegotiation and is now a
-template other agreements are copying. Evidence on whether wage floors written
-into trade rules bind in practice is thin, and it matters for how Mexico
-approaches the scheduled review of the agreement.
+The labor chapter was one of the most contested parts of the renegotiation. U.S.
+trade officials have presented it as a possible template for future trade deals.
+Evidence on whether wage-linked content rules bind in practice is thin, and it
+matters for how Mexico approaches the annual reviews that followed the July 2026
+joint review.
 
 ::: {.paper-links}
 - [Draft available on request](mailto:alain.pineda@banxico.org.mx)

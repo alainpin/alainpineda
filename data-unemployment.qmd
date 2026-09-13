@@ -380,8 +380,8 @@ All series above are **original**, without seasonal adjustment.
 
 Same pipeline and same public [repository](https://github.com/alainpin/alainpineda)
 as the [overview page](data.qmd). TD, TDAMPL, and SUBUTIL are the same
-underutilization ladder shown there, broken down further by the cuts INEGI
-doesn't publish. The shaded band and error bars are a 95% confidence
+underutilization ladder shown there, broken down further. The shaded band and
+error bars are a 95% confidence
 interval (±1.96 standard errors) from the ENOE's complex survey design. The
 state breakdown uses the 32 state-level estimates the quarterly ENOE
 supports (unlike the monthly release). 2020-Q2 (the ETOE, a phone-based

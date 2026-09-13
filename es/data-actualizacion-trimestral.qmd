@@ -493,11 +493,16 @@ ${ultimasValidaciones.map(v => html`<tr>
 Mismo pipeline y mismo [repositorio del sitio](https://github.com/alainpin/alainpineda)
 que la [página de panorama](data.qmd). "Diferencia" es la brecha absoluta
 entre este pipeline y el valor que el propio INEGI publica para esa misma
-serie. Sobre las 20 series y 85 trimestres cotejados, la brecha mediana es de
-0.013 pp y la mayor de 0.216 pp. Brechas de ese tamaño derivan ligeramente por
+serie. Sobre las 8 series y 85 trimestres cotejados, la brecha mediana es de
+0.010 pp y la mayor de 0.180 pp. Brechas de ese tamaño derivan ligeramente por
 subperiodo, lo que es consistente con revisiones a los factores de expansión
-de la encuesta tras recalibrarse a proyecciones de población actualizadas, y
-la tolerancia está en 0.25 pp. 2020-T2 queda excluido de la comparación en
+de la encuesta. A partir de la publicación de 2021-T1, INEGI reancló esos
+factores a sus propias estimaciones trimestrales de población, construidas con
+el Censo 2020 y su Marco de Muestreo de Viviendas, en lugar de las
+proyecciones de CONAPO que se usaban desde 2013. Después trabajó hacia atrás
+sobre los trimestres anteriores, un año calendario por publicación de 2019 a
+2005, hasta la publicación de 2025-T1. La
+tolerancia está en 0.25 pp. 2020-T2 queda excluido de la comparación en
 todos los casos: el BIE empalma ahí la ETOE telefónica y este pipeline lo deja
 como un hueco real.
 Los cambios de trimestre y de año se calculan sobre el periodo exacto, no

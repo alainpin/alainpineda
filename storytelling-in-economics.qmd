@@ -339,14 +339,15 @@ indicadores = FileAttachment("data/labor-indicators.csv").csv({ typed: true })
 etiquetaSerie = ({ TIL1: "Informality", TOSI1: "Informal sector" })
 
 // The regimen column stores INEGI's own internal codes. The note under the
-// chart promises the tooltip names the framework, so it gets a readable name
+// chart promises the tooltip names the survey, so it gets a readable name
 // rather than the code: "tradicional" is the regular ENOE, "enoen" the Nueva
 // Edicion that ran while fieldwork recovered from the 2020 interruption, and
-// "enoe_2023" the return to the standard ENOE on the 2023 framework.
+// "enoe_2023" the return to the regular ENOE from 2023 on. The sampling frame
+// did not change in 2023, so no label names one.
 etiquetaMarco = ({
   tradicional: "ENOE",
   enoen: "ENOEN",
-  enoe_2023: "ENOE, 2023 framework"
+  enoe_2023: "ENOE (from 2023)"
 })
 
 serieDe = codigo => indicadores
@@ -522,34 +523,35 @@ graficaPasos(pasoActivo)
 ::: {.chart-note}
 Labor informality (TIL1) and informal-sector employment (TOSI1), share of
 the employed population. ENOE, INEGI, original series, without seasonal
-adjustment. 2020-Q2 was not surveyed. The ENOE ran under three successive
-frameworks over this period, changing in 2020-Q3 and again in 2023-Q1. The
-line is drawn continuous across both, and the tooltip names the framework
-behind each point. The vertical axis is fitted to the two series and does not
-start at zero.
+adjustment. 2020-Q2 was not surveyed. The survey itself changed twice over this
+period: to the Nueva Edición (ENOEN) in 2020-Q3, and back to the regular ENOE
+in 2023-Q1. The line is drawn continuous across both changes, and the tooltip
+names the survey behind each point. The vertical axis is fitted to the two
+series and does not start at zero.
 :::
 
 The two lines are worth reading for what they measure, not only for how they
 are drawn. Labor informality counts people who work without social security,
 wherever they work. Informal-sector employment counts people whose workplace is
 a business that never registered. Someone can be in one and not the other, and
-the distance between the lines is exactly that group: mostly salaried workers
-with no social security inside registered firms, along with paid domestic work
-and subsistence farming.
+the distance between the lines is exactly that group: mostly workers with no
+social security in registered firms, government and institutions, along with
+paid domestic work and agricultural work outside the informal sector.
 
 The gap is where the change happened. The series carries no seasonal
 adjustment, so the comparison runs second quarter against second quarter.
 Labor informality fell from 59.4% in 2005 to 55.1% in 2026, while
 informal-sector employment rose from 28.2% to 30.2%. The informal sector did
-not shrink. What narrowed was the gap, from 31.2 points to 24.9. The ground it
-gave up was unprotected work inside registered businesses, and a single
-"informality" number hides both movements at once, which is why the choice of
-series is already part of the story being told.
+not shrink. What narrowed was the gap, from 31.2 points to 24.9. Most of the
+ground it gave up was farm work, as agriculture lost weight in employment.
+Measured outside agriculture, the same gap narrowed by only 3.0 points, under
+half as much. A single "informality" number hides both movements at once, which
+is why the choice of series is already part of the story being told.
 
 ## The sessions
 
-Twelve sessions, each anchored in a paper and, where the session teaches one, a
-method: minimum wages and difference-in-differences, the China shock and
+Twelve of the sessions are anchored in a paper and, where the session teaches
+one, a method: minimum wages and difference-in-differences, the China shock and
 shift-share instruments, folklore as a predictor of present-day economic
 choices, an election campaign that reactivates a historical episode from
 centuries earlier. Two of them, on storytelling with data, are where the
@@ -652,8 +654,8 @@ in Spanish.
   worked through one example. Closes with McCloskey on rhetoric. Method:
   visual narrative. Readings: Nussbaumer Knaflic, *Storytelling with Data*,
   lessons 4 to 6; McCloskey, "The Rhetoric of Economics" (*Journal of Economic
-  Literature* 21(2), 1983, 481-517); McKee, *Story: Style, Structure,
-  Substance, and the Principles of Screenwriting* (1997); Vonnegut, "How to
+  Literature* 21(2), 1983, 481-517); McKee, *Story: Substance, Structure,
+  Style, and the Principles of Screenwriting* (1997); Vonnegut, "How to
   Write with Style" (1980).
   [Slides (PDF, 1.94 MB)](files/storytelling/clase-10.pdf)
 
@@ -678,7 +680,7 @@ in Spanish.
   Quesenberry and Coolsen, "What Makes a Super Bowl Ad Super? Five-Act
   Dramatic Form Affects Consumer Super Bowl Advertising Ratings" (*Journal of
   Marketing Theory and Practice*, 2014); Martens, Jennings and Jennings, "Do
-  the Stories They Tell Get Them the Money They Want? The Role of
+  the Stories They Tell Get Them the Money They Need? The Role of
   Entrepreneurial Narratives in Resource Acquisition" (*Academy of Management
   Journal*, 2007); with Freytag's five-act dramatic pyramid as the scaffolding.
   [Slides (PDF, 0.48 MB)](files/storytelling/clase-13.pdf)

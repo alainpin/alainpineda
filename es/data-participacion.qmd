@@ -321,10 +321,11 @@ corte_sel === "entidad"
 
 ### La brecha entre mujeres y hombres, por edad
 
-La participación difiere más por sexo que por cualquier otro corte de esta
-página. La brecha se muestra como (hombres − mujeres) / hombres, así que no
-tiene unidades y los grupos de edad caben en una sola gráfica. La línea en
-tinta es la brecha nacional sin abrir por edad.
+La participación difiere por sexo dentro de cada grupo de edad, aunque la
+edad la dispersa más que el sexo. La brecha se muestra como (hombres −
+mujeres) / hombres, así que no tiene unidades y los grupos de edad caben en
+una sola gráfica. La línea en tinta es la brecha nacional sin abrir por
+edad.
 
 ```{ojs}
 //| echo: false

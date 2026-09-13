@@ -33,9 +33,10 @@ insólitamente limpio, y es de mascotas.
 ## Qué publicó el INEGI
 
 En julio de 2026 el INEGI publicó los microdatos de su encuesta de bienestar
-2025. Por primera vez cuenta mascotas: 66.4% de las viviendas tiene al menos
-una, y la encuesta expande a 41.2 millones de perros y 19.2 millones de gatos.
-La cifra circuló, y con ella un orden de las entidades.
+2025. Cuenta mascotas por segunda vez, después de la edición de 2021: 66.4% de
+las viviendas tiene al menos una, y la encuesta expande a 41.2 millones de
+perros y 19.2 millones de gatos. La cifra circuló, y con ella un orden de las
+entidades.
 
 ## Dónde están las mascotas
 
@@ -217,7 +218,7 @@ Fuente: INEGI, Encuesta Nacional de Bienestar Autorreportado 2025, microdatos
 abiertos, tabla de vivienda. Las mascotas son las preguntas P1.8.1.1 a
 P1.8.3.2, seis reactivos dentro de la sección de vivienda. La encuesta cubre
 32,908 viviendas y expande a 38.9 millones, con estimaciones representativas a
-nivel nacional, por entidad y por tamaño de localidad.
+nivel nacional y por entidad.
 
 Todas las estimaciones usan el diseño muestral declarado (unidades primarias
 de muestreo, estratos y factores de expansión) con el paquete `survey` de R,

@@ -42,7 +42,8 @@ mejoró. Los costos subieron, y ningún estudio reciente había comparado
 cuánto cuestan estos esquemas en la práctica.
 
 El artículo usa registros de reclamaciones de Optum, una base nacional de
-personas con seguro médico privado, para seguir a 2,018 adultos con melanoma
+personas con seguro médico privado o con plan Medicare Advantage, para
+seguir a 2,018 adultos con melanoma
 metastásico que empezaron uno de cuatro esquemas entre 2016 y 2020. Para
 cada paciente mide, por mes de tratamiento, hospitalizaciones, visitas a
 urgencias, consultas externas y gasto total en atención médica. Después
@@ -65,7 +66,8 @@ en sí explicaron las diferencias en costo total.
 También cambió lo que se receta. Nivolumab rebasó a pembrolizumab en 2018, el
 año en que el regulador aprobó aplicarlo cada cuatro semanas en vez de cada
 dos. Menos infusiones son menos visitas y menos costo, lo que puede explicar
-parte de la brecha entre dos medicamentos que, según los ensayos, funcionan
+parte de la brecha. Ningún ensayo clínico ha comparado directamente los dos
+medicamentos, aunque los estudios retrospectivos sugieren que funcionan
 más o menos igual.
 
 ### Cómo leerlo
@@ -76,8 +78,9 @@ a quienes tenían metástasis cerebral, por ejemplo, se les dio con más
 frecuencia la combinación de inmunoterapias. Los modelos ajustan por eso y
 por las demás características que los registros contienen, pero los
 registros no traen el estado de mutación del tumor ni el detalle de la etapa,
-así que quedan diferencias no observadas entre grupos. La muestra tiene
-seguro privado, así que no representa a todo el país. El artículo reporta
+así que quedan diferencias no observadas entre grupos. La muestra cubre a
+personas con seguro privado o con plan Medicare Advantage, así que no
+representa a todo el país. El artículo reporta
 dónde queda cada esquema en costo y uso de atención, dados los pacientes que
 lo recibieron. No estima qué pasaría si un paciente cambiara de un esquema a
 otro.

@@ -36,7 +36,7 @@ definiciones = ({
   },
   TOSI2: {
     nombre: "Ocupación en el sector informal, sin agropecuario",
-    texto: "Lo mismo que ocupación en el sector informal, excluyendo el campo."
+    texto: "El mismo conteo de ocupación en el sector informal, pero como proporción de la población ocupada no agropecuaria en vez de la ocupada total. El sector informal ya es no agropecuario, así que esta tasa queda por encima de la anterior."
   }
 })
 
@@ -364,8 +364,8 @@ Todas las series de arriba son **originales**, sin ajuste estacional.
 Mismo pipeline y mismo [repositorio del sitio](https://github.com/alainpin/alainpineda)
 que la [página de panorama](data.qmd) — ver su sección "Cómo está hecho"
 para la descripción completa. Las cuatro definiciones de informalidad están
-validadas contra el Banco de Indicadores de INEGI antes de llegar a esta
-página. La banda sombreada y las líneas de error son un intervalo de 95% de
+validadas contra las series originales que INEGI publica en su Banco de
+Información Económica (BIE) antes de llegar a esta página. La banda sombreada y las líneas de error son un intervalo de 95% de
 confianza (±1.96 errores estándar) del diseño muestral complejo de la ENOE.
 El corte por entidad usa las 32 estimaciones estatales que la ENOE trimestral
 sí soporta (a diferencia de la mensual). 2020-T2 (la ETOE, encuesta

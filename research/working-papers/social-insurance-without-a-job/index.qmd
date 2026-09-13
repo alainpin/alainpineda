@@ -32,7 +32,8 @@ how the response scales with initial informality rather than a national average.
 ::: {.site-figure}
 ![](../../../images/jmp-informality-pre-map.svg)
 
-Pre-policy informality rate by state.
+Pre-policy informality rate by state, 2013–2015 average. Own calculation from
+ENOE microdata (INEGI).
 :::
 
 ::: {.site-figure}
@@ -55,7 +56,8 @@ delivered can matter more than whether it is contributory.
 An [explainer](../../../files/social-insurance-without-a-job-slides.html)
 version of this paper walks through the same result for a general audience,
 including a plain-language walkthrough of the Rambachan and Roth (2023)
-sensitivity check used to test the identifying assumption.
+sensitivity analysis, which measures how far the identifying assumption would
+have to fail before the result goes away.
 
 ::: {.paper-links}
 - [Paper (PDF)](../../../files/social-insurance-without-a-job.pdf)

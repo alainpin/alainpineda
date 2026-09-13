@@ -297,7 +297,7 @@
     <div class="eyebrow">Job market paper · Alain Pineda · Banco de México / Stanford PhD 2024</div>
     <h1 class="statement" style="font-size:clamp(2.4rem,6vw,4.6rem);">Social insurance,<br>without a job<span style="color:var(--teal)">.</span></h1>
     <p class="lede" style="margin-top:1.4rem; font-size:clamp(1.05rem,1.9vw,1.35rem);">
-      In 2016 Mexico gave six million public-school teenagers a permanent social-security number
+      In 2016 Mexico gave 6.6 million public-school students a permanent social-security number
       before their first job. Economists have long worried that benefits like this one
       <em style="color:var(--ochre); font-style:italic;">encourage</em> informal work.
       This one did the opposite.
@@ -416,7 +416,7 @@
   <details class="explainer reveal r4">
     <summary>How the comparison is built, formally</summary>
     <div class="body">
-      <p>Long difference, by state <em>s</em>: &nbsp; <span class="mono">Y<sub>s,post</sub> − Y<sub>s,pre</sub> = β·I<sub>s,pre</sub> + X<sub>s,pre</sub>Γ + α + ε<sub>s</sub></span>, where <span class="mono">I<sub>s,pre</sub></span> is the state's 2013&ndash;15 informality rate and <span class="mono">Y</span> is a labor-market outcome for the exposed-minus-unexposed cohort gap. This clean two-group comparison is why the long difference excludes the two partially exposed cohorts (1999&ndash;2000, one and two years of high-school exposure respectively). A pooled panel version keeps them: it adds cohort, state, and quarter fixed effects and interacts pre-policy informality with a <em>continuous</em> cohort-level exposure function, 2016&ndash;2019, so partial exposure enters with partial weight rather than being dropped. Weights use the square root of the surveyed population in each cell; standard errors are wild-cluster-bootstrapped by state (32 clusters).</p>
+      <p>Long difference, by state <em>s</em>: &nbsp; <span class="mono">Y<sub>s,post</sub> − Y<sub>s,pre</sub> = β·I<sub>s,pre</sub> + X<sub>s,pre</sub>Γ + α + ε<sub>s</sub></span>, where <span class="mono">I<sub>s,pre</sub></span> is the state's 2013&ndash;15 informality rate and <span class="mono">Y</span> is a labor-market outcome for the exposed-minus-unexposed cohort gap. This clean two-group comparison is why the long difference excludes the two partially exposed cohorts (1999&ndash;2000, one and two years of high-school exposure respectively). A pooled panel version keeps them: it adds cohort, state, and quarter fixed effects and interacts pre-policy informality with a <em>continuous</em> cohort-level exposure function, 2016&ndash;2019, so partial exposure enters with partial weight rather than being dropped. Weights use the square root of the surveyed population in each cell; standard errors are clustered by state (32 clusters), with inference on the coefficient of interest based on wild-cluster-bootstrap p-values (Webb weights, 9,999 replications).</p>
     </div>
   </details>
 </section>
@@ -567,8 +567,9 @@
           <p>The procedure needs a full covariance matrix, which the paper's usual wild-cluster
           bootstrap doesn't supply — cluster-jackknife (CV3) standard errors are used instead, the
           natural choice with 32 clusters. Using CRV1 instead gives M̄ = 1.38 for formality;
-          normalizing on the following cohort instead of the last unexposed one gives 0.78. Both
-          alternatives point the same direction.</p>
+          normalizing on the following cohort instead of the last unexposed one gives 0.78. Formality
+          stays far more robust than participation under both, though under that alternative
+          normalization it no longer clears the focal value of 1.</p>
         </div>
       </details>
     </div>
@@ -665,7 +666,7 @@
     <div style="margin-top:2rem; display:flex; flex-direction:column; gap:0.9rem; font-size:1rem;">
       <div><span class="pill" style="margin-right:0.6em;">Author</span>Alain Pineda &middot; Banco de México, Dirección General de Investigación Económica</div>
       <div><span class="pill" style="margin-right:0.6em;">Contact</span><a href="mailto:alain.pineda@banxico.org.mx">alain.pineda@banxico.org.mx</a></div>
-      <div><span class="pill" style="margin-right:0.6em;">Method</span>Rambachan, A. &amp; Roth, J. (2023). “An Honest Approach to Parallel Trends.” <em>Review of Economic Studies.</em></div>
+      <div><span class="pill" style="margin-right:0.6em;">Method</span>Rambachan, A. &amp; Roth, J. (2023). “A More Credible Approach to Parallel Trends.” <em>Review of Economic Studies</em>, 90(5), 2555–2591.</div>
     </div>
     <p style="margin-top:2.2rem; color:var(--ink-soft); font-size:0.85rem;">The views expressed are the author's own and do not necessarily reflect those of Banco de México or its Board of Governors.</p>
   </div>

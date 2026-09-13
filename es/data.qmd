@@ -18,7 +18,7 @@ metodología oficial del instituto (diseño muestral, estratos y factores de
 expansión, no un promedio simple) y se cotejan contra las series originales
 que INEGI publica en su Banco de Información Económica. Ese cotejo cubre todos
 los trimestres desde 2005, no solo el más reciente: la brecha mediana es de
-0.013 puntos porcentuales y la mayor de 0.216. No son un hallazgo propio: son
+0.010 puntos porcentuales y la mayor de 0.180. No son un hallazgo propio: son
 cifras públicas, presentadas aquí para consulta rápida.
 
 Empieza por una pregunta:
@@ -70,7 +70,7 @@ definiciones = ({
   },
   TOSI2: {
     nombre: "Sector informal, sin agropecuario",
-    texto: "Lo mismo que la ocupación en el sector informal, excluyendo el campo."
+    texto: "El mismo conteo de ocupación en el sector informal, pero medido contra la población ocupada no agropecuaria. El sector informal ya está definido sobre unidades no agropecuarias, así que solo cambia la base."
   },
   TSUB: {
     nombre: "Subocupación",
@@ -78,7 +78,7 @@ definiciones = ({
   },
   TCCO: {
     nombre: "Condiciones críticas de ocupación",
-    texto: "De cada 100 personas ocupadas, cuántas están en condiciones precarias: muy pocas horas de forma involuntaria, o muchas horas ganando menos del salario mínimo legal. Sensible a cambios en el salario mínimo — la tendencia es más confiable que el nivel."
+    texto: "De cada 100 personas ocupadas, cuántas están en condiciones críticas de ocupación: menos de 35 horas a la semana por razones de mercado, más de 35 horas semanales con ingresos mensuales por debajo de un salario mínimo, o más de 48 horas semanales con un pago de hasta dos salarios mínimos. Los umbrales están fijados en salarios mínimos y esta serie usa los nominales, así que la tasa sube por sí sola cuando sube el salario mínimo. INEGI publica una serie aparte en salarios mínimos equivalentes para comparar entre años."
   },
   TDAMPL: {
     nombre: "Desocupación ampliada",
@@ -315,11 +315,13 @@ graficaSerie(serieSec, { ajustada: serieAjustada(indicador_sel) })
 
 ::: {.chart-note}
 Todas las series de arriba son **originales**, sin ajuste estacional. La línea
-tenue detrás de cada una es la serie de **tendencia-ciclo** del propio INEGI,
+tenue detrás de la mayoría es la serie de **tendencia-ciclo** del propio INEGI,
 mostrada como contexto de lectura; se revisa hacia atrás conforme llegan
 trimestres nuevos, así que la cifra de cada tarjeta sale siempre de la serie
-original. Desocupación ampliada y subutilización laboral no tienen serie
-trimestral de tendencia-ciclo publicada por INEGI y aparecen sin ella.
+original. Cuatro tarjetas no llevan esa línea. INEGI publica las dos tasas sin
+agropecuario solo como series originales. Desocupación ampliada y
+subutilización laboral se construyen aquí a partir de categorías que la ENOE ya
+reporta, así que INEGI no publica ninguna versión de ellas.
 :::
 
 <details class="abstract">
@@ -335,8 +337,8 @@ cifra ± junto a cada dato principal, es un intervalo de 95% de confianza
 (±1.96 errores estándar) calculado con ese mismo diseño, no un margen de
 error simple. Cada tasa de arriba está contrastada contra las series
 originales que INEGI publica en su Banco de Información Económica, sobre toda
-la historia y no solo el trimestre más reciente: la brecha mediana es de 0.013
-puntos porcentuales y la mayor de 0.216. Desocupación ampliada y subutilización
+la historia y no solo el trimestre más reciente: la brecha mediana es de 0.010
+puntos porcentuales y la mayor de 0.180. Desocupación ampliada y subutilización
 laboral no tienen serie equivalente ahí y se reportan como no validadas en la
 página de [actualización trimestral](data-actualizacion-trimestral.qmd).
 

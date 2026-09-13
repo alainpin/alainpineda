@@ -1,7 +1,7 @@
 ---
 title: "Domestic Workers and Social Insurance"
 subtitle: "Work in progress"
-description: "Mexico's 2019 reform opened enrollment in the national social security system (IMSS) to two million domestic workers, overwhelmingly women, through a voluntary pilot meant as a bridge to a mandate. This project measures how much of the coverage gap voluntary enrollment actually closed."
+description: "In 2019 Mexico opened enrollment at the Mexican Social Security Institute (IMSS) to 2.3 million domestic workers, overwhelmingly women. IMSS ran a voluntary pilot first, and a reform later that year set it on a path toward a mandate. This project measures how much of the coverage gap voluntary enrollment actually closed."
 date: 2025-09-01
 author: "Alain Pineda"
 ---
@@ -25,13 +25,14 @@ Domestic workers in Mexico and the share with social security, 2026-Q2. Own calc
 
 Domestic workers provide essential services for private households, yet they
 rarely have access to labor rights and protections and show one of the highest
-informality rates in the economy. Mexico has roughly two million domestic
+informality rates in the economy. Mexico has roughly 2.3 million domestic
 workers, with sharp occupational segregation by gender: more than 90% are women.
 
 I study the 2019 change in Mexican federal labor law that extended access to
-social insurance benefits to domestic workers. The reform came with a voluntary
-enrollment pilot intended as a transition toward a mandatory regime. I use the
-quarterly labor force survey to trace its effect on observed labor outcomes.
+social insurance benefits to domestic workers. IMSS had launched a voluntary
+enrollment pilot that April, and the reform set it on a path toward a mandatory
+regime. I use the quarterly labor force survey to trace its effect on observed
+labor outcomes.
 
 ### Why it matters for policy
 

@@ -39,7 +39,8 @@ block a specific mutation in the tumor. Survival improved. Costs rose, and no
 recent study had compared what these regimens cost in practice.
 
 The paper uses insurance claims from Optum, a national database of people
-with commercial coverage, to follow 2,018 adults with metastatic melanoma who
+with commercial or Medicare Advantage coverage, to follow 2,018 adults with
+metastatic melanoma who
 started one of four regimens between 2016 and 2020. For each patient it
 measures, per month of treatment, hospital stays, emergency visits,
 outpatient visits, and total health care spending. It then compares the
@@ -62,7 +63,8 @@ differences in total cost.
 Prescribing also shifted. Nivolumab overtook pembrolizumab in 2018, the year
 regulators approved giving it every four weeks instead of every two. Fewer
 infusions mean fewer visits and lower costs, which may explain part of the
-cost gap between two drugs that trials suggest work about equally well.
+cost gap. No trial has compared the two drugs directly, though retrospective
+studies suggest they work about equally well.
 
 ### How to read it
 
@@ -71,8 +73,9 @@ Patients were not assigned to regimens at random: those with brain
 metastases, for instance, were more often given the immunotherapy
 combination. The models adjust for that and for other characteristics the
 data record, but claims do not record tumor mutation status or stage detail,
-so unobserved differences between groups remain. The sample is commercially
-insured, so it is not representative of the whole country. The paper reports
+so unobserved differences between groups remain. The sample covers people
+with commercial or Medicare Advantage coverage, so it is not representative
+of the whole country. The paper reports
 where each regimen sits on cost and use of care, given the patients who
 received it. It does not estimate what would happen if a patient were moved
 from one regimen to another.

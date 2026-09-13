@@ -35,8 +35,8 @@ Source: author's estimates using MOTRAL 2015.
 
 A formal job lasts 6.1 years on average, against 3.8 years in informal
 employment. The gap is wider among women, 49% shorter in informal jobs, than
-among men, 21% shorter. It also grows with schooling: among people with a
-university education, an informal job lasts 64% less time than a formal one,
+among men, 21% shorter. It also grows with schooling: among people with
+tertiary education, an informal job lasts 64% less time than a formal one,
 against only 12% among those with primary school or less. Having started
 one's working life in an informal job also raises the risk of staying in
 informal employment later on, evidence that early informality leaves a mark.
@@ -51,7 +51,7 @@ particular for workers with less schooling and for women, where the gap with
 formal employment is widest.
 
 ::: {.paper-links}
-- [Thesis (PDF)](../../files/tesis-duracion-informalidad-laboral.pdf)
+- [Thesis (PDF, in Spanish)](../../files/tesis-duracion-informalidad-laboral.pdf)
 - [Versión en español](/es/policy/thesis-informality-duration/)
 :::
 
@@ -69,7 +69,7 @@ consistently higher hazard of ending at any point in time. A formal job lasts
 show a similar pattern. The gap between formal and informal duration is not
 uniform. It is much wider among women, whose informal jobs last 49% less time
 than their formal ones, than among men, at 21%. It also grows sharply with
-education: among workers with a university degree, informal jobs last 64%
+education: among workers with tertiary education, informal jobs last 64%
 less time than formal ones, compared with a 12% gap among workers with primary
 school or less, consistent with informal work serving more as a stepping
 stone for the more educated. Having entered the labor market through an
