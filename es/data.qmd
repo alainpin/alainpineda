@@ -318,7 +318,7 @@ Todas las series de arriba son **originales**, sin ajuste estacional. La línea
 tenue detrás de la mayoría es la serie de **tendencia-ciclo** del propio INEGI,
 mostrada como contexto de lectura; se revisa hacia atrás conforme llegan
 trimestres nuevos, así que la cifra de cada tarjeta sale siempre de la serie
-original. Cuatro tarjetas no llevan esa línea. INEGI publica las dos tasas sin
+original. Cuatro series no llevan esa línea. INEGI publica las dos tasas sin
 agropecuario solo como series originales. Desocupación ampliada y
 subutilización laboral se construyen aquí a partir de categorías que la ENOE ya
 reporta, así que INEGI no publica ninguna versión de ellas.

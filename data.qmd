@@ -316,7 +316,7 @@ graficaSerie(serieSec, { ajustada: serieAjustada(indicador_sel) })
 All series above are **original**, without seasonal adjustment. The faint line
 behind most of them is INEGI's own **trend-cycle** series, shown as reading
 context; it is revised backward as new quarters arrive, so the figure quoted
-on each card always comes from the original series. Four cards carry no such
+on each card always comes from the original series. Four series carry no such
 line. INEGI publishes the two rates excluding agriculture as original series
 only. Broader unemployment and labor underutilization are built here from
 categories the ENOE already reports, so INEGI publishes no version of them.
