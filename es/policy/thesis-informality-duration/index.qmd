@@ -1,5 +1,5 @@
 ---
-title: "¿Cuánto dura un empleo informal en México?"
+title: "Duración de la informalidad laboral en México"
 subtitle: "Tesis de licenciatura, ITAM, 2017 · Ganadora del Premio Citibanamex de Economía 2017 y del Premio Ex-ITAM 2018"
 description: "Los empleos informales en México duran menos que los formales en todos los grupos analizados, y la brecha crece marcadamente con el nivel educativo."
 author: "Alain Pineda"

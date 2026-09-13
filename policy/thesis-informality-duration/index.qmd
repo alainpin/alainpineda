@@ -1,6 +1,6 @@
 ---
-title: "How Long Does an Informal Job Last in Mexico?"
-subtitle: "Undergraduate thesis, ITAM, 2017 · Winner, Premio Citibanamex de Economía 2017 and Premio Ex-ITAM 2018"
+title: "Duración de la informalidad laboral en México"
+subtitle: "How long an informal job lasts in Mexico · Undergraduate thesis, ITAM, 2017 · Winner, Premio Citibanamex de Economía 2017 and Premio Ex-ITAM 2018"
 description: "Informal jobs in Mexico end sooner than formal ones in every group studied, and the gap widens sharply with education."
 author: "Alain Pineda"
 ---

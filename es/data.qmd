@@ -47,6 +47,12 @@ ultimoPeriodoGlobal = {
   return `${u.anio}-T${u.trimestre}`;
 }
 
+etiquetaMarco = ({
+  tradicional: "ENOE",
+  enoen: "ENOEN",
+  enoe_2023: "ENOE (desde 2023)"
+})
+
 definiciones = ({
   TPEA: {
     nombre: "Participación laboral",
@@ -210,7 +216,7 @@ graficaSerie = (serie, { width = 780, height = 340, marginLeft = 42, color = "va
       Plot.ruleY([0], { stroke: "currentColor", strokeOpacity: 0.15 }),
       Plot.tip(serie, Plot.pointerX({
         x: "fecha", y: "valor",
-        title: d => `${d.anio}-T${d.trimestre} (${d.regimen})\n${d.valor}% ± ${(1.96 * d.ee).toFixed(2)} pp\nn = ${d.n_obs.toLocaleString("es-MX")}`
+        title: d => `${d.anio}-T${d.trimestre} (${etiquetaMarco[d.regimen] ?? d.regimen})\n${d.valor}% ± ${(1.96 * d.ee).toFixed(2)} pp\nn = ${d.n_obs.toLocaleString("es-MX")}`
       }))
     ]
   });

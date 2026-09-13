@@ -25,6 +25,12 @@ datos = raw
 nacional = datos.filter(d => d.corte === "nacional").sort((a, b) => a.fecha - b.fecha)
 ultimoNacional = nacional[nacional.length - 1]
 
+etiquetaMarco = ({
+  tradicional: "ENOE",
+  enoen: "ENOEN",
+  enoe_2023: "ENOE (from 2023)"
+})
+
 entidadPorCodigo = ({
   "1": "Aguascalientes", "2": "Baja California", "3": "Baja California Sur",
   "4": "Campeche", "5": "Coahuila", "6": "Colima", "7": "Chiapas",
@@ -198,7 +204,7 @@ graficaSerieMultiple = (corte, categorias, { width = 680, height = 320 } = {}) =
       }),
       Plot.tip(serie, Plot.pointerX({
         x: "fecha", y: "valor",
-        title: d => `${d.categoria_origen}\n${d.anio}-Q${d.trimestre} (${d.regimen})\n${d.valor}% ± ${(1.96 * d.ee).toFixed(2)} pp\nn = ${d.n_obs.toLocaleString("en-US")}`
+        title: d => `${d.categoria_origen}\n${d.anio}-Q${d.trimestre} (${etiquetaMarco[d.regimen] ?? d.regimen})\n${d.valor}% ± ${(1.96 * d.ee).toFixed(2)} pp\nn = ${d.n_obs.toLocaleString("en-US")}`
       })),
       Plot.axisX({ stroke: "var(--rule)", tickSize: 0 }),
       Plot.axisY({ stroke: "var(--rule)", tickSize: 0 })
@@ -245,7 +251,7 @@ graficaSerieCorte = (serie, { width = 680, height = 260, color = "var(--teal)" }
       }),
       Plot.tip(serie, Plot.pointerX({
         x: "fecha", y: "valor",
-        title: d => `${d.anio}-Q${d.trimestre} (${d.regimen})\n${d.valor}% ± ${(1.96 * d.ee).toFixed(2)} pp\nn = ${d.n_obs.toLocaleString("en-US")}`
+        title: d => `${d.anio}-Q${d.trimestre} (${etiquetaMarco[d.regimen] ?? d.regimen})\n${d.valor}% ± ${(1.96 * d.ee).toFixed(2)} pp\nn = ${d.n_obs.toLocaleString("en-US")}`
       })),
       Plot.axisX({ stroke: "var(--rule)", tickSize: 0 }),
       Plot.axisY({ stroke: "var(--rule)", tickSize: 0 })
