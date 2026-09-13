@@ -1,15 +1,15 @@
 ---
-title: "Uso y costos de servicios de salud en terapias sistémicas para melanoma metastásico, 2016-2020"
-subtitle: "The Oncologist, 2022"
+title: "Health Care Utilization and Costs in Systemic Therapies for Metastatic Melanoma from 2016 to 2020"
+subtitle: "The Oncologist, 2023"
 description: "Una nueva generación de medicamentos contra el cáncer, los inhibidores de punto de control inmunitario, ha reducido la mortalidad por melanoma avanzado, pero cambió cómo y dónde se atiende a los pacientes. El artículo documenta cómo cambiaron el uso de servicios de salud y los costos entre terapias para melanoma entre 2016 y 2020."
-date: 2022-10-01
+date: 2023-03-17
 pdf: ../files/melanoma-cost-utilization.pdf
 aliases:
   - /es/research/published/melanoma-utilization/
 ---
 
 ::: {.eyebrow}
-Publicado · The Oncologist (2022)
+Publicado · The Oncologist (2023)
 :::
 
 Con Mollie F. Qian, Nicolas J. Betancourt, Nolan J. Maloney, Kevin A. Nguyen,
@@ -87,6 +87,6 @@ otro.
 
 ::: {.paper-links}
 - [Documento (PDF)](../../../../files/melanoma-cost-utilization.pdf)
-- [Versión publicada](https://academic.oup.com/oncolo/advance-article/doi/10.1093/oncolo/oyac219/6776043)
+- [Versión publicada](https://doi.org/10.1093/oncolo/oyac219)
 - [English version](/research/other/melanoma-utilization/)
 :::

@@ -1,15 +1,15 @@
 ---
-title: "Health Care Utilization and Costs in Systemic Therapies for Metastatic Melanoma, 2016-2020"
-subtitle: "The Oncologist, 2022"
+title: "Health Care Utilization and Costs in Systemic Therapies for Metastatic Melanoma from 2016 to 2020"
+subtitle: "The Oncologist, 2023"
 description: "A newer generation of cancer drugs, called immune checkpoint inhibitors, has lowered death rates from advanced melanoma but changed how and where patients are treated. This paper documents how health care use and costs shifted across melanoma treatments between 2016 and 2020."
-date: 2022-10-01
+date: 2023-03-17
 pdf: files/melanoma-cost-utilization.pdf
 aliases:
   - /research/published/melanoma-utilization/
 ---
 
 ::: {.eyebrow}
-Published · The Oncologist (2022)
+Published · The Oncologist (2023)
 :::
 
 With Mollie F. Qian, Nicolas J. Betancourt, Nolan J. Maloney, Kevin A. Nguyen,
@@ -82,6 +82,6 @@ from one regimen to another.
 
 ::: {.paper-links}
 - [Paper (PDF)](../../../files/melanoma-cost-utilization.pdf)
-- [Published version](https://academic.oup.com/oncolo/advance-article/doi/10.1093/oncolo/oyac219/6776043)
+- [Published version](https://doi.org/10.1093/oncolo/oyac219)
 - [Versión en español](/es/research/other/melanoma-utilization/)
 :::
