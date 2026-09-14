@@ -683,7 +683,7 @@ Rules for writing a `.finding`:
 - [Paper (PDF)](../../../files/x.pdf)
 - [Slides](../../../files/x-slides.pdf)
 - [Replication](https://github.com/...)
-- [Spanish version](/es/research/working-papers/x/)
+- [Versión en español](/es/research/working-papers/x/)
 :::
 ```
 

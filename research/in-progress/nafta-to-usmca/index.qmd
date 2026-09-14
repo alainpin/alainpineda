@@ -40,4 +40,5 @@ joint review.
 
 ::: {.paper-links}
 - [Draft available on request](mailto:alain.pineda@banxico.org.mx)
+- [Versión en español](/es/research/in-progress/nafta-to-usmca/)
 :::
