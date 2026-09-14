@@ -6,16 +6,22 @@
 # en el proyecto privado "ENOE Dashboard".
 #
 # Por que se pueden superponer sobre nuestra serie original: el mismo script
-# que las descarga confirma que nuestra original reproduce la de INEGI (1700
-# comparaciones, mediana 0.013 pp), asi que la ajustada oficial es la ajustada
-# de ESTA serie y no de otra parecida.
+# que las descarga confirma que nuestra original reproduce la de INEGI, asi que
+# la ajustada oficial es la ajustada de ESTA serie y no de otra parecida. Lo
+# que se exporta de ese cotejo esta en data/validations.csv: 680 comparaciones
+# pareadas, mediana 0.010 pp, maximo 0.180 pp.
 #
 # Dos cosas que no son obvias:
 #   - Las ajustadas TRIMESTRALES vienen en porcentaje. Las mensuales del mismo
 #     catalogo vienen en indice. Estas se grafican directo, sin reescalar.
-#   - Solo existen para 6 indicadores. SUBUTIL y TDAMPL, que este sitio si
-#     publica, no tienen version ajustada trimestral en el BIE; esos paneles
-#     van sin linea de fondo en vez de con una calculada aqui.
+#   - Solo existen para 6 indicadores: TCCO, TD, TIL1, TOSI1, TPEA y TSUB. Los
+#     otros CUATRO que este sitio publica van sin linea de fondo, y por dos
+#     razones distintas. TIL2 y TOSI2 estan en el BIE solo como serie original:
+#     INEGI no los desestacionaliza a frecuencia trimestral, asi que no hay
+#     nada que descargar. SUBUTIL y TDAMPL se arman aqui a partir de categorias
+#     que la ENOE ya reporta, asi que INEGI no publica ninguna version de
+#     ellos. En los cuatro casos el panel va sin linea en vez de con una
+#     calculada aqui.
 #
 # Se corre A MANO, no durante el render del sitio:
 #   Rscript scripts/05-labor-seasonal.R
