@@ -416,7 +416,7 @@
   <details class="explainer reveal r4">
     <summary>How the comparison is built, formally</summary>
     <div class="body">
-      <p>Long difference, by state <em>s</em>: &nbsp; <span class="mono">Y<sub>s,post</sub> − Y<sub>s,pre</sub> = β·I<sub>s,pre</sub> + X<sub>s,pre</sub>Γ + α + ε<sub>s</sub></span>, where <span class="mono">I<sub>s,pre</sub></span> is the state's 2013&ndash;15 informality rate and <span class="mono">Y</span> is a labor-market outcome for the exposed-minus-unexposed cohort gap. This clean two-group comparison is why the long difference excludes the two partially exposed cohorts (1999&ndash;2000, one and two years of high-school exposure respectively). A pooled panel version keeps them: it adds cohort, state, and quarter fixed effects and interacts pre-policy informality with a <em>continuous</em> cohort-level exposure function, 2016&ndash;2019, so partial exposure enters with partial weight rather than being dropped. Weights use the square root of the surveyed population in each cell; standard errors are clustered by state (32 clusters), with inference on the coefficient of interest based on wild-cluster-bootstrap p-values (Webb weights, 9,999 replications).</p>
+      <p>Long difference, by state <em>s</em> and quarter <em>t</em>: &nbsp; <span class="mono">Gap<sub>s,t</sub> = β·I<sub>s,pre</sub> + X<sub>s,pre</sub>Γ + δ<sub>t</sub> + ε<sub>st</sub></span>, where <span class="mono">Gap<sub>s,t</sub></span> is the exposed-minus-unexposed cohort gap in a labor-market outcome for state <em>s</em> in quarter <em>t</em>, <span class="mono">I<sub>s,pre</sub></span> is the state's 2013&ndash;15 informality rate, and <span class="mono">δ<sub>t</sub></span> are quarter fixed effects. This clean two-group comparison is why the long difference excludes the two partially exposed cohorts (1999&ndash;2000, one and two years of high-school exposure respectively). A pooled panel version keeps them: it adds cohort, state, and quarter fixed effects and interacts pre-policy informality with a <em>continuous</em> cohort-level exposure function, 2016&ndash;2019, so partial exposure enters with partial weight rather than being dropped. Weights use the square root of the surveyed population in each cell; standard errors are clustered by state (32 clusters), with inference on the coefficient of interest based on wild-cluster-bootstrap p-values (Webb weights, 9,999 replications).</p>
     </div>
   </details>
 </section>
@@ -553,8 +553,8 @@
         <span class="pill" style="border-color:rgba(255,255,255,0.3); background:rgba(255,255,255,0.06); color:var(--panel-fg);">Participation: M̄ ≤ <strong style="color:var(--panel-accent);">0.43</strong></span>
       </div>
       <p style="color:var(--panel-fg-soft); font-size:1rem;">
-        Applied to this design &mdash; birth cohort as event time, normalized on the last fully
-        unexposed cohort &mdash; the <strong>formality</strong> result survives a post-eligibility violation of
+        Applied to this design &mdash; birth cohort as event time, normalized on the 1997
+        cohort &mdash; the <strong>formality</strong> result survives a post-eligibility violation of
         parallel cohort trends <strong>up to 15% larger</strong> than the worst violation already visible
         among untreated cohorts. The weaker <strong>participation</strong> margin breaks under a much smaller
         one. Under a linear-drift restriction that extrapolates the untreated trend forward instead
@@ -566,8 +566,12 @@
         <div class="body" style="color:#e9f3ee;">
           <p>The procedure needs a full covariance matrix, which the paper's usual wild-cluster
           bootstrap doesn't supply — cluster-jackknife (CV3) standard errors are used instead, the
-          natural choice with 32 clusters. Using CRV1 instead gives M̄ = 1.38 for formality;
-          normalizing on the following cohort instead of the last unexposed one gives 0.78. Formality
+          natural choice with 32 clusters. The reference is the 1997 cohort, not 1998. The exposure
+          timeline above classifies cohorts by high-school exposure, and 1998 counts as unexposed
+          on that criterion, but it carries partial exposure through the public-college channel.
+          Normalizing on a partially treated cohort understates the effect and inflates the
+          apparent pre-period violation. Using CRV1 instead gives M̄ = 1.38 for formality;
+          normalizing on the 1998 cohort instead gives 0.78. Formality
           stays far more robust than participation under both, though under that alternative
           normalization it no longer clears the focal value of 1.</p>
         </div>
@@ -787,7 +791,7 @@
       svg.appendChild(t);
     });
     const cap = el('text',{x:x0, y:top-10, class:'axis-lbl', 'font-size':'11'});
-    cap.textContent = 'Birth cohort  ·  number = age in 2016';
+    cap.textContent = 'Birth cohort  ·  number = age in 2016  ·  exposure measured through high school';
     svg.appendChild(cap);
   })();
 

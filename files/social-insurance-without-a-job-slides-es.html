@@ -419,7 +419,7 @@
   <details class="explainer reveal r4">
     <summary>Cómo se construye la comparación, formalmente</summary>
     <div class="body">
-      <p>Diferencia de largo plazo, por estado <em>s</em>: &nbsp; <span class="mono">Y<sub>s,post</sub> − Y<sub>s,pre</sub> = β·I<sub>s,pre</sub> + X<sub>s,pre</sub>Γ + α + ε<sub>s</sub></span>, donde <span class="mono">I<sub>s,pre</sub></span> es la tasa de informalidad del estado en 2013&ndash;15 y <span class="mono">Y</span> es un resultado del mercado laboral para la brecha expuesta-menos-no-expuesta entre cohortes. Esta comparación limpia entre dos grupos es la razón por la que la diferencia de largo plazo excluye a las dos cohortes parcialmente expuestas (1999&ndash;2000, con uno y dos años de exposición en bachillerato, respectivamente). Una versión de panel agrupado sí las conserva: añade efectos fijos de cohorte, estado y trimestre, e interactúa la informalidad previa con una función de exposición <em>continua</em> a nivel cohorte, 2016&ndash;2019, de modo que la exposición parcial entra con un peso parcial en vez de excluirse. Las ponderaciones usan la raíz cuadrada de la población muestreada en cada celda; los errores estándar están clusterizados por estado (32 clústeres), y la inferencia sobre el coeficiente de interés se basa en valores p de bootstrap wild-cluster (pesos de Webb, 9,999 repeticiones).</p>
+      <p>Diferencia de largo plazo, por estado <em>s</em> y trimestre <em>t</em>: &nbsp; <span class="mono">Brecha<sub>s,t</sub> = β·I<sub>s,pre</sub> + X<sub>s,pre</sub>Γ + δ<sub>t</sub> + ε<sub>st</sub></span>, donde <span class="mono">Brecha<sub>s,t</sub></span> es la brecha expuestos-menos-no-expuestos en un resultado del mercado laboral para el estado <em>s</em> en el trimestre <em>t</em>, <span class="mono">I<sub>s,pre</sub></span> es la tasa de informalidad del estado en 2013&ndash;15 y <span class="mono">δ<sub>t</sub></span> son efectos fijos de trimestre. Esta comparación limpia entre dos grupos es la razón por la que la diferencia de largo plazo excluye a las dos cohortes parcialmente expuestas (1999&ndash;2000, con uno y dos años de exposición en bachillerato, respectivamente). Una versión de panel agrupado sí las conserva: añade efectos fijos de cohorte, estado y trimestre, e interactúa la informalidad previa con una función de exposición <em>continua</em> a nivel cohorte, 2016&ndash;2019, de modo que la exposición parcial entra con un peso parcial en vez de excluirse. Las ponderaciones usan la raíz cuadrada de la población muestreada en cada celda; los errores estándar están clusterizados por estado (32 clústeres), y la inferencia sobre el coeficiente de interés se basa en valores p de bootstrap wild-cluster (pesos de Webb, 9,999 repeticiones).</p>
     </div>
   </details>
 </section>
@@ -561,7 +561,7 @@
       </div>
       <p style="color:var(--panel-fg-soft); font-size:1rem;">
         Aplicado a este diseño &mdash; la cohorte de nacimiento como tiempo de evento, normalizado en
-        la última cohorte totalmente no expuesta &mdash; el resultado de <strong>formalidad</strong> sobrevive una
+        la cohorte de 1997 &mdash; el resultado de <strong>formalidad</strong> sobrevive una
         violación posterior a la elegibilidad de las tendencias paralelas por cohorte <strong>hasta 15%
         mayor</strong> que la peor violación ya visible entre cohortes no tratadas. El margen más débil,
         <strong>participación</strong>, se rompe con una violación mucho menor. Bajo una restricción de
@@ -574,10 +574,15 @@
         <div class="body" style="color:#e9f3ee;">
           <p>El procedimiento necesita una matriz de covarianza completa, que el bootstrap
           wild-cluster habitual del paper no proporciona — en su lugar se usan errores estándar
-          cluster-jackknife (CV3), la opción natural con 32 clústeres. Usar CRV1 en su lugar da
-          M̄ = 1.38 para formalidad; normalizar en la siguiente cohorte en vez de la última no
-          expuesta da 0.78. La formalidad sigue siendo mucho más robusta que la participación en
-          ambos casos, aunque con esa normalización alternativa ya no supera el valor focal de 1.</p>
+          cluster-jackknife (CV3), la opción natural con 32 clústeres. La referencia es la cohorte
+          de 1997, no la de 1998. La línea de tiempo de exposición de arriba clasifica las cohortes
+          por exposición en bachillerato, y con ese criterio 1998 cuenta como no expuesta, pero
+          arrastra exposición parcial por el canal de universidad pública. Normalizar en una
+          cohorte parcialmente tratada subestima el efecto e infla la violación aparente del
+          pre-período. Usar CRV1 en su lugar da M̄ = 1.38 para formalidad; normalizar en la cohorte
+          de 1998 en su lugar da 0.78. La formalidad sigue siendo mucho más robusta que la
+          participación en ambos casos, aunque con esa normalización alternativa ya no supera el
+          valor focal de 1.</p>
         </div>
       </details>
     </div>
@@ -795,7 +800,7 @@
       svg.appendChild(t);
     });
     const cap = el('text',{x:x0, y:top-10, class:'axis-lbl', 'font-size':'11'});
-    cap.textContent = 'Cohorte de nacimiento  ·  número = edad en 2016';
+    cap.textContent = 'Cohorte de nacimiento  ·  número = edad en 2016  ·  exposición medida por bachillerato';
     svg.appendChild(cap);
   })();
 
