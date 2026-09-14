@@ -87,7 +87,7 @@ definiciones = ({
   },
   TDAMPL: {
     nombre: "Broader unemployment",
-    texto: "The unemployment rate, widened in both numerator and denominator to include people available to work who aren't actively searching (discouraged workers). Not a custom definition: it only combines categories ENOE already reports separately."
+    texto: "The unemployment rate, widened in both numerator and denominator to include people available to work who aren't actively searching but would take a job if offered. ENOE counts them as disponibles. Discouraged workers are only the part of that group who stopped searching for labor-market reasons. Not a custom definition: it only combines categories ENOE already reports separately."
   },
   SUBUTIL: {
     nombre: "Labor underutilization",
@@ -333,7 +333,7 @@ categories the ENOE already reports, so INEGI publishes no version of them.
 
 **1. A validated pipeline, not a one-off script.** The full computation —
 downloading each quarter directly from INEGI, harmonizing field names and
-weights across the ENOE/ENOE-N/ENOE regime changes since 2005, and applying
+weights across the ENOE/ENOEN/ENOE regime changes since 2005, and applying
 the survey's complex design (`survey::svydesign`, `ids = upm, strata =
 est_d_tri, weights = fac_tri`) — lives in a separate private R project, not
 in this site's repository. The shaded band on each chart, and the ± figure

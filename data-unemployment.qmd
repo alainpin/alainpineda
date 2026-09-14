@@ -35,7 +35,7 @@ definiciones = ({
   },
   TDAMPL: {
     nombre: "Broader unemployment",
-    texto: "The unemployment rate, widened in both numerator and denominator to include people available to work who aren't actively searching (discouraged workers). Not a custom definition: it only combines categories ENOE already reports separately."
+    texto: "The unemployment rate, widened in both numerator and denominator to include people available to work who aren't actively searching but would take a job if offered. ENOE counts them as disponibles. Discouraged workers are only the part of that group who stopped searching for labor-market reasons. Not a custom definition: it only combines categories ENOE already reports separately."
   },
   SUBUTIL: {
     nombre: "Labor underutilization",

@@ -88,7 +88,7 @@ definiciones = ({
   },
   TDAMPL: {
     nombre: "Desocupación ampliada",
-    texto: "La tasa de desocupación, pero ampliando tanto el numerador como el denominador para incluir a quienes están disponibles para trabajar sin buscar activamente (desalentados). No es una definición propia: solo une categorías que la ENOE ya distingue por separado."
+    texto: "La tasa de desocupación, pero ampliando tanto el numerador como el denominador para incluir a quienes están disponibles para trabajar, no buscan activamente y aceptarían un empleo si se lo ofrecieran. La ENOE los clasifica como población disponible. Los desalentados son solo la parte de ese grupo que dejó de buscar por razones del mercado laboral. No es una definición propia: solo une categorías que la ENOE ya distingue por separado."
   },
   SUBUTIL: {
     nombre: "Subutilización laboral",
@@ -335,7 +335,7 @@ reporta, así que INEGI no publica ninguna versión de ellas.
 
 **1. Un pipeline validado, no un script suelto.** El cómputo completo —
 descarga directa de INEGI trimestre a trimestre, armonización de nombres de
-campo y ponderadores entre los regímenes ENOE/ENOE-N/ENOE desde 2005, y el
+campo y ponderadores entre los regímenes ENOE/ENOEN/ENOE desde 2005, y el
 diseño muestral complejo de la encuesta (`survey::svydesign`, `ids = upm,
 strata = est_d_tri, weights = fac_tri`) — vive en un proyecto de R privado
 aparte, no en este repositorio. La banda sombreada de cada gráfica, y la

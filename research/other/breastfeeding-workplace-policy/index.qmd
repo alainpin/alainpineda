@@ -1,6 +1,6 @@
 ---
-title: "Why Support Breastfeeding at Work?"
-subtitle: "IDB Gender and Diversity blog, August 2022"
+title: "Lactancia es desarrollo: por qué impulsar la lactancia materna en el trabajo"
+subtitle: "Lactation is development: why we should support breastfeeding in the workplace · IDB Gender and Diversity blog, August 2022"
 description: "Paid breastfeeding breaks and lactation rooms exist on paper across Latin America and the Caribbean, but weak enforcement and high informality keep them from reaching most working mothers."
 author: "Alain Pineda"
 date: 2022-08-03
@@ -26,10 +26,10 @@ Returning to work is one of the main reasons mothers report stopping
 breastfeeding early. Two workplace policies are meant to help: paid daily
 breaks to breastfeed or express milk, and lactation rooms. Based on a UNICEF
 review of 24 countries in the region, 19 offer breaks of at least 60 minutes
-a day, but 4 have no legislation at all. Lactation rooms are mandated by law
-in 18 of the 24 countries, but in 14 of those, only employers above a minimum
-size are required to provide them, excluding a large share of working women
-from the right entirely.
+a day, 1 offers less and 4 have no legislation at all. Lactation rooms are
+mandated by law in 18 of the 24 countries, but in 14 of those, only employers
+above a minimum size are required to provide them, excluding a large share of
+working women from the right entirely.
 
 ::: {.chart-figure}
 ![](../../../images/breastfeeding-policy-coverage-en-light.svg){.chart-img-light}
@@ -70,8 +70,8 @@ policy a central lever for closing that gap. Two policies matter most: paid
 daily breaks to breastfeed or express milk, and dedicated lactation rooms.
 Based on a UNICEF review of the regulatory framework in 24 countries in the
 region, most already legislate some form of both: 19 of 24 countries offer
-breastfeeding breaks of at least 60 minutes a day, though 4 have no
-legislation at all, and few countries let these breaks extend past a baby's
+breastfeeding breaks of at least 60 minutes a day, 1 offers less and 4 have
+no legislation at all, and few countries let these breaks extend past a baby's
 sixth month. Lactation rooms are mandated by law in 18 of 24 countries, but
 in 14 of those, only employers above a minimum size threshold are required
 to provide them, which excludes a substantial share of working women from

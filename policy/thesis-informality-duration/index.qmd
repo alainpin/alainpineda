@@ -1,12 +1,12 @@
 ---
 title: "Duración de la informalidad laboral en México"
-subtitle: "How long an informal job lasts in Mexico · Undergraduate thesis, ITAM, 2017 · Winner, Premio Citibanamex de Economía 2017 and Premio Ex-ITAM 2018"
+subtitle: "How long an informal job lasts in Mexico · Undergraduate thesis, ITAM, 2017 · Winner, Premio Citibanamex de Economía 2017 and Premio ExITAM 2018"
 description: "Informal jobs in Mexico end sooner than formal ones in every group studied, and the gap widens sharply with education."
 author: "Alain Pineda"
 ---
 
 ::: {.eyebrow}
-Undergraduate thesis · ITAM, 2017 · Premio Citibanamex de Economía 2017 · Premio Ex-ITAM 2018
+Undergraduate thesis · ITAM, 2017 · Premio Citibanamex de Economía 2017 · Premio ExITAM 2018
 :::
 
 ::: {.finding}
@@ -17,12 +17,15 @@ twice as large among women as among men.
 
 ### What the thesis does
 
-Using individual labor-history data from MOTRAL (2015), I estimate how long a
-job lasts before it ends, comparing formal and informal employment with
-survival analysis: Kaplan-Meier estimates of the survival function and Cox
-proportional-hazards models. The goal is to see which characteristics, gender,
-age, education, and whether someone's very first job was informal, are
-associated with leaving an informal job faster or staying in it longer.
+Using individual labor-history data from the Módulo de Trayectorias Laborales
+(MOTRAL) 2015, a module INEGI and CONSAR fielded inside the ENOE, I estimate
+how long a job lasts before it ends, comparing formal and informal employment
+with survival analysis: Kaplan-Meier estimates of the survival function and
+Cox proportional-hazards models. The goal is to see which characteristics,
+gender, age, education, and whether someone's very first job was informal, are
+associated with leaving an informal job faster or staying in it longer. MOTRAL
+covers people aged 18 to 54 with work experience in 32 urban areas. The
+estimates are urban, not national.
 
 ::: {.site-figure}
 ![](../../images/thesis-informality-duration-en.svg)
@@ -38,8 +41,8 @@ employment. The gap is wider among women, 49% shorter in informal jobs, than
 among men, 21% shorter. It also grows with schooling: among people with
 tertiary education, an informal job lasts 64% less time than a formal one,
 against only 12% among those with primary school or less. Having started
-one's working life in an informal job also raises the risk of staying in
-informal employment later on, evidence that early informality leaves a mark.
+one's working life in an informal job also raises the risk of losing a later
+informal job, a sign of how unstable work is for those who stay informal.
 
 ### Why it matters for policy
 

@@ -1,5 +1,5 @@
 ---
-title: "¿Por qué apoyar la lactancia en el trabajo?"
+title: "Lactancia es desarrollo: por qué impulsar la lactancia materna en el trabajo"
 subtitle: "Blog de Género y Diversidad del BID, agosto de 2022"
 description: "Los descansos remunerados y las salas de lactancia existen en el papel en toda América Latina y el Caribe, pero el cumplimiento débil y la informalidad impiden que lleguen a la mayoría de las madres trabajadoras."
 author: "Alain Pineda"
@@ -27,11 +27,11 @@ Una de las razones más comunes para dejar la lactancia antes de tiempo es el
 regreso al trabajo. Dos políticas laborales buscan ayudar: los descansos
 diarios remunerados para amamantar o extraer leche, y las salas de
 lactancia. Según una revisión de UNICEF sobre 24 países de la región, 19
-ofrecen descansos de al menos 60 minutos al día, pero 4 no tienen ninguna
-legislación al respecto. Las salas de lactancia están establecidas por ley
-en 18 de los 24 países, pero en 14 de ellos solo se exigen a partir de un
-número mínimo de empleados, lo que excluye del derecho a una parte
-importante de las trabajadoras.
+ofrecen descansos de al menos 60 minutos al día, 1 ofrece menos y 4 no
+tienen ninguna legislación al respecto. Las salas de lactancia están
+establecidas por ley en 18 de los 24 países, pero en 14 de ellos solo se
+exigen a partir de un número mínimo de empleados, lo que excluye del derecho
+a una parte importante de las trabajadoras.
 
 ::: {.chart-figure}
 ![](../../../../images/breastfeeding-policy-coverage-es-light.svg){.chart-img-light}
@@ -78,8 +78,8 @@ políticas importan más: los descansos diarios remunerados para amamantar o
 extraer leche, y las salas de lactancia dedicadas. Según una revisión de
 UNICEF sobre el marco regulatorio de 24 países de la región, la mayoría ya
 legisla alguna forma de ambas: 19 de 24 países ofrecen descansos de al menos
-60 minutos al día, aunque 4 no tienen ninguna legislación al respecto, y
-pocos países permiten que estos descansos se extiendan más allá de los seis
+60 minutos al día, 1 ofrece menos y 4 no tienen ninguna legislación al respecto,
+y pocos países permiten que estos descansos se extiendan más allá de los seis
 meses de edad del bebé. Las salas de lactancia están establecidas por ley en
 18 de 24 países, pero en 14 de ellos solo se exigen a los empleadores que
 superan un número mínimo de empleados, lo que excluye en la práctica a una

@@ -319,13 +319,18 @@ not expect it to keep filling):
 2. **Other work / Otros trabajos** — hand-written one-liners, in this order:
    the melanoma paper, the IDB breastfeeding post, the ITAM thesis. The
    thesis line names its two prizes (Premio Citibanamex de Economía 2017,
-   Premio Ex-ITAM 2018) on the research page itself, because that is what
+   Premio ExITAM 2018) on the research page itself, because that is what
    justifies an undergraduate thesis being there at all; use the exact
-   spelling from the thesis page's own subtitle. The melanoma paper first sat
-   as a listing card under "Health and work" and the owner said it still felt
-   out of place; it did, because that section fit a piece about work and the
-   paper is not about work, and because a card gives it the same visual weight
-   as the job market paper. The melanoma line says "a collaboration with
+   spelling from the thesis page's own subtitle. **The ITAM prize is written
+   closed up, `ExITAM`, never hyphenated.** ITAM's own pages and the owner's
+   CV both render it that way, and he confirmed it on 2026-09-14. The `2017`
+   in `Premio Citibanamex de Economía 2017` is the edition year and is
+   correct; do not renumber it to the year the prize was handed over. The
+   melanoma paper first sat as a listing card under "Health and work" and the
+   owner said it still felt out of place; it did, because that section fit a
+   piece about work and the paper is not about work, and because a card gives
+   it the same visual weight as the job market paper.
+   The melanoma line says "a collaboration with
    dermatologists and oncologists at Stanford that began through
    Knight-Hennessy": the affiliations are what the paper prints, and the
    Knight-Hennessy origin is the owner's own account of it, which is also what
@@ -604,7 +609,7 @@ journal and year, do the same under `es/`. The listings re-sort automatically.
 ---
 title: "Title as it should appear"
 subtitle: "Status line: 'Working paper', 'R&R at AEJ: Applied',
-           'The Oncologist, 2022', 'Banco de México · Quarterly Report ...'"
+           'The Oncologist, 2023', 'Banco de México · Quarterly Report ...'"
 description: "One sentence. This is the only text shown in the listing.
               Make it say the result, not the topic."
 date: 2026-08-20        # controls listing order, newest first

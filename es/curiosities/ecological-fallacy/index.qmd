@@ -23,8 +23,8 @@ nacidos en el extranjero tenían menos analfabetismo, con una correlación de
 nacida en el extranjero era más propensa a ser analfabeta, con una correlación
 de +0.12. Las dos cifras son correctas. Responden preguntas distintas, y solo
 la segunda es sobre personas. Robinson llamó correlación ecológica a la
-primera, y tratarla como si fuera la segunda se conoce desde entonces como
-**falacia ecológica**.
+primera, y tratarla como si fuera la segunda se conoce como **falacia
+ecológica**.
 
 La trampa es fácil de describir y difícil de ver en el mundo real, porque un
 dato agregado nunca avisa que está agregado. México ya tiene un ejemplo

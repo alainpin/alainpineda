@@ -63,6 +63,7 @@ have to fail before the result goes away.
 - [Paper (PDF)](../../../files/social-insurance-without-a-job.pdf)
 - [Explainer](../../../files/social-insurance-without-a-job-slides.html){target="_blank"}
 - [Replication](https://zenodo.org/records/22168219)
+- [Versión en español](/es/research/working-papers/social-insurance-without-a-job/)
 :::
 
 <details class="abstract">

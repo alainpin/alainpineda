@@ -569,7 +569,8 @@ ejercicios de arriba.
   Drive Major Economic Events* (Princeton University Press, 2019);
   Michalopoulos y Xue, "Folklore" (*Quarterly Journal of Economics*, 2021);
   Stephens, Silbert y Hasson, "Speaker-listener neural coupling underlies
-  successful communication" (2010).
+  successful communication" (*Proceedings of the National Academy of Sciences*,
+  2010).
   [Láminas (PDF, 0.48 MB)](../files/storytelling/clase-01.pdf)
 
 - **2. Historias, estadísticas y memoria.** El capítulo 2 de *Nexus*, un repaso

@@ -35,7 +35,7 @@ definiciones = ({
   },
   TDAMPL: {
     nombre: "Desocupación ampliada",
-    texto: "La tasa de desocupación, pero ampliando tanto el numerador como el denominador para incluir a quienes están disponibles para trabajar sin buscar activamente (desalentados). No es una definición propia: solo une categorías que la ENOE ya distingue por separado."
+    texto: "La tasa de desocupación, pero ampliando tanto el numerador como el denominador para incluir a quienes están disponibles para trabajar, no buscan activamente y aceptarían un empleo si se lo ofrecieran. La ENOE los clasifica como población disponible. Los desalentados son solo la parte de ese grupo que dejó de buscar por razones del mercado laboral. No es una definición propia: solo une categorías que la ENOE ya distingue por separado."
   },
   SUBUTIL: {
     nombre: "Subutilización laboral",

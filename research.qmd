@@ -61,13 +61,14 @@ entry links to the original.
   28(3), 2023, 268–275.
   [Article](https://doi.org/10.1093/oncolo/oyac219) · [Summary](/research/other/melanoma-utilization/)
 
-- **Why Support Breastfeeding at Work?** Inter-American Development Bank,
-  Gender and Diversity blog, August 2022.
+- **Lactancia es desarrollo: por qué impulsar la lactancia materna en el
+  trabajo** (why support breastfeeding at work). Inter-American Development
+  Bank, Gender and Diversity blog, August 2022.
   [Post (in Spanish)](https://www.iadb.org/es/blog/genero-y-diversidad/lactancia-es-desarrollo-por-que-impulsar-la-lactancia-materna-en-el-trabajo) · [Summary](/research/other/breastfeeding-workplace-policy/)
 
 - **Duración de la informalidad laboral en México** (how long an informal job
   lasts in Mexico). Undergraduate thesis, ITAM, 2017. Premio Citibanamex de
-  Economía 2017 and Premio Ex-ITAM 2018.
+  Economía 2017 and Premio ExITAM 2018.
   [Thesis (PDF, in Spanish)](files/tesis-duracion-informalidad-laboral.pdf) · [Summary](/policy/thesis-informality-duration/)
 
 <!-- Renglones, no tarjetas: este es trabajo que no compite en peso con la

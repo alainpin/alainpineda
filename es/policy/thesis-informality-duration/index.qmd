@@ -1,12 +1,12 @@
 ---
 title: "Duración de la informalidad laboral en México"
-subtitle: "Tesis de licenciatura, ITAM, 2017 · Ganadora del Premio Citibanamex de Economía 2017 y del Premio Ex-ITAM 2018"
+subtitle: "Tesis de licenciatura, ITAM, 2017 · Ganadora del Premio Citibanamex de Economía 2017 y del Premio ExITAM 2018"
 description: "Los empleos informales en México duran menos que los formales en todos los grupos analizados, y la brecha crece marcadamente con el nivel educativo."
 author: "Alain Pineda"
 ---
 
 ::: {.eyebrow}
-Tesis de licenciatura · ITAM, 2017 · Premio Citibanamex de Economía 2017 · Premio Ex-ITAM 2018
+Tesis de licenciatura · ITAM, 2017 · Premio Citibanamex de Economía 2017 · Premio ExITAM 2018
 :::
 
 ::: {.finding}
@@ -17,13 +17,16 @@ nivel educativo y es más del doble entre mujeres que entre hombres.
 
 ### Qué hace la tesis
 
-Con datos de trayectorias laborales individuales de MOTRAL (2015), estimo
-cuánto dura un empleo antes de terminar, comparando empleos formales e
-informales mediante análisis de supervivencia: estimaciones Kaplan-Meier de
-la función de supervivencia y modelos de riesgos proporcionales de Cox. El
-objetivo es identificar qué características, género, edad, educación, y si el
-primer empleo de una persona fue informal, están asociadas con salir más
-rápido o permanecer más tiempo en un empleo informal.
+Con datos de trayectorias laborales individuales del Módulo de Trayectorias
+Laborales (MOTRAL) 2015, un módulo que el INEGI levantó con la CONSAR dentro
+de la ENOE, estimo cuánto dura un empleo antes de terminar, comparando empleos
+formales e informales mediante análisis de supervivencia: estimaciones
+Kaplan-Meier de la función de supervivencia y modelos de riesgos
+proporcionales de Cox. El objetivo es identificar qué características, género,
+edad, educación, y si el primer empleo de una persona fue informal, están
+asociadas con salir más rápido o permanecer más tiempo en un empleo informal.
+El MOTRAL cubre a personas de 18 a 54 años con experiencia laboral en 32 áreas
+urbanas. Las estimaciones son urbanas, no nacionales.
 
 ::: {.site-figure}
 ![](../../../images/thesis-informality-duration-es.svg)
@@ -40,8 +43,8 @@ informalidad, que entre los hombres, 21% menos. También crece con la
 escolaridad: entre quienes tienen educación superior, un empleo informal dura
 64% menos que uno formal, frente a solo 12% entre quienes tienen primaria o
 menos. Haber empezado la vida laboral en la informalidad también eleva el
-riesgo de seguir en empleos informales más adelante, evidencia de que la
-informalidad temprana deja huella.
+riesgo de perder un empleo informal posterior, señal de lo inestable que es
+el trabajo de quienes permanecen en la informalidad.
 
 ### Por qué importa para política pública
 
