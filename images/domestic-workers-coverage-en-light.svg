@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='475.20pt' height='122.40pt' viewBox='0 0 475.20 122.40'>
+<g class='svglite'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+    .svglite g.glyphgroup path {
+      fill: inherit;
+      stroke: none;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<defs>
+  <clipPath id='cpMC4wMHw0NzUuMjB8MC4wMHwxMjIuNDA='>
+    <rect x='0.00' y='0.00' width='475.20' height='122.40' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw0NzUuMjB8MC4wMHwxMjIuNDA=)'>
+<rect x='13.23' y='38.82' width='451.48' height='36.67' style='stroke-width: 1.49; stroke: #E0D8C5; stroke-linecap: butt; stroke-linejoin: miter;' />
+<rect x='13.23' y='38.82' width='18.56' height='36.67' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #0F5757;' />
+<text x='464.71' y='27.82' text-anchor='end' style='font-size: 9.96px;fill: #171513; font-family: "Arial";' textLength='188.06px' lengthAdjust='spacingAndGlyphs'>2,300,268 domestic workers · 91% women</text>
+<line x1='31.79' y1='78.43' x2='31.79' y2='90.16' style='stroke-width: 1.07; stroke: #B25A26; stroke-linecap: butt;' />
+<text x='32.72' y='98.87' style='font-size: 9.10px;fill: #B25A26; font-family: "Arial";' textLength='106.20px' lengthAdjust='spacingAndGlyphs'>94,541 with social security</text>
+<text x='32.72' y='111.44' style='font-size: 9.10px;fill: #B25A26; font-family: "Arial";' textLength='108.69px' lengthAdjust='spacingAndGlyphs'>(IMSS or ISSSTE) — 4.1%</text>
+</g>
+</g>
+</svg>
