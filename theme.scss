@@ -344,6 +344,15 @@ $chart-dark-display: none !default;
   width: 100%;
   height: auto;
 }
+// Miniatura en la tarjeta del listado. Solo la usan las Curiosidades: es una
+// firma visual de la nota, no un dato que se lea, y por eso va sin ejes ni texto.
+// No reusa .thumbnail porque esa clase la oculta la regla de .quarto-post.
+.listing-viz { margin: 0.55rem 0 0.15rem; }
+.listing-viz a { display: block; }
+.listing-viz img { width: 100%; max-width: 330px; height: auto; }
+.listing-viz img.chart-img-light { display: $chart-light-display; }
+.listing-viz img.chart-img-dark  { display: $chart-dark-display; }
+
 .chart-figure img.chart-img-light { display: $chart-light-display; }
 .chart-figure img.chart-img-dark { display: $chart-dark-display; }
 .chart-figure p:last-child {

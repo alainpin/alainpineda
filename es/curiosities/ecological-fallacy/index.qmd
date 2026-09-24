@@ -5,6 +5,7 @@ description: "Una relación medida entre grupos puede invertirse para los indivi
 date: 2026-09-02
 date-modified: last-modified
 author: "Alain Pineda"
+viz: ecological-fallacy
 ---
 
 ::: {.eyebrow}

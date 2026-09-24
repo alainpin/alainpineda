@@ -5,6 +5,7 @@ description: "Un promedio nacional le da el mismo peso a cada persona. Eso lo vu
 date: 2026-09-23
 date-modified: last-modified
 author: "Alain Pineda"
+viz: weighted-averages
 ---
 
 ::: {.eyebrow}
@@ -68,18 +69,21 @@ porCvegeo = new Map(municipios.map(d => [String(d.cvegeo).padStart(5, "0"), d]))
 
 ```{ojs}
 //| echo: false
-tablaNacional = Inputs.table(nacional, {
-  columns: ["prestacion", "nacional", "mediana_municipal", "pct_debajo"],
-  header: {
-    prestacion: "Prestación",
-    nacional: "Nacional (%)",
-    mediana_municipal: "Municipio de en medio (%)",
-    pct_debajo: "Municipios debajo del nacional (%)"
-  },
-  format: { prestacion: d => medidas[d].nombre },
-  rows: 7,
-  layout: "auto"
-})
+// Tabla html con la clase del sitio, no Inputs.table: son siete filas fijas, así
+// que no gana nada con selección de renglones ni con scroll interno.
+html`<table class="data-table">
+<thead><tr>
+  <th>Prestación</th><th>Nacional</th><th>Municipio de en medio</th><th>Municipios debajo</th>
+</tr></thead>
+<tbody>
+${nacional.map(r => html`<tr>
+  <td>${medidas[r.prestacion].nombre}</td>
+  <td class="data-table-num">${r.nacional.toFixed(1)}%</td>
+  <td class="data-table-num">${r.mediana_municipal.toFixed(1)}%</td>
+  <td class="data-table-num">${r.pct_debajo}%</td>
+</tr>`)}
+</tbody>
+</table>`
 ```
 
 Dos cosas saltan antes de cualquier geografía. El reparto de utilidades queda al
@@ -258,9 +262,13 @@ entre 5.3 y 8.9 puntos según la prestación; en el reparto de utilidades, la
 mediana pasaría de 10.8% a 19.7%, casi el doble, sin que ningún número estuviera
 mal calculado.
 
-Por eso este mapa las pinta. El rayado no quiere decir "no sabemos": quiere decir
-"sabemos que es muy poco, y lo sabemos con holgura". Un lector que lea el rayado
-como ausencia de dato invertiría justo la conclusión de la página.
+Por eso este mapa las pinta, y conviene separar dos lecturas. Municipio por
+municipio, el rayado sí quiere decir que la estimación es débil: el intervalo es
+ancho y el número no aguanta que se le cite por su cuenta. En conjunto, en cambio,
+los rayados no son una muestra al azar de municipios, sino que se concentran donde
+la cobertura es baja. Quitarlos no quitaría ruido: correría la lectura del país
+hacia arriba. La regla práctica es no citar un municipio rayado por separado, y no
+leer las zonas rayadas como territorio sin información.
 
 <details class="abstract">
 <summary>Cómo está hecho</summary>

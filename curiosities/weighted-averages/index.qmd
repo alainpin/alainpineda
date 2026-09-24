@@ -5,6 +5,7 @@ description: "A national average weights every person equally. That makes it a c
 date: 2026-09-23
 date-modified: last-modified
 author: "Alain Pineda"
+viz: weighted-averages
 ---
 
 ::: {.eyebrow}
@@ -67,18 +68,21 @@ porCvegeo = new Map(municipios.map(d => [String(d.cvegeo).padStart(5, "0"), d]))
 
 ```{ojs}
 //| echo: false
-tablaNacional = Inputs.table(nacional, {
-  columns: ["prestacion", "nacional", "mediana_municipal", "pct_debajo"],
-  header: {
-    prestacion: "Benefit",
-    nacional: "National (%)",
-    mediana_municipal: "Median municipality (%)",
-    pct_debajo: "Municipalities below the national figure (%)"
-  },
-  format: { prestacion: d => medidas[d].nombre },
-  rows: 7,
-  layout: "auto"
-})
+// Tabla html con la clase del sitio, no Inputs.table: son siete filas fijas, así
+// que no gana nada con selección de renglones ni con scroll interno.
+html`<table class="data-table">
+<thead><tr>
+  <th>Benefit</th><th>National</th><th>Median municipality</th><th>Municipalities below</th>
+</tr></thead>
+<tbody>
+${nacional.map(r => html`<tr>
+  <td>${medidas[r.prestacion].nombre}</td>
+  <td class="data-table-num">${r.nacional.toFixed(1)}%</td>
+  <td class="data-table-num">${r.mediana_municipal.toFixed(1)}%</td>
+  <td class="data-table-num">${r.pct_debajo}%</td>
+</tr>`)}
+</tbody>
+</table>`
 ```
 
 Two things stand out before any geography. Profit sharing is last at 42.7% and
@@ -256,9 +260,13 @@ municipality by between 5.3 and 8.9 points depending on the benefit; for profit
 sharing the median would go from 10.8% to 19.7%, nearly double, without a single
 number being miscalculated.
 
-That is why this map draws them. The hatching does not mean "we don't know". It
-means "we know it is very little, and we know it loosely." A reader who treats
-hatching as missing data would invert the conclusion of the page.
+That is why this map draws them, and it is worth separating two readings. Taken
+one at a time, hatching does mean the estimate is weak: the interval is wide and
+the number will not bear quoting on its own. Taken together, the hatched set is
+not a random sample of municipalities, it concentrates where coverage is low. So
+removing it would not remove noise, it would move the reading of the country
+upward. The practical rule is to avoid quoting any single hatched municipality,
+and to avoid reading the hatched areas as territory without information.
 
 <details class="abstract">
 <summary>How this is built</summary>

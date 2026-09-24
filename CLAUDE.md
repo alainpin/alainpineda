@@ -694,10 +694,30 @@ a missing file.
 ### Listings use `.quarto-post`, not `.listing-item`
 
 Quarto renders each listing entry as `div.quarto-post` inside a flex row that
-reserves a column for a thumbnail. There are no thumbnails on this site, so
+reserves a column for a thumbnail. Quarto's own thumbnail slot is unused, so
 `theme.scss` collapses that row to a single column and hides `.thumbnail` and
 `.metadata`. If a listing ever starts showing a wide empty gutter again, that
 rule is what broke.
+
+**Curiosities cards carry a mini-figure; research cards do not.** Added
+2026-09-23 at the owner's request, because the section read as a bare list. It
+does **not** go through Quarto's `.thumbnail` slot, which is the one the rule
+above hides: a page opts in with `viz: <basename>` in its front matter, the
+shared template renders the block only when that field exists, and the class is
+`.listing-viz`. Research pages set no `viz:`, so the same template leaves all
+three research listings untouched — verified, 0 occurrences on `research.html`.
+Do not add `viz:` to a research page without asking; the weight distinction
+between a card with a figure and one without is the point.
+
+The figures come from `scripts/10-curiosities-thumbs.R`, one per curiosity, built
+from that note's own real data rather than from a schematic — a card has no room
+for a caption saying "illustrative", so nothing illustrative goes on one. They
+carry no text, which is why they are the only figures on the site with **two
+variants instead of four**: light and dark, no language split. They reuse the
+existing `.chart-img-light` / `.chart-img-dark` mechanism from §5, with the
+matching display rules scoped to `.listing-viz`. The template writes the `src` as
+an absolute `/images/...` path so the same markup resolves from both trees;
+Quarto rewrites it to the correct relative path per page.
 
 ### Collapsible abstract
 

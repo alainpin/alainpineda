@@ -47,6 +47,23 @@ const attrsFor = (hasContext && typeof metadataAttrs === 'function')
 
 <% } %>
 
+<% if (item.viz) { %>
+<%
+  // Miniatura opcional, solo para Curiosidades: las fichas de research no
+  // declaran `viz:` y por eso este bloque no las toca. La ruta se arma absoluta
+  // (/images/...) para que sirva igual en el árbol EN y en el ES, que están a
+  // profundidades distintas (ver CLAUDE.md §4, invariante 5).
+%>
+
+```{=html}
+<div class="listing-viz"><a href="<%- item.path %>" class="no-external" tabindex="-1" aria-hidden="true">
+<img class="chart-img-light" src="/images/<%- item.viz %>-thumb-light.svg" alt="">
+<img class="chart-img-dark" src="/images/<%- item.viz %>-thumb-dark.svg" alt="">
+</a></div>
+```
+
+<% } %>
+
 <% if (item.pdf || item.explainer) { %>
 <%
   // Same language-derivation trick as everywhere else in this custom
