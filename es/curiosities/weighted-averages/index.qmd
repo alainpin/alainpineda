@@ -1,0 +1,287 @@
+---
+title: "El promedio no vive en ningún lado"
+subtitle: "Curiosidad · Encuesta Intercensal 2025"
+description: "Un promedio nacional le da el mismo peso a cada persona. Eso lo vuelve una cifra correcta sobre el país y una mala descripción de casi cualquiera de sus pedazos. La nueva encuesta intercensal deja ver la distancia, municipio por municipio."
+date: 2026-09-23
+date-modified: last-modified
+author: "Alain Pineda"
+---
+
+::: {.eyebrow}
+Curiosidad · INEGI, Encuesta Intercensal 2025 · Microdatos públicos
+:::
+
+Un promedio nacional le da el mismo peso a cada persona. Eso es justo lo que lo
+vuelve la cifra correcta para una pregunta sobre personas, y la equivocada para
+una pregunta sobre lugares. Si la mitad de la gente de un país vive en unas
+cuantas ciudades grandes, el promedio nacional se parece a esas ciudades. No se
+parece al pueblo típico.
+
+Son dos cantidades distintas. **Un promedio ponderado por población responde qué
+le pasa a la persona promedio; un promedio entre lugares responde qué pasa en el
+lugar promedio.** Casi siempre se calcula el primero y se cuenta como si fuera el
+segundo. Pueden estar a treinta puntos de distancia.
+
+La Encuesta Intercensal 2025, publicada en septiembre de 2026, deja ver la
+distancia con facilidad. Entrevistó alrededor de siete millones de viviendas, que
+alcanzan para estimar por separado cada uno de los 2,478 municipios del país.
+
+## Antes del mapa: el país entero
+
+La encuesta pregunta por siete prestaciones laborales, y solo se las pregunta a
+quien trabaja para un patrón (no a quien trabaja por cuenta propia, a quien nunca
+se le planteó la pregunta). Entre esas 40.9 millones de personas, así queda el país:
+
+```{ojs}
+//| echo: false
+//| output: false
+nacional = FileAttachment("../../../data/prestaciones-nacional.csv").csv({ typed: true })
+municipios = FileAttachment("../../../data/prestaciones-municipios.csv").csv({ typed: true })
+reparto = FileAttachment("../../../data/prestaciones-reparto.csv").csv({ typed: true })
+mx = FileAttachment("../../../data/mx-municipios-2025.json").json()
+
+// Una rampa secuencial por prestación, de un solo tono, como en la curiosidad de
+// mascotas: con una rampa compartida, cambiar de prestación solo cambiaba el
+// sombreado y el cambio se perdía. El dominio sí es fijo (0-90%) para que las
+// siete se puedan comparar entre ellas.
+medidas = ({
+  aguinaldo:        { nombre: "Aguinaldo", etiqueta: "Recibe aguinaldo (%)", esquema: "YlGnBu" },
+  vacaciones:       { nombre: "Vacaciones pagadas", etiqueta: "Recibe vacaciones con goce de sueldo (%)", esquema: "BuPu" },
+  servicio_medico:  { nombre: "Servicio médico", etiqueta: "Tiene servicio médico por su trabajo (%)", esquema: "YlOrBr" },
+  incap_sueldo:     { nombre: "Incapacidad pagada", etiqueta: "Recibe incapacidad con goce de sueldo (%)", esquema: "PuBuGn" },
+  sar_afore:        { nombre: "SAR o Afore", etiqueta: "Tiene ahorro para el retiro (%)", esquema: "Purples" },
+  credito_vivienda: { nombre: "Crédito de vivienda", etiqueta: "Tiene crédito para la vivienda (%)", esquema: "Greens" },
+  utilidades:       { nombre: "Reparto de utilidades", etiqueta: "Recibe reparto de utilidades (%)", esquema: "OrRd" }
+})
+
+munFeatures = topojson.feature(mx, mx.objects.municipalities).features
+// Las fronteras estatales salen de los MISMOS arcos municipales, así que no
+// pueden quedar desalineadas y no cuestan bytes adicionales.
+fronterasEstatales = topojson.mesh(mx, mx.objects.municipalities,
+  (a, b) => a.properties.state_code !== b.properties.state_code)
+contornoPais = topojson.mesh(mx, mx.objects.municipalities, (a, b) => a === b)
+
+// `typed: true` convierte "01001" en el número 1001 y el join falla en
+// silencio (§13, bug 3). La llave se normaliza a texto de 5 dígitos.
+porCvegeo = new Map(municipios.map(d => [String(d.cvegeo).padStart(5, "0"), d]))
+```
+
+```{ojs}
+//| echo: false
+tablaNacional = Inputs.table(nacional, {
+  columns: ["prestacion", "nacional", "mediana_municipal", "pct_debajo"],
+  header: {
+    prestacion: "Prestación",
+    nacional: "Nacional (%)",
+    mediana_municipal: "Municipio de en medio (%)",
+    pct_debajo: "Municipios debajo del nacional (%)"
+  },
+  format: { prestacion: d => medidas[d].nombre },
+  rows: 7,
+  layout: "auto"
+})
+```
+
+Dos cosas saltan antes de cualquier geografía. El reparto de utilidades queda al
+final con 42.7% y el aguinaldo encabeza con 64.2%, y **los dos son obligaciones de
+ley, no concesiones del patrón**. Que veintidós puntos separen dos derechos que la
+ley trata igual dice menos sobre lo que la ley ordena que sobre lo que se cumple y
+sobre lo que la gente sabe que le toca.
+
+Y el reparto no es un gradiente. Son dos bloques:
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: 640, height: 260, marginLeft: 46, marginBottom: 42,
+  style: { background: "transparent", fontFamily: "IBM Plex Sans, sans-serif", fontSize: "12px", color: "var(--ink)" },
+  x: { label: "Número de las siete prestaciones →", tickFormat: d => d, domain: [-0.5, 7.5] },
+  y: { label: "% de personas subordinadas", grid: true },
+  marks: [
+    Plot.rectY(reparto, { x: "k", y: "share", interval: 1, fill: "var(--ink)", fillOpacity: 0.78 }),
+    Plot.ruleY([0], { stroke: "var(--ink)", strokeOpacity: 0.4 })
+  ]
+})
+```
+
+**36.4% tiene las siete y 33.0% no tiene ninguna.** Solo 2.9% está exactamente a
+la mitad de la escala. Una de cada tres personas asalariadas del país (13.5
+millones) trabaja para un patrón sin aguinaldo, sin vacaciones pagadas, sin
+servicio médico y sin ahorro para el retiro. El promedio, 3.77 de siete, describe
+a casi nadie.
+
+## Ahora el mapa
+
+Todo lo anterior son promedios de personas. El mapa cambia la unidad: cada
+polígono es un municipio y todos pesan igual, vivan ahí dos mil habitantes o dos
+millones.
+
+```{ojs}
+//| echo: false
+viewof medida_sel = Inputs.radio(Object.keys(medidas), {
+  value: "aguinaldo",
+  label: "Prestación",
+  format: d => medidas[d].nombre
+})
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+etiquetaMapa = medidas[medida_sel].etiqueta
+esquemaMapa = medidas[medida_sel].esquema
+nacionalMapa = nacional.find(d => d.prestacion === medida_sel)
+
+// La función de la gráfica NO lee el selector: recibe la clave, la etiqueta y el
+// esquema. Es la forma que ya usan data-informality.qmd y la curiosidad de mascotas.
+graficaMapa = (clave, etiqueta, esquema, { width = 700 } = {}) => {
+  const valor = f => {
+    const d = porCvegeo.get(f.properties.CVEGEO);
+    return d ? d[clave] : undefined;
+  };
+  const impreciso = f => {
+    const d = porCvegeo.get(f.properties.CVEGEO);
+    return d ? d["p_" + clave] === 0 : false;
+  };
+  const figura = Plot.plot({
+    width, height: Math.round(width * 0.62),
+    projection: { type: "mercator", domain: { type: "FeatureCollection", features: munFeatures } },
+    style: { background: "transparent", fontFamily: "IBM Plex Sans, sans-serif", fontSize: "12px", color: "var(--ink)" },
+    color: {
+      type: "quantize", n: 7, scheme: esquema, domain: [0, 0.9],
+      label: etiqueta, legend: true, tickFormat: d => (100 * d).toFixed(0) + "%",
+      unknown: "transparent"
+    },
+    marks: [
+      Plot.geo(munFeatures, {
+        fill: valor, stroke: "var(--rule)", strokeWidth: 0.12, tip: true,
+        title: f => {
+          const d = porCvegeo.get(f.properties.CVEGEO);
+          if (!d) return `${f.properties.NOMGEO}\nmuestra insuficiente`;
+          const v = d[clave];
+          return `${d.municipio}, ${d.entidad}\n${etiqueta}: ${(100 * v).toFixed(1)}%` +
+                 (d["p_" + clave] === 1 ? "" : "  (imprecisa)");
+        }
+      }),
+      Plot.geo(munFeatures.filter(impreciso), { fill: "url(#rayas)", stroke: "none" }),
+      Plot.geo(fronterasEstatales, { stroke: "var(--ink)", strokeWidth: 0.45, strokeOpacity: 0.4 }),
+      Plot.geo(contornoPais, { stroke: "var(--ink)", strokeWidth: 0.7, strokeOpacity: 0.65 })
+    ]
+  });
+  // El rayado va como patrón SVG inyectado después de que Plot arma la figura.
+  const svg = figura.tagName === "svg" ? figura : figura.querySelector("svg");
+  const defs = d3.select(svg).insert("defs", ":first-child");
+  defs.append("pattern")
+    .attr("id", "rayas").attr("width", 3.2).attr("height", 3.2)
+    .attr("patternUnits", "userSpaceOnUse").attr("patternTransform", "rotate(45)")
+    .append("line")
+      .attr("x1", 0).attr("y1", 0).attr("x2", 0).attr("y2", 3.2)
+      .attr("stroke", "var(--plot-background)").attr("stroke-width", 1.3).attr("stroke-opacity", 0.85);
+  return figura;
+}
+```
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+graficaMapa(medida_sel, etiquetaMapa, esquemaMapa)
+```
+
+:::
+
+Los municipios rayados son aquellos cuya estimación es imprecisa. Se muestran de
+todos modos, con su color completo, por una razón que explica la última sección.
+
+```{ojs}
+//| echo: false
+graficaDistribucion = (clave, nac, { width = 700 } = {}) => {
+  const vals = municipios.map(d => d[clave]).filter(v => v != null);
+  const mediana = d3.median(vals);
+  return Plot.plot({
+    width, height: 170, marginLeft: 20, marginRight: 20, marginTop: 52, marginBottom: 38,
+    style: { background: "transparent", fontFamily: "IBM Plex Sans, sans-serif", fontSize: "12px", color: "var(--ink)" },
+    x: { domain: [0, 0.9], label: "Cobertura en el municipio →", tickFormat: d => (100 * d).toFixed(0) + "%", grid: true },
+    y: { axis: null },
+    marks: [
+      Plot.dot(vals, Plot.dodgeY({ anchor: "bottom", padding: 0.35 },
+        { x: d => d, r: 2, fill: "var(--ink)", fillOpacity: 0.22 })),
+      Plot.ruleX([mediana], { stroke: "var(--ink)", strokeWidth: 1.5 }),
+      Plot.ruleX([nac.nacional / 100], { stroke: "var(--clay)", strokeWidth: 2 }),
+      // Dos renglones distintos, o las etiquetas se enciman a ancho de teléfono.
+      Plot.text([`municipio de en medio ${(100 * mediana).toFixed(1)}%`], {
+        x: mediana, frameAnchor: "top", dy: -34, fontSize: 12, fill: "var(--ink)",
+        textAnchor: mediana < 0.45 ? "start" : "end", dx: mediana < 0.45 ? 6 : -6
+      }),
+      Plot.text([`dato nacional ${nac.nacional.toFixed(1)}%`], {
+        x: nac.nacional / 100, frameAnchor: "top", dy: -16, fontSize: 12, fill: "var(--clay)",
+        textAnchor: nac.nacional / 100 < 0.45 ? "start" : "end", dx: nac.nacional / 100 < 0.45 ? 6 : -6
+      })
+    ]
+  });
+}
+```
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+graficaDistribucion(medida_sel, nacionalMapa)
+```
+
+:::
+
+Cada punto es uno de los 2,471 municipios con estimación. El dato nacional queda
+por encima de ${nacionalMapa.pct_debajo} de cada 100 de ellos. En el aguinaldo, el
+municipio de en medio está en 33.8% contra un nacional de 64.2%: treinta puntos de
+distancia, y no es un error de cálculo. El dato nacional pesa personas; el mapa
+pesa lugares.
+
+## Por qué hay municipios rayados
+
+Una estimación de encuesta trae error de muestreo, y la forma habitual de
+resumirlo es el coeficiente de variación: el error estándar dividido entre la
+estimación misma. INEGI publica un dato municipal cuando ese cociente no pasa de
+15% y lo reserva cuando lo pasa. Es un criterio razonable y aquí es una trampa.
+
+El coeficiente de variación lleva la estimación en el denominador, así que crece
+solo cuando la cobertura es baja, aunque el error no cambie. En estos datos la
+correlación entre cobertura y coeficiente de variación es **−0.61**. Ordenando
+los municipios en cinco grupos según su precisión, la cobertura mediana del
+aguinaldo cae de 65% en el grupo más preciso a 12% en el menos preciso, y de ese
+último grupo solo el 13% pasa el corte de 15%.
+
+Entonces ocultar las estimaciones imprecisas no quita ruido repartido al azar.
+Quita, casi exactamente, a los municipios donde la prestación es más rara. El mapa
+quedaría más limpio y diría algo falso. Ocultarlas subiría la mediana municipal
+entre 5.3 y 8.9 puntos según la prestación; en el reparto de utilidades, la
+mediana pasaría de 10.8% a 19.7%, casi el doble, sin que ningún número estuviera
+mal calculado.
+
+Por eso este mapa las pinta. El rayado no quiere decir "no sabemos": quiere decir
+"sabemos que es muy poco, y lo sabemos con holgura". Un lector que lea el rayado
+como ausencia de dato invertiría justo la conclusión de la página.
+
+<details class="abstract">
+<summary>Cómo está hecho</summary>
+
+**Fuente:** INEGI, Encuesta Intercensal 2025; microdatos publicados el 22 de
+septiembre de 2026. Universo: personas de 15 años o más, ocupadas y subordinadas,
+es decir que trabajan para un patrón. La encuesta solo hace estas siete preguntas
+a ese grupo, así que **esto no mide informalidad** y no es comparable con la tasa
+que publica la ENOE. Estimación con el diseño muestral de la propia encuesta:
+muestreo en una sola etapa, estratificado y por conglomerados, con los estratos y
+unidades primarias que publica INEGI. Las medianas municipales de esta página se
+calculan sobre los 2,471 municipios con estimación, no solo sobre los precisos,
+por la razón que explica la sección anterior. Geometría: el Marco Geoestadístico
+de la misma Encuesta Intercensal 2025, con los 2,478 municipios vigentes al
+levantamiento; siete quedan sin color porque INEGI no alcanzó ahí la cobertura
+mínima y solo difunde vivienda y población. Ejercicio descriptivo y exploratorio,
+sin relación con el trabajo del autor en ninguna institución.
+
+El script que convierte las estimaciones ya validadas en los archivos que lee esta
+página es
+[`scripts/09-curiosities-prestaciones.R`](https://github.com/alainpin/alainpineda/blob/main/scripts/09-curiosities-prestaciones.R)
+en el repositorio público de este sitio.
+
+</details>

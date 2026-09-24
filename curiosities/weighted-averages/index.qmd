@@ -1,0 +1,283 @@
+---
+title: "The average lives nowhere"
+subtitle: "Curiosity · Encuesta Intercensal 2025"
+description: "A national average weights every person equally. That makes it a correct number about the country and a poor description of almost any piece of it. Mexico's new intercensal survey shows the gap at municipal resolution."
+date: 2026-09-23
+date-modified: last-modified
+author: "Alain Pineda"
+---
+
+::: {.eyebrow}
+Curiosity · INEGI, Encuesta Intercensal 2025 · Public microdata
+:::
+
+A national average weights every person equally. That is what makes it the right
+number for a question about people, and the wrong one for a question about
+places. If half a country's population lives in a handful of large cities, the
+national average resembles those cities. It does not resemble the typical town.
+
+The two are different quantities. **A population-weighted average answers "what
+happens to the average person"; an average across places answers "what happens in
+the average place."** Almost always the first gets computed and the second gets
+reported. They can sit thirty points apart.
+
+Mexico's 2025 intercensal survey, published in September 2026, makes the gap easy
+to see. It interviewed about seven million dwellings, which is enough to estimate
+each of the country's 2,478 municipalities separately.
+
+## Before the map: the whole country
+
+The survey asks about seven employment benefits, and it asks only of people who
+work for an employer (not the self-employed, who were never posed the question).
+Among those 40.9 million people, this is the country:
+
+```{ojs}
+//| echo: false
+//| output: false
+nacional = FileAttachment("../../data/prestaciones-nacional.csv").csv({ typed: true })
+municipios = FileAttachment("../../data/prestaciones-municipios.csv").csv({ typed: true })
+reparto = FileAttachment("../../data/prestaciones-reparto.csv").csv({ typed: true })
+mx = FileAttachment("../../data/mx-municipios-2025.json").json()
+
+// Una rampa secuencial por prestación, de un solo tono, como en la curiosidad de
+// mascotas: con una rampa compartida, cambiar de prestación solo cambiaba el
+// sombreado y el cambio se perdía. El dominio sí es fijo (0-90%) para que las
+// siete se puedan comparar entre ellas.
+medidas = ({
+  aguinaldo:        { nombre: "Year-end bonus", etiqueta: "Receives a year-end bonus (%)", esquema: "YlGnBu" },
+  vacaciones:       { nombre: "Paid holiday", etiqueta: "Receives paid holiday (%)", esquema: "BuPu" },
+  servicio_medico:  { nombre: "Health coverage", etiqueta: "Has health coverage through the job (%)", esquema: "YlOrBr" },
+  incap_sueldo:     { nombre: "Paid sick leave", etiqueta: "Receives paid sick leave (%)", esquema: "PuBuGn" },
+  sar_afore:        { nombre: "Retirement saving", etiqueta: "Has retirement saving (%)", esquema: "Purples" },
+  credito_vivienda: { nombre: "Housing credit", etiqueta: "Has housing credit (%)", esquema: "Greens" },
+  utilidades:       { nombre: "Profit sharing", etiqueta: "Receives profit sharing (%)", esquema: "OrRd" }
+})
+
+munFeatures = topojson.feature(mx, mx.objects.municipalities).features
+// Las fronteras estatales salen de los MISMOS arcos municipales, así que no
+// pueden quedar desalineadas y no cuestan bytes adicionales.
+fronterasEstatales = topojson.mesh(mx, mx.objects.municipalities,
+  (a, b) => a.properties.state_code !== b.properties.state_code)
+contornoPais = topojson.mesh(mx, mx.objects.municipalities, (a, b) => a === b)
+
+// `typed: true` convierte "01001" en el número 1001 y el join falla en
+// silencio (§13, bug 3). La llave se normaliza a texto de 5 dígitos.
+porCvegeo = new Map(municipios.map(d => [String(d.cvegeo).padStart(5, "0"), d]))
+```
+
+```{ojs}
+//| echo: false
+tablaNacional = Inputs.table(nacional, {
+  columns: ["prestacion", "nacional", "mediana_municipal", "pct_debajo"],
+  header: {
+    prestacion: "Benefit",
+    nacional: "National (%)",
+    mediana_municipal: "Median municipality (%)",
+    pct_debajo: "Municipalities below the national figure (%)"
+  },
+  format: { prestacion: d => medidas[d].nombre },
+  rows: 7,
+  layout: "auto"
+})
+```
+
+Two things stand out before any geography. Profit sharing is last at 42.7% and
+the year-end bonus is first at 64.2%, and **both are legal obligations, not
+employer favours**. Twenty-two points separate two entitlements that the law
+treats identically, which says less about what the law requires than about what
+gets complied with and what workers know they are owed.
+
+And the distribution is not a gradient. It is two blocks:
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: 640, height: 260, marginLeft: 46, marginBottom: 42,
+  style: { background: "transparent", fontFamily: "IBM Plex Sans, sans-serif", fontSize: "12px", color: "var(--ink)" },
+  x: { label: "Number of the seven benefits →", tickFormat: d => d, domain: [-0.5, 7.5] },
+  y: { label: "% of employees", grid: true },
+  marks: [
+    Plot.rectY(reparto, { x: "k", y: "share", interval: 1, fill: "var(--ink)", fillOpacity: 0.78 }),
+    Plot.ruleY([0], { stroke: "var(--ink)", strokeOpacity: 0.4 })
+  ]
+})
+```
+
+**36.4% have all seven and 33.0% have none.** Only 2.9% sit at the exact middle
+of the scale. One in three employees in Mexico (13.5 million people) works for
+an employer with no year-end bonus, no paid holiday, no health coverage and no
+retirement saving. The mean, 3.77 of seven, describes almost nobody.
+
+## Now the map
+
+Everything above is an average of people. The map changes the unit: each polygon
+is one municipality, and they all weigh the same whether two thousand people live
+there or two million.
+
+```{ojs}
+//| echo: false
+viewof medida_sel = Inputs.radio(Object.keys(medidas), {
+  value: "aguinaldo",
+  label: "Benefit",
+  format: d => medidas[d].nombre
+})
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+etiquetaMapa = medidas[medida_sel].etiqueta
+esquemaMapa = medidas[medida_sel].esquema
+nacionalMapa = nacional.find(d => d.prestacion === medida_sel)
+
+// La función de la gráfica NO lee el selector: recibe filas, etiqueta y esquema.
+// Es la forma que ya usan data-informality.qmd y la curiosidad de mascotas.
+graficaMapa = (clave, etiqueta, esquema, { width = 700 } = {}) => {
+  const valor = f => {
+    const d = porCvegeo.get(f.properties.CVEGEO);
+    return d ? d[clave] : undefined;
+  };
+  const impreciso = f => {
+    const d = porCvegeo.get(f.properties.CVEGEO);
+    return d ? d["p_" + clave] === 0 : false;
+  };
+  const figura = Plot.plot({
+    width, height: Math.round(width * 0.62),
+    projection: { type: "mercator", domain: { type: "FeatureCollection", features: munFeatures } },
+    style: { background: "transparent", fontFamily: "IBM Plex Sans, sans-serif", fontSize: "12px", color: "var(--ink)" },
+    color: {
+      type: "quantize", n: 7, scheme: esquema, domain: [0, 0.9],
+      label: etiqueta, legend: true, tickFormat: d => (100 * d).toFixed(0) + "%",
+      unknown: "transparent"
+    },
+    marks: [
+      Plot.geo(munFeatures, {
+        fill: valor, stroke: "var(--rule)", strokeWidth: 0.12, tip: true,
+        title: f => {
+          const d = porCvegeo.get(f.properties.CVEGEO);
+          if (!d) return `${f.properties.NOMGEO}\nsample too small to publish`;
+          const v = d[clave];
+          return `${d.municipio}, ${d.entidad}\n${etiqueta}: ${(100 * v).toFixed(1)}%` +
+                 (d["p_" + clave] === 1 ? "" : "  (imprecise)");
+        }
+      }),
+      Plot.geo(munFeatures.filter(impreciso), { fill: "url(#rayas)", stroke: "none" }),
+      Plot.geo(fronterasEstatales, { stroke: "var(--ink)", strokeWidth: 0.45, strokeOpacity: 0.4 }),
+      Plot.geo(contornoPais, { stroke: "var(--ink)", strokeWidth: 0.7, strokeOpacity: 0.65 })
+    ]
+  });
+  // El rayado va como patrón SVG inyectado después de que Plot arma la figura.
+  const svg = figura.tagName === "svg" ? figura : figura.querySelector("svg");
+  const defs = d3.select(svg).insert("defs", ":first-child");
+  defs.append("pattern")
+    .attr("id", "rayas").attr("width", 3.2).attr("height", 3.2)
+    .attr("patternUnits", "userSpaceOnUse").attr("patternTransform", "rotate(45)")
+    .append("line")
+      .attr("x1", 0).attr("y1", 0).attr("x2", 0).attr("y2", 3.2)
+      .attr("stroke", "var(--plot-background)").attr("stroke-width", 1.3).attr("stroke-opacity", 0.85);
+  return figura;
+}
+```
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+graficaMapa(medida_sel, etiquetaMapa, esquemaMapa)
+```
+
+:::
+
+Hatched municipalities are the ones whose estimate is imprecise. They are shown
+anyway, in full colour, for a reason the last section explains.
+
+```{ojs}
+//| echo: false
+graficaDistribucion = (clave, nac, { width = 700 } = {}) => {
+  const vals = municipios.map(d => d[clave]).filter(v => v != null);
+  const mediana = d3.median(vals);
+  return Plot.plot({
+    width, height: 170, marginLeft: 20, marginRight: 20, marginTop: 52, marginBottom: 38,
+    style: { background: "transparent", fontFamily: "IBM Plex Sans, sans-serif", fontSize: "12px", color: "var(--ink)" },
+    x: { domain: [0, 0.9], label: "Coverage in the municipality →", tickFormat: d => (100 * d).toFixed(0) + "%", grid: true },
+    y: { axis: null },
+    marks: [
+      Plot.dot(vals, Plot.dodgeY({ anchor: "bottom", padding: 0.35 },
+        { x: d => d, r: 2, fill: "var(--ink)", fillOpacity: 0.22 })),
+      Plot.ruleX([mediana], { stroke: "var(--ink)", strokeWidth: 1.5 }),
+      Plot.ruleX([nac.nacional / 100], { stroke: "var(--clay)", strokeWidth: 2 }),
+      // Dos renglones distintos, o las etiquetas se enciman a ancho de teléfono.
+      Plot.text([`median municipality ${(100 * mediana).toFixed(1)}%`], {
+        x: mediana, frameAnchor: "top", dy: -34, fontSize: 12, fill: "var(--ink)",
+        textAnchor: mediana < 0.45 ? "start" : "end", dx: mediana < 0.45 ? 6 : -6
+      }),
+      Plot.text([`national figure ${nac.nacional.toFixed(1)}%`], {
+        x: nac.nacional / 100, frameAnchor: "top", dy: -16, fontSize: 12, fill: "var(--clay)",
+        textAnchor: nac.nacional / 100 < 0.45 ? "start" : "end", dx: nac.nacional / 100 < 0.45 ? 6 : -6
+      })
+    ]
+  });
+}
+```
+
+::: {.data-panel}
+
+```{ojs}
+//| echo: false
+graficaDistribucion(medida_sel, nacionalMapa)
+```
+
+:::
+
+Each dot is one of the 2,471 municipalities with an estimate. The national figure
+sits above ${nacionalMapa.pct_debajo} of every 100 of them. For the year-end
+bonus the median municipality is at 33.8% against a national 64.2%: thirty points
+of distance, and not a calculation error. The national figure weights people; the
+map weights places.
+
+## Why some municipalities are hatched
+
+A survey estimate carries sampling error, and the usual way to summarise it is
+the coefficient of variation: the standard error divided by the estimate itself.
+INEGI publishes a municipal figure when that ratio stays under 15% and withholds
+it when it does not. It is a sensible rule and here it is a trap.
+
+The coefficient of variation carries the estimate in its denominator, so it grows
+whenever coverage is low, even if the error does not change. In these data the
+correlation between coverage and the coefficient of variation is **−0.61**.
+Sorting municipalities into five groups by precision, the median coverage of the
+year-end bonus falls from 65% in the most precise group to 12% in the least, and
+only 13% of that last group clears the 15% bar.
+
+So hiding the imprecise estimates does not remove noise scattered at random. It
+removes, almost exactly, the municipalities where the benefit is rarest. The map
+would look cleaner and say something false. Hiding them would raise the median
+municipality by between 5.3 and 8.9 points depending on the benefit; for profit
+sharing the median would go from 10.8% to 19.7%, nearly double, without a single
+number being miscalculated.
+
+That is why this map draws them. The hatching does not mean "we don't know". It
+means "we know it is very little, and we know it loosely." A reader who treats
+hatching as missing data would invert the conclusion of the page.
+
+<details class="abstract">
+<summary>How this is built</summary>
+
+**Source:** INEGI, Encuesta Intercensal 2025; microdata published
+22 September 2026. Universe: people aged 15 and over, employed and working for an
+employer. The survey asks these seven questions only of that group, so **this does
+not measure informality** and is not comparable to the rate ENOE publishes.
+Estimated with the survey's own design (single-stage, stratified, clustered),
+using the strata and primary sampling units INEGI publishes. Municipal medians on
+this page are computed over all 2,471 municipalities with an estimate, not only
+the precise ones, for the reason given above. Geometry: the Marco Geoestadístico
+of the Encuesta Intercensal 2025 itself, with the 2,478 municipalities in force at
+the time of the survey; seven are left uncoloured because INEGI did not reach
+minimum coverage there and publishes only dwellings and population. Descriptive
+and exploratory, and unrelated to the author's work at any institution.
+
+The script that turns the validated estimates into the files this page reads is
+[`scripts/09-curiosities-prestaciones.R`](https://github.com/alainpin/alainpineda/blob/main/scripts/09-curiosities-prestaciones.R)
+in this site's public repository.
+
+</details>

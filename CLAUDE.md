@@ -1581,10 +1581,27 @@ with the rest of the site: every number goes through the survey's own design.
 series.** It was called "Notes" for about an hour and the owner changed it. The
 name should say plainly that the section is for fun.
 
-**Topic boundary, applied before starting a new curiosity:** could this topic
-appear in a report from the owner's own division? If yes, it does not go here.
-Public microdata on pets passes the test; labour-market and monetary topics do
-not. §8 governs everything else.
+**Topic boundary, applied before starting a new curiosity.** The test is what
+the piece is *for*, not which dataset it draws on. A curiosity may use
+labour-market microdata when the lesson is statistical and the data is only the
+occasion — `weighted-averages` does exactly that with the Encuesta Intercensal,
+where the subject is how an average is weighted and benefit coverage is the
+illustration. What does not go here is a piece whose point is a labour-market
+*result*; that belongs in research or in Labor Market MX, where the site's
+editorial weight matches the claim. Monetary topics stay out entirely.
+
+The boundary is narrower than "any public microdata", and it exists to protect
+the §8 line rather than to bar a subject. Two things are therefore not optional
+on a page like this: it says plainly that it is descriptive and exploratory and
+unrelated to the owner's work at Banco de México, and it states what its numbers
+cannot support — `weighted-averages` says in bold that it does not measure
+informality and is not comparable to the rate ENOE publishes, because a reader
+who assumed otherwise would be reading it as division work. §8 governs
+everything else.
+
+An earlier version of this rule barred labour-market topics outright. It was
+written before a curiosity existed that used one, and it is superseded rather
+than excepted: apply the test above.
 
 **Same slug in both languages, and keep it that way.** `curiosities` is the
 folder in both trees, so the switcher's default prepend/strip logic works and
@@ -1649,6 +1666,46 @@ mean chatty: short declarative sentences still apply.
   `etiquetaMapa`, `esquemaMapa`) that the display cell passes in. This mirrors
   `data-informality.qmd` and is the shape to copy for the next interactive
   curiosity.
+
+### `curiosities/weighted-averages/` — the second one
+
+- **Concept.** A population-weighted average answers "what happens to the average
+  person"; an average across places answers "what happens in the average place."
+  The page names that distinction before any Mexican data and never leaves it.
+  For the year-end bonus the national figure is 64.2% and the median municipality
+  is 33.8% — thirty points, and neither number is wrong.
+- **Data.** Encuesta Intercensal 2025, the seven employment-benefit questions,
+  asked only of people who work for an employer. `scripts/09-curiosities-prestaciones.R`
+  follows the §9 model of publishing from an already-validated external pipeline:
+  it reshapes for the web and recomputes nothing. That pipeline lives outside this
+  repo (~740 MB of microdata), so its path comes from `EIC2025_DIR`, never from a
+  committed absolute path (§0).
+- **Outputs.** `data/prestaciones-{nacional,municipios,reparto}.csv` and
+  `data/mx-municipios-2025.json` (1.9 MB). Named by content, not by section.
+- **Geometry is the survey's own.** The Marco Geoestadístico of the Encuesta
+  Intercensal 2025, so the join is exact: 2,478 municipalities, 2,471 with an
+  estimate, and the 7 left uncoloured are precisely those INEGI flags as
+  insufficient sample. **State borders are `topojson.mesh()` over the municipal
+  object**, filtering on `state_code` changing across an arc — same arcs, so they
+  cannot drift out of alignment, and no second layer to ship.
+- **Imprecise estimates are drawn, not hidden, and this is the page's second
+  lesson.** The coefficient of variation carries the estimate in its denominator,
+  so it explodes exactly where coverage is low: the correlation between coverage
+  and CV is −0.61, and hiding the estimates that fail INEGI's 15% rule would raise
+  the median municipality by 5.3 to 8.9 points depending on the benefit. They get
+  full colour plus a diagonal hatch (an SVG `<pattern>` injected into Plot's SVG
+  after render). **Do not "clean up" the map by greying them out** — that is the
+  bug the section exists to explain.
+- **`Inputs.radio`, not `Inputs.select`.** Seven benefits shown as buttons, which
+  the owner preferred to a dropdown and which is also the one control on this site
+  an automated check can actually drive. The §14 rule still holds: the chart
+  function takes a key, a label and a scheme, and never reads the selector.
+- **Fixed 0–90% colour domain across all seven**, with a different single-hue ramp
+  per benefit. Fixed domain so the seven compare; different hues so switching is
+  visible.
+- **Never send accented label text from R into a page or template.** It arrives
+  mangled ("Servicio mdico"). R passes keys and numbers; labels live in the
+  `.qmd`, which is UTF-8.
 
 **A verification gap worth knowing about.** The Claude Code browser pane cannot
 drive a native `<select>`: a synthetic `input` event, the `form_input` tool and
