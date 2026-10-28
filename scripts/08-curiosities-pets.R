@@ -188,6 +188,44 @@ message("Gradiente 0 -> 8 activos, % con mascota: ",
 message("Error estandar por entidad (pp): mediana ",
         round(stats::median(estados$mascota_ee), 2),
         ", maximo ", round(max(estados$mascota_ee), 2))
+
+# Cuanto se distinguen las entidades entre si (seccion sobre el orden de la
+# nota). Las 32 estimaciones se tratan como independientes y con error estandar
+# exacto. El margen de error de un par es 1.96 * sqrt(ee_i^2 + ee_j^2). Las
+# entidades van ordenadas de mayor a menor, asi que la diferencia entre dos
+# indices es cuantos lugares las separan en el orden.
+orden   <- order(-estados$mascota)
+est     <- estados$mascota[orden]
+ee      <- estados$mascota_ee[orden]
+clave   <- estados$cve_ent[orden]
+pares   <- which(upper.tri(diag(length(est))), arr.ind = TRUE)
+difs    <- abs(est[pares[, 1]] - est[pares[, 2]])
+se_dif  <- sqrt(ee[pares[, 1]]^2 + ee[pares[, 2]]^2)
+margen  <- 1.96 * se_dif
+lugares <- pares[, 2] - pares[, 1]
+sep     <- difs > margen
+p_par   <- 2 * stats::pnorm(-difs / se_dif)
+cdmx    <- which(clave == 9)
+z_cdmx  <- (est[-cdmx] - est[cdmx]) / sqrt(ee[-cdmx]^2 + ee[cdmx]^2)
+holm    <- stats::p.adjust(p_par, "holm") < 0.05
+message("\n--- Orden entre entidades ---")
+message("Pares que se distinguen: ", sum(sep), " de ", length(sep),
+        "; margen mediano ", round(stats::median(margen), 1), " pp",
+        "; de la primera a la ultima ", round(diff(range(est)), 1), " pp")
+message("Pares que se distinguen a 2 lugares o menos: ", sum(sep[lugares <= 2]),
+        " de ", sum(lugares <= 2), "; a 10 lugares: ", sum(sep[lugares == 10]),
+        " de ", sum(lugares == 10), "; a 16 o mas: ", sum(sep[lugares >= 16]),
+        " de ", sum(lugares >= 16))
+message("Con Holm sobre los ", length(p_par), " pares se distinguen ", sum(holm),
+        "; Ciudad de Mexico queda por debajo de ",
+        sum(holm & (pares[, 1] == cdmx | pares[, 2] == cdmx)),
+        " de las otras ", length(est) - 1)
+message("Parte de la varianza entre entidades que es error muestral: ",
+        round(100 * mean(ee^2) / stats::var(est)), "%")
+message("Ciudad de Mexico queda por debajo de ", sum(z_cdmx > 1.96),
+        " de las otras ", length(z_cdmx), " sin correccion; no se separa de las ",
+        "claves ", paste(clave[-cdmx][z_cdmx <= 1.96], collapse = ", "))
+
 message("\n--- Regresion (puntos de probabilidad) ---")
 print(regresion)
 message("\n--- Rural (1) contra urbano (0) ---")
@@ -329,8 +367,9 @@ fig_agregacion <- function(lang, mode) {
 }
 
 # --- Figura 2: el ranking estatal con intervalos de confianza --------------
-# La figura existe para mostrar que el orden no se sostiene, asi que el
-# intervalo es el objeto principal y el punto es secundario.
+# La figura existe para mostrar que entidades cercanas en el orden no se
+# distinguen, asi que el intervalo es el objeto principal y el punto es
+# secundario.
 
 fig_ranking <- function(lang, mode) {
   p <- paleta[[mode]]

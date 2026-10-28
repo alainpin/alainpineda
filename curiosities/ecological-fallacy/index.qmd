@@ -132,7 +132,7 @@ graficaMapa(filasMapa, etiquetaMapa, esquemaMapa)
 
 :::
 
-## The state ranking is mostly sampling noise
+## States close in the ranking usually cannot be told apart
 
 Each state is estimated from about a thousand homes. The median standard error
 is 1.7 points, so a 95% confidence interval runs 3.3 points either side of the
@@ -147,9 +147,25 @@ Share of homes with at least one pet, by state, with 95% confidence intervals
 from the survey design. The dashed line is the national estimate, 66.4%.
 :::
 
-Most of the intervals overlap. Ordering 32 states from first to last reads
-sampling noise as a result. What does survive is the contrast between the
-extremes: Mexico City is genuinely below the rest of the country.
+The survey can tell two states apart only if the gap between their estimates
+exceeds its own 95% margin of error. Because both estimates carry error, that
+margin is wider than the 3.3 points of a single state. Its median across the
+496 pairs of states is about 4.6 points. Of those pairs, 239 differ by more
+than their own margin and 257 do not, before any allowance for making 496
+comparisons at once. A stricter test that allows for them finds 84.
+
+The 32 states span 17 points, about half a point per place in the ranking, so
+states close in the ranking differ by little. None of the 61 pairs within two
+places of each other differs by more than its margin. Of the 22 pairs ten
+places apart, 8 do. All 136 pairs sixteen or more places apart do. Reading the
+ranking position by position treats small gaps as results.
+
+Most of the spread across states is not sampling error: about 14% of the
+variance among the 32 estimates is. The ranking is informative about groups of
+states and about the extremes, and uninformative position by position. Mexico
+City, last at 56%, is below 29 of the other 31 states by more than each pair's
+margin. Quintana Roo and Tabasco are the two it cannot be told apart from.
+Under the stricter test it is below 22.
 
 ## The same relationship at two levels of aggregation
 
@@ -217,6 +233,18 @@ INEGI's own release exactly. The script that downloads the microdata, computes
 every number on this page and draws both figures is
 [`scripts/08-curiosities-pets.R`](https://github.com/alainpin/alainpineda/blob/main/scripts/08-curiosities-pets.R)
 in this site's public repository.
+
+The comparisons in the section on the ranking treat the 32 estimates as
+independent and each standard error as exact. The 95% margin of error for a
+pair of states is 1.96 times the square root of the sum of their two squared
+standard errors, and the 4.6 points quoted is the median of the 496 margins. The
+share of variance due to sampling error is the average of the 32 squared
+standard errors divided by the variance of the 32 estimates. The standard
+errors measure sampling error only. The margins are not adjusted for the number
+of comparisons. The stricter test is Holm's correction, applied to two-sided
+normal p-values for the 496 pairs. It keeps the chance of declaring at least
+one difference that does not exist at 5% or less. With it, 84 pairs are
+declared different, and Mexico City is below 22 of the other 31 states.
 
 The survey records whether the home has a dog, a cat, or another pet, and how
 many of each. It does not record what the other pet is, nor spending,

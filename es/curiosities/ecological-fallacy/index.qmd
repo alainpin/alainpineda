@@ -135,7 +135,7 @@ graficaMapa(filasMapa, etiquetaMapa, esquemaMapa)
 
 :::
 
-## El orden entre entidades es casi todo ruido muestral
+## Las entidades cercanas en el orden por lo general no se distinguen entre sí
 
 Cada entidad se estima con alrededor de mil viviendas. El error estándar
 mediano es de 1.7 puntos, así que el intervalo de confianza al 95% se extiende
@@ -152,10 +152,29 @@ de confianza al 95% calculados con el diseño muestral. La línea punteada es la
 estimación nacional, 66.4%.
 :::
 
-La mayoría de los intervalos se traslapan entre sí. Ordenar 32 entidades del
-primero al último lee ruido muestral como si fuera un resultado. Lo que sí se
-sostiene es el contraste entre los extremos: la Ciudad de México está
-genuinamente por debajo del resto del país.
+La encuesta solo puede distinguir una entidad de otra si la diferencia entre
+sus estimaciones supera su propio margen de error al 95%. Como las dos
+estimaciones tienen error, ese margen es más ancho que los 3.3 puntos de una
+sola entidad. La mediana de ese margen entre los 496 pares de entidades es de
+unos 4.6 puntos. De esos pares, 239 difieren en más que su propio margen y 257
+no, antes de cualquier ajuste por hacer 496 comparaciones a la vez. Una prueba
+más estricta, que sí las toma en cuenta, encuentra 84.
+
+Las 32 entidades abarcan 17 puntos, alrededor de medio punto por lugar en el
+orden, así que las entidades cercanas en el orden difieren poco. Ninguno de los
+61 pares a dos lugares de distancia o menos difiere en más que su margen. De
+los 22 pares a diez lugares de distancia, 8 difieren en más que su margen. Los 136 pares a dieciséis lugares de distancia o más difieren todos en
+más que su margen. Leer el
+orden posición por posición trata las diferencias pequeñas como si fueran
+resultados.
+
+La mayor parte de la dispersión entre entidades no es error muestral:
+alrededor de 14% de la varianza entre las 32 estimaciones lo es. El orden
+informa sobre grupos de entidades y sobre los extremos, pero no sobre cada
+posición. La Ciudad de México, en último lugar con 56%, queda por debajo de 29
+de las otras 31 entidades, con una diferencia mayor que el margen de cada par.
+Las otras dos, Quintana Roo y Tabasco, no se distinguen de ella. Con la prueba
+más estricta queda por debajo de 22.
 
 ## La misma relación en dos niveles de agregación
 
@@ -229,6 +248,21 @@ que baja los microdatos, calcula cada número de esta página y dibuja las dos
 figuras es
 [`scripts/08-curiosities-pets.R`](https://github.com/alainpin/alainpineda/blob/main/scripts/08-curiosities-pets.R)
 en el repositorio público de este sitio.
+
+Las comparaciones de la sección sobre el orden suponen que las 32
+estimaciones son independientes y que cada error estándar es exacto. El margen
+de error al 95% de un par de entidades es 1.96 veces la raíz cuadrada de la
+suma de los cuadrados de sus dos errores estándar, y los 4.6 puntos citados son
+la mediana de los 496 márgenes. La parte de la varianza que se debe al
+error muestral es el promedio de los cuadrados de los 32 errores estándar
+dividido entre la varianza de las 32 estimaciones. Los errores estándar miden
+solo el error muestral. Los márgenes no se ajustan por el número de
+comparaciones. La prueba más estricta es la corrección de Holm, aplicada a
+valores p de dos colas calculados con la distribución normal para los 496
+pares. Mantiene en 5% o menos la
+probabilidad de que al menos una comparación declare distintas a dos entidades
+que en realidad no lo son. Con ella se distinguen 84 pares, y la Ciudad de
+México queda por debajo de 22 de las otras 31 entidades.
 
 La encuesta registra si la vivienda tiene perro, gato u otra mascota, y
 cuántos de cada uno. No registra cuál es la otra mascota, ni gasto, atención
