@@ -1,0 +1,17 @@
+[
+  {
+    "listing": "/curiosities.html",
+    "items": [
+      "/curiosities/weighted-averages/index.html",
+      "/curiosities/ecological-fallacy/index.html"
+    ]
+  },
+  {
+    "listing": "/research.html",
+    "items": [
+      "/research/working-papers/social-insurance-without-a-job/index.html",
+      "/research/in-progress/domestic-workers/index.html",
+      "/research/in-progress/nafta-to-usmca/index.html"
+    ]
+  }
+]

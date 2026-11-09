@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='475.20pt' height='244.80pt' viewBox='0 0 475.20 244.80'>
+<g class='svglite'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+    .svglite g.glyphgroup path {
+      fill: inherit;
+      stroke: none;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<defs>
+  <clipPath id='cpMC4wMHw0NzUuMjB8MC4wMHwyNDQuODA='>
+    <rect x='0.00' y='0.00' width='475.20' height='244.80' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw0NzUuMjB8MC4wMHwyNDQuODA=)'>
+</g>
+<defs>
+  <clipPath id='cpNjguNjR8NDU5LjI2fDkuOTZ8MTM1LjI5'>
+    <rect x='68.64' y='9.96' width='390.62' height='125.33' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNjguNjR8NDU5LjI2fDkuOTZ8MTM1LjI5)'>
+<polyline points='68.64,135.29 68.64,9.96 ' style='stroke-width: 0.85; stroke: #332C26; stroke-linecap: butt;' />
+<polyline points='166.30,135.29 166.30,9.96 ' style='stroke-width: 0.85; stroke: #332C26; stroke-linecap: butt;' />
+<polyline points='263.95,135.29 263.95,9.96 ' style='stroke-width: 0.85; stroke: #332C26; stroke-linecap: butt;' />
+<polyline points='361.61,135.29 361.61,9.96 ' style='stroke-width: 0.85; stroke: #332C26; stroke-linecap: butt;' />
+<polyline points='459.26,135.29 459.26,9.96 ' style='stroke-width: 0.85; stroke: #332C26; stroke-linecap: butt;' />
+<rect x='150.02' y='28.48' width='309.24' height='31.33' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #63B0B0;' />
+<rect x='133.75' y='28.48' width='16.28' height='31.33' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BE8D74;' />
+<rect x='68.64' y='28.48' width='65.10' height='31.33' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #332C26;' />
+<rect x='394.16' y='85.44' width='65.10' height='31.33' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #8DCDCB;' />
+<rect x='166.30' y='85.44' width='227.86' height='31.33' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BE8D74;' />
+<rect x='68.64' y='85.44' width='97.65' height='31.33' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #332C26;' />
+</g>
+<g clip-path='url(#cpMC4wMHw0NzUuMjB8MC4wMHwyNDQuODA=)'>
+<text x='62.37' y='98.35' text-anchor='end' style='font-size: 13.00px;fill: #E3DDD0; font-family: "Arial";' textLength='52.78px' lengthAdjust='spacingAndGlyphs'>Lactation</text>
+<text x='62.37' y='113.17' text-anchor='end' style='font-size: 13.00px;fill: #E3DDD0; font-family: "Arial";' textLength='36.12px' lengthAdjust='spacingAndGlyphs'>rooms</text>
+<text x='62.37' y='41.39' text-anchor='end' style='font-size: 13.00px;fill: #E3DDD0; font-family: "Arial";' textLength='56.39px' lengthAdjust='spacingAndGlyphs'>Paid daily</text>
+<text x='62.37' y='56.21' text-anchor='end' style='font-size: 13.00px;fill: #E3DDD0; font-family: "Arial";' textLength='39.03px' lengthAdjust='spacingAndGlyphs'>breaks</text>
+<text x='68.64' y='149.44' text-anchor='middle' style='font-size: 11.00px;fill: #9A948B; font-family: "Arial";' textLength='6.12px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='166.30' y='149.44' text-anchor='middle' style='font-size: 11.00px;fill: #9A948B; font-family: "Arial";' textLength='6.12px' lengthAdjust='spacingAndGlyphs'>6</text>
+<text x='263.95' y='149.44' text-anchor='middle' style='font-size: 11.00px;fill: #9A948B; font-family: "Arial";' textLength='12.25px' lengthAdjust='spacingAndGlyphs'>12</text>
+<text x='361.61' y='149.44' text-anchor='middle' style='font-size: 11.00px;fill: #9A948B; font-family: "Arial";' textLength='12.25px' lengthAdjust='spacingAndGlyphs'>18</text>
+<text x='459.26' y='149.44' text-anchor='middle' style='font-size: 11.00px;fill: #9A948B; font-family: "Arial";' textLength='12.25px' lengthAdjust='spacingAndGlyphs'>24</text>
+<text x='263.95' y='167.61' text-anchor='middle' style='font-size: 11.00px;fill: #9A948B; font-family: "Arial";' textLength='181.06px' lengthAdjust='spacingAndGlyphs'>Number of countries (of 24 reviewed)</text>
+<rect x='105.00' y='191.56' width='11.54' height='11.54' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #332C26;' />
+<rect x='216.51' y='191.56' width='11.54' height='11.54' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BE8D74;' />
+<rect x='323.91' y='191.56' width='11.54' height='11.54' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #63B0B0;' />
+<rect x='105.00' y='211.49' width='11.54' height='19.65' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #BE8D74;' />
+<rect x='216.51' y='211.49' width='11.54' height='19.65' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #8DCDCB;' />
+<text x='124.22' y='201.09' style='font-size: 10.50px;fill: #E3DDD0; font-family: "Arial";' textLength='63.05px' lengthAdjust='spacingAndGlyphs'>No legislation</text>
+<text x='235.74' y='201.09' style='font-size: 10.50px;fill: #E3DDD0; font-family: "Arial";' textLength='80.48px' lengthAdjust='spacingAndGlyphs'>Yes, &lt;60 min/day</text>
+<text x='343.13' y='201.09' style='font-size: 10.50px;fill: #E3DDD0; font-family: "Arial";' textLength='80.48px' lengthAdjust='spacingAndGlyphs'>Yes, 60+ min/day</text>
+<text x='124.22' y='219.40' style='font-size: 10.50px;fill: #E3DDD0; font-family: "Arial";' textLength='82.55px' lengthAdjust='spacingAndGlyphs'>Yes, only above a</text>
+<text x='124.22' y='230.74' style='font-size: 10.50px;fill: #E3DDD0; font-family: "Arial";' textLength='84.61px' lengthAdjust='spacingAndGlyphs'>minimum firm size</text>
+<text x='235.74' y='219.40' style='font-size: 10.50px;fill: #E3DDD0; font-family: "Arial";' textLength='48.66px' lengthAdjust='spacingAndGlyphs'>Yes, for all</text>
+<text x='235.74' y='230.74' style='font-size: 10.50px;fill: #E3DDD0; font-family: "Arial";' textLength='48.45px' lengthAdjust='spacingAndGlyphs'>employers</text>
+</g>
+</g>
+</svg>

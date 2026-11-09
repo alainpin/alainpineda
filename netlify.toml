@@ -1,0 +1,123 @@
+# Netlify aqui solo sirve archivos ya compilados. NO compila el sitio.
+#
+# ESTE ARCHIVO TIENE QUE VIAJAR A gh-pages PARA SERVIR DE ALGO. Netlify lee
+# netlify.toml de la raiz de lo que publica, y publica gh-pages (o sea _site/),
+# no la rama main. Por eso esta listado en `resources:` de _quarto.yml, que lo
+# copia a _site/ en cada render. Si alguien lo saca de esa lista, todo lo de
+# abajo deja de aplicarse en silencio -- que fue exactamente lo que paso entre
+# que se escribio el redirect de /index.es.html y el 2026-08-31, cuando se
+# descubrio que esa ruta llevaba todo ese tiempo devolviendo 404.
+#
+# Configuracion en el panel de Netlify:
+#   Branch to deploy .... gh-pages
+#   Build command ....... (vacio)
+#   Publish directory ... /
+#
+# GitHub Actions corre build.sh en cada push a main, junta ingles y espanol
+# en _site/ y empuja el resultado a la rama gh-pages. Netlify solo la sirve.
+# El DNS y el dominio se quedan donde estan; no hay que tocar nada ahi.
+
+# Aqui NO va un bloque [build]. Las opciones de build las sigue mandando el
+# panel de Netlify (arriba estan anotadas). Un netlify.toml pisa a la UI, y
+# hasta el 2026-08-31 este archivo nunca se leyo, asi que su viejo bloque
+# [build] con `publish = "/"` jamas se ejercito -- estrenarlo ahora, con una
+# ruta que Netlify podria resolver como la raiz del contenedor en vez de la
+# del repo, seria arriesgar el sitio en produccion para configurar algo que
+# ya esta bien configurado. Este archivo solo lleva headers y redirects.
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[redirects]]
+  from = "/index.es.html"
+  to = "/es/"
+  status = 301
+
+# Findings -> Quarterly Update (renombrado el 2026-08-31). Las paginas tambien
+# llevan un `aliases:` en su front matter, que deja un stub HTML que redirige
+# con JavaScript en la ruta vieja. Los dos mecanismos conviven a proposito:
+#
+#   - El 301 de aqui es el que importa. Es un redirect de servidor de verdad,
+#     asi que Google traspasa el ranking de la URL vieja a la nueva; un stub
+#     de JavaScript no hace eso de forma confiable.
+#   - El stub queda de red de seguridad. Si este archivo vuelve a quedarse sin
+#     llegar a gh-pages, los enlaces viejos siguen funcionando en vez de 404ear.
+#
+# `force = true` es indispensable: sin el, Netlify sirve el archivo estatico
+# cuando existe uno en esa ruta -- y existe, es justamente el stub -- y la regla
+# no se aplica nunca. Las variantes sin .html van aparte porque Netlify resuelve
+# las pretty URLs al archivo, no a esta tabla.
+[[redirects]]
+  from = "/data-findings.html"
+  to = "/data-quarterly-update.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/data-findings"
+  to = "/data-quarterly-update.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/es/data-hallazgos.html"
+  to = "/es/data-actualizacion-trimestral.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/es/data-hallazgos"
+  to = "/es/data-actualizacion-trimestral.html"
+  status = 301
+  force = true
+
+# Reorganizacion de Research (2026-09-01). Lactancia salio de policy/ y
+# melanoma de "Otras publicaciones"; los dos viven en research/other/ como
+# renglones bajo "Otros trabajos". Nada de esto se publico con la ruta intermedia, asi que no hay
+# cadena de redirects: cada regla apunta al destino final. Son URLs de carpeta, asi que
+# el comodin cubre tanto /ruta/ como /ruta/index.html en una sola regla.
+# Mismo criterio que arriba: force = true porque existe el stub del alias.
+[[redirects]]
+  from = "/research/published/melanoma-utilization/*"
+  to = "/research/other/melanoma-utilization/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/es/research/published/melanoma-utilization/*"
+  to = "/es/research/other/melanoma-utilization/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/policy/breastfeeding-workplace-policy/*"
+  to = "/research/other/breastfeeding-workplace-policy/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/es/policy/breastfeeding-workplace-policy/*"
+  to = "/es/research/other/breastfeeding-workplace-policy/:splat"
+  status = 301
+  force = true
+
+# Materiales de docencia (2026-09-02). El temario en PDF y el ZIP de laminas
+# ya no existen en files/: el temario esta en prosa en la pagina del curso y
+# las laminas viven sueltas, una por sesion, en files/storytelling/. Las dos
+# rutas viejas circularon publicamente, asi que apuntan a la pagina nueva.
+# Mismo criterio que arriba: force = true, para que la regla siga aplicando
+# aunque alguna vez vuelva a existir un archivo en esa ruta.
+[[redirects]]
+  from = "/files/storytelling-syllabus.pdf"
+  to = "/storytelling-in-economics.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/files/storytelling-slides.zip"
+  to = "/storytelling-in-economics.html"
+  status = 301
+  force = true
