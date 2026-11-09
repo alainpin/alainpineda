@@ -29,8 +29,18 @@ if (!nzchar(dir_dashboard)) {
 
 ruta_indicadores <- file.path(dir_dashboard, "data/processed/indicadores.parquet")
 
+# Lista blanca de indicadores, igual que en 03-labor-indicators-cuts.R. El
+# parquet privado ya trae, con corte "nacional", los niveles en personas, los
+# salarios y los salarios imputados (SALARIO_IMP*), y sin esta lista salen
+# publicados en este CSV aunque ninguna pagina los lea: el archivo es publico
+# (alainpineda.com/data/labor-indicators.csv). Las series imputadas se quedan
+# en el proyecto privado por decision del owner (2026-10-19). Publicar un
+# indicador nuevo exige agregarlo aqui a proposito.
+indicadores_publicados <- c("TPEA", "TIL1", "TIL2", "TOSI1", "TOSI2",
+                            "TD", "TDAMPL", "SUBUTIL", "TSUB", "TCCO")
+
 tabla <- arrow::read_parquet(ruta_indicadores) |>
-  filter(corte == "nacional") |>
+  filter(corte == "nacional", indicador %in% indicadores_publicados) |>
   transmute(
     anio, trimestre, indicador, regimen,
     valor = round(valor, 2),
@@ -38,6 +48,12 @@ tabla <- arrow::read_parquet(ruta_indicadores) |>
     n_obs
   ) |>
   arrange(indicador, anio, trimestre)
+
+faltan <- setdiff(indicadores_publicados, unique(tabla$indicador))
+if (length(faltan)) {
+  stop("Faltan indicadores publicados en el parquet: ", paste(faltan, collapse = ", "),
+       call. = FALSE)
+}
 
 readr::write_csv(tabla, here("data", "labor-indicators.csv"))
 message("Escrito: data/labor-indicators.csv (", nrow(tabla), " renglones, ",
